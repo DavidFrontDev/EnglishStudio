@@ -1,0 +1,152 @@
+<UserControl x:Class="EnglishStudio.App.Views.ReadingStudy.ComprehensionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ComprehensionViewModel}"
+             d:DesignWidth="560" d:DesignHeight="680">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:InverseBoolToVisibilityConverter x:Key="InvBoolToVis" />
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource Card}" Background="{DynamicResource WindowBaseBrush}" MaxWidth="600" Padding="22">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24" ShadowDepth="4" Opacity="0.55" Color="Black" />
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid Grid.Row="0" Margin="0,0,0,12">
+                <TextBlock Text="❓  Вопросы на понимание" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <Border HorizontalAlignment="Right" VerticalAlignment="Center"
+                        Background="{DynamicResource OverlayLight13Brush}"
+                        CornerRadius="12" Padding="10,4"
+                        Visibility="{Binding ShowScore, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="{Binding ScoreText}" Foreground="{DynamicResource StrongTextBrush}" FontWeight="SemiBold" FontSize="12" />
+                </Border>
+            </Grid>
+
+            <!-- Loading / empty / questions -->
+            <Grid Grid.Row="1">
+                <TextBlock Text="⏳ Генерирую вопросы…"
+                           Style="{StaticResource MutedText}"
+                           VerticalAlignment="Top"
+                           Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" />
+
+                <TextBlock Text="{Binding StatusText}"
+                           Style="{StaticResource MutedText}"
+                           TextWrapping="Wrap"
+                           VerticalAlignment="Top"
+                           Visibility="{Binding HasQuestions, Converter={StaticResource InvBoolToVis}}" />
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Visibility="{Binding HasQuestions, Converter={StaticResource BoolToVis}}">
+                    <ItemsControl ItemsSource="{Binding Questions}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Prompt}"
+                                                   FontWeight="SemiBold"
+                                                   FontSize="14"
+                                                   Foreground="{DynamicResource StrongTextBrush}"
+                                                   TextWrapping="Wrap" />
+
+                                        <!-- MCQ options -->
+                                        <ItemsControl ItemsSource="{Binding OptionItems}"
+                                                      Margin="0,8,0,0"
+                                                      Visibility="{Binding IsMultipleChoice, Converter={StaticResource BoolToVis}}">
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <RadioButton Content="{Binding Text}"
+                                                                 IsChecked="{Binding IsSelected, Mode=TwoWay}"
+                                                                 GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                                 Foreground="{DynamicResource PrimaryTextBrush}"
+                                                                 Margin="0,3"
+                                                                 Padding="6,0,0,0"
+                                                                 Cursor="Hand" />
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+
+                                        <!-- Open answer -->
+                                        <TextBox Style="{StaticResource FlatTextBox}"
+                                                 Text="{Binding UserAnswer, UpdateSourceTrigger=PropertyChanged}"
+                                                 AcceptsReturn="True"
+                                                 TextWrapping="Wrap"
+                                                 MinHeight="64"
+                                                 VerticalScrollBarVisibility="Auto"
+                                                 Margin="0,8,0,0"
+                                                 Visibility="{Binding IsOpen, Converter={StaticResource BoolToVis}}" />
+
+                                        <!-- Check button / spinner -->
+                                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                            <Button Content="Проверить"
+                                                    Padding="12,5"
+                                                    FontSize="12"
+                                                    Style="{StaticResource FlatButton}"
+                                                    Command="{Binding CheckCommand}"
+                                                    Visibility="{Binding IsChecking, Converter={StaticResource InvBoolToVis}}" />
+                                            <TextBlock Text="⏳ проверяю…"
+                                                       Style="{StaticResource MutedText}"
+                                                       VerticalAlignment="Center"
+                                                       Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
+                                        </StackPanel>
+
+                                        <!-- Verdict -->
+                                        <StackPanel Margin="0,8,0,0"
+                                                    Visibility="{Binding HasVerdict, Converter={StaticResource BoolToVis}}">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="✓ Верно"
+                                                           Foreground="{DynamicResource SuccessBrush}"
+                                                           FontWeight="SemiBold"
+                                                           Visibility="{Binding IsCorrect, Converter={StaticResource BoolToVis}}" />
+                                                <TextBlock Text="✗ Неверно"
+                                                           Foreground="{DynamicResource ErrorBrush}"
+                                                           FontWeight="SemiBold"
+                                                           Visibility="{Binding IsCorrect, Converter={StaticResource InvBoolToVis}}" />
+                                                <TextBlock Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="8,0,0,0">
+                                                    <Run Text="·" /><Run Text="{Binding Score, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" баллов" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding FeedbackRu}"
+                                                       Style="{StaticResource MutedText}"
+                                                       TextWrapping="Wrap"
+                                                       Margin="0,4,0,0" />
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+
+            <!-- Footer -->
+            <Grid Grid.Row="2" Margin="0,14,0,0">
+                <Button Content="Проверить все"
+                        HorizontalAlignment="Left"
+                        Padding="14,8"
+                        Style="{StaticResource FlatButton}"
+                        Command="{Binding CheckAllCommand}"
+                        Visibility="{Binding HasQuestions, Converter={StaticResource BoolToVis}}" />
+                <Button Content="Закрыть"
+                        HorizontalAlignment="Right"
+                        Padding="16,8"
+                        Style="{StaticResource AccentButton}"
+                        Command="{Binding CloseCommand}" />
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

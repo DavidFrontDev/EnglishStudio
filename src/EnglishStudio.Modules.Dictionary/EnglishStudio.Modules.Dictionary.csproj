@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- AWL/AVL are CC0 academic word lists and stay embedded. Oxford 5000 and PHaVE are copyright
+         content shipped via the separate content-pack (loaded through IContentStore at runtime). -->
+    <EmbeddedResource Include="Seed\awl.json" />
+    <EmbeddedResource Include="Seed\avl.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" NoWarn="NU1903" />
+    <!-- DotNetZip 1.16.0 (последний релиз, апгрейда нет) тащит транзитивно System.Drawing.Common 4.7.0
+         с критической уязвимостью GHSA-rxg9-xrhp-64gj (NU1904). Закрепляем патч-версию напрямую —
+         override поднимает её для всего графа (все проекты ссылаются на Dictionary через Core). -->
+    <PackageReference Include="System.Drawing.Common" Version="9.0.9" />
+  </ItemGroup>
+
+</Project>

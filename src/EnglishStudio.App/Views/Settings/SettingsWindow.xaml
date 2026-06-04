@@ -1,0 +1,203 @@
+<appshell:ChromedWindow x:Class="EnglishStudio.App.Views.Settings.SettingsWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels"
+                        xmlns:appshell="clr-namespace:EnglishStudio.App.Shell"
+                        d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel}"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        mc:Ignorable="d"
+                        Title="Настройки"
+                        Style="{StaticResource ChromedWindowStyle}"
+                        Width="640" Height="720"
+                        WindowStartupLocation="CenterOwner"
+                        AllowsTransparency="True"
+                        Background="Transparent"
+                        WindowStyle="None">
+    <Grid Margin="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24,20,24,8">
+                <TextBlock Text="Настройки EnglishStudio" Style="{StaticResource H1}" Margin="0,0,0,16" />
+
+                <!-- AI (Claude CLI) -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🤖 AI-оценка (Writing / Speaking)" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="Оценка эссе и speaking-ответов идёт через Claude CLI, используя вашу Claude Max подписку. Установка: 'claude code' через npm или официальный installer." />
+
+                        <TextBlock Text="Путь к claude.exe (пусто = авто-определение)" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,8"
+                                 Text="{Binding ClaudeCliPath, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="{Binding ClaudeCliStatus}"
+                                   Style="{StaticResource Caption}"
+                                   TextWrapping="Wrap"
+                                   Margin="0,0,0,8" />
+
+                        <Button Content="Проверить заново"
+                                Style="{StaticResource FlatButton}"
+                                HorizontalAlignment="Left"
+                                Command="{Binding RefreshClaudeStatusCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Microphone -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🎙 Микрофон" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="Устройство записи для тренировки произношения и IELTS Speaking. Запустите проверку, говорите в микрофон и следите за уровнем сигнала, затем прослушайте тестовую запись." />
+
+                        <ComboBox Style="{StaticResource FlatComboBox}"
+                                  ItemsSource="{Binding Microphones}"
+                                  DisplayMemberPath="Name"
+                                  SelectedItem="{Binding SelectedMicrophone}"
+                                  Margin="0,0,0,12" />
+
+                        <TextBlock Text="Уровень сигнала" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <ProgressBar Minimum="0" Maximum="1"
+                                     Value="{Binding MicLevel, Mode=OneWay}"
+                                     Height="14"
+                                     Foreground="{DynamicResource AccentHotBrush}"
+                                     Background="{DynamicResource OverlayDark27Brush}"
+                                     BorderThickness="0"
+                                     Margin="0,0,0,12" />
+
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,8">
+                            <Button Command="{Binding ToggleMicTestCommand}" Margin="0,0,8,0">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource FlatButton}">
+                                        <Setter Property="Content" Value="🎤 Начать проверку" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsMicTesting}" Value="True">
+                                                <Setter Property="Content" Value="⏹ Остановить проверку" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            <Button Content="▶ Прослушать запись"
+                                    Style="{StaticResource FlatButton}"
+                                    Command="{Binding PlayTestRecordingCommand}"
+                                    IsEnabled="{Binding HasTestRecording}"
+                                    Margin="0,0,8,0" />
+                            <Button Content="⟳"
+                                    Style="{StaticResource FlatButton}"
+                                    Command="{Binding RefreshDevicesCommand}"
+                                    ToolTip="Обновить список устройств" />
+                        </StackPanel>
+
+                        <TextBlock Text="{Binding MicStatus}" Style="{StaticResource Caption}"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Speaking / Whisper -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🎤 Распознавание речи (Whisper)" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="Модель скачивается при первом использовании. Для пробного произношения слов хватает Base; для IELTS Speaking рекомендуется Medium." />
+                        <ComboBox Style="{StaticResource FlatComboBox}"
+                                  ItemsSource="{Binding WhisperOptions}"
+                                  DisplayMemberPath="Label"
+                                  SelectedValuePath="Size"
+                                  SelectedValue="{Binding WhisperModel}"
+                                  Margin="0,0,0,4" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Listening voices -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🎧 Голоса IELTS Listening" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="Имя установленного голоса Windows (например, 'Microsoft Sonia Online (Natural) - English (United Kingdom)'). Пусто = использовать первый доступный голос соответствующего региона/пола." />
+
+                        <TextBlock Text="UK female" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,10"
+                                 Text="{Binding ListeningVoiceUkFemale, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="UK male" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,10"
+                                 Text="{Binding ListeningVoiceUkMale, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="US female" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,10"
+                                 Text="{Binding ListeningVoiceUsFemale, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="US male" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,4"
+                                 Text="{Binding ListeningVoiceUsMale, UpdateSourceTrigger=PropertyChanged}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- SRS section -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🎯 Тренажёр (SRS)" Style="{StaticResource H2}" Margin="0,0,0,8" />
+
+                        <TextBlock Text="Новых слов в день" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,10"
+                                 Text="{Binding DailyNewLimit, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="Повторений в день" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,10"
+                                 Text="{Binding DailyReviewLimit, UpdateSourceTrigger=PropertyChanged}" />
+
+                        <TextBlock Text="Целевая retention (0.70 – 0.99)" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,4"
+                                 Text="{Binding TargetRetention, UpdateSourceTrigger=PropertyChanged, StringFormat=F2}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Pexels -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="🖼 Pexels API ключ (опционально)" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="С ключом картинки в карточке слова берутся с Pexels (красивее). Без ключа — Wikipedia/Commons. Регистрация: pexels.com/api" />
+                        <TextBox Style="{StaticResource FlatTextBox}" Margin="0,0,0,8"
+                                 Text="{Binding PexelsApiKey, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Очистить" Style="{StaticResource FlatButton}"
+                                HorizontalAlignment="Left"
+                                Command="{Binding ClearPexelsCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Content pack -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+                    <StackPanel>
+                        <TextBlock Text="📦 Контент" Style="{StaticResource H2}" Margin="0,0,0,8" />
+                        <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,0,0,10"
+                                   Text="IELTS-тесты, аудио и словарь Oxford 5000 поставляются отдельным контент-паком. Импортируйте папку или ZIP, чтобы наполнить разделы приложения." />
+                        <Button Content="📦 Импортировать контент…"
+                                Style="{StaticResource FlatButton}"
+                                HorizontalAlignment="Left"
+                                Command="{Binding OpenContentImportCommand}" />
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Style="{StaticResource Caption}" Foreground="{DynamicResource SuccessBrush}"
+                           Text="{Binding SaveStatus}" Margin="0,0,0,12" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="1"
+                Background="{DynamicResource OverlayDark27Brush}"
+                BorderBrush="{DynamicResource OverlayLight13Brush}"
+                BorderThickness="0,1,0,0"
+                Padding="24,12">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Сохранить" Style="{StaticResource AccentButton}"
+                        Command="{Binding SaveCommand}" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</appshell:ChromedWindow>

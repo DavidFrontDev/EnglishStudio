@@ -1,0 +1,142 @@
+<UserControl x:Class="EnglishStudio.App.Views.ReadingStudy.ReadingProgressView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
+             xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ReadingProgressViewModel}"
+             d:DesignWidth="640" d:DesignHeight="640">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:NullToVisibilityConverter x:Key="NullToVis" />
+
+        <Style x:Key="ProgTile" TargetType="Border" BasedOn="{StaticResource CardCompact}">
+            <Setter Property="MinWidth" Value="120" />
+            <Setter Property="Margin" Value="0,0,10,10" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border Style="{StaticResource Card}" Background="{DynamicResource WindowBaseBrush}" MaxWidth="680" Padding="22">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="24" ShadowDepth="4" Opacity="0.55" Color="Black" />
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- Header -->
+            <Grid Grid.Row="0" Margin="0,0,0,14">
+                <TextBlock Text="📈  Прогресс чтения" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <Button HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Content="✕" Padding="8,3" FontSize="12"
+                        Style="{StaticResource FlatButton}"
+                        ToolTip="Закрыть"
+                        Command="{Binding CloseCommand}" />
+            </Grid>
+
+            <!-- Status / loading -->
+            <TextBlock Grid.Row="1"
+                       Text="{Binding StatusText}"
+                       Style="{StaticResource MutedText}"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,8"
+                       Visibility="{Binding StatusText, Converter={StaticResource NullToVis}}" />
+
+            <!-- Stat tiles -->
+            <WrapPanel Grid.Row="1" Orientation="Horizontal"
+                       Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
+                <Border Style="{StaticResource ProgTile}">
+                    <StackPanel>
+                        <TextBlock Text="Сессий" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{Binding SessionsTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource ProgTile}">
+                    <StackPanel>
+                        <TextBlock Text="Слов прочитано" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{Binding WordsReadTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource ProgTile}">
+                    <StackPanel>
+                        <TextBlock Text="Среднее / лучшее" Style="{StaticResource Caption}" />
+                        <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
+                            <TextBlock Text="{Binding AvgWpm, StringFormat={}{0:0}}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" />
+                            <TextBlock Text="{Binding BestWpm, StringFormat=' / {0:0}'}" FontSize="14" Foreground="{DynamicResource CaptionTextBrush}" VerticalAlignment="Bottom" Margin="2,0,0,3" />
+                            <TextBlock Text=" сл/мин" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="3,0,0,4" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource ProgTile}">
+                    <StackPanel>
+                        <TextBlock Text="Минут чтения" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{Binding MinutesReadTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
+                    </StackPanel>
+                </Border>
+            </WrapPanel>
+
+            <!-- Speed trend chart -->
+            <StackPanel Grid.Row="2" Margin="0,4,0,0"
+                        Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
+                <TextBlock Text="Скорость чтения во времени" Style="{StaticResource H3}" Margin="0,0,0,6" />
+                <Border Style="{StaticResource CardCompact}" Height="240">
+                    <local:ReadingSpeedChart Points="{Binding SpeedTrend}" />
+                </Border>
+            </StackPanel>
+
+            <!-- Vocabulary coverage -->
+            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0"
+                          Visibility="{Binding HasCoverage, Converter={StaticResource BoolToVis}}">
+                <StackPanel>
+                    <TextBlock Text="Словарный охват текстов" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                    <ItemsControl ItemsSource="{Binding Coverage}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,0,0,8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <TextBlock Text="{Binding Title}"
+                                                   Foreground="{DynamicResource StrongTextBrush}"
+                                                   FontWeight="SemiBold" FontSize="13"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <TextBlock HorizontalAlignment="Right" Style="{StaticResource Caption}">
+                                            <Run Text="{Binding KnownWords, Mode=OneWay}" /><Run Text="/" /><Run Text="{Binding TotalWords, Mode=OneWay}" /><Run Text="  ·  " /><Run Text="{Binding CoveragePct, Mode=OneWay, StringFormat={}{0:0}%}" />
+                                        </TextBlock>
+                                    </Grid>
+                                    <ProgressBar Grid.Row="1"
+                                                 Style="{StaticResource FlatProgressBar}"
+                                                 Height="8"
+                                                 Margin="0,4,0,0"
+                                                 Minimum="0" Maximum="100"
+                                                 Value="{Binding CoveragePct, Mode=OneWay}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Footer -->
+            <Button Grid.Row="4"
+                    Content="Закрыть"
+                    HorizontalAlignment="Right"
+                    Margin="0,14,0,0"
+                    Padding="16,8"
+                    Style="{StaticResource AccentButton}"
+                    Command="{Binding CloseCommand}" />
+        </Grid>
+    </Border>
+</UserControl>

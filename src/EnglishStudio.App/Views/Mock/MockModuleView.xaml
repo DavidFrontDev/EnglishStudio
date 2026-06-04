@@ -1,0 +1,32 @@
+<UserControl x:Class="EnglishStudio.App.Views.Mock.MockModuleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Mock"
+             xmlns:views="clr-namespace:EnglishStudio.App.Views.Mock"
+             xmlns:controls="clr-namespace:EnglishStudio.App.Views.Controls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:MockHubViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1100">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+
+        <DataTemplate DataType="{x:Type vm:MockSessionViewModel}">
+            <views:MockSessionView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:MockResultViewModel}">
+            <views:MockResultView />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <views:MockHubView Visibility="{Binding IsHubVisible, Converter={StaticResource BoolToVis}}" />
+        <ContentControl Content="{Binding CurrentScreen}" />
+        <controls:ContentMissingView
+            Visibility="{Binding IsContentMissing, Converter={StaticResource BoolToVis}}"
+            ImportCommand="{Binding OpenImportCommand}"
+            MessageText="{Binding ContentMissingText}" />
+    </Grid>
+</UserControl>

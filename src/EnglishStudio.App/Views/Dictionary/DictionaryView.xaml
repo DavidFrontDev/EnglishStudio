@@ -1,0 +1,521 @@
+<UserControl x:Class="EnglishStudio.App.Views.Dictionary.DictionaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels"
+             xmlns:controls="clr-namespace:EnglishStudio.App.Views.Controls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:DictionaryViewModel}"
+             d:DesignHeight="600" d:DesignWidth="1000"
+             Background="Transparent"
+             Foreground="{DynamicResource PrimaryTextBrush}">
+
+    <UserControl.Resources>
+        <conv:CefrToBrushConverter x:Key="CefrToBrush" />
+        <conv:CefrToStringConverter x:Key="CefrToString" />
+        <conv:NullToVisibilityConverter x:Key="NullToVis" />
+        <conv:NullToVisibilityConverter x:Key="NullToVisInverted" Invert="True" />
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Row 0: search + Source + POS filter + HideStubs + Settings  -->
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TextBox Grid.Column="0"
+                     Margin="0,0,12,0"
+                     Style="{StaticResource FlatTextBox}"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=0}"
+                     d:Text="Поиск..."
+                     ToolTip="Поиск по слову или лемме (префикс)" />
+
+            <ComboBox Grid.Column="1"
+                      Margin="0,0,12,0"
+                      ItemsSource="{Binding SourceOptions}"
+                      SelectedItem="{Binding SelectedSource}"
+                      DisplayMemberPath="Label"
+                      Style="{StaticResource FlatComboBox}"
+                      ItemContainerStyle="{StaticResource FlatComboBoxItem}"
+                      ToolTip="Фильтр по источнику слов" />
+
+            <ComboBox Grid.Column="2"
+                      Margin="0,0,12,0"
+                      ItemsSource="{Binding PosOptions}"
+                      SelectedItem="{Binding SelectedPos}"
+                      DisplayMemberPath="Label"
+                      Style="{StaticResource FlatComboBox}"
+                      ItemContainerStyle="{StaticResource FlatComboBoxItem}" />
+
+            <CheckBox Grid.Column="3"
+                      Style="{StaticResource FlatCheckBox}"
+                      IsChecked="{Binding HideStubs}"
+                      Content="Скрыть без определений"
+                      VerticalAlignment="Center"
+                      ToolTip="Прячет слова без английских/русских значений (только что добавленные)" />
+
+            <Button Grid.Column="4"
+                    Content="⚙"
+                    Style="{StaticResource IconButton}"
+                    Margin="12,0,0,0"
+                    ToolTip="Настройки"
+                    Command="{Binding OpenSettingsCommand}" />
+        </Grid>
+
+        <!--  Row 1: Category + Tag filters  -->
+        <Grid Grid.Row="1" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Grid.Column="0"
+                      Margin="0,0,6,0"
+                      ItemsSource="{Binding CategoryOptions}"
+                      SelectedItem="{Binding SelectedCategory}"
+                      DisplayMemberPath="Label"
+                      Style="{StaticResource FlatComboBox}"
+                      ItemContainerStyle="{StaticResource FlatComboBoxItem}"
+                      ToolTip="Фильтр по IELTS Speaking-категории" />
+
+            <ComboBox Grid.Column="1"
+                      Margin="6,0,0,0"
+                      ItemsSource="{Binding TagOptions}"
+                      SelectedItem="{Binding SelectedTag}"
+                      DisplayMemberPath="Label"
+                      Style="{StaticResource FlatComboBox}"
+                      ItemContainerStyle="{StaticResource FlatComboBoxItem}"
+                      ToolTip="Фильтр по тегу (AWL sublist, AVL band, IELTS Writing категории, …)" />
+        </Grid>
+
+        <!--  Row 2: CEFR chips  -->
+        <ItemsControl Grid.Row="2"
+                      Margin="0,0,0,16"
+                      ItemsSource="{Binding CefrFilters}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ToggleButton Margin="0,0,8,0"
+                                  Content="{Binding Label}"
+                                  IsChecked="{Binding IsSelected}"
+                                  Style="{StaticResource ChipToggleButton}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <!--  Row 3: list (left) + detail (right)  -->
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="340" />
+                <ColumnDefinition Width="16" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <!--  LIST  -->
+            <Border Grid.Column="0" Style="{StaticResource Card}" Padding="6">
+                <ListBox Style="{StaticResource FlatListBox}"
+                         ItemContainerStyle="{StaticResource AnimatedSelectionListBoxItem}"
+                         ItemsSource="{Binding Words}"
+                         SelectedItem="{Binding SelectedWord, Mode=TwoWay}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0"
+                                           Text="{Binding Headword}"
+                                           Style="{StaticResource H3}" />
+
+                                <Border Grid.Row="0" Grid.Column="1"
+                                        Padding="6,2"
+                                        CornerRadius="8"
+                                        VerticalAlignment="Center"
+                                        Background="{Binding Cefr, Converter={StaticResource CefrToBrush}}">
+                                    <TextBlock Text="{Binding Cefr, Converter={StaticResource CefrToString}}"
+                                               Foreground="White"
+                                               FontSize="11"
+                                               FontWeight="SemiBold" />
+                                </Border>
+
+                                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,2,0,0">
+                                    <TextBlock Text="{Binding PosCode}"
+                                               Style="{StaticResource Caption}"
+                                               Margin="0,0,8,0" />
+                                    <TextBlock Text="{Binding IpaUk}"
+                                               Style="{StaticResource MonoText}"
+                                               FontSize="11"
+                                               Foreground="{DynamicResource MutedTextBrush}" />
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+
+            <!--  DETAIL  -->
+            <Border Grid.Column="2" Style="{StaticResource Card}">
+                <Grid>
+                    <!-- Empty state -->
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Visibility="{Binding Detail, Converter={StaticResource NullToVisInverted}}">
+                        <TextBlock Text="Выберите слово из списка слева"
+                                   Style="{StaticResource H3}"
+                                   Foreground="{DynamicResource MutedTextBrush}"
+                                   HorizontalAlignment="Center" />
+                        <TextBlock Text="Подсказка: используйте поиск или фильтры по CEFR-уровню"
+                                   Style="{StaticResource Caption}"
+                                   Margin="0,6,0,0"
+                                   HorizontalAlignment="Center" />
+                    </StackPanel>
+
+                    <!-- Word detail -->
+                    <ScrollViewer Visibility="{Binding Detail, Converter={StaticResource NullToVis}}"
+                                  VerticalScrollBarVisibility="Auto">
+                        <StackPanel DataContext="{Binding Detail}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Headword}" Style="{StaticResource H1}" />
+                                <Border Margin="14,4,0,0"
+                                        Padding="8,3"
+                                        CornerRadius="10"
+                                        VerticalAlignment="Center"
+                                        Background="{Binding Cefr, Converter={StaticResource CefrToBrush}}">
+                                    <TextBlock Text="{Binding Cefr, Converter={StaticResource CefrToString}}"
+                                               Foreground="White"
+                                               FontSize="12"
+                                               FontWeight="SemiBold" />
+                                </Border>
+                            </StackPanel>
+
+                            <Grid Margin="0,4,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0"
+                                           Text="{Binding PartOfSpeechNameRu}"
+                                           Style="{StaticResource MutedText}"
+                                           VerticalAlignment="Center" />
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <Button Padding="12,5"
+                                            FontSize="12"
+                                            Margin="0,0,8,0"
+                                            Command="{Binding DataContext.AddToTrainingCommand,
+                                                      RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                        <Button.Style>
+                                            <Style TargetType="Button" BasedOn="{StaticResource FlatButton}">
+                                                <Setter Property="Content" Value="📚 В изучение" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsInTraining}" Value="True">
+                                                        <Setter Property="Content" Value="✓ В изучении" />
+                                                        <Setter Property="IsEnabled" Value="False" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button Content="🎤 Произнести"
+                                            Style="{StaticResource FlatButton}"
+                                            Padding="12,5"
+                                            FontSize="12"
+                                            ToolTip="Тренировка произношения через Whisper (модель ~142 МБ, скачивается один раз)"
+                                            Command="{Binding DataContext.TogglePronunciationPanelCommand,
+                                                      RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                </StackPanel>
+                            </Grid>
+
+                            <!-- Pronunciation panel -->
+                            <Border Style="{StaticResource CardCompact}"
+                                    Padding="14"
+                                    Margin="0,0,0,16"
+                                    Visibility="{Binding DataContext.IsPronunciationPanelOpen,
+                                                 Converter={StaticResource BoolToVis},
+                                                 RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <StackPanel>
+                                    <TextBlock Text="🎤 Тренировка произношения" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                                    <TextBlock Style="{StaticResource MutedText}"
+                                               Margin="0,0,0,10"
+                                               TextWrapping="Wrap"
+                                               Text="Послушайте эталон, затем запишите свою попытку. Whisper.net распознает аудио, оценка по схожести 0–100." />
+
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                        <Button Content="🔊 Эталон UK"
+                                                Style="{StaticResource AudioButton}"
+                                                Margin="0,0,8,0"
+                                                Visibility="{Binding HasAudioUk, Converter={StaticResource BoolToVis}}"
+                                                Command="{Binding DataContext.PlayUkCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                        <Button Content="🔊 Эталон US"
+                                                Style="{StaticResource AudioButton}"
+                                                Margin="0,0,16,0"
+                                                Visibility="{Binding HasAudioUs, Converter={StaticResource BoolToVis}}"
+                                                Command="{Binding DataContext.PlayUsCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                        <Button Padding="14,6"
+                                                FontSize="13"
+                                                FontWeight="SemiBold"
+                                                Command="{Binding DataContext.StartStopRecordingCommand,
+                                                          RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                            <Button.Style>
+                                                <Style TargetType="Button" BasedOn="{StaticResource AccentButton}">
+                                                    <Setter Property="Content" Value="🎤 Начать запись" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding DataContext.IsRecording,
+                                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                     Value="True">
+                                                            <Setter Property="Content" Value="⏹ Остановить запись" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    </StackPanel>
+
+                                    <TextBlock Style="{StaticResource Caption}"
+                                               Foreground="{DynamicResource MutedTextBrush}"
+                                               Margin="0,0,0,8"
+                                               TextWrapping="Wrap"
+                                               Text="{Binding DataContext.PronunciationStatus,
+                                                      RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                               Visibility="{Binding DataContext.PronunciationStatus,
+                                                            Converter={StaticResource NullToVis},
+                                                            RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+                                    <!-- Result block -->
+                                    <Border Padding="10"
+                                            CornerRadius="6"
+                                            BorderThickness="1"
+                                            BorderBrush="{DynamicResource OverlayLight33Brush}"
+                                            Visibility="{Binding DataContext.LastRecognizedText,
+                                                         Converter={StaticResource NullToVis},
+                                                         RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="Балл:" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                                                <TextBlock VerticalAlignment="Center"
+                                                           FontSize="22"
+                                                           FontWeight="Bold"
+                                                           Text="{Binding DataContext.LastScore,
+                                                                  RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                                <TextBlock VerticalAlignment="Center" FontSize="18" Margin="2,0,0,0" Text="/100" Foreground="{DynamicResource MutedTextBrush}" />
+                                            </StackPanel>
+                                            <TextBlock Style="{StaticResource BodyText}"
+                                                       Margin="0,6,0,0"
+                                                       TextWrapping="Wrap"
+                                                       Text="{Binding DataContext.LastFeedback,
+                                                              RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                            <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
+                                                <TextBlock Text="Распознано: " Style="{StaticResource Caption}" />
+                                                <TextBlock FontStyle="Italic"
+                                                           Foreground="{DynamicResource StrongTextBrush}"
+                                                           Text="{Binding DataContext.LastRecognizedText,
+                                                                  RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Border>
+
+                            <Grid Margin="0,0,0,16">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Row="0" Grid.Column="0"
+                                           Text="UK" Style="{StaticResource Caption}"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="0" Grid.Column="1"
+                                           Text="{Binding IpaUk}"
+                                           Style="{StaticResource MonoText}"
+                                           FontSize="14"
+                                           VerticalAlignment="Center"
+                                           Margin="0,0,0,4" />
+                                <Button Grid.Row="0" Grid.Column="2"
+                                        Content="🔊 UK"
+                                        Style="{StaticResource AudioButton}"
+                                        Margin="0,0,0,4"
+                                        ToolTip="Прослушать британское произношение"
+                                        Visibility="{Binding HasAudioUk, Converter={StaticResource BoolToVis}}"
+                                        Command="{Binding DataContext.PlayUkCommand,
+                                                  RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+                                <TextBlock Grid.Row="1" Grid.Column="0"
+                                           Text="US" Style="{StaticResource Caption}"
+                                           VerticalAlignment="Center" />
+                                <TextBlock Grid.Row="1" Grid.Column="1"
+                                           Text="{Binding IpaUs}"
+                                           Style="{StaticResource MonoText}"
+                                           VerticalAlignment="Center"
+                                           FontSize="14" />
+                                <Button Grid.Row="1" Grid.Column="2"
+                                        Content="🔊 US"
+                                        Style="{StaticResource AudioButton}"
+                                        ToolTip="Прослушать американское произношение"
+                                        Visibility="{Binding HasAudioUs, Converter={StaticResource BoolToVis}}"
+                                        Command="{Binding DataContext.PlayUsCommand,
+                                                  RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            </Grid>
+
+                            <TextBlock Style="{StaticResource Caption}"
+                                       Margin="0,-10,0,12"
+                                       Foreground="{DynamicResource MutedTextBrush}"
+                                       Text="{Binding DataContext.AudioStatus,
+                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                       Visibility="{Binding DataContext.AudioStatus,
+                                                    Converter={StaticResource NullToVis},
+                                                    RelativeSource={RelativeSource AncestorType=UserControl}}" />
+
+                            <TextBlock Text="Значения" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                            <ItemsControl ItemsSource="{Binding Senses}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,8">
+                                            <StackPanel>
+                                                <ItemsControl ItemsSource="{Binding Translations}"
+                                                              Margin="0,0,0,6">
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <WrapPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <Border Margin="0,0,6,4"
+                                                                    Padding="8,3"
+                                                                    Background="{DynamicResource OverlayLight13Brush}"
+                                                                    BorderBrush="{DynamicResource OverlayLight33Brush}"
+                                                                    BorderThickness="1"
+                                                                    CornerRadius="10">
+                                                                <TextBlock Text="{Binding}"
+                                                                           FontSize="13"
+                                                                           FontWeight="SemiBold"
+                                                                           Foreground="{DynamicResource StrongTextBrush}" />
+                                                            </Border>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                </ItemsControl>
+
+                                                <TextBlock Text="{Binding DefinitionRu}"
+                                                           Style="{StaticResource BodyText}"
+                                                           Margin="0,2,0,0"
+                                                           Visibility="{Binding DefinitionRu, Converter={StaticResource NullToVis}}" />
+
+                                                <TextBlock Text="{Binding DefinitionEn}"
+                                                           Style="{StaticResource MutedText}"
+                                                           FontStyle="Italic"
+                                                           Margin="0,4,0,0" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBlock Text="Примеры" Style="{StaticResource H3}" Margin="0,12,0,8" />
+                            <ItemsControl ItemsSource="{Binding Examples}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding TextEn}" Style="{StaticResource BodyText}" TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding TextRu}"
+                                                           Style="{StaticResource MutedText}"
+                                                           FontStyle="Italic"
+                                                           Margin="0,3,0,0"
+                                                           TextWrapping="Wrap"
+                                                           Visibility="{Binding TextRu, Converter={StaticResource NullToVis}}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBlock Text="Иллюстрация" Style="{StaticResource H3}" Margin="0,16,0,8"
+                                       Visibility="{Binding DataContext.CurrentImagePath,
+                                                    Converter={StaticResource NullToVis},
+                                                    RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                            <Border Style="{StaticResource CardCompact}" Padding="6"
+                                    HorizontalAlignment="Left"
+                                    Visibility="{Binding DataContext.CurrentImagePath,
+                                                 Converter={StaticResource NullToVis},
+                                                 RelativeSource={RelativeSource AncestorType=UserControl}}">
+                                <Image Source="{Binding DataContext.CurrentImagePath,
+                                                RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                       MaxHeight="240"
+                                       MaxWidth="360"
+                                       Stretch="Uniform" />
+                            </Border>
+
+                            <TextBlock Style="{StaticResource Caption}"
+                                       Margin="0,8,0,0"
+                                       Foreground="{DynamicResource MutedTextBrush}"
+                                       Text="{Binding DataContext.ImageStatus,
+                                              RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                       Visibility="{Binding DataContext.ImageStatus,
+                                                    Converter={StaticResource NullToVis},
+                                                    RelativeSource={RelativeSource AncestorType=UserControl}}" />
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+            </Border>
+        </Grid>
+
+        <!--  Row 4: status bar  -->
+        <Grid Grid.Row="4" Margin="0,12,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Style="{StaticResource Caption}">
+                <Run Text="Всего: " />
+                <Run Text="{Binding TotalWords, Mode=OneWay}" FontWeight="SemiBold" />
+            </TextBlock>
+            <TextBlock Grid.Column="1" Style="{StaticResource Caption}" Margin="16,0,0,0">
+                <Run Text="Отфильтровано: " />
+                <Run Text="{Binding FilteredCount, Mode=OneWay}" FontWeight="SemiBold" />
+                <Run Text=" (показано до 200)" />
+            </TextBlock>
+            <TextBlock Grid.Column="2" Style="{StaticResource Caption}"
+                       Text="Загрузка..."
+                       Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" />
+        </Grid>
+
+        <!--  Gating overlay: covers the whole dictionary when Oxford 5000 isn't imported.  -->
+        <controls:ContentMissingView Grid.Row="0" Grid.RowSpan="5"
+            Visibility="{Binding IsContentMissing, Converter={StaticResource BoolToVis}}"
+            ImportCommand="{Binding OpenImportCommand}"
+            MessageText="{Binding ContentMissingText}" />
+    </Grid>
+</UserControl>

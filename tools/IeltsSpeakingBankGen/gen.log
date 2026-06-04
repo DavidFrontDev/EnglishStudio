@@ -1,0 +1,158 @@
+Output: C:\Users\tvore\source\repos\EnglishStudio\src\EnglishStudio.Modules.Ielts.Speaking\Seed\speaking_bank.json
+Existing entries: 0 (0 unique codes)
+Resume: True
+Dry run: False
+
+=== Part 1 ===
+  [ok] hometown: 5 questions
+  [ok] work: 5 questions
+  [ok] study: 5 questions
+  [ok] family: 5 questions
+  [ok] friends: 5 questions
+  [ok] hobbies: 5 questions
+  [ok] music: 5 questions
+  [ok] films: 5 questions
+  [ok] books: 5 questions
+  [ok] sports: 5 questions
+  [ok] food: 5 questions
+  [ok] weather: 5 questions
+  [ok] clothes: 5 questions
+  [ok] shopping: 5 questions
+  [ok] transport: 5 questions
+  [ok] holidays: 5 questions
+  [ok] free-time: 5 questions
+  [ok] weekends: 5 questions
+  [ok] technology: 5 questions
+  [ok] social-media: 5 questions
+  [ok] internet: 5 questions
+  [ok] mobile-phones: 5 questions
+  [ok] photography: 5 questions
+  [ok] art: 5 questions
+  [ok] animals: 5 questions
+  [ok] plants: 5 questions
+  [ok] environment: 5 questions
+  [ok] school-memories: 5 questions
+  [ok] childhood: 5 questions
+  [ok] dreams: 5 questions
+  [ok] success: 5 questions
+  [ok] happiness: 5 questions
+  [ok] health: 5 questions
+  [ok] sleep: 5 questions
+  [ok] languages: 5 questions
+  [ok] travel-abroad: 5 questions
+  [ok] neighbours: 5 questions
+  [ok] gifts: 5 questions
+  [ok] traditions: 5 questions
+  [ok] festivals: 5 questions
+
+=== Part 2 ===
+  [ok] p2-influential-person: 178 chars, 4 subpoints
+  [ok] p2-admired-friend: 154 chars, 4 subpoints
+  [ok] p2-inspiring-teacher: 202 chars, 4 subpoints
+  [ok] p2-family-member: 188 chars, 4 subpoints
+  [ok] p2-famous-person: 220 chars, 4 subpoints
+  [ok] p2-place-visited: 175 chars, 4 subpoints
+  [ok] p2-childhood-place: 234 chars, 4 subpoints
+  [ok] p2-city-to-visit: 193 chars, 4 subpoints
+  [ok] p2-favourite-park: 167 chars, 4 subpoints
+  [ok] p2-interesting-building: 179 chars, 4 subpoints
+  [ok] p2-important-event: 181 chars, 4 subpoints
+  [ok] p2-happy-memory: 163 chars, 4 subpoints
+  [ok] p2-special-celebration: 196 chars, 4 subpoints
+  [ok] p2-traditional-festival: 188 chars, 4 subpoints
+  [ok] p2-recent-decision: 207 chars, 4 subpoints
+  [ok] p2-treasured-object: 138 chars, 4 subpoints
+  [ok] p2-useful-gadget: 152 chars, 4 subpoints
+  [ok] p2-piece-of-clothing: 157 chars, 4 subpoints
+  [ok] p2-photo-you-like: 184 chars, 4 subpoints
+  [ok] p2-recent-purchase: 175 chars, 4 subpoints
+  [ok] p2-skill-to-learn: 176 chars, 4 subpoints
+  [ok] p2-language-learning: 192 chars, 4 subpoints
+  [ok] p2-hobby-you-enjoy: 151 chars, 4 subpoints
+  [ok] p2-sport-you-play: 193 chars, 4 subpoints
+  [ok] p2-book-impacted-you: 144 chars, 4 subpoints
+  [ok] p2-film-you-liked: 195 chars, 4 subpoints
+  [ok] p2-song-you-love: 205 chars, 4 subpoints
+  [ok] p2-artist-you-admire: 206 chars, 4 subpoints
+  [ok] p2-tv-programme: 181 chars, 4 subpoints
+  [ok] p2-interesting-website: 152 chars, 4 subpoints
+  [ok] p2-memorable-journey: 176 chars, 4 subpoints
+  [ok] p2-long-trip: 164 chars, 4 subpoints
+  [ok] p2-public-transport: 198 chars, 4 subpoints
+  [ok] p2-hotel-stay: 174 chars, 4 subpoints
+  [ok] p2-foreign-country: 199 chars, 4 subpoints
+  [ok] p2-helped-someone: 180 chars, 4 subpoints
+  [ok] p2-good-deed: 178 chars, 4 subpoints
+  [ok] p2-teamwork: 203 chars, 4 subpoints
+  [ok] p2-public-event: 185 chars, 4 subpoints
+  [ok] p2-volunteering: 194 chars, 4 subpoints
+  [ok] p2-healthy-habit: 169 chars, 4 subpoints
+  [ok] p2-piece-of-advice: 188 chars, 4 subpoints
+  [ok] p2-a-meal: 161 chars, 4 subpoints
+  [ok] p2-a-restaurant: 184 chars, 4 subpoints
+  [ok] p2-cooking-experience: 172 chars, 4 subpoints
+  [ok] p2-childhood-toy: 166 chars, 4 subpoints
+  [ok] p2-piece-of-art: 178 chars, 4 subpoints
+  [ok] p2-interesting-person: 186 chars, 4 subpoints
+  [ok] p2-noisy-place: 189 chars, 4 subpoints
+  [ok] p2-future-plan: 209 chars, 4 subpoints
+
+=== Part 3 ===
+  [ok] p3-influential-person: 8 questions
+  [ok] p3-admired-friend: 8 questions
+  [ok] p3-inspiring-teacher: 8 questions
+  [ok] p3-family-member: 8 questions
+  [ok] p3-famous-person: 8 questions
+  [ok] p3-place-visited: 8 questions
+  [ok] p3-childhood-place: 8 questions
+  [ok] p3-city-to-visit: 8 questions
+  [ok] p3-favourite-park: 8 questions
+  [ok] p3-interesting-building: 8 questions
+  [ok] p3-important-event: 8 questions
+  [ok] p3-happy-memory: 8 questions
+  [ok] p3-special-celebration: 8 questions
+  [ok] p3-traditional-festival: 8 questions
+  [ok] p3-recent-decision: 8 questions
+  [ok] p3-treasured-object: 8 questions
+  [ok] p3-useful-gadget: 8 questions
+  [ok] p3-piece-of-clothing: 8 questions
+  [ok] p3-photo-you-like: 8 questions
+  [ok] p3-recent-purchase: 8 questions
+  [ok] p3-skill-to-learn: 8 questions
+  [ok] p3-language-learning: 8 questions
+  [ok] p3-hobby-you-enjoy: 8 questions
+  [ok] p3-sport-you-play: 8 questions
+  [ok] p3-book-impacted-you: 8 questions
+  [ok] p3-film-you-liked: 8 questions
+  [ok] p3-song-you-love: 8 questions
+  [ok] p3-artist-you-admire: 8 questions
+  [ok] p3-tv-programme: 8 questions
+  [ok] p3-interesting-website: 8 questions
+  [ok] p3-memorable-journey: 8 questions
+  [ok] p3-long-trip: 8 questions
+  [ok] p3-public-transport: 8 questions
+  [ok] p3-hotel-stay: 8 questions
+  [ok] p3-foreign-country: 8 questions
+  [ok] p3-helped-someone: 8 questions
+  [ok] p3-good-deed: 8 questions
+  [ok] p3-teamwork: 8 questions
+  [ok] p3-public-event: 8 questions
+  [ok] p3-volunteering: 8 questions
+  [ok] p3-healthy-habit: 8 questions
+  [ok] p3-piece-of-advice: 8 questions
+  [ok] p3-a-meal: 8 questions
+  [ok] p3-a-restaurant: 8 questions
+  [ok] p3-cooking-experience: 8 questions
+  [ok] p3-childhood-toy: 8 questions
+  [ok] p3-piece-of-art: 8 questions
+  [ok] p3-interesting-person: 8 questions
+  [WARN] p3-noisy-place: only 0 parsed; retrying…
+22:08:41 warn: EnglishStudio.Modules.Ai.ClaudeCliClient[0] Claude CLI exit 1, stderr: 
+22:08:45 warn: EnglishStudio.Modules.Ai.ClaudeCliClient[0] Claude CLI exit 1, stderr: 
+  [ok] p3-noisy-place: 0 questions
+  [WARN] p3-future-plan: only 0 parsed; retrying…
+22:08:47 warn: EnglishStudio.Modules.Ai.ClaudeCliClient[0] Claude CLI exit 1, stderr: 
+22:08:51 warn: EnglishStudio.Modules.Ai.ClaudeCliClient[0] Claude CLI exit 1, stderr: 
+  [ok] p3-future-plan: 0 questions
+
+Done. Total entries: 140

@@ -1,0 +1,255 @@
+<UserControl x:Class="EnglishStudio.App.Views.Speaking.SpeakingResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:SpeakingResultScreen}"
+             d:DesignHeight="800" d:DesignWidth="1200">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:NullToVisibilityConverter x:Key="NullToVis" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Content="‹ К Hub"
+                    Style="{StaticResource FlatButton}"
+                    Command="{Binding BackCommand}" />
+            <TextBlock Grid.Column="1"
+                       Style="{StaticResource H2}"
+                       HorizontalAlignment="Center"
+                       Text="Результат Speaking" />
+            <Button Grid.Column="2"
+                    Content="🔄 Перезапустить AI"
+                    Style="{StaticResource FlatButton}"
+                    Command="{Binding Result.ReevaluateCommand}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding Result}">
+
+                <!-- overall band card -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12"
+                        Visibility="{Binding HasBands, Converter={StaticResource BoolToVis}}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Text="Speaking band" Style="{StaticResource H2}" />
+                            <TextBlock Style="{StaticResource MutedText}"
+                                       Margin="0,4,0,0"
+                                       Text="{Binding ModeLabel, Mode=OneWay}" />
+                        </StackPanel>
+                        <Border Grid.Column="1"
+                                Background="{DynamicResource AccentMidBrush}"
+                                CornerRadius="12" Padding="22,12">
+                            <StackPanel>
+                                <TextBlock Style="{StaticResource Caption}"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource StrongTextBrush}"
+                                           Text="OVERALL BAND" />
+                                <TextBlock FontSize="36" FontWeight="Bold"
+                                           HorizontalAlignment="Center"
+                                           Foreground="{DynamicResource StrongTextBrush}"
+                                           Text="{Binding BandOverall, StringFormat='F1', Mode=OneWay}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- 4 criterion cards -->
+                <UniformGrid Columns="4" Margin="0,0,0,12"
+                             Visibility="{Binding HasBands, Converter={StaticResource BoolToVis}}">
+                    <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Margin="0,0,4,0" Padding="10,8">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center" Text="Fluency / Coherence" />
+                            <TextBlock FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding BandFluencyCoherence, StringFormat='F1', Mode=OneWay, FallbackValue='—'}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Margin="4,0,4,0" Padding="10,8">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center" Text="Lexical Resource" />
+                            <TextBlock FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding BandLexicalResource, StringFormat='F1', Mode=OneWay, FallbackValue='—'}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Margin="4,0,4,0" Padding="10,8">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center" Text="Grammar" />
+                            <TextBlock FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding BandGrammar, StringFormat='F1', Mode=OneWay, FallbackValue='—'}" />
+                        </StackPanel>
+                    </Border>
+                    <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Margin="4,0,0,0" Padding="10,8">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center" Text="Pronunciation" />
+                            <TextBlock FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}"
+                                       HorizontalAlignment="Center"
+                                       Text="{Binding BandPronunciation, StringFormat='F1', Mode=OneWay, FallbackValue='—'}" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+
+                <!-- speech metrics -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Метрики речи" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <UniformGrid Columns="4">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Style="{StaticResource Caption}" Text="Темп (WPM)" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Text="{Binding AvgWpm, StringFormat='F0', Mode=OneWay}" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Style="{StaticResource Caption}" Text="Паузы (доля)" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Text="{Binding AvgPauseRatio, StringFormat='P0', Mode=OneWay}" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Style="{StaticResource Caption}" Text="Filler-слова" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Text="{Binding TotalFillers, Mode=OneWay}" />
+                            </StackPanel>
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Style="{StaticResource Caption}" Text="Type/Token Ratio" HorizontalAlignment="Center" />
+                                <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
+                                           Text="{Binding AvgTypeTokenRatio, StringFormat='F2', Mode=OneWay}" />
+                            </StackPanel>
+                        </UniformGrid>
+                    </StackPanel>
+                </Border>
+
+                <!-- feedback -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12"
+                        Visibility="{Binding FeedbackRu, Converter={StaticResource NullToVis}}">
+                    <StackPanel>
+                        <TextBlock Text="Комментарий" Style="{StaticResource H3}" Margin="0,0,0,6" />
+                        <TextBlock Text="{Binding FeedbackRu}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,0,0,8" />
+                        <TextBlock Text="{Binding FeedbackEn}" Style="{StaticResource BodyText}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </Border>
+
+                <!-- responses -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <StackPanel>
+                        <TextBlock Text="Ответы" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <ItemsControl ItemsSource="{Binding Responses}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type vm:SpeakingResponseRow}">
+                                    <Border Background="{DynamicResource OverlayLight13Brush}"
+                                            CornerRadius="6" Padding="10,8" Margin="0,0,0,8">
+                                        <StackPanel>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+                                                <Border Grid.Column="0"
+                                                        Background="{DynamicResource AccentMidBrush}"
+                                                        CornerRadius="4" Padding="6,2" Margin="0,0,8,0"
+                                                        VerticalAlignment="Top">
+                                                    <TextBlock FontSize="11" FontWeight="SemiBold"
+                                                               Foreground="{DynamicResource StrongTextBrush}">
+                                                        <Run Text="#" /><Run Text="{Binding OrderInAttempt, Mode=OneWay}" />
+                                                    </TextBlock>
+                                                </Border>
+                                                <TextBlock Grid.Column="1"
+                                                           Text="{Binding QuestionText}"
+                                                           Foreground="{DynamicResource StrongTextBrush}"
+                                                           TextWrapping="Wrap" />
+                                                <Button Grid.Column="2"
+                                                        Content="📝"
+                                                        Style="{StaticResource FlatButton}"
+                                                        Padding="10,4"
+                                                        Margin="6,0,0,0"
+                                                        VerticalAlignment="Top"
+                                                        ToolTip="Показать транскрипт"
+                                                        Command="{Binding ToggleExpandCommand}" />
+                                            </Grid>
+
+                                            <!--  Transport: play/pause · stop · seek · time  -->
+                                            <Grid Margin="0,8,0,0" IsEnabled="{Binding HasAudio}">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <Button Grid.Column="0"
+                                                        Content="{Binding PlayPauseGlyph}"
+                                                        Style="{StaticResource FlatButton}"
+                                                        Padding="10,4"
+                                                        MinWidth="40"
+                                                        ToolTip="Воспроизведение / пауза"
+                                                        Command="{Binding PlayPauseCommand}" />
+                                                <Button Grid.Column="1"
+                                                        Content="⏹"
+                                                        Style="{StaticResource FlatButton}"
+                                                        Padding="10,4"
+                                                        MinWidth="40"
+                                                        Margin="6,0,0,0"
+                                                        ToolTip="Стоп"
+                                                        Command="{Binding StopCommand}" />
+
+                                                <Slider Grid.Column="2"
+                                                        VerticalAlignment="Center"
+                                                        Margin="10,0,10,0"
+                                                        Minimum="0"
+                                                        Maximum="{Binding DurationSeconds, Mode=OneWay}"
+                                                        Value="{Binding PositionSeconds, Mode=TwoWay}"
+                                                        IsMoveToPointEnabled="True"
+                                                        Thumb.DragStarted="OnSeekDragStarted"
+                                                        Thumb.DragCompleted="OnSeekDragCompleted" />
+
+                                                <TextBlock Grid.Column="3"
+                                                           VerticalAlignment="Center"
+                                                           Style="{StaticResource Caption}">
+                                                    <Run Text="{Binding PositionLabel, Mode=OneWay}" /><Run Text=" / " /><Run Text="{Binding TotalLabel, Mode=OneWay}" />
+                                                </TextBlock>
+                                            </Grid>
+
+                                            <Border Background="{DynamicResource OverlayLight20Brush}"
+                                                    CornerRadius="4" Padding="8,6" Margin="0,6,0,0"
+                                                    Visibility="{Binding IsExpanded, Converter={StaticResource BoolToVis}}">
+                                                <TextBlock Text="{Binding Transcript}"
+                                                           Style="{StaticResource BodyText}"
+                                                           TextWrapping="Wrap" />
+                                            </Border>
+                                        </StackPanel>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+
+                <TextBlock Style="{StaticResource MutedText}"
+                           Text="{Binding StatusText}"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

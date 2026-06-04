@@ -1,0 +1,70 @@
+<UserControl x:Class="EnglishStudio.App.Views.ReadingStudy.PhonemeGuideView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:PhonemeGuideViewModel}"
+             d:DesignWidth="320">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:InverseBoolToVisibilityConverter x:Key="InvBoolToVis" />
+
+        <!-- One phoneme tile; tricky-for-Russian sounds are highlighted. -->
+        <Style x:Key="PhonemeTile" TargetType="Border">
+            <Setter Property="Background" Value="{DynamicResource OverlayLight13Brush}" />
+            <Setter Property="BorderBrush" Value="{DynamicResource OverlayLight33Brush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Padding" Value="7,3" />
+            <Setter Property="Margin" Value="0,0,5,5" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsTricky}" Value="True">
+                    <Setter Property="Background" Value="{DynamicResource WarningBrush}" />
+                    <Setter Property="BorderBrush" Value="{DynamicResource AccentHotBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+
+    <StackPanel>
+        <!-- No phoneme data -->
+        <TextBlock Text="нет данных о произношении"
+                   Style="{StaticResource Caption}"
+                   Visibility="{Binding Found, Converter={StaticResource InvBoolToVis}}" />
+
+        <StackPanel Visibility="{Binding Found, Converter={StaticResource BoolToVis}}">
+            <!-- Full IPA -->
+            <TextBlock Margin="0,0,0,4">
+                <Run Text="/" Foreground="{DynamicResource CaptionTextBrush}" /><Run Text="{Binding Ipa, Mode=OneWay}" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" /><Run Text="/" Foreground="{DynamicResource CaptionTextBrush}" />
+            </TextBlock>
+
+            <!-- Phoneme tiles -->
+            <ItemsControl ItemsSource="{Binding Units}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate><WrapPanel Orientation="Horizontal" /></ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource PhonemeTile}" ToolTip="{Binding ToolTipText}">
+                            <TextBlock Text="{Binding Ipa}"
+                                       FontSize="14"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource StrongTextBrush}" />
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <!-- Best-effort "what you said" hint -->
+            <TextBlock Text="{Binding FeedbackRu}"
+                       Style="{StaticResource Caption}"
+                       TextWrapping="Wrap"
+                       Margin="0,2,0,0"
+                       Visibility="{Binding HasFeedback, Converter={StaticResource BoolToVis}}" />
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,268 @@
+<UserControl x:Class="EnglishStudio.App.Views.Listening.ListeningResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ListeningResultScreen}"
+             d:DesignHeight="900" d:DesignWidth="1100">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button Grid.Row="0" Content="‹ К списку тестов" HorizontalAlignment="Left"
+                Style="{StaticResource FlatButton}" Command="{Binding BackCommand}" Margin="0,0,0,12" />
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding Result}">
+
+                <!--  Top bar: title + raw + band  -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource H2}" />
+                            <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0" Text="{Binding DurationLabel}" />
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
+                            <TextBlock Style="{StaticResource Caption}" Text="Правильно" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding RawScore}" FontSize="36" FontWeight="Light" Foreground="{DynamicResource StrongTextBrush}" />
+                                <TextBlock VerticalAlignment="Bottom" Foreground="{DynamicResource MutedTextBrush}" Margin="6,0,0,8">
+                                    <Run Text="/ " /><Run Text="{Binding TotalQuestions, Mode=OneWay}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" Background="{DynamicResource AccentHotBrush}" CornerRadius="12" Padding="22,10" VerticalAlignment="Center">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="BAND" Foreground="#073a5a" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="#073a5a" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!--  Breakdown: 2-column grid (by part / by type)  -->
+                <TextBlock Text="Разбор по частям и типам вопросов" Style="{StaticResource H3}" Margin="0,4,0,8" />
+                <Grid Margin="0,0,0,16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Border Grid.Column="0" Style="{StaticResource CardCompact}" Margin="0,0,6,0">
+                        <StackPanel>
+                            <TextBlock Text="По частям (P1–P4)" Style="{StaticResource Caption}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding PartBreakdown}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Label}" TextTrimming="CharacterEllipsis"
+                                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Score}" Margin="12,0,0,0"
+                                                       FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
+                                            <TextBlock Grid.Column="2" Text="{Binding PercentLabel}" Margin="10,0,0,0"
+                                                       MinWidth="44" TextAlignment="Right"
+                                                       Foreground="{DynamicResource MutedTextBrush}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Grid.Column="1" Style="{StaticResource CardCompact}" Margin="6,0,0,0">
+                        <StackPanel>
+                            <TextBlock Text="По типам вопросов" Style="{StaticResource Caption}" Margin="0,0,0,8" />
+                            <ItemsControl ItemsSource="{Binding TypeBreakdown}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Label}" TextTrimming="CharacterEllipsis"
+                                                       Foreground="{DynamicResource PrimaryTextBrush}" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Score}" Margin="12,0,0,0"
+                                                       FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
+                                            <TextBlock Grid.Column="2" Text="{Binding PercentLabel}" Margin="10,0,0,0"
+                                                       MinWidth="44" TextAlignment="Right"
+                                                       Foreground="{DynamicResource MutedTextBrush}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </Grid>
+
+                <!--  AI analysis section  -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,16">
+                    <StackPanel>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <TextBlock Text="🤖 Разбор от AI (Claude)" Style="{StaticResource H3}" />
+                                <TextBlock Text="{Binding AiStatus}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                            </StackPanel>
+                            <Button Grid.Column="1" Command="{Binding EvaluateAiCommand}"
+                                    VerticalAlignment="Center" Margin="12,0,0,0">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource AccentButton}">
+                                        <Setter Property="Content" Value="Получить разбор от AI" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsLoadingAi}" Value="True">
+                                                <Setter Property="Content" Value="⏳ Анализирую…" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding HasAiFeedback}" Value="True">
+                                                <Setter Property="Content" Value="Перезапустить разбор" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </Grid>
+
+                        <!--  Hidden until first report arrives  -->
+                        <StackPanel Visibility="{Binding HasAiFeedback, Converter={StaticResource BoolToVis}}" Margin="0,12,0,0">
+
+                            <Border Background="{DynamicResource OverlayDark27Brush}" CornerRadius="6" Padding="12,10" Margin="0,0,0,12">
+                                <StackPanel>
+                                    <TextBlock Text="Кратко" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                                    <TextBlock Text="{Binding AiSummaryRu}" TextWrapping="Wrap"
+                                               Foreground="{DynamicResource PrimaryTextBrush}" />
+                                </StackPanel>
+                            </Border>
+
+                            <TextBlock Text="По частям" Style="{StaticResource Caption}" Margin="0,4,0,4" />
+                            <ItemsControl ItemsSource="{Binding AiPartInsights}" Margin="0,0,0,12">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Heading}" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
+                                                <TextBlock Text="{Binding CommentRu}" TextWrapping="Wrap" Margin="0,3,0,0"
+                                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBlock Text="Объяснения по ошибкам" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                            <ItemsControl ItemsSource="{Binding AiQuestionExplanations}" Margin="0,0,0,12">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Heading}" FontWeight="SemiBold" Foreground="{DynamicResource ErrorBrush}" TextWrapping="Wrap" />
+                                                <TextBlock Text="{Binding ExplanationRu}" TextWrapping="Wrap" Margin="0,4,0,0"
+                                                           Foreground="{DynamicResource PrimaryTextBrush}" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+
+                            <TextBlock Text="Советы для тренировки" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                            <ItemsControl ItemsSource="{Binding AiTips}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Margin="0,3,0,3">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="•" Foreground="{DynamicResource AccentHotBrush}" FontWeight="Bold" Margin="0,0,8,0" />
+                                            <TextBlock Grid.Column="1" Text="{Binding}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+
+                <!--  Per-question answers list (existing)  -->
+                <TextBlock Text="Ответы" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <ItemsControl ItemsSource="{Binding Answers}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Number, StringFormat='{}{0}.'}"
+                                               FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}"
+                                               Width="34" VerticalAlignment="Center" />
+                                    <StackPanel Grid.Column="1" Margin="0,0,12,0">
+                                        <TextBlock Style="{StaticResource Caption}" Text="Ваш ответ" />
+                                        <TextBlock Text="{Binding UserAnswer}" TextWrapping="Wrap">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                                                            <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2">
+                                        <TextBlock Style="{StaticResource Caption}" Text="Правильный" />
+                                        <TextBlock Text="{Binding CorrectAnswer}" TextWrapping="Wrap" Foreground="{DynamicResource SuccessBrush}" />
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="3" VerticalAlignment="Center" FontSize="16" Margin="8,0,0,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Text" Value="✗" />
+                                                <Setter Property="Foreground" Value="{DynamicResource ErrorBrush}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsCorrect}" Value="True">
+                                                        <Setter Property="Text" Value="✓" />
+                                                        <Setter Property="Foreground" Value="{DynamicResource SuccessBrush}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

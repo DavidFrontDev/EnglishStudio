@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Orchestrator that owns content-pack import + (re)seeding across every module. It is the only
+       place that references all the IELTS seed services at once, so the import flow is testable
+       without taking a dependency on the WPF App (see plans/Infra_Publish_GitHub_AgentExecution.md §1.2). -->
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishStudio.Modules.Dictionary\EnglishStudio.Modules.Dictionary.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Reading\EnglishStudio.Modules.Ielts.Reading.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Listening\EnglishStudio.Modules.Ielts.Listening.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Writing\EnglishStudio.Modules.Ielts.Writing.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Speaking\EnglishStudio.Modules.Ielts.Speaking.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
+  </ItemGroup>
+
+</Project>

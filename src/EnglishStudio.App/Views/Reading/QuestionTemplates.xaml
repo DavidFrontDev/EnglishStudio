@@ -1,0 +1,315 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:q="clr-namespace:EnglishStudio.App.ViewModels.Reading.Questions"
+                    xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
+                    xmlns:rdg="clr-namespace:EnglishStudio.App.Views.Reading"
+                    xmlns:ctrls="clr-namespace:EnglishStudio.App.Views.Controls"
+                    xmlns:conv="clr-namespace:EnglishStudio.App.Converters">
+
+    <BooleanToVisibilityConverter x:Key="GtBoolToVis" />
+    <conv:NullToVisibilityConverter x:Key="NullToVis" />
+
+    <!--  ════════════════════════════════════════════════════════════════════════════════
+          QUESTION TEMPLATES  (rendered inside a group's questions ItemsControl)
+          ════════════════════════════════════════════════════════════════════════════════  -->
+
+    <!--  TFNG / YNNG: 3 mutually-exclusive chips  -->
+    <DataTemplate DataType="{x:Type q:TfngQuestionViewModel}">
+        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10" rdg:QuestionAnchor.Number="{Binding DisplayNumber}">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" VerticalAlignment="Top" />
+                    <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                </Grid>
+                <ListBox ItemsSource="{Binding Options}"
+                         SelectedItem="{Binding SelectedAnswer, Mode=TwoWay}"
+                         Margin="20,2,0,0"
+                         HorizontalAlignment="Left"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         FocusVisualStyle="{x:Null}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Margin" Value="0,0,8,6" />
+                            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                            <Setter Property="Cursor" Value="Hand" />
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ListBoxItem">
+                                        <Border x:Name="Bd"
+                                                Background="{DynamicResource OverlayLight13Brush}"
+                                                BorderBrush="{DynamicResource OverlayLight20Brush}"
+                                                BorderThickness="1"
+                                                CornerRadius="14"
+                                                Padding="14,5">
+                                            <TextBlock Text="{Binding}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource OverlayLight20Brush}" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource AccentHotBrush}" />
+                                                <Setter TargetName="Bd" Property="BorderBrush" Value="{DynamicResource AccentHotBrush}" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                </ListBox>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  Text input (Short Answer + all *Completion) — text box with word counter  -->
+    <DataTemplate DataType="{x:Type q:TextInputQuestionViewModel}">
+        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10" rdg:QuestionAnchor.Number="{Binding DisplayNumber}">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" VerticalAlignment="Top" />
+                    <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                </Grid>
+                <TextBox Style="{StaticResource FlatTextBox}"
+                         Text="{Binding Text, UpdateSourceTrigger=PropertyChanged}"
+                         HorizontalAlignment="Stretch"
+                         Margin="20,2,0,4" />
+                <TextBlock Style="{StaticResource Caption}" Margin="20,2,0,0">
+                    <Run Text="{Binding WordCount, Mode=OneWay}" />
+                    <Run Text=" слов" />
+                    <Run Text="  ·  " />
+                    <Run Text="{Binding WordLimitLabel, Mode=OneWay}" />
+                </TextBlock>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  Multiple Choice (single) — radio  -->
+    <DataTemplate DataType="{x:Type q:ChoiceSingleQuestionViewModel}">
+        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10" rdg:QuestionAnchor.Number="{Binding DisplayNumber}">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" VerticalAlignment="Top" />
+                    <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                </Grid>
+                <ItemsControl ItemsSource="{Binding Options}" Margin="20,2,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <RadioButton GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                         Margin="0,3,0,3"
+                                         Foreground="{DynamicResource PrimaryTextBrush}"
+                                         IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                                <RadioButton.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Tag}" FontWeight="SemiBold" Margin="0,0,8,0" Foreground="{DynamicResource AccentHotBrush}" VerticalAlignment="Top" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                    </Grid>
+                                </RadioButton.Content>
+                            </RadioButton>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  Multiple Choice (multi) — checkboxes  -->
+    <DataTemplate DataType="{x:Type q:ChoiceMultiQuestionViewModel}">
+        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10" rdg:QuestionAnchor.Number="{Binding DisplayNumber}">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" VerticalAlignment="Top" />
+                    <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                </Grid>
+                <ItemsControl ItemsSource="{Binding Options}" Margin="20,2,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <CheckBox Margin="0,3,0,3"
+                                      Foreground="{DynamicResource PrimaryTextBrush}"
+                                      IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                                <CheckBox.Content>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Tag}" FontWeight="SemiBold" Margin="0,0,8,0" Foreground="{DynamicResource AccentHotBrush}" VerticalAlignment="Top" />
+                                        <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                    </Grid>
+                                </CheckBox.Content>
+                            </CheckBox>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  Matching (Headings / Information / Features / Sentence Endings / Map / Diagram) — combobox  -->
+    <DataTemplate DataType="{x:Type q:MatchingQuestionViewModel}">
+        <Border Style="{StaticResource CardCompact}" Margin="0,0,0,10" rdg:QuestionAnchor.Number="{Binding DisplayNumber}">
+            <StackPanel>
+                <Grid Margin="0,0,0,6">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" VerticalAlignment="Top" />
+                    <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                </Grid>
+                <ComboBox Style="{StaticResource FlatComboBox}"
+                          ItemsSource="{Binding AvailableTags}"
+                          DisplayMemberPath="Display"
+                          SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
+                          HorizontalAlignment="Stretch"
+                          Margin="20,2,0,0" />
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  ════════════════════════════════════════════════════════════════════════════════
+          REUSABLE SUB-PARTS (shared between the three group layouts)
+          ════════════════════════════════════════════════════════════════════════════════  -->
+
+    <!--  Header: range + instruction + optional Example chip  -->
+    <DataTemplate x:Key="GroupHeaderTemplate" DataType="{x:Type vm:ReadingQuestionGroupViewModel}">
+        <StackPanel Margin="0,0,0,10">
+            <TextBlock Text="{Binding RangeLabel}" Style="{StaticResource H3}" />
+            <TextBlock Text="{Binding Instruction}"
+                       Style="{StaticResource MutedText}"
+                       TextWrapping="Wrap"
+                       Margin="0,4,0,0"
+                       Visibility="{Binding Instruction, Converter={StaticResource NullToVis}}" />
+            <Border Background="{DynamicResource OverlayLight13Brush}"
+                    BorderBrush="{DynamicResource OverlayLight20Brush}"
+                    BorderThickness="1"
+                    CornerRadius="6"
+                    Padding="10,4"
+                    Margin="0,6,0,0"
+                    HorizontalAlignment="Left"
+                    Visibility="{Binding HasExample, Converter={StaticResource GtBoolToVis}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Example: " FontWeight="SemiBold" Foreground="{DynamicResource AccentHotBrush}" />
+                    <TextBlock Text="{Binding ExampleStem}" Margin="0,0,6,0" />
+                    <TextBlock Text=" → " Foreground="{DynamicResource MutedTextBrush}" />
+                    <TextBlock Text="{Binding ExampleAnswer}" FontWeight="SemiBold" />
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </DataTemplate>
+
+    <!--  Shared options box: List of headings / Word box / List of phrases / List of places  -->
+    <DataTemplate x:Key="SharedListTemplate" DataType="{x:Type vm:ReadingQuestionGroupViewModel}">
+        <Border Background="{DynamicResource OverlayDark27Brush}"
+                BorderBrush="{DynamicResource OverlayLight17Brush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="12,10"
+                Margin="0,0,0,12"
+                Visibility="{Binding HasSharedOptions, Converter={StaticResource GtBoolToVis}}">
+            <StackPanel>
+                <TextBlock Text="{Binding SharedListTitle}"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource StrongTextBrush}"
+                           Margin="0,0,0,6"
+                           Visibility="{Binding SharedListTitle, Converter={StaticResource NullToVis}}" />
+                <ItemsControl ItemsSource="{Binding SharedOptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,1,0,1" Foreground="{DynamicResource PrimaryTextBrush}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  ════════════════════════════════════════════════════════════════════════════════
+          GROUP TEMPLATES  (selected by GroupLayoutTemplateSelector)
+          ════════════════════════════════════════════════════════════════════════════════  -->
+
+    <!--  FlatList: header → shared list (optional) → vertical list of question cards  -->
+    <DataTemplate x:Key="FlatListGroupTemplate" DataType="{x:Type vm:ReadingQuestionGroupViewModel}">
+        <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource SharedListTemplate}" />
+                <ItemsControl ItemsSource="{Binding Questions}" />
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  SummaryFlow: header → optional word box → single flowing TextBlock with inline gaps  -->
+    <DataTemplate x:Key="SummaryFlowGroupTemplate" DataType="{x:Type vm:ReadingQuestionGroupViewModel}">
+        <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource SharedListTemplate}" />
+                <Border Background="{DynamicResource OverlayDark20Brush}"
+                        BorderBrush="{DynamicResource OverlayLight17Brush}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="14,12">
+                    <TextBlock TextWrapping="Wrap"
+                               LineHeight="30"
+                               FontSize="14"
+                               Foreground="{DynamicResource PrimaryTextBrush}"
+                               rdg:SummaryFlowRenderer.Segments="{Binding Segments}" />
+                </Border>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  MapLabeling: header → image → (optional, only if labels exist) list of places → dropdowns  -->
+    <DataTemplate x:Key="MapLabelingGroupTemplate" DataType="{x:Type vm:ReadingQuestionGroupViewModel}">
+        <Border Style="{StaticResource Card}" Margin="0,0,0,14">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource GroupHeaderTemplate}" />
+                <Border Background="#FFFFFFFF"
+                        BorderBrush="{DynamicResource OverlayLight20Brush}"
+                        BorderThickness="1"
+                        CornerRadius="6"
+                        Padding="6"
+                        Margin="0,0,0,12"
+                        HorizontalAlignment="Center"
+                        Visibility="{Binding HasImage, Converter={StaticResource GtBoolToVis}}">
+                    <ctrls:ZoomableImage Source="{Binding ImagePath}"
+                                         Stretch="Uniform"
+                                         MaxImageHeight="380"
+                                         MaxImageWidth="520" />
+                </Border>
+                <ContentControl Content="{Binding}"
+                                ContentTemplate="{StaticResource SharedListTemplate}"
+                                Visibility="{Binding HasMeaningfulSharedList, Converter={StaticResource GtBoolToVis}}" />
+                <ItemsControl ItemsSource="{Binding Questions}" />
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+</ResourceDictionary>

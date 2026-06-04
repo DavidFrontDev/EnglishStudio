@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishStudio.Modules.Dictionary\EnglishStudio.Modules.Dictionary.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ai\EnglishStudio.Modules.Ai.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- CMUdict (BSD-style licence), trimmed to one de-stressed pronunciation per word, gzipped. -->
+    <EmbeddedResource Include="Seed\cmudict.gz" />
+    <!-- Built-in graded readers (original texts, shipped as Source=Builtin). -->
+    <EmbeddedResource Include="Seed\graded_readers.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.8" />
+  </ItemGroup>
+
+</Project>

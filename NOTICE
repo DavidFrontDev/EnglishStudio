@@ -1,0 +1,76 @@
+EnglishStudio — Third-Party Notices
+===================================
+
+The EnglishStudio source code is licensed under the MIT License (see LICENSE).
+This file documents third-party data and libraries the project uses. The MIT
+license does NOT extend to the third-party materials below; each is governed by
+its own license/terms and remains the property of its respective owner.
+
+
+================================================================================
+1. STUDY CONTENT  (NOT redistributable — not shipped in this repository)
+================================================================================
+
+These materials are copyrighted and are NOT licensed for redistribution. They are
+git-ignored and must be supplied by each user from their own legally obtained copy.
+
+- Cambridge IELTS 15–20 — practice tests, audio recordings, maps/figures.
+  © Cambridge University Press & Assessment. https://www.cambridge.org
+  Used by the Reading, Listening, Writing, Speaking and Mock modules.
+
+- Oxford 5000 word list — headwords, definitions, examples, IPA, audio references.
+  © Oxford University Press. https://www.oxfordlearnersdictionaries.com
+  Obtained via the community dataset:
+  winterdl/oxford-5000-vocabulary-audio-definition (GitHub).
+  Used by the Dictionary module (Seed/oxford_5000.json) and pronunciation audio.
+
+- PHaVE List (Phrasal Verbs) — Garnier, M. & Schmitt, N. (2014).
+  Distributed as PDFs via https://www.norbertschmitt.co.uk
+  Used to seed phrasal verbs (Seed/phave.json).
+
+- IELTS band descriptors — the rubric summaries in Modules.Ai/Rubrics/ are based
+  on publicly available IELTS Writing/Speaking band descriptors.
+  © British Council, IDP: IELTS Australia and Cambridge University Press & Assessment.
+
+
+================================================================================
+2. OPEN DATA  (used under permissive terms — attribution where required)
+================================================================================
+
+- Academic Word List (AWL) — Coxhead, A. (2000).
+  Machine-readable form: lpmi-13/machine_readable_wordlists (GitHub), CC0.
+  File: Modules.Dictionary/Seed/awl.json
+
+- Academic Vocabulary List (AVL) — Gardner, D. & Davies, M. (2014).
+  Machine-readable form: lpmi-13/machine_readable_wordlists (GitHub), CC0.
+  File: Modules.Dictionary/Seed/avl.json
+
+- Tatoeba — example sentences (EN/RU), CC BY 2.0 FR. https://tatoeba.org
+  Downloaded at runtime; attribution required if examples are surfaced/exported.
+
+- FSRS-4.5 — Free Spaced Repetition Scheduler (algorithm + default weights).
+  open-spaced-repetition project, MIT License.
+
+- Whisper / whisper.cpp GGML models (ggml-base.en, ggml-medium.en).
+  Downloaded at runtime from Hugging Face. Models: MIT License.
+
+
+================================================================================
+3. NUGET LIBRARIES
+================================================================================
+
+- NAudio                                   — MIT License
+- CommunityToolkit.Mvvm                     — MIT License
+- Microsoft.EntityFrameworkCore (+ Sqlite)  — MIT License
+- Microsoft.Extensions.* (Hosting/DI/etc.)  — MIT License
+- Whisper.net / Whisper.net.Runtime         — MIT License
+- System.Drawing.Common                     — MIT License (.NET)
+- Polly                                      — BSD-3-Clause
+- DotNetZip                                  — Microsoft Public License (Ms-PL)
+- SharpZipLib                                — MIT License
+- UglyToad.PdfPig (tools only)               — Apache License 2.0
+- xunit / xunit.runner.visualstudio         — Apache License 2.0 / MIT
+- Microsoft.NET.Test.Sdk                     — MIT License
+
+Exact license terms ship with each NuGet package. Versions are pinned in the
+respective .csproj files.

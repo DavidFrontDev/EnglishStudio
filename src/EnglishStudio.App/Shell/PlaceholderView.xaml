@@ -1,0 +1,31 @@
+<UserControl x:Class="EnglishStudio.App.Shell.PlaceholderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:shell="clr-namespace:EnglishStudio.App.Shell"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=shell:PlaceholderViewModel}"
+             d:DesignHeight="400" d:DesignWidth="600">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    MaxWidth="480">
+            <TextBlock Text="{Binding Icon}"
+                       HorizontalAlignment="Center"
+                       FontSize="72"
+                       Margin="0,0,0,16"
+                       Foreground="{DynamicResource MutedTextBrush}" />
+            <TextBlock Text="{Binding Title}"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource H1}"
+                       TextAlignment="Center"
+                       Margin="0,0,0,12" />
+            <TextBlock Text="{Binding Description}"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource MutedText}"
+                       TextAlignment="Center"
+                       FontSize="14" />
+        </StackPanel>
+    </Grid>
+</UserControl>

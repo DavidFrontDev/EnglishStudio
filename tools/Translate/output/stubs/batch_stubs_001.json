@@ -1,0 +1,3420 @@
+{
+  "BatchId": "stubs_001",
+  "Count": 110,
+  "Items": [
+    {
+      "Kind": "word",
+      "Id": 6130,
+      "Headword": "AM",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Before noon.",
+          "ExampleEn": null,
+          "DefRu": "До полудня.",
+          "TranslationsRu": ["до полудня", "утра"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6083,
+      "Headword": "Bible",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An exemplar of the Bible.",
+          "ExampleEn": null,
+          "DefRu": "Экземпляр Библии.",
+          "TranslationsRu": ["Библия", "Священное Писание"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A comprehensive manual that describes something. (e.g., handyman’s bible).",
+          "ExampleEn": null,
+          "DefRu": "Исчерпывающее руководство, описывающее что-либо (например, библия мастера).",
+          "TranslationsRu": ["настольная книга", "исчерпывающее руководство", "библия"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(at certain US universities) A compilation of problems and solutions from previous years of a given course, used by some students to cheat on tests or assignments.",
+          "ExampleEn": null,
+          "DefRu": "Сборник задач и решений прошлых лет по учебному курсу, используемый студентами для списывания.",
+          "TranslationsRu": ["сборник решений", "шпаргалка"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Omasum, the third compartment of the stomach of ruminants",
+          "ExampleEn": null,
+          "DefRu": "Книжка — третий отдел желудка жвачных животных.",
+          "TranslationsRu": ["книжка", "омасум"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A piece of soft sandstone used for scouring the wooden decks of ships, usually with sand and seawater.",
+          "ExampleEn": null,
+          "DefRu": "Кусок мягкого песчаника для драйки деревянных палуб судов с песком и морской водой.",
+          "TranslationsRu": ["песчаник для драйки палуб", "голик"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5993,
+      "Headword": "Catholic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of the Western Christian church, as differentiated from e.g. the Orthodox church.",
+          "ExampleEn": "Christmas is celebrated at different dates in the Catholic and Orthodox calendars.",
+          "DefRu": "Относящийся к Западной Христианской церкви в отличие, например, от Православной.",
+          "TranslationsRu": ["католический", "западнохристианский"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of the Roman Catholic church in particular.",
+          "ExampleEn": "Catholic churches are built differently than Protestant ones.",
+          "DefRu": "Относящийся именно к Римско-католической церкви.",
+          "TranslationsRu": ["католический", "римско-католический"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Universal; all-encompassing.",
+          "ExampleEn": null,
+          "DefRu": "Всеобщий; всеохватывающий.",
+          "TranslationsRu": ["всеобщий", "всеохватывающий", "универсальный"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Pertaining to all kinds of people and their range of tastes, proclivities etc.; liberal.",
+          "ExampleEn": null,
+          "DefRu": "Касающийся всех видов людей и их разнообразных вкусов и склонностей; широкий.",
+          "TranslationsRu": ["широкий", "разносторонний", "либеральный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6046,
+      "Headword": "Catholic",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of the Western Christian church, as differentiated from e.g. the Orthodox church.",
+          "ExampleEn": "Christmas is celebrated at different dates in the Catholic and Orthodox calendars.",
+          "DefRu": "Член Западной Христианской церкви в отличие, например, от Православной.",
+          "TranslationsRu": ["католик", "приверженец католичества"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of the Roman Catholic church in particular.",
+          "ExampleEn": "Catholic churches are built differently than Protestant ones.",
+          "DefRu": "Член Римско-католической церкви.",
+          "TranslationsRu": ["католик", "римо-католик"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Universal; all-encompassing.",
+          "ExampleEn": null,
+          "DefRu": "Нечто всеобщее; всеохватывающее.",
+          "TranslationsRu": ["приверженец универсализма"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Pertaining to all kinds of people and their range of tastes, proclivities etc.; liberal.",
+          "ExampleEn": null,
+          "DefRu": "Человек с широкими взглядами и разнообразными вкусами.",
+          "TranslationsRu": ["человек широких взглядов"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5985,
+      "Headword": "Congress",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A coming together of two or more people; a meeting.",
+          "ExampleEn": null,
+          "DefRu": "Сход двух или более людей; встреча.",
+          "TranslationsRu": ["встреча", "сход", "собрание"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A formal gathering or assembly; a conference held to discuss or decide on a specific question.",
+          "ExampleEn": null,
+          "DefRu": "Официальное собрание или ассамблея; конференция для обсуждения или решения определённого вопроса.",
+          "TranslationsRu": ["конгресс", "съезд", "конференция"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(often capitalized: Congress) A legislative body of a state, originally the bicameral legislature of the United States of America.",
+          "ExampleEn": null,
+          "DefRu": "Законодательный орган государства, первоначально двухпалатный парламент США.",
+          "TranslationsRu": ["конгресс", "парламент"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An association, especially one consisting of other associations or representatives of interest groups.",
+          "ExampleEn": "The National Congress of American Indians",
+          "DefRu": "Объединение, особенно состоящее из других объединений или представителей групп интересов.",
+          "TranslationsRu": ["конгресс", "объединение", "ассоциация"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Coitus; sexual intercourse.",
+          "ExampleEn": null,
+          "DefRu": "Половое сношение; коитус.",
+          "TranslationsRu": ["соитие", "половой акт", "коитус"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6070,
+      "Headword": "DNA",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The part of a living being that carries genetic information.",
+          "ExampleEn": null,
+          "DefRu": "Часть живого существа, которая несёт генетическую информацию.",
+          "TranslationsRu": ["ДНК", "дезоксирибонуклеиновая кислота"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A biopolymer of deoxyribonucleic acid (a type of nucleic acid) that has four different chemical groups, called bases: adenine, guanine, cytosine, and thymine.",
+          "ExampleEn": null,
+          "DefRu": "Биополимер дезоксирибонуклеиновой кислоты с четырьмя основаниями: аденин, гуанин, цитозин и тимин.",
+          "TranslationsRu": ["ДНК", "дезоксирибонуклеиновая кислота"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The fundamental values or vision of an organization.",
+          "ExampleEn": null,
+          "DefRu": "Фундаментальные ценности или видение организации.",
+          "TranslationsRu": ["основа", "сущность", "ДНК организации"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6103,
+      "Headword": "Democrat",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A supporter of democracy; an advocate of democratic politics (originally as opposed to the aristocrats in Revolutionary France).",
+          "ExampleEn": null,
+          "DefRu": "Сторонник демократии; защитник демократической политики.",
+          "TranslationsRu": ["демократ", "сторонник демократии"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Someone who rules a representative democracy.",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто управляет представительной демократией.",
+          "TranslationsRu": ["демократ", "правитель-демократ"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A large light uncovered wagon with two or more seats.",
+          "ExampleEn": null,
+          "DefRu": "Большая лёгкая открытая повозка с двумя или более сиденьями.",
+          "TranslationsRu": ["открытая повозка", "лёгкая коляска"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6014,
+      "Headword": "English",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Spinning or rotary motion given to a ball around the vertical axis, as in billiards or bowling.",
+          "ExampleEn": "You can't hit it directly, but maybe if you give it some english.",
+          "DefRu": "Вращение, придаваемое мячу или шару вокруг вертикальной оси, как в бильярде или боулинге.",
+          "TranslationsRu": ["боковое вращение", "подкрутка", "винт"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "An unusual or unexpected interpretation of a text or idea, a spin, a nuance.",
+          "ExampleEn": null,
+          "DefRu": "Необычная или неожиданная интерпретация текста или идеи; подача, нюанс.",
+          "TranslationsRu": ["подача", "оттенок", "нюанс", "интерпретация"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6007,
+      "Headword": "French",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To prepare food by cutting it into strips.",
+          "ExampleEn": null,
+          "DefRu": "Готовить продукт, нарезая его соломкой.",
+          "TranslationsRu": ["нарезать соломкой", "шинковать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To kiss (another person) while inserting one’s tongue into the other person's mouth.",
+          "ExampleEn": null,
+          "DefRu": "Целовать другого человека, вводя свой язык ему в рот.",
+          "TranslationsRu": ["целовать взасос", "целоваться по-французски"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To kiss in this manner.",
+          "ExampleEn": null,
+          "DefRu": "Целоваться таким образом.",
+          "TranslationsRu": ["целоваться взасос", "целоваться по-французски"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To French trim; to stylishly expose bone by removing the fat and meat covering it (as done to a rack of lamb or bone-in rib-eye steak).",
+          "ExampleEn": null,
+          "DefRu": "Эффектно оголить кость, срезав жир и мясо вокруг неё (как на каре ягнёнка).",
+          "TranslationsRu": ["зачищать кость", "оголять кость"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6004,
+      "Headword": "German",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having the same mother and father; a full (brother or sister).",
+          "ExampleEn": "brother-german",
+          "DefRu": "Имеющий тех же отца и мать; родной (брат или сестра).",
+          "TranslationsRu": ["родной", "единокровный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Being born to one’s blood aunt or uncle, a first (cousin).",
+          "ExampleEn": "cousin-german",
+          "DefRu": "Рождённый родной тётей или дядей; двоюродный.",
+          "TranslationsRu": ["двоюродный", "родной"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Closely related, akin.",
+          "ExampleEn": "Wert thou a leopard, thou wert german to the lion.",
+          "DefRu": "Близкородственный, близкий по природе.",
+          "TranslationsRu": ["близкий", "родственный", "сродни"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6127,
+      "Headword": "German",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A near relative.",
+          "ExampleEn": null,
+          "DefRu": "Близкий родственник.",
+          "TranslationsRu": ["близкий родственник"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "An elaborate round dance, often with a waltz movement.",
+          "ExampleEn": null,
+          "DefRu": "Сложный круговой танец, часто с вальсовыми движениями.",
+          "TranslationsRu": ["котильон", "круговой танец"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A social party at which the german is danced.",
+          "ExampleEn": null,
+          "DefRu": "Светский вечер, на котором танцуют котильон.",
+          "TranslationsRu": ["вечер с котильоном", "бал"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6021,
+      "Headword": "PC",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A percentage, a proportion (especially per hundred).",
+          "ExampleEn": "only a small percent attain the top ranks",
+          "DefRu": "Процент, доля (особенно на сотню).",
+          "TranslationsRu": ["процент", "доля"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "One part per hundred; one percent.",
+          "ExampleEn": null,
+          "DefRu": "Одна часть из ста; один процент.",
+          "TranslationsRu": ["процент", "сотая доля"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A part of a larger whole, usually in such a form that it is able to be separated from other parts.",
+          "ExampleEn": "I’d like another piece of pie.",
+          "DefRu": "Часть большего целого, обычно отделимая от других частей.",
+          "TranslationsRu": ["часть", "кусок", "доля"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A single item belonging to a class of similar items",
+          "ExampleEn": "a piece of machinery",
+          "DefRu": "Отдельный предмет, относящийся к классу подобных предметов.",
+          "TranslationsRu": ["единица", "штука", "экземпляр"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "One of the figures used in playing chess, specifically a higher-value figure as distinguished from a pawn; by extension, a similar counter etc. in other games.",
+          "ExampleEn": null,
+          "DefRu": "Шахматная фигура (кроме пешки); по аналогии — фишка в других играх.",
+          "TranslationsRu": ["фигура", "шахматная фигура", "фишка"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6036,
+      "Headword": "Republican",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Someone who favors a republic as a form of government.",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто выступает за республику как форму правления.",
+          "TranslationsRu": ["республиканец", "сторонник республики"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A bird of a kind that builds many nests together: the American cliff swallow, or the South African weaver bird.",
+          "ExampleEn": null,
+          "DefRu": "Птица, строящая множество гнёзд вместе: американская скальная ласточка или южноафриканский ткач.",
+          "TranslationsRu": ["общественный ткач", "колониальная птица"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6080,
+      "Headword": "Roman",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of type) upright, as opposed to italic",
+          "ExampleEn": null,
+          "DefRu": "О шрифте: прямой, в отличие от курсивного.",
+          "TranslationsRu": ["прямой", "антиквенный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(of text) of or related to the Latin alphabet",
+          "ExampleEn": null,
+          "DefRu": "О тексте: относящийся к латинскому алфавиту.",
+          "TranslationsRu": ["латинский", "латиничный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6056,
+      "Headword": "Senate",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In some bicameral legislative systems, the upper house or chamber.",
+          "ExampleEn": null,
+          "DefRu": "В двухпалатных законодательных системах — верхняя палата парламента.",
+          "TranslationsRu": ["сенат", "верхняя палата"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A group of experienced, respected, wise individuals serving as decision makers or advisors in a political system or in institutional governance, as in a university, and traditionally of advanced age and male.",
+          "ExampleEn": null,
+          "DefRu": "Совет опытных и уважаемых лиц, принимающих решения или дающих советы, например в университете.",
+          "TranslationsRu": ["сенат", "совет старейшин"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5992,
+      "Headword": "Soviet",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(history) Pertaining to the Soviet Union or its constituent republics.",
+          "ExampleEn": null,
+          "DefRu": "Относящийся к Советскому Союзу или его республикам.",
+          "TranslationsRu": ["советский"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Supporting or representing the Soviet Union or Sovietism; Sovietist.",
+          "ExampleEn": null,
+          "DefRu": "Поддерживающий Советский Союз или советизм; советистский.",
+          "TranslationsRu": ["советский", "просоветский"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Pertaining to or resembling a soviet (council).",
+          "ExampleEn": null,
+          "DefRu": "Относящийся к совету (как органу) или похожий на него.",
+          "TranslationsRu": ["относящийся к совету", "советный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6033,
+      "Headword": "Spanish",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To subject to spanishing, a printing process in which an ink is deposited on the bottoms and sides of depressions formed in a plastic material",
+          "ExampleEn": null,
+          "DefRu": "Подвергать испанированию — нанесению краски на дно и стенки углублений в пластике.",
+          "TranslationsRu": ["испанировать", "наносить краску в углубления"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5979,
+      "Headword": "according",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To make to agree or correspond; to suit one thing to another; to adjust.",
+          "ExampleEn": null,
+          "DefRu": "Приводить в согласие или соответствие; подгонять одно к другому.",
+          "TranslationsRu": ["согласовывать", "приводить в соответствие", "подгонять"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To bring (people) to an agreement; to reconcile, settle, adjust or harmonize.",
+          "ExampleEn": null,
+          "DefRu": "Приводить людей к согласию; примирять, улаживать, гармонизировать.",
+          "TranslationsRu": ["примирять", "улаживать", "согласовывать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To agree or correspond; to be in harmony; to be concordant.",
+          "ExampleEn": null,
+          "DefRu": "Соответствовать или совпадать; быть в гармонии.",
+          "TranslationsRu": ["соответствовать", "согласовываться", "гармонировать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To agree in pitch and tone.",
+          "ExampleEn": null,
+          "DefRu": "Совпадать по высоте и тону.",
+          "TranslationsRu": ["звучать в унисон", "созвучать"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To grant as suitable or proper; to concede or award.",
+          "ExampleEn": null,
+          "DefRu": "Предоставлять как должное или уместное; уступать или присуждать.",
+          "TranslationsRu": ["предоставлять", "удостаивать", "присуждать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6110,
+      "Headword": "actively",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In an active manner.",
+          "ExampleEn": "He was actively listening.",
+          "DefRu": "Активным образом.",
+          "TranslationsRu": ["активно", "деятельно"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(grammar) In the active form; not passive.",
+          "ExampleEn": "a word used actively",
+          "DefRu": "В активной (действительной) форме; не в пассивной.",
+          "TranslationsRu": ["в действительном залоге", "активно"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6063,
+      "Headword": "affiliation",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The relationship resulting from affiliating one thing with another.",
+          "ExampleEn": null,
+          "DefRu": "Отношение, возникающее при присоединении одного к другому.",
+          "TranslationsRu": ["принадлежность", "присоединение", "связь"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The establishment of a child's paternity or maternity",
+          "ExampleEn": null,
+          "DefRu": "Установление отцовства или материнства ребёнка.",
+          "TranslationsRu": ["установление родства", "установление отцовства"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A club, society or umbrella organisation so formed, especially a trade union.",
+          "ExampleEn": null,
+          "DefRu": "Клуб, общество или объединение, особенно профсоюз.",
+          "TranslationsRu": ["объединение", "ассоциация", "филиация"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5944,
+      "Headword": "aggregate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A mass, assemblage, or sum of particulars; something consisting of elements but considered as a whole.",
+          "ExampleEn": null,
+          "DefRu": "Совокупность или сумма частностей; нечто, состоящее из элементов, но рассматриваемое как целое.",
+          "TranslationsRu": ["совокупность", "агрегат", "общая сумма"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A mass formed by the union of homogeneous particles; – in distinction from a compound, formed by the union of heterogeneous particles.",
+          "ExampleEn": null,
+          "DefRu": "Масса, образованная соединением однородных частиц, в отличие от соединения разнородных.",
+          "TranslationsRu": ["агрегат", "однородная масса"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A set (collection of objects).",
+          "ExampleEn": null,
+          "DefRu": "Множество (совокупность объектов).",
+          "TranslationsRu": ["множество", "совокупность"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The full chromatic scale of twelve equal tempered pitches.",
+          "ExampleEn": null,
+          "DefRu": "Полный хроматический звукоряд из двенадцати равномерно темперированных высот.",
+          "TranslationsRu": ["хроматический звукоряд", "двенадцатитоновый ряд"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The total score in a set of games between teams or competitors, usually the combination of the home and away scores",
+          "ExampleEn": null,
+          "DefRu": "Суммарный счёт в серии игр между командами, обычно сумма домашних и гостевых очков.",
+          "TranslationsRu": ["суммарный счёт", "общий результат"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6102,
+      "Headword": "alpha",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The name of the first letter of the Greek alphabet (Α,  α), followed by beta. In the Latin alphabet it is the predecessor to A.",
+          "ExampleEn": null,
+          "DefRu": "Название первой буквы греческого алфавита (Α, α), после которой следует бета.",
+          "TranslationsRu": ["альфа", "буква альфа"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Latin alpha",
+          "ExampleEn": null,
+          "DefRu": "Латинская альфа.",
+          "TranslationsRu": ["латинская альфа"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The name of the symbols Α and α used in science and mathematics, often interchangeable with the symbols when used as a prefix.",
+          "ExampleEn": "I will attempt to make an alpha particle (\"α-particle\") with the Large Hadron Collider.",
+          "DefRu": "Название символов Α и α, используемых в науке и математике, нередко взаимозаменяемое с самим знаком.",
+          "TranslationsRu": ["альфа", "символ альфа"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The return of a given asset or portfolio adjusted for systematic risk.",
+          "ExampleEn": null,
+          "DefRu": "Доходность актива или портфеля, скорректированная на систематический риск.",
+          "TranslationsRu": ["альфа", "альфа-коэффициент"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A person, especially a male, who is dominant, successful and attractive; (see alpha male).",
+          "ExampleEn": null,
+          "DefRu": "Доминантный, успешный и привлекательный человек, особенно мужчина.",
+          "TranslationsRu": ["альфа-самец", "лидер", "доминант"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5947,
+      "Headword": "ambiguous",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Open to multiple interpretations.",
+          "ExampleEn": "The politician was criticized for his ambiguous statements and lack of precision.",
+          "DefRu": "Допускающий несколько толкований.",
+          "TranslationsRu": ["двусмысленный", "неоднозначный", "многозначный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Vague and unclear.",
+          "ExampleEn": "He gave an ambiguous answer.",
+          "DefRu": "Расплывчатый и неясный.",
+          "TranslationsRu": ["неясный", "расплывчатый", "туманный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(of persons) Hesitant; uncertain; not taking sides.",
+          "ExampleEn": null,
+          "DefRu": "О человеке: колеблющийся, неуверенный, не принимающий чью-либо сторону.",
+          "TranslationsRu": ["колеблющийся", "неуверенный", "уклончивый"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5998,
+      "Headword": "analyze",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To subject to analysis.",
+          "ExampleEn": null,
+          "DefRu": "Подвергать анализу.",
+          "TranslationsRu": ["анализировать", "подвергать анализу"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To resolve (anything complex) into its elements.",
+          "ExampleEn": null,
+          "DefRu": "Раскладывать нечто сложное на его элементы.",
+          "TranslationsRu": ["разлагать", "расчленять", "разбирать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To separate into the constituent parts, for the purpose of an examination of each separately.",
+          "ExampleEn": null,
+          "DefRu": "Разделять на составные части для отдельного изучения каждой.",
+          "TranslationsRu": ["разбирать", "разделять на части", "анализировать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To examine in such a manner as to ascertain the elements or nature of the thing examined; as, to analyze a fossil substance, to analyze a sentence or a word, or to analyze an action to ascertain its morality.",
+          "ExampleEn": null,
+          "DefRu": "Исследовать так, чтобы установить элементы или природу изучаемого объекта.",
+          "TranslationsRu": ["анализировать", "исследовать", "изучать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6039,
+      "Headword": "and/or",
+      "Pos": "conj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Joins two alternatives to mean either or both; indicates that inclusive or is meant where or alone might be taken to mean exclusive or.",
+          "ExampleEn": "List three personal and/or business references.",
+          "DefRu": "Соединяет две альтернативы, означая одну либо обе; обозначает включающее «или».",
+          "TranslationsRu": ["и/или"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5948,
+      "Headword": "append",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An instance of writing more data to the end of an existing file.",
+          "ExampleEn": null,
+          "DefRu": "Случай дозаписи данных в конец существующего файла.",
+          "TranslationsRu": ["дозапись", "добавление в конец"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To hang or attach to, as by a string, so that the thing is suspended",
+          "ExampleEn": "An inscription was appended to the column.",
+          "DefRu": "Подвешивать или прикреплять, например на верёвке, так, чтобы предмет висел.",
+          "TranslationsRu": ["подвешивать", "прикреплять", "привешивать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To add, as an accessory to the principal thing; to annex",
+          "ExampleEn": "notes appended to a book chapter",
+          "DefRu": "Добавлять как приложение к основному; присоединять.",
+          "TranslationsRu": ["добавлять", "присоединять", "прилагать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To write more data to the end of a pre-existing file, string, or other object.",
+          "ExampleEn": null,
+          "DefRu": "Дописывать данные в конец уже существующего файла, строки или другого объекта.",
+          "TranslationsRu": ["дописывать", "добавлять в конец", "конкатенировать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6026,
+      "Headword": "astronomer",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who studies astronomy, the stars or the physical universe; a scientist whose area of research is astronomy or astrophysics",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто изучает астрономию, звёзды или Вселенную; учёный в области астрономии или астрофизики.",
+          "TranslationsRu": ["астроном", "звездочёт"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6089,
+      "Headword": "astronomy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The study of the physical universe beyond the Earth's atmosphere, including the process of mapping locations and properties of the matter and radiation in the universe.",
+          "ExampleEn": null,
+          "DefRu": "Наука о физической Вселенной за пределами атмосферы Земли, включая описание материи и излучения.",
+          "TranslationsRu": ["астрономия"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Astrology.",
+          "ExampleEn": null,
+          "DefRu": "Астрология.",
+          "TranslationsRu": ["астрология"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6095,
+      "Headword": "athletic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having to do with athletes.",
+          "ExampleEn": "Are you a member of the American Athletic Association?",
+          "DefRu": "Относящийся к спортсменам.",
+          "TranslationsRu": ["спортивный", "атлетический"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Physically active.",
+          "ExampleEn": "Since you're such an athletic person, you may wish to consider joining.",
+          "DefRu": "Физически активный.",
+          "TranslationsRu": ["спортивный", "активный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Having a muscular, well developed body, being in shape.",
+          "ExampleEn": "You have such an athletic build—you must work out regularly.",
+          "DefRu": "Имеющий мускулистое, хорошо развитое тело; в хорошей форме.",
+          "TranslationsRu": ["атлетический", "мускулистый", "спортивного телосложения"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An attribute of a motion or play which requires fine physical ability.",
+          "ExampleEn": "The center fielder made an athletic play to snatch the ball from over the fence.",
+          "DefRu": "Характеристика движения или игры, требующего отличной физической подготовки.",
+          "TranslationsRu": ["атлетический", "виртуозный", "эффектный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6133,
+      "Headword": "atom",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The smallest possible amount of matter which still retains its identity as a chemical element, now known to consist of a nucleus surrounded by electrons.",
+          "ExampleEn": null,
+          "DefRu": "Наименьшая частица материи, сохраняющая свойства химического элемента, состоящая из ядра и электронов.",
+          "TranslationsRu": ["атом"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(history of science) A hypothetical particle posited by Greek philosophers as an ultimate and indivisible component of matter.",
+          "ExampleEn": null,
+          "DefRu": "Гипотетическая частица, предложенная греческими философами как предельная и неделимая часть материи.",
+          "TranslationsRu": ["атом", "неделимая частица"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The smallest, indivisible constituent part or unit of something.",
+          "ExampleEn": null,
+          "DefRu": "Наименьшая, неделимая составная часть или единица чего-либо.",
+          "TranslationsRu": ["элементарная единица", "неделимая часть", "крупица"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "In logical atomism, a fundamental fact that cannot be further broken down.",
+          "ExampleEn": null,
+          "DefRu": "В логическом атомизме — фундаментальный факт, не подлежащий дальнейшему разложению.",
+          "TranslationsRu": ["атомарный факт", "элементарный факт"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The smallest medieval unit of time, equal to fifteen ninety-fourths of a second.",
+          "ExampleEn": null,
+          "DefRu": "Мельчайшая средневековая единица времени, равная пятнадцати девяносто четвёртым секунды.",
+          "TranslationsRu": ["атом времени", "мгновение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6117,
+      "Headword": "baseline",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A line that is a base for measurement or for construction.",
+          "ExampleEn": "A laser level generates a convenient baseline for interior work.",
+          "DefRu": "Линия, служащая основой для измерения или построения.",
+          "TranslationsRu": ["базовая линия", "опорная линия"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A datum used as the basis for calculation or for comparison.",
+          "ExampleEn": "We used the last doctor visit to provide baselines for vital statistics.",
+          "DefRu": "Исходное значение, используемое как база для расчёта или сравнения.",
+          "TranslationsRu": ["базовый показатель", "исходные данные", "точка отсчёта"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A line used as the basis for the alignment of glyphs.",
+          "ExampleEn": "Several characters typically have descenders below the lower baseline.",
+          "DefRu": "Линия, по которой выравниваются глифы шрифта.",
+          "TranslationsRu": ["базовая линия шрифта", "линия шрифта"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The line at the farthest ends of the court indicating the boundary of the area of play.",
+          "ExampleEn": "The umpire missed the call. The ball hit the baseline.",
+          "DefRu": "Линия в дальнем конце корта, обозначающая границу игровой зоны.",
+          "TranslationsRu": ["задняя линия", "лицевая линия"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A configuration of software, hardware, or a process that is established and documented as a point of reference.",
+          "ExampleEn": "The baseline configuration includes unsupported components.",
+          "DefRu": "Конфигурация ПО, оборудования или процесса, зафиксированная как точка отсчёта.",
+          "TranslationsRu": ["базовая конфигурация", "эталон", "базовая версия"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5975,
+      "Headword": "behavior",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Human conduct relative to social norms.",
+          "ExampleEn": null,
+          "DefRu": "Поведение человека в соответствии с социальными нормами.",
+          "TranslationsRu": ["поведение", "манеры"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The way a living creature behaves or acts generally.",
+          "ExampleEn": null,
+          "DefRu": "Манера, в которой живое существо ведёт себя или действует в целом.",
+          "TranslationsRu": ["поведение", "повадки"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A state of probation about one's conduct.",
+          "ExampleEn": "He was on his best behavior when her family visited.",
+          "DefRu": "Состояние, когда поведение находится под наблюдением.",
+          "TranslationsRu": ["поведение", "испытание поведением"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An instance of the way a living creature behaves.",
+          "ExampleEn": null,
+          "DefRu": "Конкретный случай поведения живого существа.",
+          "TranslationsRu": ["поведенческий акт", "поступок"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Observable response produced by an organism.",
+          "ExampleEn": null,
+          "DefRu": "Наблюдаемая реакция, производимая организмом.",
+          "TranslationsRu": ["поведенческая реакция", "реакция"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6022,
+      "Headword": "behavioral",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or relating to behavior.",
+          "ExampleEn": null,
+          "DefRu": "Относящийся к поведению.",
+          "TranslationsRu": ["поведенческий", "бихевиоральный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5977,
+      "Headword": "center",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The point in the interior of a circle that is equidistant from all points on the circumference.",
+          "ExampleEn": null,
+          "DefRu": "Точка внутри круга, равноудалённая от всех точек окружности.",
+          "TranslationsRu": ["центр", "центр окружности"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The point in the interior of a sphere that is equidistant from all points on the circumference.",
+          "ExampleEn": null,
+          "DefRu": "Точка внутри сферы, равноудалённая от всех точек её поверхности.",
+          "TranslationsRu": ["центр", "центр сферы"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The middle portion of something; the part well away from the edges.",
+          "ExampleEn": null,
+          "DefRu": "Срединная часть чего-либо, находящаяся далеко от краёв.",
+          "TranslationsRu": ["середина", "центр", "сердцевина"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The point on a line that is midway between the ends.",
+          "ExampleEn": null,
+          "DefRu": "Точка на отрезке, находящаяся посередине между его концами.",
+          "TranslationsRu": ["середина", "центр отрезка"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The point in the interior of any figure of any number of dimensions that has as its coordinates the arithmetic mean of the coordinates of all points on the perimeter of the figure (or of all points in the interior for a center of volume).",
+          "ExampleEn": null,
+          "DefRu": "Точка внутри фигуры, координаты которой равны среднему арифметическому координат точек её периметра.",
+          "TranslationsRu": ["центр", "центр тяжести", "центроид"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6069,
+      "Headword": "changing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To become something different.",
+          "ExampleEn": "The tadpole changed into a frog.   Stock prices are constantly changing.",
+          "DefRu": "Становиться чем-то иным.",
+          "TranslationsRu": ["изменяющийся", "меняющийся", "переменчивый"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make something into something else.",
+          "ExampleEn": "The fairy changed the frog into a prince.   I had to change the wording of the ad so it would fit.",
+          "DefRu": "Превращать одно в другое.",
+          "TranslationsRu": ["изменяющий", "превращающий", "преобразующий"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To replace.",
+          "ExampleEn": "Ask the janitor to come and change the lightbulb.   After a brisk walk, I washed up and changed my shirt.",
+          "DefRu": "Заменять.",
+          "TranslationsRu": ["заменяющий", "сменяющий"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To replace one's clothing.",
+          "ExampleEn": "You can't go into the dressing room while she's changing.   The clowns changed into their costumes before the circus started.",
+          "DefRu": "Менять свою одежду.",
+          "TranslationsRu": ["переодевающийся"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To replace the clothing of (the one wearing it).",
+          "ExampleEn": "It's your turn to change the baby.",
+          "DefRu": "Менять одежду тому, кто её носит.",
+          "TranslationsRu": ["переодевающий"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6079,
+      "Headword": "coefficient",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A constant by which an algebraic term is multiplied.",
+          "ExampleEn": null,
+          "DefRu": "Постоянная, на которую умножается алгебраический член.",
+          "TranslationsRu": ["коэффициент", "числовой множитель"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A number, value or item that serves as a measure of some property or characteristic.",
+          "ExampleEn": null,
+          "DefRu": "Число или величина, служащая мерой какого-либо свойства или характеристики.",
+          "TranslationsRu": ["коэффициент", "показатель"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5955,
+      "Headword": "coherent",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Unified; sticking together; making up a whole.",
+          "ExampleEn": null,
+          "DefRu": "Единый; сцепленный; составляющий целое.",
+          "TranslationsRu": ["связный", "цельный", "единый"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Orderly, logical and consistent.",
+          "ExampleEn": null,
+          "DefRu": "Упорядоченный, логичный и последовательный.",
+          "TranslationsRu": ["связный", "логичный", "последовательный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Aesthetically ordered.",
+          "ExampleEn": null,
+          "DefRu": "Эстетически упорядоченный.",
+          "TranslationsRu": ["гармоничный", "стройный"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Having a natural or due agreement of parts; harmonious: a coherent design.",
+          "ExampleEn": null,
+          "DefRu": "Имеющий естественное согласие частей; гармоничный.",
+          "TranslationsRu": ["согласованный", "гармоничный", "цельный"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Of waves having the same direction, wavelength and phase, as light in a laser.",
+          "ExampleEn": null,
+          "DefRu": "О волнах: имеющих одинаковое направление, длину и фазу, как свет в лазере.",
+          "TranslationsRu": ["когерентный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5980,
+      "Headword": "color",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The spectral composition of visible light",
+          "ExampleEn": "Humans and birds can perceive color.",
+          "DefRu": "Спектральный состав видимого света.",
+          "TranslationsRu": ["цвет", "окраска"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A subset thereof:",
+          "ExampleEn": null,
+          "DefRu": "Подмножество видимого спектра — конкретный цвет.",
+          "TranslationsRu": ["цвет", "оттенок"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A paint.",
+          "ExampleEn": "The artist took out her colors and began work on a landscape.",
+          "DefRu": "Краска.",
+          "TranslationsRu": ["краска", "красящее вещество"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Human skin tone, especially as an indicator of race or ethnicity.",
+          "ExampleEn": "Color has been a sensitive issue in many societies.",
+          "DefRu": "Тон кожи человека, особенно как показатель расы или этноса.",
+          "TranslationsRu": ["цвет кожи", "раса"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Skin color, noted as normal, jaundiced, cyanotic, flush, mottled, pale, or ashen as part of the skin signs assessment.",
+          "ExampleEn": null,
+          "DefRu": "Цвет кожи при медицинском осмотре: нормальный, желтушный, цианотичный, румяный, пятнистый, бледный или землистый.",
+          "TranslationsRu": ["цвет кожных покровов", "оттенок кожи"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6145,
+      "Headword": "comet",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A celestial body consisting mainly of ice, dust and gas in a (usually very eccentric) orbit around the Sun and having a \"tail\" of matter blown back from it by the solar wind as it approaches the Sun.",
+          "ExampleEn": null,
+          "DefRu": "Небесное тело из льда, пыли и газа на эксцентричной орбите вокруг Солнца с «хвостом» от солнечного ветра.",
+          "TranslationsRu": ["комета"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A celestial phenomenon with the appearance given by the orbiting celestial body.",
+          "ExampleEn": null,
+          "DefRu": "Небесное явление, создаваемое таким орбитальным телом.",
+          "TranslationsRu": ["комета", "явление кометы"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Any of several species of hummingbird found in the Andes.",
+          "ExampleEn": null,
+          "DefRu": "Любой из нескольких видов колибри, обитающих в Андах.",
+          "TranslationsRu": ["колибри-комета", "андская комета"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5956,
+      "Headword": "compatible",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Something that is compatible with something else.",
+          "ExampleEn": "a computer company that sells IBM compatibles",
+          "DefRu": "Нечто совместимое с чем-либо другим.",
+          "TranslationsRu": ["совместимое устройство", "совместимая модель"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Capable of easy interaction.",
+          "ExampleEn": "This printer isn't compatible with my computer.",
+          "DefRu": "Способный к лёгкому взаимодействию.",
+          "TranslationsRu": ["совместимый", "сочетаемый"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Able to get along well.",
+          "ExampleEn": "My neighbours and I are not very compatible: they're loud and I'm an introvert.",
+          "DefRu": "Способный хорошо ладить.",
+          "TranslationsRu": ["совместимый", "уживчивый", "подходящий"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Consistent; congruous.",
+          "ExampleEn": "His actions were compatible with his sermons.",
+          "DefRu": "Последовательный; согласующийся.",
+          "TranslationsRu": ["согласующийся", "соответствующий", "созвучный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6086,
+      "Headword": "conceptual",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of, or relating to concepts or mental conception; existing in the imagination.",
+          "ExampleEn": "We defined a conceptual model before designing the real thing.",
+          "DefRu": "Относящийся к понятиям или мысленному представлению; существующий в воображении.",
+          "TranslationsRu": ["концептуальный", "понятийный", "умозрительный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of or relating to conceptualism.",
+          "ExampleEn": null,
+          "DefRu": "Относящийся к концептуализму.",
+          "TranslationsRu": ["концептуальный", "концептуалистский"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6028,
+      "Headword": "concerning",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Regarding, respecting.",
+          "ExampleEn": "Physically, everything is perfect, but concerning your mental state, you have some problems.",
+          "DefRu": "Касательно, в отношении.",
+          "TranslationsRu": ["относительно", "касательно", "в отношении", "что касается"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5957,
+      "Headword": "concurrent",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who, or that which, concurs; a joint or contributory cause.",
+          "ExampleEn": null,
+          "DefRu": "Тот или то, что содействует; совместная или способствующая причина.",
+          "TranslationsRu": ["соучастник", "сопутствующая причина"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "One pursuing the same course, or seeking the same objects; hence, a rival; an opponent.",
+          "ExampleEn": null,
+          "DefRu": "Преследующий тот же курс или цели; соперник, противник.",
+          "TranslationsRu": ["соперник", "конкурент", "противник"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "One of the supernumerary days of the year over fifty-two complete weeks; so called because they concur with the solar cycle, the course of which they follow.",
+          "ExampleEn": null,
+          "DefRu": "Один из дополнительных дней года сверх 52 полных недель; согласован с солнечным циклом.",
+          "TranslationsRu": ["конкурент календаря", "эпакта"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "One who accompanies a sheriff's officer as witness.",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто сопровождает помощника шерифа в качестве свидетеля.",
+          "TranslationsRu": ["сопровождающий свидетель", "понятой"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Happening at the same time; simultaneous.",
+          "ExampleEn": null,
+          "DefRu": "Происходящий в одно и то же время; одновременный.",
+          "TranslationsRu": ["одновременный", "параллельный", "совпадающий"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5949,
+      "Headword": "conform",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of persons, often followed by to) To act in accordance with expectations; to behave in the manner of others, especially as a result of social pressure.",
+          "ExampleEn": null,
+          "DefRu": "Действовать в соответствии с ожиданиями; вести себя как другие, особенно под давлением общества.",
+          "TranslationsRu": ["подчиняться", "сообразовываться", "конформировать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(of things, situations, etc.) To be in accordance with a set of specifications or regulations, or with a policy or guideline.",
+          "ExampleEn": null,
+          "DefRu": "Соответствовать набору спецификаций, правил, политике или руководству.",
+          "TranslationsRu": ["соответствовать", "отвечать требованиям"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To make similar in form or nature; to make suitable for a purpose; to adapt.",
+          "ExampleEn": null,
+          "DefRu": "Делать сходным по форме или природе; приспосабливать к цели.",
+          "TranslationsRu": ["приводить в соответствие", "приспосабливать", "согласовывать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6092,
+      "Headword": "continued",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Prolonged; unstopped.",
+          "ExampleEn": null,
+          "DefRu": "Продлённый; не прерванный.",
+          "TranslationsRu": ["продолжающийся", "длящийся", "непрерывный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Uninterrupted.",
+          "ExampleEn": null,
+          "DefRu": "Непрерываемый.",
+          "TranslationsRu": ["непрерывный", "беспрерывный", "сплошной"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6131,
+      "Headword": "continuing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To proceed with (doing an activity); to prolong (an activity).",
+          "ExampleEn": "Do you want me to continue to unload these?",
+          "DefRu": "Продолжать делать что-то; продлевать действие.",
+          "TranslationsRu": ["продолжающийся", "продолжающий"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make last; to prolong.",
+          "ExampleEn": null,
+          "DefRu": "Делать длительным; продлевать.",
+          "TranslationsRu": ["продлевающий", "длящийся"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To retain (someone or something) in a given state, position, etc.",
+          "ExampleEn": null,
+          "DefRu": "Сохранять кого-либо или что-либо в заданном состоянии, положении и т. п.",
+          "TranslationsRu": ["сохраняющийся", "удерживающий"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To remain in a given place or condition; to remain in connection with; to abide; to stay.",
+          "ExampleEn": null,
+          "DefRu": "Оставаться в данном месте или состоянии; пребывать.",
+          "TranslationsRu": ["остающийся", "пребывающий"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To resume.",
+          "ExampleEn": "When will the concert continue?",
+          "DefRu": "Возобновлять.",
+          "TranslationsRu": ["возобновляющийся", "возобновляющий"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5958,
+      "Headword": "converse",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Free verbal interchange of thoughts or views; conversation; chat.",
+          "ExampleEn": null,
+          "DefRu": "Свободный словесный обмен мыслями или мнениями; разговор, беседа.",
+          "TranslationsRu": ["беседа", "разговор", "общение"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To talk; to engage in conversation",
+          "ExampleEn": null,
+          "DefRu": "Говорить; вести беседу.",
+          "TranslationsRu": ["беседовать", "разговаривать", "общаться"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To keep company; to hold intimate intercourse; to commune; followed by with",
+          "ExampleEn": null,
+          "DefRu": "Поддерживать общество с кем-либо; иметь близкое общение.",
+          "TranslationsRu": ["общаться", "иметь близкое общение"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To have knowledge of (a thing), from long intercourse or study",
+          "ExampleEn": null,
+          "DefRu": "Иметь знание о чём-либо, приобретённое длительным общением или изучением.",
+          "TranslationsRu": ["быть знакомым с", "разбираться в"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The opposite or reverse",
+          "ExampleEn": null,
+          "DefRu": "Противоположность или обратное.",
+          "TranslationsRu": ["противоположность", "обратное", "обратное утверждение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6018,
+      "Headword": "cooperation",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(usually uncountable) The act of cooperating.",
+          "ExampleEn": null,
+          "DefRu": "Действие по совместной работе.",
+          "TranslationsRu": ["сотрудничество", "кооперация"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Active help from a person, organization, etc., such as an orderly sharing of space or resources.",
+          "ExampleEn": null,
+          "DefRu": "Активная помощь от лица или организации, например упорядоченное разделение ресурсов.",
+          "TranslationsRu": ["сотрудничество", "содействие", "взаимопомощь"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Association for mutual benefit, such as for purposes of production or purchase.",
+          "ExampleEn": null,
+          "DefRu": "Объединение ради взаимной выгоды, например для производства или закупок.",
+          "TranslationsRu": ["кооператив", "кооперация", "объединение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6049,
+      "Headword": "counseling",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Assistance (especially from a professional) in the resolution of personal difficulties.",
+          "ExampleEn": null,
+          "DefRu": "Помощь, особенно профессиональная, в решении личных трудностей.",
+          "TranslationsRu": ["консультирование", "психологическая помощь", "консультация"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6020,
+      "Headword": "counselor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A professional who counsels people, especially on personal problems.",
+          "ExampleEn": null,
+          "DefRu": "Специалист, консультирующий людей, особенно по личным проблемам.",
+          "TranslationsRu": ["консультант", "психолог-консультант"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A school counselor, often in a specialty such as careers, education, or health.",
+          "ExampleEn": null,
+          "DefRu": "Школьный консультант, часто специализирующийся на карьере, обучении или здоровье.",
+          "TranslationsRu": ["школьный консультант", "профконсультант"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "An attorney.",
+          "ExampleEn": null,
+          "DefRu": "Адвокат.",
+          "TranslationsRu": ["адвокат", "юрисконсульт"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A high ranking diplomat, usually just below an ambassador or minister.",
+          "ExampleEn": null,
+          "DefRu": "Высокопоставленный дипломат, обычно рангом сразу ниже посла или министра.",
+          "TranslationsRu": ["советник посольства", "советник"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A children’s supervisor, usually at camp.",
+          "ExampleEn": null,
+          "DefRu": "Воспитатель детей, обычно в летнем лагере.",
+          "TranslationsRu": ["вожатый", "воспитатель в лагере"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5997,
+      "Headword": "criteria",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A single criterion.",
+          "ExampleEn": null,
+          "DefRu": "Отдельный критерий.",
+          "TranslationsRu": ["критерий", "признак"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A standard or test by which individual things or people may be compared and judged.",
+          "ExampleEn": "Criterion of choice, of decision, of selection",
+          "DefRu": "Эталон или проба, по которой можно сравнивать и оценивать предметы или людей.",
+          "TranslationsRu": ["критерий", "мерило", "эталон"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6136,
+      "Headword": "culturally",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a cultural way.",
+          "ExampleEn": null,
+          "DefRu": "Культурным образом; в культурном отношении.",
+          "TranslationsRu": ["культурно", "в культурном плане"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5943,
+      "Headword": "deduce",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To reach a conclusion by applying rules of logic to given premises.",
+          "ExampleEn": null,
+          "DefRu": "Приходить к выводу, применяя правила логики к заданным посылкам.",
+          "TranslationsRu": ["выводить", "умозаключать", "дедуцировать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To take away; to deduct; to subtract.",
+          "ExampleEn": "to deduce a part from the whole",
+          "DefRu": "Отнимать; вычитать; убавлять.",
+          "TranslationsRu": ["вычитать", "отнимать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(Latinism) To lead forth.",
+          "ExampleEn": null,
+          "DefRu": "Выводить наружу, изводить.",
+          "TranslationsRu": ["выводить", "изводить"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5989,
+      "Headword": "defense",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The action of defending or protecting from attack, danger, or injury.",
+          "ExampleEn": null,
+          "DefRu": "Действие по защите от нападения, опасности или вреда.",
+          "TranslationsRu": ["защита", "оборона"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Anything employed to oppose attack(s).",
+          "ExampleEn": null,
+          "DefRu": "Всё, что применяется для противодействия атакам.",
+          "TranslationsRu": ["средство защиты", "оборонительное средство"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "An argument in support or justification of something.",
+          "ExampleEn": null,
+          "DefRu": "Довод в поддержку или оправдание чего-либо.",
+          "TranslationsRu": ["защита", "оправдание", "аргумент в защиту"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Government policy or (infra)structure related to the military.",
+          "ExampleEn": "Department of Defense",
+          "DefRu": "Государственная политика или структура, связанная с вооружёнными силами.",
+          "TranslationsRu": ["оборона", "оборонная сфера"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A prohibition; a prohibitory ordinance.",
+          "ExampleEn": null,
+          "DefRu": "Запрет; запретительное постановление.",
+          "TranslationsRu": ["запрет", "запрещение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6062,
+      "Headword": "demographic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or pertaining to demography.",
+          "ExampleEn": null,
+          "DefRu": "Относящийся к демографии.",
+          "TranslationsRu": ["демографический"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5950,
+      "Headword": "denote",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To indicate; to mark.",
+          "ExampleEn": "The yellow blazes denote the trail.",
+          "DefRu": "Указывать; обозначать; помечать.",
+          "TranslationsRu": ["обозначать", "указывать", "помечать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make overt.",
+          "ExampleEn": null,
+          "DefRu": "Делать явным, открытым.",
+          "TranslationsRu": ["обнаруживать", "являть", "выказывать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To refer to literally; to convey as meaning.",
+          "ExampleEn": null,
+          "DefRu": "Прямо указывать на нечто; передавать как значение.",
+          "TranslationsRu": ["означать", "обозначать", "иметь значение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6078,
+      "Headword": "depending",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(followed by on or upon, formerly also by of) To be contingent or conditioned; to have something as a necessary condition; to hinge on.",
+          "ExampleEn": "We would like to go skiing, but it depends on the amount of snow.",
+          "DefRu": "Быть обусловленным; иметь нечто как необходимое условие.",
+          "TranslationsRu": ["зависеть", "обусловливаться"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(followed by on or upon) To trust; to have confidence; to rely.",
+          "ExampleEn": "we depend on the mailman to come at the usual time.",
+          "DefRu": "Доверять; полагаться; рассчитывать.",
+          "TranslationsRu": ["полагаться", "рассчитывать", "доверять"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To hang down; to be sustained by being fastened or attached to something above.",
+          "ExampleEn": null,
+          "DefRu": "Свисать вниз; держаться, будучи прикреплённым к чему-либо сверху.",
+          "TranslationsRu": ["свисать", "висеть"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To be pending; to be undetermined or undecided.",
+          "ExampleEn": "a cause depending in court",
+          "DefRu": "Быть в ожидании рассмотрения; быть нерешённым.",
+          "TranslationsRu": ["находиться в производстве", "быть нерешённым"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6146,
+      "Headword": "developed",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(said of a country) Not primitive; not third-world.",
+          "ExampleEn": null,
+          "DefRu": "О стране: не примитивный; не относящийся к странам третьего мира.",
+          "TranslationsRu": ["развитый", "промышленно развитый"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Mature.",
+          "ExampleEn": null,
+          "DefRu": "Зрелый.",
+          "TranslationsRu": ["развитый", "зрелый", "сформировавшийся"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Containing man-made structures such as roads, sewers, electric lines, buildings, and so on.",
+          "ExampleEn": null,
+          "DefRu": "Содержащий созданные человеком объекты: дороги, канализацию, ЛЭП, здания и т. п.",
+          "TranslationsRu": ["застроенный", "освоенный", "благоустроенный"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Having useful or necessary infrastructure.",
+          "ExampleEn": null,
+          "DefRu": "Имеющий полезную или необходимую инфраструктуру.",
+          "TranslationsRu": ["обустроенный", "с развитой инфраструктурой"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Advanced, fully formed.",
+          "ExampleEn": null,
+          "DefRu": "Продвинутый, полностью сформированный.",
+          "TranslationsRu": ["развитый", "продвинутый", "сформированный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6009,
+      "Headword": "developing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In the process of development.",
+          "ExampleEn": "a developing foetus",
+          "DefRu": "Находящийся в процессе развития.",
+          "TranslationsRu": ["развивающийся", "формирующийся"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of a country: becoming economically more mature or advanced; becoming industrialized.",
+          "ExampleEn": null,
+          "DefRu": "О стране: становящийся экономически более зрелым; индустриализирующийся.",
+          "TranslationsRu": ["развивающийся", "индустриализирующийся"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6048,
+      "Headword": "developmental",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Related to development.",
+          "ExampleEn": "Developmental psychology studies how the mind forms as children and adolescents grow.",
+          "DefRu": "Относящийся к развитию.",
+          "TranslationsRu": ["развивающий", "относящийся к развитию", "эволюционный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5951,
+      "Headword": "deviate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A person with deviant behaviour; a deviant, degenerate or pervert.",
+          "ExampleEn": null,
+          "DefRu": "Человек с отклоняющимся поведением; девиант, дегенерат или извращенец.",
+          "TranslationsRu": ["девиант", "извращенец"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A value equal to the difference between a measured variable factor and a fixed or algorithmic reference value.",
+          "ExampleEn": null,
+          "DefRu": "Величина, равная разности между измеренным переменным фактором и опорным значением.",
+          "TranslationsRu": ["отклонение", "девиата"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To go off course from; to change course; to change plans.",
+          "ExampleEn": null,
+          "DefRu": "Сойти с курса; изменить курс или планы.",
+          "TranslationsRu": ["отклоняться", "сходить с курса", "уклоняться"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To fall outside of, or part from, some norm; to stray.",
+          "ExampleEn": "His exhibition of nude paintings deviated from the norm.",
+          "DefRu": "Выходить за рамки нормы; отступать от неё.",
+          "TranslationsRu": ["отклоняться", "отступать", "уклоняться от нормы"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To cause to diverge.",
+          "ExampleEn": null,
+          "DefRu": "Заставлять отклоняться или расходиться.",
+          "TranslationsRu": ["отклонять", "уводить в сторону"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6051,
+      "Headword": "dynamics",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The branch of mechanics that is concerned with the effects of forces on the motion of objects.",
+          "ExampleEn": null,
+          "DefRu": "Раздел механики, изучающий влияние сил на движение объектов.",
+          "TranslationsRu": ["динамика"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The volume of the sound, such as piano, mezzo piano, mezzo forte, and forte.",
+          "ExampleEn": null,
+          "DefRu": "Громкость звука: пиано, меццо-пиано, меццо-форте, форте и т. п.",
+          "TranslationsRu": ["динамика", "нюансировка"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6016,
+      "Headword": "e-mail",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A system for transferring messages from one computer to another, usually through a network.",
+          "ExampleEn": "He sent me his details via email.",
+          "DefRu": "Система передачи сообщений с одного компьютера на другой, обычно через сеть.",
+          "TranslationsRu": ["электронная почта", "имейл"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A quantity of messages sent through an email system.",
+          "ExampleEn": "I am searching through my old email.",
+          "DefRu": "Совокупность сообщений, отправленных по электронной почте.",
+          "TranslationsRu": ["электронная корреспонденция", "почта"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A message sent through an email system.",
+          "ExampleEn": "He sent me an email last week to remind me about the meeting.",
+          "DefRu": "Сообщение, отправленное через систему электронной почты.",
+          "TranslationsRu": ["электронное письмо", "имейл"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An email address.",
+          "ExampleEn": "Don’t send personal messages to my work email.",
+          "DefRu": "Адрес электронной почты.",
+          "TranslationsRu": ["адрес электронной почты", "имейл"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Enamel.",
+          "ExampleEn": null,
+          "DefRu": "Эмаль.",
+          "TranslationsRu": ["эмаль"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6067,
+      "Headword": "ecosystem",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A system formed by an ecological community and its environment that functions as a unit.",
+          "ExampleEn": null,
+          "DefRu": "Система, образованная экологическим сообществом и его средой, функционирующая как единое целое.",
+          "TranslationsRu": ["экосистема"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The interconnectedness of organisms (plants, animals, microbes) with each other and their environment.",
+          "ExampleEn": null,
+          "DefRu": "Взаимосвязь организмов (растений, животных, микробов) между собой и со средой.",
+          "TranslationsRu": ["экосистема", "экологические связи"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A set of interconnected products and services.",
+          "ExampleEn": null,
+          "DefRu": "Набор взаимосвязанных продуктов и услуг.",
+          "TranslationsRu": ["экосистема", "экосистема продуктов"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6137,
+      "Headword": "efficacy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Ability to produce a desired effect under ideal testing conditions.",
+          "ExampleEn": null,
+          "DefRu": "Способность вызывать желаемый эффект в идеальных условиях испытаний.",
+          "TranslationsRu": ["эффективность", "действенность"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Degree of ability to produce a desired effect.",
+          "ExampleEn": null,
+          "DefRu": "Степень способности вызывать желаемый эффект.",
+          "TranslationsRu": ["эффективность", "результативность", "действенность"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6113,
+      "Headword": "electron",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The subatomic particle having a negative charge and orbiting the nucleus; the flow of electrons in a conductor constitutes electricity.",
+          "ExampleEn": null,
+          "DefRu": "Субатомная частица с отрицательным зарядом, вращающаяся вокруг ядра; поток электронов образует электрический ток.",
+          "TranslationsRu": ["электрон"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Alloys of magnesium and other metals, like aluminum or zinc, that were manufactured by the German company Chemische Fabrik Griesheim-Elektron.",
+          "ExampleEn": null,
+          "DefRu": "Сплавы магния с другими металлами (алюминием, цинком), выпускавшиеся компанией Griesheim-Elektron.",
+          "TranslationsRu": ["электрон", "магниевый сплав"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6114,
+      "Headword": "emerging",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Becoming prominent; emergent; rising.",
+          "ExampleEn": null,
+          "DefRu": "Становящийся заметным; нарождающийся; восходящий.",
+          "TranslationsRu": ["формирующийся", "развивающийся", "нарождающийся"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6119,
+      "Headword": "enroll",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To enter (a name, etc.) in a register, roll or list",
+          "ExampleEn": null,
+          "DefRu": "Вносить имя и т. п. в реестр, список или ведомость.",
+          "TranslationsRu": ["вносить в список", "регистрировать", "записывать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To enlist (someone) or make (someone) a member of",
+          "ExampleEn": "They were eager to enroll new recruits.",
+          "DefRu": "Зачислять кого-либо или принимать в члены.",
+          "TranslationsRu": ["зачислять", "принимать", "вербовать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To enlist oneself (in something) or become a member (of something)",
+          "ExampleEn": "Have you enrolled in classes yet for this term?",
+          "DefRu": "Записываться куда-либо или становиться членом чего-либо.",
+          "TranslationsRu": ["записываться", "поступать", "вступать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To envelop; to enwrap.",
+          "ExampleEn": null,
+          "DefRu": "Окутывать; завёртывать.",
+          "TranslationsRu": ["окутывать", "обёртывать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6144,
+      "Headword": "equity",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Fairness, impartiality, or justice as determined in light of \"natural law\" or \"natural right\".",
+          "ExampleEn": null,
+          "DefRu": "Справедливость, беспристрастность, определяемые с точки зрения «естественного права».",
+          "TranslationsRu": ["справедливость", "беспристрастность", "равноправие"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Various related senses originating with the Court of Chancery in late Medieval England",
+          "ExampleEn": null,
+          "DefRu": "Совокупность значений, восходящих к английскому Канцлерскому суду позднего Средневековья.",
+          "TranslationsRu": ["право справедливости", "эквити"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Various senses related to net value",
+          "ExampleEn": null,
+          "DefRu": "Совокупность значений, связанных с чистой стоимостью.",
+          "TranslationsRu": ["собственный капитал", "акционерный капитал", "доля участия"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5959,
+      "Headword": "erode",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To wear away by abrasion, corrosion or chemical reaction.",
+          "ExampleEn": null,
+          "DefRu": "Изнашивать или разрушать трением, коррозией или химической реакцией.",
+          "TranslationsRu": ["размывать", "разъедать", "эродировать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To destroy gradually by an ongoing process.",
+          "ExampleEn": "to erode a person's trust",
+          "DefRu": "Постепенно разрушать в результате длительного процесса.",
+          "TranslationsRu": ["подрывать", "разрушать", "ослаблять"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6065,
+      "Headword": "etc",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Alternative form of etc.",
+          "ExampleEn": null,
+          "DefRu": "Альтернативная форма сокращения etc.",
+          "TranslationsRu": ["и так далее", "и т. п."]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6059,
+      "Headword": "ethics",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The study of principles relating to right and wrong conduct.",
+          "ExampleEn": null,
+          "DefRu": "Учение о принципах правильного и неправильного поведения.",
+          "TranslationsRu": ["этика"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Morality.",
+          "ExampleEn": null,
+          "DefRu": "Нравственность.",
+          "TranslationsRu": ["нравственность", "мораль"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The standards that govern the conduct of a person, especially a member of a profession.",
+          "ExampleEn": null,
+          "DefRu": "Нормы, регулирующие поведение человека, особенно представителя профессии.",
+          "TranslationsRu": ["этика", "профессиональная этика", "нормы поведения"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6112,
+      "Headword": "ethnicity",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The common characteristics of a group of people, especially regarding ancestry, culture, language or national experiences.",
+          "ExampleEn": null,
+          "DefRu": "Общие признаки группы людей, особенно по происхождению, культуре, языку или национальной истории.",
+          "TranslationsRu": ["этничность", "этническая принадлежность"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "An ethnic group.",
+          "ExampleEn": null,
+          "DefRu": "Этническая группа.",
+          "TranslationsRu": ["этнос", "этническая группа", "народность"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(casual) Race; common ancestry.",
+          "ExampleEn": null,
+          "DefRu": "Раса; общее происхождение.",
+          "TranslationsRu": ["раса", "национальность", "происхождение"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6001,
+      "Headword": "existing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That exists, or has existence, especially that exists now.",
+          "ExampleEn": null,
+          "DefRu": "То, что существует, особенно существующее в настоящее время.",
+          "TranslationsRu": ["существующий", "имеющийся", "наличный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6054,
+      "Headword": "favor",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To look upon fondly; to prefer.",
+          "ExampleEn": null,
+          "DefRu": "Относиться благосклонно; предпочитать.",
+          "TranslationsRu": ["благоволить", "предпочитать", "отдавать предпочтение"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To encourage, conduce to",
+          "ExampleEn": null,
+          "DefRu": "Поощрять, способствовать.",
+          "TranslationsRu": ["благоприятствовать", "способствовать", "поощрять"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To do a favor [noun sense 1] for; to show beneficence toward.",
+          "ExampleEn": "Would you favor us with a poetry reading?",
+          "DefRu": "Оказывать любезность; проявлять благосклонность к кому-либо.",
+          "TranslationsRu": ["оказывать любезность", "удостаивать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To treat with care.",
+          "ExampleEn": "Favoring your sore leg will only injure the other one.",
+          "DefRu": "Обращаться с осторожностью; беречь.",
+          "TranslationsRu": ["беречь", "щадить"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(including) To resemble, to look like (another person).",
+          "ExampleEn": null,
+          "DefRu": "Походить, быть похожим на другого человека.",
+          "TranslationsRu": ["походить", "быть похожим", "напоминать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6140,
+      "Headword": "favor",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A kind or helpful deed; an instance of voluntarily assisting (someone).",
+          "ExampleEn": "He did me a favor when he took the time to drive me home.",
+          "DefRu": "Любезный или полезный поступок; добровольная помощь кому-либо.",
+          "TranslationsRu": ["одолжение", "услуга", "любезность"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Goodwill; benevolent regard.",
+          "ExampleEn": "She enjoyed the queen's favor.",
+          "DefRu": "Доброе расположение; благосклонное отношение.",
+          "TranslationsRu": ["благосклонность", "расположение", "милость"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A small gift; a party favor.",
+          "ExampleEn": "A marriage favour is a bunch or knot of white ribbons or white flowers worn at a wedding.",
+          "DefRu": "Маленький подарок; сувенир с праздника.",
+          "TranslationsRu": ["сувенир", "памятный подарок", "бутоньерка"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Mildness or mitigation of punishment; lenity.",
+          "ExampleEn": null,
+          "DefRu": "Мягкость или смягчение наказания; снисхождение.",
+          "TranslationsRu": ["снисхождение", "смягчение наказания"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The object of regard; person or thing favoured.",
+          "ExampleEn": null,
+          "DefRu": "Объект расположения; человек или вещь, пользующаяся предпочтением.",
+          "TranslationsRu": ["любимец", "фаворит", "избранник"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6141,
+      "Headword": "favorite",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Preferred or liked above all others (unless qualified).",
+          "ExampleEn": "This is my second favourite occupation.",
+          "DefRu": "Предпочитаемый или любимый больше всех остальных.",
+          "TranslationsRu": ["любимый", "излюбленный", "предпочитаемый"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Belonging to a category whose members are all preferred or liked over nonmembers.",
+          "ExampleEn": "I just saw a movie with all my favourite actors in it.",
+          "DefRu": "Принадлежащий к категории, члены которой предпочитаются всем остальным.",
+          "TranslationsRu": ["любимый", "избранный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6077,
+      "Headword": "fiber",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A single elongated piece of a given material, roughly round in cross-section, often twisted with other fibers to form thread.",
+          "ExampleEn": "The microscope showed a single blue fiber stuck to the sole of the shoe.",
+          "DefRu": "Отдельный удлинённый кусочек материала круглого сечения, часто скручиваемый в нить.",
+          "TranslationsRu": ["волокно", "нить", "волоконце"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A material in the form of fibers.",
+          "ExampleEn": "The cloth is made from strange, somewhat rough fiber.",
+          "DefRu": "Материал в форме волокон.",
+          "TranslationsRu": ["волокно", "волокнистый материал"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A material whose length is at least 1000 times its width.",
+          "ExampleEn": "Please use polyester fiber for this shirt.",
+          "DefRu": "Материал, длина которого в тысячу и более раз превышает его ширину.",
+          "TranslationsRu": ["волокно", "филамент"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Dietary fiber.",
+          "ExampleEn": "Fresh vegetables are a good source of fiber",
+          "DefRu": "Пищевые волокна, клетчатка.",
+          "TranslationsRu": ["клетчатка", "пищевые волокна"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "Moral strength and resolve.",
+          "ExampleEn": "The ordeal was a test of everyone's fiber.",
+          "DefRu": "Нравственная сила и решимость.",
+          "TranslationsRu": ["стойкость", "характер", "сила духа"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6002,
+      "Headword": "fig",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A fruit-bearing tree or shrub of the genus Ficus that is native mainly to the tropics.",
+          "ExampleEn": null,
+          "DefRu": "Плодовое дерево или кустарник рода Ficus, преимущественно тропический.",
+          "TranslationsRu": ["инжир", "смоковница", "фиговое дерево"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The fruit of the fig tree, pear-shaped and containing many small seeds.",
+          "ExampleEn": null,
+          "DefRu": "Плод инжира, грушевидной формы, с множеством мелких семян.",
+          "TranslationsRu": ["инжир", "фига", "винная ягода"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A small piece of tobacco.",
+          "ExampleEn": null,
+          "DefRu": "Маленький кусочек табака.",
+          "TranslationsRu": ["кусочек табака", "плитка табака"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The value of a fig, practically nothing; a fico; a whit.",
+          "ExampleEn": null,
+          "DefRu": "Ничтожная ценность; нечто практически ничего не стоящее.",
+          "TranslationsRu": ["ни гроша", "ничто", "пустяк"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A raisin (dried grape)",
+          "ExampleEn": null,
+          "DefRu": "Изюм (сушёный виноград).",
+          "TranslationsRu": ["изюм"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5945,
+      "Headword": "finite",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having an end or limit; (of a quantity) constrained by bounds; (of a set) whose number of elements is a natural number.",
+          "ExampleEn": null,
+          "DefRu": "Имеющий конец или предел; о множестве — число элементов которого натуральное.",
+          "TranslationsRu": ["конечный", "ограниченный", "финитный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(grammar, as opposed to infinite or nonfinite) limited by person or number.",
+          "ExampleEn": "The \"goes\" in \"he goes\" is a finite form of a verb",
+          "DefRu": "В грамматике: ограниченный лицом или числом, в отличие от инфинитной формы.",
+          "TranslationsRu": ["личный", "финитный", "спрягаемый"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6088,
+      "Headword": "fishery",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Fishing: the catching, processing and marketing of fish or other seafood.",
+          "ExampleEn": null,
+          "DefRu": "Рыбный промысел: лов, переработка и сбыт рыбы или иных морепродуктов.",
+          "TranslationsRu": ["рыболовство", "рыбный промысел"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A place related to fishing, particularly:",
+          "ExampleEn": null,
+          "DefRu": "Место, связанное с рыболовством.",
+          "TranslationsRu": ["рыболовный участок", "рыбное хозяйство", "рыбопромысловый район"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A right to fish in a particular location; Territorial fishing waters.",
+          "ExampleEn": null,
+          "DefRu": "Право ловить рыбу в определённом месте; территориальные рыболовные воды.",
+          "TranslationsRu": ["право рыбной ловли", "рыболовные угодья"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A fishing company.",
+          "ExampleEn": null,
+          "DefRu": "Рыболовная компания.",
+          "TranslationsRu": ["рыболовецкая компания", "рыбопромысловая фирма"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5952,
+      "Headword": "fluctuate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To vary irregularly; to swing.",
+          "ExampleEn": null,
+          "DefRu": "Изменяться нерегулярно; колебаться.",
+          "TranslationsRu": ["колебаться", "меняться", "флуктуировать"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To undulate.",
+          "ExampleEn": null,
+          "DefRu": "Волнообразно колебаться.",
+          "TranslationsRu": ["волноваться", "колыхаться"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To be irresolute; to waver.",
+          "ExampleEn": "I fluctuated between wishing he was back home and wishing I'd never met him.",
+          "DefRu": "Быть нерешительным; колебаться в выборе.",
+          "TranslationsRu": ["колебаться", "сомневаться", "метаться"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To cause to vary irregularly.",
+          "ExampleEn": null,
+          "DefRu": "Заставлять изменяться нерегулярно.",
+          "TranslationsRu": ["вызывать колебания", "раскачивать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6005,
+      "Headword": "galaxy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The Milky Way; the apparent band of concentrated stars which appears in the night sky over earth.",
+          "ExampleEn": null,
+          "DefRu": "Млечный Путь; видимая полоса звёзд на ночном небе.",
+          "TranslationsRu": ["Млечный Путь", "галактика"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Any of the collections of many millions or billions of stars, galactic dust, black holes, etc. existing as independent and coherent systems, of which there are billions in the known universe.",
+          "ExampleEn": null,
+          "DefRu": "Скопление миллионов или миллиардов звёзд, пыли и чёрных дыр, образующее независимую систему.",
+          "TranslationsRu": ["галактика", "звёздная система"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Any print or pattern reminiscent of a galaxy, generally consisting of blending, semiopaque patches of vibrant color on a dark background.",
+          "ExampleEn": null,
+          "DefRu": "Принт или узор, напоминающий галактику: яркие полупрозрачные пятна на тёмном фоне.",
+          "TranslationsRu": ["галактический принт", "галактический узор"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6012,
+      "Headword": "gifted",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Endowed with special, in particular intellectual, abilities.",
+          "ExampleEn": "a gifted artist",
+          "DefRu": "Наделённый особыми, в частности интеллектуальными, способностями.",
+          "TranslationsRu": ["одарённый", "талантливый", "способный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6034,
+      "Headword": "given",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Already arranged.",
+          "ExampleEn": null,
+          "DefRu": "Уже устроенный или оговорённый заранее.",
+          "TranslationsRu": ["заранее установленный", "оговорённый", "согласованный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Currently discussed.",
+          "ExampleEn": null,
+          "DefRu": "Тот, о котором идёт речь в данный момент.",
+          "TranslationsRu": ["рассматриваемый", "обсуждаемый", "данный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Particular, specific.",
+          "ExampleEn": "No more than three people can be in that space at a given time.",
+          "DefRu": "Определённый, конкретный.",
+          "TranslationsRu": ["данный", "определённый", "конкретный"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Assumed as fact or hypothesis.",
+          "ExampleEn": "Given that we will get the resources, what do we want to achieve?",
+          "DefRu": "Принятый как факт или гипотеза.",
+          "TranslationsRu": ["заданный", "принятый за данность", "допущенный"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(with to) Prone, disposed.",
+          "ExampleEn": "He was given to taking a couple of glasses of port at his club.",
+          "DefRu": "Склонный, расположенный к чему-либо.",
+          "TranslationsRu": ["склонный", "имеющий привычку", "приверженный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6072,
+      "Headword": "graph",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(applied mathematics) A data chart (graphical representation of data) intended to illustrate the relationship between a set (or sets) of numbers (quantities, measurements or indicative numbers) and a reference set, whose elements are indexed to those of the former set(s) and may or may not be numbers.",
+          "ExampleEn": null,
+          "DefRu": "Диаграмма данных, наглядно показывающая зависимость между набором чисел и опорным множеством.",
+          "TranslationsRu": ["график", "диаграмма"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A set of points constituting a graphical representation of a real function; (formally) a set of tuples (x_1, x_2, \\ldots, x_m, y)\\in\\R^{m+1}, where y=f(x_1, x_2, \\ldots, x_m) for a given function f: \\R^m\\rightarrow\\R.",
+          "ExampleEn": null,
+          "DefRu": "Множество точек, образующих графическое представление вещественной функции.",
+          "TranslationsRu": ["график функции", "график"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(formally) An ordered pair of sets (V,E), where the elements of V are called vertices or nodes and E is a set of pairs (called edges) of elements of V; (less formally) a set of vertices (or nodes) together with a set of edges that connect (some of) the vertices.",
+          "ExampleEn": null,
+          "DefRu": "Упорядоченная пара множеств вершин и рёбер, где рёбра соединяют пары вершин.",
+          "TranslationsRu": ["граф"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A topological space which represents some graph (ordered pair of sets) and which is constructed by representing the vertices as points and the edges as copies of the real interval [0,1] (where, for any given edge, 0 and 1 are identified with the points representing the two vertices) and equipping the result with a particular topology called the graph topology.",
+          "ExampleEn": null,
+          "DefRu": "Топологическое пространство, представляющее граф: вершины — точки, рёбра — отрезки [0,1].",
+          "TranslationsRu": ["топологический граф", "граф как топологическое пространство"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(of a morphism f) A morphism \\Gamma_f from the domain of f to the product of the domain and codomain of f, such that the first projection applied to \\Gamma_f equals the identity of the domain, and the second projection applied to \\Gamma_f is equal to f.",
+          "ExampleEn": null,
+          "DefRu": "Морфизм из области определения в произведение области и кообласти, согласованный с проекциями.",
+          "TranslationsRu": ["график морфизма", "морфизм-график"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6023,
+      "Headword": "greatest",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Relatively large in scale, size, extent, number (i.e. having many parts or members) or duration (i.e. relatively long); very big.",
+          "ExampleEn": "A great storm is approaching our shores.",
+          "DefRu": "Значительный по масштабу, размеру, числу или длительности; очень крупный.",
+          "TranslationsRu": ["величайший", "крупнейший", "огромный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of larger size or more importance than others of its kind.",
+          "ExampleEn": "the great auk",
+          "DefRu": "Больший по размеру или значению, чем другие подобные.",
+          "TranslationsRu": ["великий", "большой", "выдающийся"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(qualifying nouns of family relationship) Involving more generations than the qualified word implies — as many extra generations as repetitions of the word great (from 1510s). [see Derived terms]",
+          "ExampleEn": "great-grandfather, great-great-grandfather, great-great-great-grandfather",
+          "DefRu": "В терминах родства: указывает на дополнительные поколения (пра-).",
+          "TranslationsRu": ["пра-", "пра-пра-"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "(followed by 'with') Pregnant; large with young; full of.",
+          "ExampleEn": "great with child",
+          "DefRu": "Беременная; вынашивающая дитя; полная.",
+          "TranslationsRu": ["беременная", "тяжёлая"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(except with 'friend' and similar words such as 'mate','buddy') Intimate; familiar.",
+          "ExampleEn": null,
+          "DefRu": "Близкий; задушевный (о друге, приятеле).",
+          "TranslationsRu": ["близкий", "закадычный", "задушевный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5999,
+      "Headword": "growing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That grows.",
+          "ExampleEn": "Milk is good for growing children.",
+          "DefRu": "Тот, кто или что растёт.",
+          "TranslationsRu": ["растущий", "развивающийся"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6106,
+      "Headword": "historically",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a historic manner; with reference to history or the historical record.",
+          "ExampleEn": "Historically speaking, this company has always collected payment before starting work.",
+          "DefRu": "В историческом ключе; с точки зрения истории.",
+          "TranslationsRu": ["исторически", "с исторической точки зрения"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "According to history: formerly, in the past, traditionally.",
+          "ExampleEn": "Historically, this company collected payment before starting work.",
+          "DefRu": "Согласно истории: ранее, в прошлом, по традиции.",
+          "TranslationsRu": ["исторически", "традиционно", "издавна"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To an unprecedented or extremely rare degree.",
+          "ExampleEn": null,
+          "DefRu": "В беспрецедентной или крайне редкой степени.",
+          "TranslationsRu": ["исторически", "беспрецедентно"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6107,
+      "Headword": "honor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Recognition of importance or value; respect; veneration (of someone, usually for being morally upright or successful)",
+          "ExampleEn": "The crowds gave the returning general much honor and praise.",
+          "DefRu": "Признание значимости или ценности; уважение, почитание.",
+          "TranslationsRu": ["почёт", "уважение", "почитание"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The state of being morally upright, honest, noble, virtuous, and magnanimous; excellence of character; the perception of such a state; favourable reputation; dignity",
+          "ExampleEn": "He was a most perfect knight, for he had great honor and chivalry.",
+          "DefRu": "Состояние нравственной прямоты, честности и благородства; высокая репутация.",
+          "TranslationsRu": ["честь", "достоинство", "благородство"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A token of praise or respect; something that represents praiseworthiness or respect, such as a prize or award given by the state to a citizen",
+          "ExampleEn": "Audie Murphy received many honors, such as the Distinguished Service Cross.",
+          "DefRu": "Знак похвалы или уважения; награда, вручаемая государством.",
+          "TranslationsRu": ["награда", "знак отличия", "почесть"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A privilege",
+          "ExampleEn": "I had the honour of dining with the ambassador.",
+          "DefRu": "Привилегия.",
+          "TranslationsRu": ["честь", "привилегия"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(in the plural) the privilege of going first",
+          "ExampleEn": "I'll let you have the honours, Bob—go ahead.",
+          "DefRu": "Право пойти первым; преимущество первого хода.",
+          "TranslationsRu": ["право первого хода", "право начать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5994,
+      "Headword": "ie",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(initialism) That is, namely, in other words, that is to say.",
+          "ExampleEn": "While the final episode was made, the show itself was immediately cancelled after the penultimate episode i.e. the final episode never aired.",
+          "DefRu": "То есть; а именно; иными словами.",
+          "TranslationsRu": ["то есть", "а именно", "иными словами"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6058,
+      "Headword": "impairment",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The result of being impaired",
+          "ExampleEn": null,
+          "DefRu": "Результат ухудшения или повреждения.",
+          "TranslationsRu": ["нарушение", "ухудшение", "повреждение"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A deterioration or weakening",
+          "ExampleEn": null,
+          "DefRu": "Ухудшение или ослабление.",
+          "TranslationsRu": ["ухудшение", "ослабление", "снижение"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A disability or handicap",
+          "ExampleEn": "visual impairment",
+          "DefRu": "Инвалидность или ограничение возможностей.",
+          "TranslationsRu": ["нарушение", "недостаток", "инвалидность"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An inefficient part or factor.",
+          "ExampleEn": null,
+          "DefRu": "Неэффективная часть или фактор.",
+          "TranslationsRu": ["слабое место", "дефект", "недостаток"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A downward revaluation, a write-down.",
+          "ExampleEn": null,
+          "DefRu": "Уценка, списание стоимости вниз.",
+          "TranslationsRu": ["обесценение", "уценка", "списание"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5953,
+      "Headword": "implicit",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Implied indirectly, without being directly expressed",
+          "ExampleEn": null,
+          "DefRu": "Подразумеваемый косвенно, без прямого выражения.",
+          "TranslationsRu": ["неявный", "подразумеваемый", "имплицитный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Contained in the essential nature of something but not openly shown",
+          "ExampleEn": null,
+          "DefRu": "Заключённый в самой природе чего-либо, но не выраженный явно.",
+          "TranslationsRu": ["внутренне присущий", "неявный", "имплицитный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Having no reservations or doubts; unquestioning or unconditional; usually said of faith or trust.",
+          "ExampleEn": null,
+          "DefRu": "Не имеющий оговорок или сомнений; безусловный (обычно о вере или доверии).",
+          "TranslationsRu": ["безоговорочный", "безусловный", "слепой"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Entangled, twisted together.",
+          "ExampleEn": null,
+          "DefRu": "Переплетённый, перекрученный.",
+          "TranslationsRu": ["переплетённый", "запутанный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6094,
+      "Headword": "improved",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That has been made better; enhanced.",
+          "ExampleEn": null,
+          "DefRu": "Сделанный лучше; усовершенствованный.",
+          "TranslationsRu": ["улучшенный", "усовершенствованный", "доработанный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5995,
+      "Headword": "increased",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of a quantity, etc.) To become larger or greater.",
+          "ExampleEn": "His rage only increased when I told him of the lost money.",
+          "DefRu": "О величине: становиться большей.",
+          "TranslationsRu": ["увеличенный", "возросший", "повышенный"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make (a quantity, etc.) larger.",
+          "ExampleEn": null,
+          "DefRu": "Делать величину большей.",
+          "TranslationsRu": ["увеличенный", "повышенный"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To multiply by the production of young; to be fertile, fruitful, or prolific.",
+          "ExampleEn": null,
+          "DefRu": "Размножаться путём появления потомства; быть плодовитым.",
+          "TranslationsRu": ["размножившийся", "расплодившийся"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To become more nearly full; to show more of the surface; to wax.",
+          "ExampleEn": "The Moon increases.",
+          "DefRu": "Приближаться к полноте; показывать больше поверхности; нарастать (о Луне).",
+          "TranslationsRu": ["прибывающий", "нарастающий"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6006,
+      "Headword": "increasing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "On the increase.",
+          "ExampleEn": "steadily increasing demand",
+          "DefRu": "Находящийся в росте; нарастающий.",
+          "TranslationsRu": ["возрастающий", "растущий", "увеличивающийся"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6032,
+      "Headword": "instructional",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Intended for purposes of instruction, for teaching.",
+          "ExampleEn": "The manual might have been instructional had anybody actually taken the time to read it.",
+          "DefRu": "Предназначенный для обучения, преподавания.",
+          "TranslationsRu": ["учебный", "обучающий", "инструктивный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5967,
+      "Headword": "intrinsic",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A built-in function that is implemented directly by the compiler, without any intermediate call to a library.",
+          "ExampleEn": null,
+          "DefRu": "Встроенная функция, реализуемая компилятором напрямую без обращения к библиотеке.",
+          "TranslationsRu": ["встроенная функция", "интринсик"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "An ability possessed by a character and not requiring any external equipment.",
+          "ExampleEn": "You can acquire the fire-resistance intrinsic by eating dragon meat.",
+          "DefRu": "Способность персонажа, не требующая внешнего снаряжения.",
+          "TranslationsRu": ["врождённая способность", "имманентное свойство"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Innate, inherent, inseparable from the thing itself, essential.",
+          "ExampleEn": "the intrinsic merit of an action",
+          "DefRu": "Врождённый, присущий, неотделимый от самой вещи; существенный.",
+          "TranslationsRu": ["внутренне присущий", "неотъемлемый", "врождённый"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "(of a body part) Situated, produced, secreted in, or coming from inside an organ, tissue, muscle or member.",
+          "ExampleEn": null,
+          "DefRu": "О части тела: расположенный или образующийся внутри органа, ткани, мышцы.",
+          "TranslationsRu": ["внутренний", "интринсический", "собственный"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6090,
+      "Headword": "inventory",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(operations) The stock of an item on hand at a particular location or business.",
+          "ExampleEn": "Due to an undersized inventory at the Boston outlet, customers had to travel to Providence to find the item.",
+          "DefRu": "Запас товара, имеющийся в наличии в данном месте или бизнесе.",
+          "TranslationsRu": ["запас", "товарный запас", "складские запасы"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(operations) A detailed list of all of the items on hand.",
+          "ExampleEn": "The inventory included several items that one wouldn't normally think to find at a cheese shop.",
+          "DefRu": "Подробный перечень всех имеющихся в наличии предметов.",
+          "TranslationsRu": ["инвентарная опись", "инвентарь", "перечень"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(operations) The process of producing or updating such a list.",
+          "ExampleEn": "This month's inventory took nearly three days.",
+          "DefRu": "Процесс составления или обновления такой описи.",
+          "TranslationsRu": ["инвентаризация", "переучёт"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A space containing the items available to a character for immediate use.",
+          "ExampleEn": "You can't get through the underground tunnel if there are more than three items in your inventory.",
+          "DefRu": "Хранилище предметов, доступных персонажу для немедленного использования.",
+          "TranslationsRu": ["инвентарь", "рюкзак", "ячейки предметов"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6008,
+      "Headword": "judgment",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The act of judging.",
+          "ExampleEn": null,
+          "DefRu": "Действие по вынесению суждения.",
+          "TranslationsRu": ["суждение", "оценка", "вынесение решения"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The power or faculty of performing such operations; especially, when unqualified, the faculty of judging or deciding rightly, justly, or wisely",
+          "ExampleEn": "a man of judgment",
+          "DefRu": "Способность судить или принимать решения правильно, справедливо и мудро.",
+          "TranslationsRu": ["рассудительность", "здравомыслие", "проницательность"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The conclusion or result of judging; an opinion; a decision.",
+          "ExampleEn": null,
+          "DefRu": "Вывод или результат суждения; мнение, решение.",
+          "TranslationsRu": ["мнение", "вывод", "заключение"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The act of determining, as in courts of law, what is conformable to law and justice; also, the determination, decision, or sentence of a court, or of a judge.",
+          "ExampleEn": null,
+          "DefRu": "Судебное определение того, что соответствует закону; приговор или решение суда.",
+          "TranslationsRu": ["приговор", "судебное решение", "вердикт"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The final award; the last sentence.",
+          "ExampleEn": null,
+          "DefRu": "Окончательный приговор; последнее решение.",
+          "TranslationsRu": ["окончательный приговор", "Страшный суд"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5984,
+      "Headword": "labor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Effort expended on a particular task; toil, work.",
+          "ExampleEn": null,
+          "DefRu": "Усилия, прилагаемые для выполнения какой-либо задачи; труд, работа.",
+          "TranslationsRu": ["труд", "работа", "усилие"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "That which requires hard work for its accomplishment; that which demands effort.",
+          "ExampleEn": null,
+          "DefRu": "То, что требует тяжёлой работы или усилий для осуществления.",
+          "TranslationsRu": ["тяжёлый труд", "трудоёмкая задача"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "Workers in general; the working class, the workforce; sometimes specifically the labour movement, organised labour.",
+          "ExampleEn": null,
+          "DefRu": "Работники в целом; рабочий класс; иногда — рабочее движение.",
+          "TranslationsRu": ["рабочий класс", "рабочая сила", "рабочее движение"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "A political party or force aiming or claiming to represent the interests of labour.",
+          "ExampleEn": null,
+          "DefRu": "Политическая партия или сила, представляющая интересы рабочих.",
+          "TranslationsRu": ["лейбористы", "лейбористская партия"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "The act of a mother giving birth.",
+          "ExampleEn": null,
+          "DefRu": "Процесс родов у матери.",
+          "TranslationsRu": ["роды", "родовая деятельность", "схватки"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6066,
+      "Headword": "learner",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who is learning.",
+          "ExampleEn": "She’s still a learner, so she’s prone to making mistakes.",
+          "DefRu": "Тот, кто учится.",
+          "TranslationsRu": ["ученик", "учащийся", "обучающийся"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5968,
+      "Headword": "levy",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The act of levying.",
+          "ExampleEn": null,
+          "DefRu": "Действие по взиманию или сбору.",
+          "TranslationsRu": ["взимание", "сбор", "обложение"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "The tax, property or people so levied.",
+          "ExampleEn": null,
+          "DefRu": "Сам собранный налог, имущество или мобилизованные люди.",
+          "TranslationsRu": ["сбор", "налог", "ополчение"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To impose (a tax or fine) to collect monies due, or to confiscate property.",
+          "ExampleEn": "to levy a tax",
+          "DefRu": "Налагать налог или штраф для сбора причитающихся средств или конфисковать имущество.",
+          "TranslationsRu": ["взимать", "облагать", "налагать"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To raise or collect by assessment; to exact by authority.",
+          "ExampleEn": null,
+          "DefRu": "Собирать путём оценки; взыскивать властью.",
+          "TranslationsRu": ["взыскивать", "собирать", "взимать"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To draft someone into military service.",
+          "ExampleEn": null,
+          "DefRu": "Призывать кого-либо на военную службу.",
+          "TranslationsRu": ["призывать", "мобилизовать", "набирать в армию"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6123,
+      "Headword": "liability",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An obligation, debt or responsibility owed to someone.",
+          "ExampleEn": null,
+          "DefRu": "Обязательство, долг или ответственность перед кем-либо.",
+          "TranslationsRu": ["обязательство", "долг", "ответственность"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A handicap that holds something back, a drawback, someone or something that is a burden to whoever is required to take care of them; an individual or action that exposes others to greater risk.",
+          "ExampleEn": null,
+          "DefRu": "Помеха, недостаток; человек или нечто, обременяющее опекуна или подвергающее других риску.",
+          "TranslationsRu": ["обуза", "помеха", "слабое место"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "The likelihood of something happening.",
+          "ExampleEn": null,
+          "DefRu": "Вероятность наступления чего-либо.",
+          "TranslationsRu": ["вероятность", "склонность к", "подверженность"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "The condition of being susceptible to something.",
+          "ExampleEn": null,
+          "DefRu": "Состояние подверженности чему-либо.",
+          "TranslationsRu": ["подверженность", "уязвимость", "восприимчивость"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6060,
+      "Headword": "maker",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Someone who makes; a person or thing that makes or produces something.",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто делает; человек или вещь, производящая что-либо.",
+          "TranslationsRu": ["изготовитель", "создатель", "производитель"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(usually capitalized and preceded by the) God.",
+          "ExampleEn": null,
+          "DefRu": "Бог, Творец.",
+          "TranslationsRu": ["Творец", "Создатель", "Бог"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A poet.",
+          "ExampleEn": null,
+          "DefRu": "Поэт.",
+          "TranslationsRu": ["поэт", "стихотворец"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "Someone who signs a promissory note, thereby becoming responsible for payment.",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто подписывает вексель, принимая на себя обязанность платежа.",
+          "TranslationsRu": ["векселедатель", "выдавший вексель"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5960,
+      "Headword": "manual",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A handbook.",
+          "ExampleEn": null,
+          "DefRu": "Справочник.",
+          "TranslationsRu": ["руководство", "справочник", "пособие"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "A booklet that instructs on the usage of a particular machine or product.",
+          "ExampleEn": "The dishwasher isn't working; can you remember where we put the manual?",
+          "DefRu": "Брошюра с инструкциями по использованию конкретного устройства или товара.",
+          "TranslationsRu": ["инструкция", "руководство пользователя", "мануал"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A drill in the use of weapons, etc.",
+          "ExampleEn": null,
+          "DefRu": "Учебные упражнения по обращению с оружием и т. п.",
+          "TranslationsRu": ["устав", "учебное руководство"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An old office-book like the modern Roman Catholic ritual.",
+          "ExampleEn": null,
+          "DefRu": "Старинная богослужебная книга, аналогичная современному католическому требнику.",
+          "TranslationsRu": ["требник", "богослужебная книга"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A keyboard for the hands on a harpsichord, organ, or other musical instrument.",
+          "ExampleEn": null,
+          "DefRu": "Ручная клавиатура у клавесина, органа или другого музыкального инструмента.",
+          "TranslationsRu": ["мануал", "ручная клавиатура"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6040,
+      "Headword": "manufacturer",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One that manufactures",
+          "ExampleEn": null,
+          "DefRu": "Тот, кто производит товары.",
+          "TranslationsRu": ["производитель", "изготовитель", "фабрикант"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6111,
+      "Headword": "math",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A mowing; what is gathered from mowing.",
+          "ExampleEn": null,
+          "DefRu": "Покос; то, что собрано при покосе.",
+          "TranslationsRu": ["укос", "покос"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "Arithmetic calculations; (see do the math).",
+          "ExampleEn": "$170 a month? That doesn’t sound right. Let me check your math.",
+          "DefRu": "Арифметические вычисления; подсчёты.",
+          "TranslationsRu": ["вычисления", "подсчёт", "расчёт"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "A math course.",
+          "ExampleEn": "They needed to take two more maths in order to graduate.",
+          "DefRu": "Курс по математике.",
+          "TranslationsRu": ["курс математики", "матан"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "An abstract representational system used in the study of numbers, shapes, structure, change and the relationships between these concepts.",
+          "ExampleEn": null,
+          "DefRu": "Абстрактная система для изучения чисел, форм, структуры, изменений и отношений между ними.",
+          "TranslationsRu": ["математика"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "A person's ability to count, calculate, and use different systems of mathematics at differing levels.",
+          "ExampleEn": "My mathematics is always improving.",
+          "DefRu": "Способность человека считать, вычислять и пользоваться разными системами математики.",
+          "TranslationsRu": ["математические способности", "счёт"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5961,
+      "Headword": "mediate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To resolve differences, or to bring about a settlement, between conflicting parties.",
+          "ExampleEn": null,
+          "DefRu": "Разрешать разногласия или содействовать соглашению между конфликтующими сторонами.",
+          "TranslationsRu": ["посредничать", "улаживать", "примирять"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "To intervene between conflicting parties in order to resolve differences or bring about a settlement.",
+          "ExampleEn": null,
+          "DefRu": "Вмешиваться между конфликтующими сторонами для разрешения разногласий.",
+          "TranslationsRu": ["выступать посредником", "посредничать"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "To divide into two equal parts.",
+          "ExampleEn": null,
+          "DefRu": "Делить на две равные части.",
+          "TranslationsRu": ["делить пополам", "разделять надвое"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "To act as an intermediary causal or communicative agent; to convey.",
+          "ExampleEn": null,
+          "DefRu": "Выступать промежуточным причинным или коммуникативным звеном; передавать.",
+          "TranslationsRu": ["опосредовать", "передавать", "являться передатчиком"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "To act as a spiritualistic medium.",
+          "ExampleEn": null,
+          "DefRu": "Выступать в роли спиритического медиума.",
+          "TranslationsRu": ["быть медиумом", "медиумствовать"]
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6075,
+      "Headword": "meter",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(always meter) A device that measures things.",
+          "ExampleEn": null,
+          "DefRu": "Прибор, который что-либо измеряет.",
+          "TranslationsRu": ["измерительный прибор", "счётчик", "измеритель"]
+        },
+        {
+          "Index": 1,
+          "DefEn": "(always meter) A parking meter or similar device for collecting payment.",
+          "ExampleEn": null,
+          "DefRu": "Парковочный или аналогичный счётчик для сбора платы.",
+          "TranslationsRu": ["паркомат", "парковочный счётчик"]
+        },
+        {
+          "Index": 2,
+          "DefEn": "(always meter) One who metes or measures.",
+          "ExampleEn": "a labouring coal-meter",
+          "DefRu": "Тот, кто отмеряет или измеряет.",
+          "TranslationsRu": ["мерщик", "измеритель"]
+        },
+        {
+          "Index": 3,
+          "DefEn": "(elsewhere metre) The base unit of length in the International System of Units (SI), conceived of as 1/10000000 of the distance from the North Pole to the Equator, and now defined as the distance light will travel in a vacuum in 1/299792458 second.",
+          "ExampleEn": null,
+          "DefRu": "Основная единица длины СИ, определяемая как путь света в вакууме за 1/299792458 секунды.",
+          "TranslationsRu": ["метр"]
+        },
+        {
+          "Index": 4,
+          "DefEn": "(elsewhere metre) An increment of music; the overall rhythm; particularly, the number of beats in a measure.",
+          "ExampleEn": null,
+          "DefRu": "Музыкальный размер; общий ритм; число долей в такте.",
+          "TranslationsRu": ["метр", "размер", "стихотворный размер"]
+        }
+      ]
+    }
+  ]
+}

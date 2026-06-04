@@ -1,0 +1,124 @@
+<UserControl x:Class="EnglishStudio.App.Views.Reading.ReadingResultView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:ReadingResultScreen}"
+             d:DesignHeight="700" d:DesignWidth="1000">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="‹ К списку тестов"
+                    Style="{StaticResource FlatButton}"
+                    Command="{Binding BackCommand}" />
+        </Grid>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel DataContext="{Binding Result}">
+
+                <!-- Headline -->
+                <Border Style="{StaticResource Card}" Margin="0,0,0,12">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource H2}" />
+                            <TextBlock Style="{StaticResource Caption}" Margin="0,4,0,0">
+                                <Run Text="{Binding DurationLabel, Mode=OneWay}" />
+                            </TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
+                            <TextBlock Style="{StaticResource Caption}" Text="Правильно" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding RawScore}" FontSize="36" FontWeight="Light" Foreground="{DynamicResource StrongTextBrush}" />
+                                <TextBlock VerticalAlignment="Bottom" Foreground="{DynamicResource MutedTextBrush}" Margin="6,0,0,8">
+                                    <Run Text="/ " /><Run Text="{Binding TotalQuestions, Mode=OneWay}" />
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Border Grid.Column="2"
+                                Background="{DynamicResource AccentHotBrush}"
+                                CornerRadius="12"
+                                Padding="22,10"
+                                VerticalAlignment="Center">
+                            <StackPanel HorizontalAlignment="Center">
+                                <TextBlock Text="BAND" Foreground="#073a5a" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="#073a5a" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <!-- Breakdown by type -->
+                <TextBlock Text="По типам вопросов" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <ItemsControl ItemsSource="{Binding Breakdown}" Margin="0,0,0,16">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" MinWidth="200" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                    <TextBlock Text="{Binding TypeLabel}" />
+                                    <ProgressBar Style="{StaticResource FlatProgressBar}"
+                                                 Height="6"
+                                                 Margin="0,4,0,0"
+                                                 Minimum="0" Maximum="1"
+                                                 Value="{Binding Ratio, Mode=OneWay}" />
+                                </StackPanel>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding Label}"
+                                           VerticalAlignment="Center"
+                                           FontWeight="SemiBold" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+                <!-- Wrong answers -->
+                <TextBlock Text="Неверные ответы" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <ItemsControl ItemsSource="{Binding Wrong}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource CardCompact}" Margin="0,0,0,8">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                        <TextBlock Text="{Binding Number, StringFormat='Q{0}'}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" Margin="0,0,8,0" />
+                                        <TextBlock Text="{Binding PartTitle}" Style="{StaticResource Caption}" />
+                                    </StackPanel>
+                                    <TextBlock Text="{Binding Stem}" TextWrapping="Wrap" Margin="0,0,0,6" />
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Style="{StaticResource Caption}" Text="Ваш ответ: " />
+                                        <TextBlock Foreground="{DynamicResource ErrorBrush}" Text="{Binding UserAnswer}" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
+                                        <TextBlock Style="{StaticResource Caption}" Text="Правильный: " />
+                                        <TextBlock Foreground="{DynamicResource SuccessBrush}" Text="{Binding CorrectAnswer}" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

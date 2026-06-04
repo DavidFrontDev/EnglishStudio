@@ -1,0 +1,58 @@
+<appshell:ChromedWindow x:Class="EnglishStudio.App.MainWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels"
+                        xmlns:appshell="clr-namespace:EnglishStudio.App.Shell"
+                        mc:Ignorable="d"
+                        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+                        Title="{Binding Title}"
+                        Style="{StaticResource ChromedWindowStyle}"
+                        Width="1480" Height="860"
+                        MinWidth="900" MinHeight="600"
+                        AllowsTransparency="True"
+                        Background="Transparent"
+                        WindowStyle="None"
+                        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <!--  ════ Background layers ════  -->
+        <Rectangle>
+            <Rectangle.Fill>
+                <RadialGradientBrush Center="0.22,0.18" GradientOrigin="0.22,0.18" RadiusX="1.25" RadiusY="1.6">
+                    <GradientStop Offset="0" Color="{DynamicResource AccentHotColor}" />
+                    <GradientStop Offset="0.35" Color="{DynamicResource AccentMidColor}" />
+                    <GradientStop Offset="0.8" Color="{DynamicResource AccentDeepColor}" />
+                    <GradientStop Offset="1" Color="{DynamicResource AccentEdgeColor}" />
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle IsHitTestVisible="False" Opacity="0.08">
+            <Rectangle.Fill>
+                <DrawingBrush Stretch="None" TileMode="Tile" Viewport="0,0,3,2" ViewportUnits="Absolute">
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="White">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,3,1" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <Rectangle IsHitTestVisible="False">
+            <Rectangle.Fill>
+                <RadialGradientBrush Center="0.5,0.5" GradientOrigin="0.5,0.5" RadiusX="0.85" RadiusY="0.85">
+                    <GradientStop Offset="0.55" Color="#00000000" />
+                    <GradientStop Offset="1" Color="#66000000" />
+                </RadialGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <!--  ════ Content ════  -->
+        <appshell:ShellView DataContext="{Binding Shell}" />
+    </Grid>
+</appshell:ChromedWindow>

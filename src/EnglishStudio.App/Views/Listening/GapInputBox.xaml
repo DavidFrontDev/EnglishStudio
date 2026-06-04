@@ -1,0 +1,43 @@
+<UserControl x:Class="EnglishStudio.App.Views.Listening.GapInputBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             VerticalAlignment="Bottom">
+    <!-- Fixed, compact width (≈17 dots). Text is left-aligned and sits on the line. -->
+    <Grid Width="120" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+        <TextBox x:Name="Input"
+                 Background="Transparent"
+                 BorderThickness="0,0,0,1.2"
+                 BorderBrush="{DynamicResource OverlayLight20Brush}"
+                 Foreground="{DynamicResource StrongTextBrush}"
+                 CaretBrush="{DynamicResource AccentHotBrush}"
+                 Padding="1,0,1,0"
+                 TextAlignment="Left"
+                 FontWeight="SemiBold"
+                 VerticalContentAlignment="Bottom"
+                 MaxLength="40" />
+
+        <!-- Dotted leader + question number, shown only when empty AND unfocused. -->
+        <Grid x:Name="Placeholder" IsHitTestVisible="False" VerticalAlignment="Bottom" Margin="0,0,0,1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Line Grid.Column="0" X1="0" X2="1" Y1="0" Y2="0"
+                  Stretch="Fill" Stroke="{DynamicResource MutedTextBrush}"
+                  StrokeThickness="1.4" StrokeDashArray="1 3.5"
+                  VerticalAlignment="Center" Margin="0,0,3,0" />
+            <TextBlock x:Name="NumberText" Grid.Column="1"
+                       FontWeight="Bold" FontSize="12"
+                       Foreground="{DynamicResource AccentHotBrush}"
+                       VerticalAlignment="Center" />
+            <Line Grid.Column="2" X1="0" X2="1" Y1="0" Y2="0"
+                  Stretch="Fill" Stroke="{DynamicResource MutedTextBrush}"
+                  StrokeThickness="1.4" StrokeDashArray="1 3.5"
+                  VerticalAlignment="Center" Margin="3,0,0,0" />
+        </Grid>
+    </Grid>
+</UserControl>

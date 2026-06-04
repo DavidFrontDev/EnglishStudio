@@ -1,0 +1,115 @@
+<UserControl x:Class="EnglishStudio.App.Shell.ShellView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:shell="clr-namespace:EnglishStudio.App.Shell"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=shell:ShellViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1200">
+
+    <UserControl.Resources>
+        <!--  Shared row template for a module item (used by both the area list and the global zone)  -->
+        <DataTemplate x:Key="ModuleItemTemplate" DataType="{x:Type shell:IModuleDescriptor}">
+            <Grid Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="28" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Text="{Binding IconGlyph}"
+                           FontSize="16"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center" />
+                <TextBlock Grid.Column="1"
+                           Text="{Binding NameRu}"
+                           VerticalAlignment="Center"
+                           Margin="6,0,0,0"
+                           FontSize="13"
+                           FontWeight="SemiBold"
+                           TextTrimming="CharacterEllipsis" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!--  ════ Sidebar ════  -->
+        <Border Grid.Column="0"
+                Background="{DynamicResource OverlayDark27Brush}"
+                BorderBrush="{DynamicResource OverlayLight13Brush}"
+                BorderThickness="0,0,1,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!--  ── Area switcher (Учёба / IELTS) ──  -->
+                <Border Grid.Row="0"
+                        Background="{DynamicResource OverlayDark20Brush}"
+                        BorderBrush="{DynamicResource OverlayLight13Brush}"
+                        BorderThickness="1"
+                        CornerRadius="11"
+                        Margin="8,8,8,4">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <RadioButton Grid.Column="0"
+                                     GroupName="AppArea"
+                                     Content="🎓 Учёба"
+                                     Style="{StaticResource AreaSegment}"
+                                     IsChecked="{Binding CurrentArea, Converter={StaticResource EnumBoolConverter}, ConverterParameter=Study}" />
+                        <RadioButton Grid.Column="1"
+                                     GroupName="AppArea"
+                                     Content="🎯 IELTS"
+                                     Style="{StaticResource AreaSegment}"
+                                     IsChecked="{Binding CurrentArea, Converter={StaticResource EnumBoolConverter}, ConverterParameter=Ielts}" />
+                    </Grid>
+                </Border>
+
+                <!--  ── Modules of the active area ──  -->
+                <ListBox Grid.Row="1"
+                         ItemsSource="{Binding VisibleModules}"
+                         SelectedItem="{Binding CurrentModule, Mode=TwoWay}"
+                         Style="{StaticResource FlatListBox}"
+                         ItemContainerStyle="{StaticResource SidebarItem}"
+                         ItemTemplate="{StaticResource ModuleItemTemplate}"
+                         Padding="8,4,8,4" />
+
+                <!--  ── Global zone (Статистика + Настройки) ──  -->
+                <Border Grid.Row="2"
+                        BorderBrush="{DynamicResource OverlayLight13Brush}"
+                        BorderThickness="0,1,0,0"
+                        Padding="8,6,8,8">
+                    <StackPanel>
+                        <ListBox ItemsSource="{Binding GlobalModules}"
+                                 SelectedItem="{Binding CurrentModule, Mode=TwoWay}"
+                                 Style="{StaticResource FlatListBox}"
+                                 ItemContainerStyle="{StaticResource SidebarItem}"
+                                 ItemTemplate="{StaticResource ModuleItemTemplate}" />
+                        <Button Content="⚙  Настройки"
+                                HorizontalContentAlignment="Left"
+                                Padding="10,8"
+                                Margin="0,4,0,0"
+                                FontSize="12"
+                                Style="{StaticResource FlatButton}"
+                                Command="{Binding OpenSettingsCommand}" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!--  ════ Content ════  -->
+        <ContentControl Grid.Column="1"
+                        Content="{Binding CurrentView}"
+                        Margin="20,16,20,16" />
+    </Grid>
+</UserControl>

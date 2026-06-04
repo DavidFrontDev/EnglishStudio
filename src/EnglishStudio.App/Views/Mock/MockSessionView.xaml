@@ -1,0 +1,126 @@
+<UserControl x:Class="EnglishStudio.App.Views.Mock.MockSessionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Mock"
+             xmlns:rvm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
+             xmlns:rv="clr-namespace:EnglishStudio.App.Views.Reading"
+             xmlns:lvm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
+             xmlns:lv="clr-namespace:EnglishStudio.App.Views.Listening"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:MockSessionViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1100">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <conv:NullToVisibilityConverter x:Key="NullToVis" />
+
+        <!--  Секционные View переиспользуются как есть  -->
+        <DataTemplate DataType="{x:Type rvm:ReadingTestViewModel}">
+            <rv:ReadingTestView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type lvm:ListeningSessionViewModel}">
+            <lv:ListeningSessionView />
+        </DataTemplate>
+
+        <!--  Секция идёт в отдельном окне (Writing/Speaking) — неинтерактивная заставка  -->
+        <DataTemplate DataType="{x:Type vm:MockSectionRunning}">
+            <Border Style="{StaticResource Card}" Margin="40" Padding="40">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="560">
+                    <TextBlock Text="🪟"
+                               FontSize="48"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="{Binding Message}"
+                               Style="{StaticResource MutedText}"
+                               FontSize="15"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,16,0,0" />
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+
+        <!--  Gate-экран секции (он же межсекционный переход)  -->
+        <DataTemplate DataType="{x:Type vm:MockSectionGate}">
+            <Border Style="{StaticResource Card}" Margin="40" Padding="40">
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="600">
+                    <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center">
+                        <Run Text="Секция " /><Run Text="{Binding Index, Mode=OneWay}" /><Run Text=" из 4" />
+                    </TextBlock>
+                    <TextBlock Text="{Binding SectionName}"
+                               Style="{StaticResource H1}"
+                               HorizontalAlignment="Center"
+                               Margin="0,6,0,0" />
+                    <TextBlock Text="{Binding Hint}"
+                               Style="{StaticResource MutedText}"
+                               TextWrapping="Wrap"
+                               TextAlignment="Center"
+                               Margin="0,14,0,0" />
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,28,0,0">
+                        <Button Content="▶ Начать секцию"
+                                Style="{StaticResource AccentButton}"
+                                Margin="0,0,10,0"
+                                Command="{Binding StartCommand}" />
+                        <Button Content="Пропустить секцию"
+                                Style="{StaticResource FlatButton}"
+                                Margin="0,0,10,0"
+                                Command="{Binding SkipCommand}" />
+                        <Button Content="Выйти в меню"
+                                Style="{StaticResource FlatButton}"
+                                Command="{Binding ExitCommand}" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!--  Top progress bar  -->
+        <Border Grid.Row="0"
+                Background="{DynamicResource OverlayLight13Brush}"
+                CornerRadius="8"
+                Padding="16,10"
+                Margin="0,0,0,10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           VerticalAlignment="Center"
+                           FontWeight="SemiBold"
+                           FontSize="15"
+                           Foreground="{DynamicResource StrongTextBrush}"
+                           Text="{Binding ExamTitle}" />
+                <Border Grid.Column="1"
+                        Background="{DynamicResource OverlayLight20Brush}"
+                        CornerRadius="6"
+                        Padding="10,4">
+                    <TextBlock Foreground="{DynamicResource StrongTextBrush}" FontWeight="SemiBold">
+                        <Run Text="Секция " /><Run Text="{Binding SectionIndex, Mode=OneWay}" /><Run Text="/4 · " />
+                        <Run Text="{Binding SectionLabel, Mode=OneWay}" />
+                    </TextBlock>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!--  Active section (gate or live section View)  -->
+        <ContentControl Grid.Row="1" Content="{Binding CurrentSectionVm}" />
+
+        <TextBlock Grid.Row="2"
+                   Style="{StaticResource MutedText}"
+                   Text="{Binding StatusText}"
+                   Margin="0,8,0,0"
+                   TextWrapping="Wrap"
+                   Visibility="{Binding StatusText, Converter={StaticResource NullToVis}}" />
+    </Grid>
+</UserControl>

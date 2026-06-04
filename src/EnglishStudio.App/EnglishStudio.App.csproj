@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishStudio.Content\EnglishStudio.Content.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Dictionary\EnglishStudio.Modules.Dictionary.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ai\EnglishStudio.Modules.Ai.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Core\EnglishStudio.Modules.Ielts.Core.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Reading\EnglishStudio.Modules.Ielts.Reading.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Listening\EnglishStudio.Modules.Ielts.Listening.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Writing\EnglishStudio.Modules.Ielts.Writing.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Speaking\EnglishStudio.Modules.Ielts.Speaking.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Mock\EnglishStudio.Modules.Ielts.Mock.csproj" />
+    <ProjectReference Include="..\EnglishStudio.Modules.Reading\EnglishStudio.Modules.Reading.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.8">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="10.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.8" />
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="System.Speech" Version="10.0.0" />
+    <PackageReference Include="Vosk" Version="0.3.38" />
+    <PackageReference Include="Whisper.net" Version="1.7.4" />
+    <PackageReference Include="Whisper.net.Runtime" Version="1.7.4" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+</Project>

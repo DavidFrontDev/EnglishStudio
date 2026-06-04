@@ -1,0 +1,68 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Light palette — пока заглушка с теми же ключами.
+        Активируется через ThemeManager.Apply(AppTheme.Light) когда понадобится.
+    -->
+
+    <SolidColorBrush x:Key="WindowBaseBrush" Color="#F5F7FA" />
+
+    <Color x:Key="AccentHotColor">#5BA8E6</Color>
+    <Color x:Key="AccentMidColor">#2E7CC0</Color>
+    <Color x:Key="AccentDeepColor">#1E5A8C</Color>
+    <Color x:Key="AccentEdgeColor">#143E63</Color>
+
+    <SolidColorBrush x:Key="AccentMidBrush" Color="#2E7CC0" />
+    <SolidColorBrush x:Key="AccentHotBrush" Color="#5BA8E6" />
+
+    <Color x:Key="ChromeStartColor">#FFFFFF</Color>
+    <Color x:Key="ChromeEndColor">#E5E7EB</Color>
+    <SolidColorBrush x:Key="ChromeCloseHoverBrush" Color="#E81123" />
+    <SolidColorBrush x:Key="ChromeClosePressedBrush" Color="#B3000F" />
+
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1F2937" />
+    <SolidColorBrush x:Key="TitleTextBrush" Color="#0F172A" />
+    <SolidColorBrush x:Key="StrongTextBrush" Color="#000000" />
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#64748B" />
+    <SolidColorBrush x:Key="CaptionTextBrush" Color="#94A3B8" />
+
+    <SolidColorBrush x:Key="SuccessBrush" Color="#16A34A" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="#DC2626" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#D97706" />
+    <SolidColorBrush x:Key="InfoBrush" Color="#0284C7" />
+
+    <SolidColorBrush x:Key="CtaBackgroundBrush" Color="#2563EB" />
+    <SolidColorBrush x:Key="CtaForegroundBrush" Color="#FFFFFF" />
+    <SolidColorBrush x:Key="CtaHoverBrush" Color="#1D4ED8" />
+    <SolidColorBrush x:Key="CtaPressedBrush" Color="#1E40AF" />
+
+    <SolidColorBrush x:Key="OverlayLight13Brush" Color="#22000000" />
+    <SolidColorBrush x:Key="OverlayLight17Brush" Color="#2C000000" />
+    <SolidColorBrush x:Key="OverlayLight20Brush" Color="#33000000" />
+    <SolidColorBrush x:Key="OverlayLight33Brush" Color="#55000000" />
+    <SolidColorBrush x:Key="OverlayLight40Brush" Color="#66000000" />
+    <SolidColorBrush x:Key="OverlayLight47Brush" Color="#77000000" />
+    <SolidColorBrush x:Key="OverlayLight60Brush" Color="#99000000" />
+    <SolidColorBrush x:Key="OverlayLight67Brush" Color="#AA000000" />
+    <SolidColorBrush x:Key="OverlayLight80Brush" Color="#CC000000" />
+
+    <SolidColorBrush x:Key="OverlayDark13Brush" Color="#22FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark20Brush" Color="#33FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark27Brush" Color="#44FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark33Brush" Color="#55FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark40Brush" Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark60Brush" Color="#99FFFFFF" />
+
+    <SolidColorBrush x:Key="SelectionBrush" Color="#332563EB" />
+    <SolidColorBrush x:Key="SelectionHoverBrush" Color="#222563EB" />
+
+    <SolidColorBrush x:Key="PillA1Brush" Color="#22C55E" />
+    <SolidColorBrush x:Key="PillA2Brush" Color="#16A34A" />
+    <SolidColorBrush x:Key="PillB1Brush" Color="#3B82F6" />
+    <SolidColorBrush x:Key="PillB2Brush" Color="#2563EB" />
+    <SolidColorBrush x:Key="PillC1Brush" Color="#9333EA" />
+    <SolidColorBrush x:Key="PillC2Brush" Color="#7E22CE" />
+    <SolidColorBrush x:Key="PillUnknownBrush" Color="#64748B" />
+
+</ResourceDictionary>

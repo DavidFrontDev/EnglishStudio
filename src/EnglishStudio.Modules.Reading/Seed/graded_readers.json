@@ -1,0 +1,62 @@
+[
+  {
+    "title": "My Morning",
+    "level": "A1",
+    "theme": "Daily life",
+    "body": "I wake up at seven o'clock. I open the window and look at the sky. It is a sunny day. I make tea and eat bread with butter. My cat sits on the table. She wants milk. I give her some milk and she is happy. After breakfast I put on my shoes and my coat. I walk to work. The street is quiet. I say hello to the baker. He gives me a warm smile. I like my mornings. They are simple and calm."
+  },
+  {
+    "title": "The Red Bicycle",
+    "level": "A1",
+    "theme": "Childhood",
+    "body": "Tom has a red bicycle. It is old but he loves it. Every day after school he rides it in the park. He goes fast down the hill and slow up the hill. His friend Anna has a blue bicycle. They ride together. They look at the ducks near the lake. The ducks are brown and white. Sometimes Tom and Anna stop and eat an apple. Then they ride home before dark. Tom puts his bicycle next to the door. He says good night to it. Tomorrow they will ride again."
+  },
+  {
+    "title": "A Trip to the Market",
+    "level": "A2",
+    "theme": "City life",
+    "body": "On Saturday morning my sister and I went to the market in the centre of town. The market was busy and full of colours. We saw red tomatoes, green apples, and yellow lemons. An old woman was selling fresh bread, and the smell was wonderful. My sister bought a kilo of oranges and I chose some cheese. We did not have much money, so we were careful. Near the corner a man was playing the guitar, and a small crowd was listening. We stopped for a few minutes and then walked home with our heavy bags, feeling tired but happy."
+  },
+  {
+    "title": "The Lost Key",
+    "level": "A2",
+    "theme": "Everyday problem",
+    "body": "When Maria came home, she could not find her key. She looked in her bag, in her pockets, and under the doormat, but the key was not there. She remembered that she had used it in the morning. Maybe she had left it at the office. It was already late and the office was closed. Maria sat on the steps and thought about what to do. Then her neighbour came out and offered to help. He had a spare key because Maria had given him one last year. She thanked him many times. That night she decided to always keep a second key in a safe place."
+  },
+  {
+    "title": "The Night Train",
+    "level": "B1",
+    "theme": "Travel",
+    "body": "The night train to the mountains left the station exactly on time. I found my seat by the window and watched the city lights slowly disappear. Soon there was nothing outside but darkness and the occasional glow of a distant farm. A woman opposite me was reading a thick novel, and a young man kept checking his phone, although there was no signal. I tried to sleep, but the gentle rocking of the carriage kept me half awake. Around midnight the train stopped at a small village. Nobody got on or off. In the silence I could hear the wind and, far away, a dog barking. By morning the windows were covered in frost, and the first snow of the year lay across the fields."
+  },
+  {
+    "title": "The Job Interview",
+    "level": "B1",
+    "theme": "Work",
+    "body": "Daniel had prepared for the interview all week, but he was still nervous. He arrived twenty minutes early and waited in a bright, modern room. When his name was called, he took a deep breath and walked in with a confident smile. The manager asked him about his previous experience and why he wanted the job. Daniel explained that he enjoyed solving problems and working with a team. He admitted that he did not know everything, but he was willing to learn quickly. The manager seemed pleased with his honesty. At the end, they shook hands, and Daniel left feeling that he had done his best. Two days later, an email arrived offering him the position."
+  },
+  {
+    "title": "The Weight of Small Decisions",
+    "level": "B2",
+    "theme": "Reflection",
+    "body": "We tend to believe that our lives are shaped by a handful of dramatic moments, but in reality they are built from countless small decisions that we barely notice. Choosing to reply to a message, to take a different route to work, or to start a conversation with a stranger can quietly redirect the course of years. Because these choices seem trivial at the time, we rarely give them the attention they deserve. Looking back, however, we often realise that an apparently insignificant decision opened a door that would otherwise have remained closed. Perhaps the real art of living is not in making grand plans, but in paying attention to the ordinary choices that gradually become a life."
+  },
+  {
+    "title": "The Old Lighthouse",
+    "level": "B2",
+    "theme": "Mystery",
+    "body": "The lighthouse had stood on the rocky headland for more than a century, and the villagers had grown so used to its presence that they no longer noticed it. When its light finally went dark one stormy November night, however, everyone felt a strange unease. The keeper, an elderly man who rarely spoke to anyone, had simply vanished, leaving behind a half-finished meal and a logbook full of careful, ordinary entries. Some claimed he had fallen into the sea; others whispered that he had finally grown tired of his lonely duty and walked away. What puzzled the investigators most was the final line in his logbook, written in a steady hand: 'The ships no longer need me, but I will keep the light burning anyway.'"
+  },
+  {
+    "title": "On the Limits of Certainty",
+    "level": "C1",
+    "theme": "Philosophy",
+    "body": "Human beings have an enduring appetite for certainty, yet the history of knowledge is, paradoxically, a history of revised conclusions. Theories that once appeared unassailable have been quietly dismantled, not because their proponents were foolish, but because the evidence available to them was necessarily incomplete. This should not lead us to a corrosive scepticism in which nothing can be trusted; rather, it invites a more disciplined humility. To hold a belief provisionally, to remain genuinely open to revision while still acting decisively, is among the most demanding intellectual achievements. The mature thinker neither clings to dogma nor drifts into indifference, but learns to live productively with the irreducible uncertainty that accompanies any honest attempt to understand a complex world."
+  },
+  {
+    "title": "The Architecture of Cities",
+    "level": "C1",
+    "theme": "Society",
+    "body": "A city is far more than the sum of its buildings; it is an accumulation of decisions, compromises and ambitions stretching across generations. The width of a street, the placement of a square, the height permitted for a tower: each reflects the priorities of those who held power at a particular moment, and each subtly shapes the lives of those who come after. Where planners imagine clean lines and rational order, inhabitants invariably introduce their own messy, unpredictable patterns of use, transforming a neglected alley into a market or a grand avenue into a place of quiet retreat. The most successful cities are not those that impose a single vision, but those flexible enough to absorb the constant negotiation between the intentions of designers and the stubborn ingenuity of the people who actually live there."
+  }
+]

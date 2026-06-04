@@ -1,0 +1,18 @@
+<Application x:Class="EnglishStudio.App.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:EnglishStudio.App"
+             xmlns:conv="clr-namespace:EnglishStudio.App.Converters">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- [0] Палитра — подменяется через ThemeManager в runtime -->
+                <ResourceDictionary Source="pack://application:,,,/EnglishStudio.App;component/Themes/Palettes/DarkBlue.xaml" />
+                <!-- [1] Шаблоны контролов — ссылаются на палитру через DynamicResource -->
+                <ResourceDictionary Source="pack://application:,,,/EnglishStudio.App;component/Themes/Controls.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:EnumBoolConverter x:Key="EnumBoolConverter" />
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

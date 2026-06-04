@@ -1,0 +1,25 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/EnglishStudio.App/EnglishStudio.App.csproj" />
+    <Project Path="src/EnglishStudio.Content/EnglishStudio.Content.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Dictionary/EnglishStudio.Modules.Dictionary.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ai/EnglishStudio.Modules.Ai.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Core/EnglishStudio.Modules.Ielts.Core.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Reading/EnglishStudio.Modules.Ielts.Reading.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Listening/EnglishStudio.Modules.Ielts.Listening.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Writing/EnglishStudio.Modules.Ielts.Writing.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Speaking/EnglishStudio.Modules.Ielts.Speaking.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Ielts.Mock/EnglishStudio.Modules.Ielts.Mock.csproj" />
+    <Project Path="src/EnglishStudio.Modules.Reading/EnglishStudio.Modules.Reading.csproj" />
+  </Folder>
+  <Folder Name="/tools/">
+    <Project Path="tools/ContentPackBuilder/EnglishStudio.ContentPackBuilder.csproj" />
+    <Project Path="tools/IeltsReadingGen/EnglishStudio.IeltsReadingGen.csproj" />
+    <Project Path="tools/IeltsWritingBandGen/EnglishStudio.IeltsWritingBandGen.csproj" />
+    <Project Path="tools/IeltsSpeakingBankGen/EnglishStudio.IeltsSpeakingBankGen.csproj" />
+    <Project Path="tools/IeltsSpeakingAnswerSynth/EnglishStudio.IeltsSpeakingAnswerSynth.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/EnglishStudio.Integration.Tests/EnglishStudio.Integration.Tests.csproj" />
+  </Folder>
+</Solution>

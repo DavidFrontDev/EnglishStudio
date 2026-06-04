@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>EnglishStudio.ContentPackBuilder</RootNamespace>
+  </PropertyGroup>
+
+  <!-- References the IELTS modules to reuse their seed DTOs (test codes + media paths) and the
+       Dictionary.Content manifest types, so the pack layout stays in lockstep with the seeders. -->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\EnglishStudio.Modules.Ielts.Reading\EnglishStudio.Modules.Ielts.Reading.csproj" />
+    <ProjectReference Include="..\..\src\EnglishStudio.Modules.Ielts.Listening\EnglishStudio.Modules.Ielts.Listening.csproj" />
+    <ProjectReference Include="..\..\src\EnglishStudio.Modules.Ielts.Writing\EnglishStudio.Modules.Ielts.Writing.csproj" />
+  </ItemGroup>
+
+</Project>

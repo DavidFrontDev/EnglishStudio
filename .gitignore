@@ -1,0 +1,66 @@
+bin/
+obj/
+.vs/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.swp
+.DS_Store
+Thumbs.db
+
+# Temp files used during seed conversion
+.tmp_*.json
+
+# App-local data (created at runtime in %AppData%, but just in case)
+*.db
+*.db-shm
+*.db-wal
+
+# Secrets
+appsettings.Local.json
+secrets.json
+.env
+
+# ────────────────────────────────────────────────────────────────────────────
+# Third-party COPYRIGHTED study content — MUST NOT be committed.
+# Cambridge IELTS tests/audio/figures, Oxford 5000, PHaVE (see NOTICE / README).
+# Local builds still work: MSBuild reads these from disk; they just never enter
+# Git. AWL/AVL seeds (CC0) are intentionally NOT ignored. Before making the repo
+# public, externalise content so a fresh clone builds without these files.
+# ────────────────────────────────────────────────────────────────────────────
+
+# Listening — Cambridge audio, maps, transcripts, test JSON
+src/EnglishStudio.Modules.Ielts.Listening/Seed/Audio/
+src/EnglishStudio.Modules.Ielts.Listening/Seed/Images/
+src/EnglishStudio.Modules.Ielts.Listening/Seed/Transcripts/
+src/EnglishStudio.Modules.Ielts.Listening/Seed/ielts_listening_tests.json
+
+# Reading — Cambridge passages/questions + figures
+src/EnglishStudio.Modules.Ielts.Reading/Seed/Images/
+src/EnglishStudio.Modules.Ielts.Reading/Seed/ielts_reading_tests.json
+
+# Writing — Cambridge prompts + Task 1 figures
+src/EnglishStudio.Modules.Ielts.Writing/Seed/Images/
+src/EnglishStudio.Modules.Ielts.Writing/Seed/writing_tests.json
+
+# Dictionary — Oxford 5000 (OUP) and PHaVE
+src/EnglishStudio.Modules.Dictionary/Seed/oxford_5000.json
+src/EnglishStudio.Modules.Dictionary/Seed/phave.json
+
+# AI rubrics — derived from official IELTS public band descriptors (copyright). Shipped via the
+# content-pack (Rubrics/ section), loaded at runtime from IeltsContent\Rubrics\ — never committed.
+src/EnglishStudio.Modules.Ai/Rubrics/IeltsRubric_Writing.md
+src/EnglishStudio.Modules.Ai/Rubrics/IeltsRubric_Speaking.md
+
+# Built content-pack output (ContentPackBuilder) — copyright bundle, never commit.
+EnglishStudio-Content/
+/content/
+*.content-pack.zip

@@ -1,0 +1,28 @@
+<UserControl x:Class="EnglishStudio.App.Views.Speaking.SpeakingModuleView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
+             xmlns:views="clr-namespace:EnglishStudio.App.Views.Speaking"
+             xmlns:controls="clr-namespace:EnglishStudio.App.Views.Controls"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:SpeakingHubViewModel}"
+             d:DesignHeight="700" d:DesignWidth="1100">
+
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <DataTemplate DataType="{x:Type vm:SpeakingResultScreen}">
+            <views:SpeakingResultView />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <views:SpeakingHubView Visibility="{Binding IsHubVisible, Converter={StaticResource BoolToVis}}" />
+        <ContentControl Content="{Binding CurrentScreen}" />
+        <controls:ContentMissingView
+            Visibility="{Binding IsContentMissing, Converter={StaticResource BoolToVis}}"
+            ImportCommand="{Binding OpenImportCommand}"
+            MessageText="{Binding ContentMissingText}" />
+    </Grid>
+</UserControl>

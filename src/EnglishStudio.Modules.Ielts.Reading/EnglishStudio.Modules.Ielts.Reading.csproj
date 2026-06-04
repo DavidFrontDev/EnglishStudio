@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <!-- Reading test JSON + images are copyright content shipped via the separate content-pack
+       (loaded through IContentStore at runtime) — no longer embedded. -->
+
+  <ItemGroup>
+    <ProjectReference Include="..\EnglishStudio.Modules.Ielts.Core\EnglishStudio.Modules.Ielts.Core.csproj" />
+  </ItemGroup>
+
+</Project>

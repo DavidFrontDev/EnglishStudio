@@ -1,0 +1,348 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ls="clr-namespace:EnglishStudio.App.Views.Listening"
+                    xmlns:lvm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
+                    xmlns:q="clr-namespace:EnglishStudio.App.ViewModels.Reading.Questions"
+                    xmlns:ctrls="clr-namespace:EnglishStudio.App.Views.Controls"
+                    xmlns:conv="clr-namespace:EnglishStudio.App.Converters">
+
+    <ResourceDictionary.MergedDictionaries>
+        <!-- Reuse the question DataTemplates (radio / dropdown / etc.) for Radio & Doble cards. -->
+        <ResourceDictionary Source="pack://application:,,,/EnglishStudio.App;component/Views/Reading/QuestionTemplates.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <BooleanToVisibilityConverter x:Key="LBoolToVis" />
+    <conv:NullToVisibilityConverter x:Key="LNullToVis" />
+    <conv:SubtractDoubleConverter x:Key="LSubtract" />
+
+    <!--  Matching dropdown (Doble + Selector matching): wrap card in a Grid whose Auto column joins
+          SharedSizeGroup "LChoiceCard". Combined with Grid.IsSharedSizeScope=True on the parent
+          ItemsControl, every card in the group ends up exactly as wide as the widest one. The stem
+          and dropdown carry a MaxWidth = (viewport − inset) so a long stem/option wraps and the card
+          is capped at the right zone instead of overflowing; short ones still shrink to content.  -->
+    <DataTemplate DataType="{x:Type q:MatchingQuestionViewModel}">
+        <Grid Margin="0,0,0,10" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LChoiceCard" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource CardCompact}" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <Grid Margin="0,0,0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}"
+                                   FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}"
+                                   Margin="0,0,8,0" VerticalAlignment="Top" />
+                        <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}"
+                                   MaxWidth="{Binding ViewportWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}, Converter={StaticResource LSubtract}, ConverterParameter=70}" />
+                    </Grid>
+                    <ComboBox Style="{StaticResource FlatComboBox}"
+                              ItemsSource="{Binding AvailableTags}"
+                              DisplayMemberPath="Display"
+                              SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
+                              HorizontalAlignment="Left"
+                              MinWidth="120"
+                              MaxWidth="{Binding ViewportWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}, Converter={StaticResource LSubtract}, ConverterParameter=70}"
+                              Margin="20,2,0,0" />
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DataTemplate>
+
+    <!--  Listening override of the single-choice template (Radio MCQ A/B/C): same
+          SharedSizeGroup trick so every MCQ card has the same width.  -->
+    <DataTemplate DataType="{x:Type q:ChoiceSingleQuestionViewModel}">
+        <Grid Margin="0,0,0,10" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" SharedSizeGroup="LChoiceCard" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource CardCompact}" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <Grid Margin="0,0,0,6">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding DisplayNumber, StringFormat='{}{0}.'}"
+                                   FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}"
+                                   Margin="0,0,8,0" VerticalAlignment="Top" />
+                        <TextBlock Grid.Column="1" Text="{Binding Stem}" TextWrapping="Wrap" Style="{StaticResource BodyText}" />
+                    </Grid>
+                    <ItemsControl ItemsSource="{Binding Options}" Margin="20,2,0,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton GroupName="{Binding DataContext.GroupName, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                             Margin="0,3,0,3"
+                                             Foreground="{DynamicResource PrimaryTextBrush}"
+                                             IsChecked="{Binding IsSelected, Mode=TwoWay}">
+                                    <RadioButton.Content>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="0" Text="{Binding Tag}" FontWeight="SemiBold" Margin="0,0,8,0" Foreground="{DynamicResource AccentHotBrush}" VerticalAlignment="Top" />
+                                            <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                        </Grid>
+                                    </RadioButton.Content>
+                                </RadioButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </DataTemplate>
+
+    <!--  Shared header: part title + range + instruction  -->
+    <DataTemplate x:Key="ListeningCardHeader" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <StackPanel Margin="0,0,0,14">
+            <StackPanel Orientation="Horizontal">
+                <Border Background="{DynamicResource AccentHotBrush}" CornerRadius="6" Padding="7,1" Margin="0,0,8,0">
+                    <TextBlock Text="{Binding KindLabel}" Foreground="White" FontSize="11" FontWeight="SemiBold" />
+                </Border>
+                <TextBlock Text="{Binding PartTitle}" Style="{StaticResource Caption}" VerticalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Text="{Binding RangeLabel}" Style="{StaticResource H2}" Margin="0,6,0,0" />
+            <TextBlock Text="{Binding Instruction}"
+                       Style="{StaticResource MutedText}"
+                       TextWrapping="Wrap"
+                       Margin="0,4,0,0"
+                       Visibility="{Binding Instruction, Converter={StaticResource LNullToVis}}" />
+        </StackPanel>
+    </DataTemplate>
+
+    <!--  Shared options box (word box / list of letters)  -->
+    <DataTemplate x:Key="ListeningSharedList" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <Border Background="{DynamicResource OverlayDark27Brush}"
+                BorderBrush="{DynamicResource OverlayLight17Brush}"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="12,10"
+                Margin="0,0,0,12"
+                Visibility="{Binding HasSharedOptions, Converter={StaticResource LBoolToVis}}">
+            <StackPanel>
+                <TextBlock Text="{Binding SharedListTitle}"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource StrongTextBrush}"
+                           Margin="0,0,0,6"
+                           Visibility="{Binding SharedListTitle, Converter={StaticResource LNullToVis}}" />
+                <ItemsControl ItemsSource="{Binding SharedOptions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,1" Foreground="{DynamicResource PrimaryTextBrush}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </Border>
+    </DataTemplate>
+
+    <!--  ═══ ANKETA (StructuredNotes): title + sections + bullets with inline gaps ═══
+          Outer Border is HorizontalAlignment=Left so it shrinks to the widest line of the
+          form (the renderer disables text wrapping so width = longest natural line + padding).  -->
+    <DataTemplate x:Key="AnketaCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <Border Background="{DynamicResource OverlayDark20Brush}"
+                        BorderBrush="{DynamicResource OverlayLight17Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="16,14"
+                        HorizontalAlignment="Left">
+                    <StackPanel ls:StructuredNotesRenderer.Card="{Binding}" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ TABLE: bordered grid with inline gaps in cells ═══
+          HorizontalAlignment=Left so the table doesn't stretch to the whole card width —
+          the renderer assigns Width=Auto to every column so each column hugs its widest cell.  -->
+    <DataTemplate x:Key="TableCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <StackPanel ls:TableRenderer.Card="{Binding}" HorizontalAlignment="Left" />
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ CASCADE (flow chart): bordered blocks chained by downward arrows ═══
+          Grid.IsSharedSizeScope=True on host so every block (wrapped in a Grid with a single
+          Auto column joining the same SharedSizeGroup) ends up the same width = the widest
+          block's natural width.  -->
+    <DataTemplate x:Key="CascadeCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <StackPanel ls:CascadeRenderer.Card="{Binding}" Margin="0,4,0,0" Grid.IsSharedSizeScope="True" />
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ CASCADE_IMAGE: legend image (A–H) + flow chart with inline letter dropdowns ═══  -->
+    <DataTemplate x:Key="CascadeImageCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <!-- Option-box image on top, like Comparison cards. -->
+                <Border Background="#FFFFFFFF"
+                        BorderBrush="{DynamicResource OverlayLight20Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="6"
+                        Margin="0,0,0,12" HorizontalAlignment="Left"
+                        Visibility="{Binding HasImage, Converter={StaticResource LBoolToVis}}">
+                    <ctrls:ZoomableImage Source="{Binding ImagePath}" Stretch="Uniform" MaxImageHeight="280" MaxImageWidth="440" />
+                </Border>
+                <!-- Fallback text legend when no image — shows the A./B./… lines. -->
+                <ContentControl Content="{Binding}"
+                                ContentTemplate="{StaticResource ListeningSharedList}"
+                                Visibility="{Binding ShowLegend, Converter={StaticResource LBoolToVis}}" />
+                <StackPanel ls:CascadeImageRenderer.Card="{Binding}" Margin="0,4,0,0" Grid.IsSharedSizeScope="True" />
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ COMPARISON (MapLabeling): image + numbered items with letter gaps ═══
+          Image stays centred at the top; numbered rows below are indented ~10 tabs (200px)
+          from the card's left edge so the question number visually sits in a margin.  -->
+    <DataTemplate x:Key="ComparisonCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <Border Background="#FFFFFFFF"
+                        BorderBrush="{DynamicResource OverlayLight20Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="6"
+                        Margin="0,0,0,12" HorizontalAlignment="Center"
+                        Visibility="{Binding HasImage, Converter={StaticResource LBoolToVis}}">
+                    <ctrls:ZoomableImage Source="{Binding ImagePath}" Stretch="Uniform" MaxImageHeight="360" MaxImageWidth="520" />
+                </Border>
+                <Border Background="{DynamicResource OverlayDark27Brush}"
+                        BorderBrush="{DynamicResource OverlayLight17Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="12,10" Margin="0,0,0,12"
+                        Visibility="{Binding ShowLegend, Converter={StaticResource LBoolToVis}}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding SharedListTitle}" FontWeight="SemiBold"
+                                   Foreground="{DynamicResource StrongTextBrush}" Margin="0,0,0,6"
+                                   Visibility="{Binding SharedListTitle, Converter={StaticResource LNullToVis}}" />
+                        <ItemsControl ItemsSource="{Binding SharedOptions}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" TextWrapping="Wrap" Margin="0,1" Foreground="{DynamicResource PrimaryTextBrush}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Border>
+                <ItemsControl ItemsSource="{Binding Questions}" Margin="200,0,0,0">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate DataType="{x:Type q:TextInputQuestionViewModel}">
+                            <TextBlock TextWrapping="Wrap" Margin="0,5" LineHeight="30"
+                                       FontSize="14" Foreground="{DynamicResource PrimaryTextBrush}">
+                                <Run Text="{Binding DisplayNumber, Mode=OneWay}" FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}" /><Run Text=".  " /><Run Text="{Binding Stem, Mode=OneWay}" /><Run Text="  " /><InlineUIContainer BaselineAlignment="Bottom"><ls:GapInputBox Question="{Binding}" /></InlineUIContainer>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ CHOICE (FlatList): Radio / Doble — header + shared options + question VMs ═══
+          Grid.IsSharedSizeScope=True so the MatchingQuestionViewModel / ChoiceSingleQuestionViewModel
+          templates above can equalise widths across all question blocks via SharedSizeGroup="LChoiceCard".  -->
+    <DataTemplate x:Key="ChoiceCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <!-- Hidden on Doble cards: every dropdown already lists the lettered options in full. -->
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningSharedList}"
+                                Visibility="{Binding ShowSharedListBox, Converter={StaticResource LBoolToVis}}" />
+                <ItemsControl ItemsSource="{Binding Questions}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ SUMMARY_FLOW: wrapping summary prose with inline free-text gaps ═══  -->
+    <DataTemplate x:Key="SummaryFlowCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <Border Background="{DynamicResource OverlayDark20Brush}"
+                        BorderBrush="{DynamicResource OverlayLight17Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="16,14">
+                    <TextBlock ls:SummaryFlowGapRenderer.Card="{Binding}"
+                               FontSize="14.5" Foreground="{DynamicResource PrimaryTextBrush}" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ SELECTOR: instruction + optional legend image + numbered rows with dropdowns ═══
+          Covers TFNG/YNG (chips/dropdown), matching to sections (A–G), headings (i–x),
+          and sentence endings (A–F, with legend image = "Selector_Image").  -->
+    <DataTemplate x:Key="SelectorCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel HorizontalAlignment="Left">
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <!-- Option legend as image (Selector_Image), when present. -->
+                <Border Background="#FFFFFFFF"
+                        BorderBrush="{DynamicResource OverlayLight20Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="6"
+                        Margin="0,0,0,12" HorizontalAlignment="Left"
+                        Visibility="{Binding HasImage, Converter={StaticResource LBoolToVis}}">
+                    <ctrls:ZoomableImage Source="{Binding ImagePath}" Stretch="Uniform" MaxImageHeight="300" MaxImageWidth="520" />
+                </Border>
+                <!-- Text legend fallback when there's no image — only for a meaningful list (headings i–x,
+                     endings A–F). A bare "A,B,…G" derived from a "sections A-G" range carries nothing the
+                     dropdowns don't already show, so it's hidden. -->
+                <ContentControl Content="{Binding}"
+                                ContentTemplate="{StaticResource ListeningSharedList}"
+                                Visibility="{Binding ShowLegend, Converter={StaticResource LBoolToVis}}" />
+                <!-- Equal-width cards (SharedSizeGroup in the matching template) capped at the zone. -->
+                <ItemsControl ItemsSource="{Binding Questions}" Grid.IsSharedSizeScope="True">
+                    <ItemsControl.ItemContainerStyle>
+                        <Style TargetType="ContentPresenter">
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+    <!--  ═══ ANKETA_IMAGE: legend image (A–H) + flowing prose with inline letter dropdowns ═══
+          HorizontalScrollBarVisibility=Disabled keeps the prose constrained to the card width so it
+          wraps (Auto would measure it at infinite width, overflowing the right zone).  -->
+    <DataTemplate x:Key="AnketaImageCardTemplate" DataType="{x:Type lvm:ListeningCardViewModel}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel>
+                <ContentControl Content="{Binding}" ContentTemplate="{StaticResource ListeningCardHeader}" />
+                <Border Background="#FFFFFFFF"
+                        BorderBrush="{DynamicResource OverlayLight20Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="6"
+                        Margin="0,0,0,12" HorizontalAlignment="Left"
+                        Visibility="{Binding HasImage, Converter={StaticResource LBoolToVis}}">
+                    <ctrls:ZoomableImage Source="{Binding ImagePath}" Stretch="Uniform" MaxImageHeight="280" MaxImageWidth="440" />
+                </Border>
+                <ContentControl Content="{Binding}"
+                                ContentTemplate="{StaticResource ListeningSharedList}"
+                                Visibility="{Binding ShowLegend, Converter={StaticResource LBoolToVis}}" />
+                <Border Background="{DynamicResource OverlayDark20Brush}"
+                        BorderBrush="{DynamicResource OverlayLight17Brush}"
+                        BorderThickness="1" CornerRadius="6" Padding="16,14">
+                    <TextBlock ls:AnketaImageRenderer.Card="{Binding}"
+                               FontSize="14.5" Foreground="{DynamicResource PrimaryTextBrush}" />
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
+    </DataTemplate>
+
+</ResourceDictionary>

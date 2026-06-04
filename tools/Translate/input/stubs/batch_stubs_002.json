@@ -1,0 +1,2331 @@
+{
+  "BatchId": "stubs_002",
+  "Count": 110,
+  "Items": [
+    {
+      "Kind": "word",
+      "Id": 6139,
+      "Headword": "migrant",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A migratory bird or other animal.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Traveller or worker who moves from one region or country to another.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "An immigrant or refugee.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Any of various pierid butterflies of the genus Catopsilia. Also called an emigrant.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6126,
+      "Headword": "missionary",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who is sent on a mission.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A person who travels attempting to spread a religion or a creed.",
+          "ExampleEn": "A missionary was just trying to convert me to his religion."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A religious messenger.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The missionary position for sexual intercourse.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6105,
+      "Headword": "molecule",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The smallest particle of a specific element or compound that retains the chemical properties of that element or compound; two or more atoms held together by chemical bonds.",
+          "ExampleEn": "Hydrogen chloride is a diatomic molecule, consisting of a hydrogen atom and a chlorine atom."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A tiny amount.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6084,
+      "Headword": "mortality",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The state or quality of being mortal.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The number of deaths.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Death.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Mortals collectively.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6135,
+      "Headword": "narrator",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who narrates or tells stories.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The person or the \"voice\" whose viewpoint is used in telling a story.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The person providing the voice-over in a documentary.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6134,
+      "Headword": "nationalism",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Patriotism; the idea of supporting one's country, people or culture.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Support for the creation of a sovereign nation (which does not currently exist).",
+          "ExampleEn": "Basque nationalism"
+        },
+        {
+          "Index": 2,
+          "DefEn": "Support for the union of Northern Ireland and the Republic of Ireland.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6041,
+      "Headword": "neighbor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A person living on adjacent or nearby land; a person situated adjacently or nearby; anything (of the same type of thing as the subject) in an adjacent or nearby position.",
+          "ExampleEn": "My neighbour has two noisy cats."
+        },
+        {
+          "Index": 1,
+          "DefEn": "One who is near in sympathy or confidence.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A fellow human being.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6037,
+      "Headword": "neighborhood",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The quality of being a neighbor, of living nearby, next to each-other; proximity.",
+          "ExampleEn": "Our neighborhood was our only reason to exchange hollow greetings."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Close proximity, nearby area; particularly, close proximity to one's home.",
+          "ExampleEn": "He lives in my neighborhood."
+        },
+        {
+          "Index": 2,
+          "DefEn": "The inhabitants of a residential area.",
+          "ExampleEn": "The fire alarmed the neighborhood."
+        },
+        {
+          "Index": 3,
+          "DefEn": "A formal or informal division of a municipality or region.",
+          "ExampleEn": "We have just moved to a pleasant neighborhood."
+        },
+        {
+          "Index": 4,
+          "DefEn": "An approximate amount.",
+          "ExampleEn": "He must be making in the neighborhood of $200,000 per year."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6098,
+      "Headword": "nineteenth",
+      "Pos": "num",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The person or thing in the nineteenth position.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "One of nineteen equal parts of a whole.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The ordinal form of the number nineteen.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5969,
+      "Headword": "notwithstanding",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An instance of the word \"notwithstanding\", often characteristic of legalese.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Nevertheless, all the same.",
+          "ExampleEn": "He, notwithstanding, persisted in his inquiries."
+        },
+        {
+          "Index": 2,
+          "DefEn": "In spite of, despite.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Although.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6142,
+      "Headword": "nutrient",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A source of nourishment, such as food, that can be metabolized by an organism to give energy and build tissue.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6125,
+      "Headword": "observatory",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A place where stars, planets and other celestial bodies are observed, usually through a telescope; also place for observing meteorological or other natural phenomena.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A lookout (vantage point with a view of the surrounding area)",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5954,
+      "Headword": "offset",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Anything that acts as counterbalance; a compensating equivalent.",
+          "ExampleEn": "Today's victory was an offset to yesterday's defeat."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A form of countertrade arrangement, in which the seller agrees to purchase within a set time frame products of a certain value from the buying country. This kind of agreement may be used in large international public sector contracts such as arms sales.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(c. 1555) A time at which something begins; outset.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The offset printing process, in which ink is carried from a metal plate to a rubber blanket and from there to the printing surface.",
+          "ExampleEn": "offset lithographs"
+        },
+        {
+          "Index": 4,
+          "DefEn": "The difference between a target memory address and a base address.",
+          "ExampleEn": "An array of bytes uses its index as the offset, of words a multiple thereof."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6104,
+      "Headword": "operating",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To perform a work or labour; to exert power or strength, physical or mechanical; to act.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To produce an appropriate physical effect; to issue in the result designed by nature; especially to take appropriate effect on the human system.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To act or produce effect on the mind; to exert moral power or influence.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To perform some manual act upon a human body in a methodical manner, and usually with instruments, with a view to restore soundness or health, as in amputation, lithotomy, etc.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To deal in stocks or any commodity with a view to speculative profits.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6121,
+      "Headword": "orbit",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A circular or elliptical path of one object around another object, particularly in astronomy and space travel.",
+          "ExampleEn": "The Moon's orbit around the Earth takes nearly one month to complete."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A sphere of influence; an area of control.",
+          "ExampleEn": "In the post WWII era, several eastern European countries came into the orbit of the Soviet Union."
+        },
+        {
+          "Index": 2,
+          "DefEn": "The course of one's usual progression, or the extent of one's typical range.",
+          "ExampleEn": "The convenience store was a heavily travelled point in her daily orbit, as she purchased both cigarettes and lottery tickets there."
+        },
+        {
+          "Index": 3,
+          "DefEn": "The bony cavity containing the eyeball; the eye socket.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A mathematical function that describes the wave-like behavior of an electron in an atom; area of the highest probability of electron´s occurrence around the atom's nucleus.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6074,
+      "Headword": "organism",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A discrete and complete living thing, such as animal, plant, fungus or microorganism.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(by extension) Any complex thing with properties normally associated with living things.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5976,
+      "Headword": "others",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An other, another (person, etc), more often rendered as another.",
+          "ExampleEn": "I'm afraid little Robbie does not always play well with others."
+        },
+        {
+          "Index": 1,
+          "DefEn": "The other one; the second of two.",
+          "ExampleEn": "One boat is not better than the other."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Other people.",
+          "ExampleEn": "I treat others like I treat myself."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Those remaining after one or more people or items have left, or done something else, or been excluded.",
+          "ExampleEn": "Two decided to hide, the others surrendered.\u00A0\u00A0 I kept two special jars and threw away all the others."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5962,
+      "Headword": "overlap",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Something that overlaps or is overlapped",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A situation in the game where an attacking line has more players in it than the defensive line coming to meet it. The attacking side may exploit the overlap by using their superior numbers to break the opposition's defensive line. If attackers outnumber defenders by more than one player this is often termed a two man overlap or three man overlap, etc. If the attacking side fails to break through usually due to poor execution, they are said to waste an overlap.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The payment of a spouse's or other dependant's annuity benefits concurrently with the member's benefits, on death of the member during the guarantee period.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To extend over and partly cover something.",
+          "ExampleEn": "The mouse-mat overlapped the edge of the desk."
+        },
+        {
+          "Index": 4,
+          "DefEn": "To have an area, range, character or function in common.",
+          "ExampleEn": "The two maps overlapped at the east and west edges."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5946,
+      "Headword": "paradigm",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A pattern, a way of doing something, especially a pattern of thought, a system of beliefs, a conceptual framework.",
+          "ExampleEn": "Thomas Kuhn's landmark “The Structure of Scientific Revolutions” got people talking about paradigm shifts, to the point the word itself now suggests an incomplete or biased perspective."
+        },
+        {
+          "Index": 1,
+          "DefEn": "An example serving as the model for such a pattern.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A set of all forms which contain a common element, especially the set of all inflectional forms of a word or a particular grammatical category.",
+          "ExampleEn": "The paradigm of \"go\" is \"go, went, gone.\""
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6053,
+      "Headword": "particle",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A very small piece of matter, a fragment; especially, the smallest possible part of something.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Any of various physical objects making up the constituent parts of an atom; an elementary particle or subatomic particle.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A word that has a particular grammatical function but does not obviously belong to any particular part of speech, such as the word to in English infinitives or O as a vocative particle.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A part of speech which cannot be inflected: an adverb, preposition, conjunction or interjection.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "In the Roman Catholic church, a crumb of consecrated bread; also the smaller breads used in the communion of the laity.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6043,
+      "Headword": "perceived",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Generally recognized to be true.",
+          "ExampleEn": "The perceived wisdom is that people do not go in large numbers to black-and-white movies anymore"
+        },
+        {
+          "Index": 1,
+          "DefEn": "As seen or understood by an individual.",
+          "ExampleEn": "In product design, where one deals with real, physical objects, there can be both real and perceived affordances, and the two need not be the same."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6085,
+      "Headword": "politically",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a political manner",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Regarding politics, in a way connected to politics",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6138,
+      "Headword": "positively",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(manner) In a positive manner.",
+          "ExampleEn": "He approached the interview positively."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(modal) With certainty.",
+          "ExampleEn": "I will positively be there at 8 a.m."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(degree) Very.",
+          "ExampleEn": "I had a positively wonderful time."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6093,
+      "Headword": "predictor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Something that anticipates, predicts or foretells.",
+          "ExampleEn": "The predictor in the traffic-light control circuit tries to figure out how fast to change the lights."
+        },
+        {
+          "Index": 1,
+          "DefEn": "An independent variable.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6068,
+      "Headword": "proposed",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To suggest a plan, course of action, etc.",
+          "ExampleEn": "I propose going to see a film."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(sometimes followed by to) To ask for a person's hand in marriage.",
+          "ExampleEn": "He proposed to her last night and she accepted him."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To intend.",
+          "ExampleEn": "He proposes to set up his own business."
+        },
+        {
+          "Index": 3,
+          "DefEn": "To talk; to converse.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To set forth.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6076,
+      "Headword": "provided",
+      "Pos": "conj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Only if (the stipulation that follows is true).",
+          "ExampleEn": "You can go to the party provided you finish all your homework first."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6050,
+      "Headword": "provider",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who, or that which, provides a service, commodity, or the means for subsistence.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5963,
+      "Headword": "qualitative",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Something qualitative.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of descriptions or distinctions based on some quality rather than on some quantity.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Of a form of analysis that yields the identity of a compound.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5964,
+      "Headword": "refine",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To purify; reduce to a fine, unmixed, or pure state; to free from impurities.",
+          "ExampleEn": "to refine gold"
+        },
+        {
+          "Index": 1,
+          "DefEn": "To become pure; to be cleared of impure matter.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To purify of coarseness, vulgarity, inelegance, etc.; to polish.",
+          "ExampleEn": "a refined style"
+        },
+        {
+          "Index": 3,
+          "DefEn": "To improve in accuracy, delicacy, or excellence.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To make nice or subtle.",
+          "ExampleEn": "to refine someone's language"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5996,
+      "Headword": "regarding",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Concerning, respecting.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6052,
+      "Headword": "regression",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An action of regressing, a return to a previous state.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "An action of travelling mentally back in time.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A psychotherapeutic method whereby healing is facilitated by inducing the patient to act out behaviour typical of an earlier developmental stage.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "An analytic method to measure the association of one or more independent variables with a dependent variable.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "An equation using specified and associated data for two or more variables such that one variable can be estimated from the remaining variable(s).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6057,
+      "Headword": "remaining",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Which remains, especially after something else has been removed.",
+          "ExampleEn": "May I have the only remaining cake?"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6132,
+      "Headword": "required",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Necessary; obligatory; mandatory.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5988,
+      "Headword": "respondent",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who responds; one who replies.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A defendant, especially in a case instituted by a petition or in appellate and divorce proceedings.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A person replying to a questionnaire.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5965,
+      "Headword": "rigid",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A bicycle with no suspension system.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Stiff, rather than flexible.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Fixed, rather than moving.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Rigorous and unbending.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Uncompromising.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6011,
+      "Headword": "sales",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A hall.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "An exchange of goods or services for currency or credit.",
+          "ExampleEn": "He celebrated after the sale of company."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(Short for discount sale) The sale of goods at reduced prices.",
+          "ExampleEn": "They are having a clearance sale: 50% off."
+        },
+        {
+          "Index": 3,
+          "DefEn": "The act of putting up for auction to the highest bidder.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The activities involved in selling goods or services.",
+          "ExampleEn": "He's likable and motivated: perfect for a career in sales."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6115,
+      "Headword": "selected",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That have been selected or chosen.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6071,
+      "Headword": "self-esteem",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Confidence in one's own worth; self-respect.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6081,
+      "Headword": "shared",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Used by multiple entities or for multiple purposes or in multiple ways.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6045,
+      "Headword": "sidebar",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A short news story printed alongside a larger one.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A block of information placed at the side of a printed page.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A block of information placed at the side of a webpage.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A short conference, between a judge and the attorneys of a case, held outside the jury's hearing; the place where this happens.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "An accessory side note or aside made during a conversation, without changing the scope of the audience.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6118,
+      "Headword": "socially",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a social manner; sociably.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "In social contexts.",
+          "ExampleEn": "socially awkward"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6129,
+      "Headword": "socioeconomic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or pertaining to social and economic factors.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6099,
+      "Headword": "spatial",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Pertaining to (the dimension of) space.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Pertaining to (outer) space.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6097,
+      "Headword": "statistically",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a statistical way.",
+          "ExampleEn": "He made his point statistically."
+        },
+        {
+          "Index": 1,
+          "DefEn": "From a statistical point of view.",
+          "ExampleEn": "Statistically, the study was almost worthless."
+        },
+        {
+          "Index": 2,
+          "DefEn": "From statistical evidence.",
+          "ExampleEn": "Statistically, what he said is true."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6044,
+      "Headword": "statistics",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A mathematical science concerned with data collection, presentation, analysis, and interpretation.",
+          "ExampleEn": "Statistics is the only mathematical field required for many social sciences."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A systematic collection of data on measurements or observations, often related to demographic information such as population counts, incomes, population counts at different ages, etc.",
+          "ExampleEn": "The statistics from the Census for apportionment are available."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A single item in a statistical study.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A quantity calculated from the data in a sample, which characterises an important aspect in the sample (such as mean or standard deviation).",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A person, or personal event, reduced to being an item of statistical information.",
+          "ExampleEn": "By dying from an overdose, he became just another statistic."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6087,
+      "Headword": "statute",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Written law, as laid down by the legislature.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(common law) Legislated rule of society which has been given the force of law by those it governs.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5966,
+      "Headword": "subordinate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who is subordinate.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make subservient.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To treat as of less value or importance.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To make of lower priority in order of payment in bankruptcy.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Placed in a lower class, rank, or position.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6091,
+      "Headword": "subscale",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A subdivision of a scale.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6096,
+      "Headword": "supposed",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Presumed to be true, but without proof",
+          "ExampleEn": "Jesus is the supposed son of God."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(with infinitive) Generally considered or expected.",
+          "ExampleEn": "The movie is supposed to be good."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(with infinitive) Having an obligation.",
+          "ExampleEn": "The phone is supposed to come with a manual."
+        },
+        {
+          "Index": 3,
+          "DefEn": "(with infinitive) Intended.",
+          "ExampleEn": "The phone is supposed to save us time."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6000,
+      "Headword": "telescope",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A monocular optical instrument that magnifies distant objects, especially in astronomy.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Any instrument used in astronomy for observing distant objects (such as a radio telescope).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6061,
+      "Headword": "theater",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A place or building, consisting of a stage and seating, in which an audience gathers to watch plays, musical performances, public ceremonies, and so on.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A region where a particular action takes place; a specific field of action, usually with reference to war.",
+          "ExampleEn": "His grandfather was in the Pacific theater during the war."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A lecture theatre.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "An operating theatre or locale for human experimentation.",
+          "ExampleEn": "This man is about to die, get him into theater at once!"
+        },
+        {
+          "Index": 4,
+          "DefEn": "A cinema.",
+          "ExampleEn": "We sat in the back row of the theater and threw popcorn at the screen."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6055,
+      "Headword": "theological",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or relating to theology.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5971,
+      "Headword": "these",
+      "Pos": "det",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The thing, item, etc. being indicated.",
+          "ExampleEn": "This isn't the item that I ordered."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5973,
+      "Headword": "those",
+      "Pos": "det",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(demonstrative) The thing, person, idea, quality, event, action or time indicated or understood from context, especially if more remote geographically, temporally or mentally than one designated as \"this\", or if expressing distinction.",
+          "ExampleEn": "He went home, and after that I never saw him again."
+        },
+        {
+          "Index": 1,
+          "DefEn": "The known (thing); used to refer to something just said.",
+          "ExampleEn": "They're getting divorced. What do you think about that?"
+        },
+        {
+          "Index": 2,
+          "DefEn": "(demonstrative) The aforementioned quality or proposition; used to emphatically affirm or deny a previous statement or question.",
+          "ExampleEn": "The water is so cold! — That it is."
+        },
+        {
+          "Index": 3,
+          "DefEn": "(relative) (plural that) Which, who; representing a subject, direct object, indirect object, or object of a preposition.",
+          "ExampleEn": "The CPR course that she took really came in handy."
+        },
+        {
+          "Index": 4,
+          "DefEn": "Used in place of relative adverbs such as where or when; often omitted.",
+          "ExampleEn": "the last time that [= when] I went to Europe"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5978,
+      "Headword": "toward",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In the direction of.",
+          "ExampleEn": "She moved toward the door."
+        },
+        {
+          "Index": 1,
+          "DefEn": "In relation to (someone or something).",
+          "ExampleEn": "What are your feelings toward him?"
+        },
+        {
+          "Index": 2,
+          "DefEn": "For the purpose of attaining (an aim).",
+          "ExampleEn": "I'm saving money toward retirement."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Located close to; near (a time or place).",
+          "ExampleEn": "Our place is over toward the station."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6108,
+      "Headword": "traditionally",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a traditional manner.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "From the beginning.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6100,
+      "Headword": "tumor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An abnormal growth; differential diagnosis includes abscess, metaplasia, and neoplasia.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6101,
+      "Headword": "twentieth",
+      "Pos": "num",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A person or thing in the twentieth position.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "One of twenty equal parts of a whole.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The ordinal form of the number twenty.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6042,
+      "Headword": "variance",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The act of varying or the state of being variable.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A difference between what is expected and what is observed; deviation.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The state of differing or being in conflict.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "An official permit to do something that is ordinarily forbidden by regulations.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A discrepancy between two legal documents.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6030,
+      "Headword": "virtually",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Almost but not quite.",
+          "ExampleEn": "With our medicare supplemental insurance plan, there are virtually no claim forms to fill out. (Advertisement)"
+        },
+        {
+          "Index": 1,
+          "DefEn": "Without exaggeration.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "In essence, but not in fact.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Of a substructure of finite index.",
+          "ExampleEn": "virtually indicable"
+        },
+        {
+          "Index": 4,
+          "DefEn": "Of a covering space of finite index.",
+          "ExampleEn": "virtually Haken"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6128,
+      "Headword": "voter",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Someone who votes.",
+          "ExampleEn": "In your opinion, should we allow 16 and 17 year olds to become voters?"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6082,
+      "Headword": "vs",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Against; in opposition to.",
+          "ExampleEn": "It is the Packers versus the Steelers in the Super Bowl."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Compared with, as opposed to.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Bringing a legal action against, as used in the title of a court case in which the first party indicates the plaintiff (or appellant or the like), and the second indicates the defendant (or respondent or the like).",
+          "ExampleEn": "Brown v. Board of Education of Topeka, Kans."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6003,
+      "Headword": "works",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(heading) Employment.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(heading) Effort.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Sustained effort to achieve a goal or result, especially overcoming obstacles.",
+          "ExampleEn": "We don't have much time. Let's get to work piling up those sandbags."
+        },
+        {
+          "Index": 3,
+          "DefEn": "(heading) Product; the result of effort.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The staging of events to appear as real.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 95,
+      "Headword": "back up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Move or drive backwards a short way",
+          "ExampleEn": "He got into his car and backed up out of the alley."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Take action in order to support STH or make it happen",
+          "ExampleEn": "Politicians often fail to back up their words with actions."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Establish as valid or genuine",
+          "ExampleEn": "You have to back up your accusations with solid evidence."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 99,
+      "Headword": "blow up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Explode or destroy STH with a bomb, or cause to be exploded or destroyed",
+          "ExampleEn": "Several attempts were made at blowing up official buildings."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 55,
+      "Headword": "break down",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Stop working or functioning; fail or collapse (vehicle, device, relationship, negotiations)",
+          "ExampleEn": "Our car broke down yesterday."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Divide or separate into categories or smaller components so as to make it easier to understand or deal with",
+          "ExampleEn": "Let’s break down the task into three easy steps."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Lose control of one’s emotions and yield to tears or distress",
+          "ExampleEn": "He broke down at his son’s funeral."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Undergo chemical decomposition; separate into different substances",
+          "ExampleEn": "Digestion breaks down food into small molecules."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 145,
+      "Headword": "break off",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Separate a part (or become separate) from a larger piece",
+          "ExampleEn": "He accidentally broke off a piece of wood from the fence."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Stop speaking, especially suddenly",
+          "ExampleEn": "“There is something that…” He broke off abruptly."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Put an end to STH (relationship, discussion, talks, negotiations)",
+          "ExampleEn": "They broke off diplomatic relations in"
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 114,
+      "Headword": "break out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Start suddenly, esp. STH undesirable and unpleasant",
+          "ExampleEn": "Riots broke out that night."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 80,
+      "Headword": "break up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "End or cause to end or fail (esp. relationship)",
+          "ExampleEn": "Their marriage broke up in"
+        },
+        {
+          "Index": 1,
+          "DefEn": "2. Divide into smaller parts or components",
+          "ExampleEn": "The USSR broke up into more than 10 countries."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 107,
+      "Headword": "bring about",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Cause to happen or emerge, esp. STH positive",
+          "ExampleEn": "This decision will bring about change in the political sphere."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 44,
+      "Headword": "bring back",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Make STH/SB return to a place, state, situation, or conversation topic",
+          "ExampleEn": "This will bring back war into the country."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Bring STH one has taken from a place they come from",
+          "ExampleEn": "This is the hat he brought back from South America."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 110,
+      "Headword": "bring down",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Cause SB/STH to move downward or fall to the ground",
+          "ExampleEn": "The rocket attack brought down the airliner."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Reduce the level, rate, or amount of STH",
+          "ExampleEn": "The company’s expenses need to be brought down."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Cause SB/STH in a position of power (government, president, system, organisation) to lose its power/status",
+          "ExampleEn": "They helped bring down one of the most corrupt dictatorships in history."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 47,
+      "Headword": "bring in",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Bring STH to a place or situation",
+          "ExampleEn": "I brought in my laptop computer today because my office computer is broken."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Ask SB to do a particular job or task",
+          "ExampleEn": "He had been brought in to save the company."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 81,
+      "Headword": "bring out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Make a particular detail, quality or feeling more noticeable than it usually is",
+          "ExampleEn": "This haircut brings out the natural curl in your hair."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Make SB or STH available for the public or an audience to see, know or buy",
+          "ExampleEn": "The band was about to bring out their new album."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Take STH/SB out of a container or enclosed space",
+          "ExampleEn": "They brought out another plate from the kitchen."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 45,
+      "Headword": "bring up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Raise for discussion or consideration",
+          "ExampleEn": "I didn’t think he would bring up the subject."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Care for/be responsible for a child until it becomes an adult",
+          "ExampleEn": "She brought up her children under very difficult circumstances."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 84,
+      "Headword": "build up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Increase or cause STH to increase, accumulate, or strengthen, especially progressively",
+          "ExampleEn": "Tension was building up among competitors."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 92,
+      "Headword": "call out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Speak or utter loudly",
+          "ExampleEn": "He could hear a voice call out his name."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 100,
+      "Headword": "carry on",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Continue to do or be involved with STH, or make STH continue (especially despite difficulty)",
+          "ExampleEn": "I would like to carry on working after I retire."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Engage or take part in",
+          "ExampleEn": "His illness makes it difficult for him to carry on conversations."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 36,
+      "Headword": "carry out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Perform or complete (task, activity, study, experiment, attack, duties, etc)",
+          "ExampleEn": "The experiment was carried out by a well-known academic."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Put into execution; implement (plan, idea, wishes, orders, views, etc)",
+          "ExampleEn": "Economic reform will soon be carried out."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 53,
+      "Headword": "catch up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(Be/Get caught up) Become involved in STH which prevents SB from making progress or moving forward",
+          "ExampleEn": "He is very busy and always caught up in his work."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Reach SB that is ahead by walking, running, or driving faster",
+          "ExampleEn": "She was running so fast that it was impossible to catch up with her."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Reach the same level or standard as SB who is more advanced",
+          "ExampleEn": "They made considerable improvements, which makes it hard for us to catch up."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 49,
+      "Headword": "check out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Have a look at; examine STH/SB (esp. to get more information or make a judgement)",
+          "ExampleEn": "Check out our website for more information."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 65,
+      "Headword": "clean up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Get rid of dirt, mess, pollution, or chemical substances in a place or area",
+          "ExampleEn": "Make sure you clean up your mess because I won’t do it for you."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Make STH free from dangerous, unacceptable or controversial activities or contents",
+          "ExampleEn": "He was asked to clean up his bad language during his interview."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 148,
+      "Headword": "close down",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Stop operating or functioning",
+          "ExampleEn": "Non-profitable companies were closed down."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 147,
+      "Headword": "come about",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Take place or happen/occur, esp. unexpectedly",
+          "ExampleEn": "I did not expect this to come about."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 112,
+      "Headword": "come along",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Appear or arrive; come into existence",
+          "ExampleEn": "Such an opportunity comes along only once in a lifetime."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Go somewhere with SB",
+          "ExampleEn": "We’re going to the cinema tonight; you should come along with us!"
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 140,
+      "Headword": "come around",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Come in the area near STH/SB",
+          "ExampleEn": "He came around to my room and kissed me goodnight."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(+ to) Convert to an opinion or decision",
+          "ExampleEn": "I believe she will come around to our way of thinking eventually."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Happen again as a regular event, at its usual time",
+          "ExampleEn": "You’ll have to wait until summer comes around."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 3,
+      "Headword": "come back",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Return to a place or a conversation topic",
+          "ExampleEn": "She came back to the kitchen with a bottle of fancy wine."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 31,
+      "Headword": "come down",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Move from a higher spatial location to a lower one; fall/land onto the ground",
+          "ExampleEn": "Come down from the roof or you will hurt yourself."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(+ to) Reduce itself to one particular thing that is the most important or essential matter",
+          "ExampleEn": "What it all comes down to is that the rules have not been respected."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Become lower in amount or value",
+          "ExampleEn": "Interest rates are currently coming down."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 14,
+      "Headword": "come in",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Enter a place or area (room, building)",
+          "ExampleEn": "She opened the door and he came in."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Become involved in a situation",
+          "ExampleEn": "We need experts to come in and give us advice."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 132,
+      "Headword": "come off",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Become detached or removed from a larger whole",
+          "ExampleEn": "The button is coming off my shirt."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Appear or seem to be a particular way",
+          "ExampleEn": "He was tired and not prepared, and so came off poorly in the interview."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Be finished with STH; have completed STH",
+          "ExampleEn": "The team just came off an incredibly successful season."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 25,
+      "Headword": "come on",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Said to encourage SB to try harder, or do or say STH",
+          "ExampleEn": "Come on, don’t be shy and tell us your story."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Said to show SB disbelief, disagreement, or anger",
+          "ExampleEn": "Oh come on, you're just lying to me!"
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 7,
+      "Headword": "come out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Leave a place (room, building, container) or appear from it",
+          "ExampleEn": "She went into the bank and came out with some money."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Become known or revealed after being kept secret",
+          "ExampleEn": "The news came out that he was leaving the team."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(Come out and do STH) Make public knowledge a privately held position",
+          "ExampleEn": "People need to come out and say what they think about it."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Become available or released to the public (film, record, book)",
+          "ExampleEn": "Their new album is coming out next month."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 89,
+      "Headword": "come over",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Come to a place or area (spot, room, town, country), esp. towards SB or to join SB",
+          "ExampleEn": "Could you come over and give me a hand with this?"
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 138,
+      "Headword": "come through",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Be clearly perceived, noticed or seen (feeling, emotion, quality)",
+          "ExampleEn": "Her disappointment came through by the tone of her voice."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Reach success or a desired goal despite difficulty",
+          "ExampleEn": "He worked really hard, and despite some difficulties, he came through in the end."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Arrive at a destination; come into view (train, ship)",
+          "ExampleEn": "We had to wait for a ship to come through and rescue us."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 4,
+      "Headword": "come up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(+ with) Bring forth or produce",
+          "ExampleEn": "She instantly came up with a solution to the problem."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(Be coming up) Be happening soon (esp. be broadcast soon)",
+          "ExampleEn": "Coming up after the news, our cooking program will feature cheese."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 61,
+      "Headword": "cut off",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Remove a part of STH by cutting it",
+          "ExampleEn": "Take the carrots and cut the ends off."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Interrupt SB as they are speaking",
+          "ExampleEn": "The teacher cut off the student in the middle of her sentence."
+        },
+        {
+          "Index": 2,
+          "DefEn": "End the provision of STH, or be deprived of a provision (supply, money)",
+          "ExampleEn": "The government decided to cut off food supplies."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 18,
+      "Headword": "end up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Finally do STH or be in a particular place, state, or situation after doing STH or as a consequence of it, esp. unexpectedly",
+          "ExampleEn": "She ended up having to sell her car after her accident."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 21,
+      "Headword": "figure out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Come to understand or determine STH",
+          "ExampleEn": "Despite her efforts, she couldn’t figure out what had happened."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 141,
+      "Headword": "fill in",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(+ for) Do SB’s work temporarily because they cannot or will not do it themselves",
+          "ExampleEn": "I had to fill in for her yesterday because she was ill."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(+ on) Give SB extra or missing information they want or need",
+          "ExampleEn": "She filled Carol in on the plan."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Put material or substance into STH in order to make it full or complete",
+          "ExampleEn": "All the remaining holes had to be filled in with concrete."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 121,
+      "Headword": "fill out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Complete a form or official document",
+          "ExampleEn": "We had to fill out a dozen forms in total."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 6,
+      "Headword": "find out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Discover STH; obtain knowledge of STH",
+          "ExampleEn": "We need to find out who did this to her."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 137,
+      "Headword": "follow up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Take action about STH after a previous action or thing, esp. so as to reinforce its effect",
+          "ExampleEn": "You won’t be cured immediately after the operation; you will have to follow up with therapy."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Try to find more information about STH",
+          "ExampleEn": "Detectives are following up on a few promising leads."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 19,
+      "Headword": "get back",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Return to a place, position, state, activity, conversation topic",
+          "ExampleEn": "She got back to London last Monday."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 88,
+      "Headword": "get down",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(+ to) Begin to pay serious attention to STH",
+          "ExampleEn": "We should get down to discussing those issues as soon as possible."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Lower one’s body as by kneeling, sitting or lying",
+          "ExampleEn": "Get down on your knees so you can get a better view."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Come down from STH; descend (car, horse, tree)",
+          "ExampleEn": "He loves climbing trees but finds it hard to get down."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 98,
+      "Headword": "get in",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Go (or make STH/SB go) inside a place (car, house, room)",
+          "ExampleEn": "The new security lock prevents thieves from getting in."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(+ on) Get involved in an exciting or profitable activity/opportunity",
+          "ExampleEn": "You should get in on the act!"
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 56,
+      "Headword": "get off",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Go away from, leave (train, bus, aircraft, lift)",
+          "ExampleEn": "You need to take the bus and get off at the third stop."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(Get off to a ... start) Begin something in a certain way",
+          "ExampleEn": "The team has got off to a good start this season."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Manage to avoid serious trouble or consequences (esp. legal punishment)",
+          "ExampleEn": "It’s not right that he could commit such a crime and get off so easily."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 127,
+      "Headword": "get on",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(+ with) Continue doing STH after stopping",
+          "ExampleEn": "We might as well get on with it if we want to finish on time."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Get on board some form of public transportation (train, bus, plane, elevator)",
+          "ExampleEn": "He got on the bus to go to school."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 13,
+      "Headword": "get out",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Leave a container (vehicle, room, building) or make SB/STH leave a container",
+          "ExampleEn": "These prisoners have no hope of ever getting out of jail."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 117,
+      "Headword": "get through",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(+ to) Succeed in reaching a physical destination or stage",
+          "ExampleEn": "The food supplies never got through to the local population."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Be successfully communicated or understood",
+          "ExampleEn": "He needed to speak slowly and clearly so his message would get through to the audience."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Succeed in contacting SB on the telephone",
+          "ExampleEn": "I cannot seem to get through to the customer service department."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Overcome STH, esp. difficult or unpleasant",
+          "ExampleEn": "He gave me useful advice, which helped me get through this difficult situation."
+        }
+      ]
+    },
+    {
+      "Kind": "phrasal",
+      "Id": 23,
+      "Headword": "get up",
+      "Pos": "phrasal_verb",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Rise or cause to rise after lying in bed or sitting/kneeling",
+          "ExampleEn": "She got up out of her chair and put on her shoes."
+        }
+      ]
+    }
+  ]
+}

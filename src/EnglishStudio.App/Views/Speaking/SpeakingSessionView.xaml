@@ -1,0 +1,60 @@
+<UserControl x:Class="EnglishStudio.App.Views.Speaking.SpeakingSessionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
+             xmlns:views="clr-namespace:EnglishStudio.App.Views.Speaking"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:SpeakingSessionViewModel}"
+             d:DesignHeight="720" d:DesignWidth="1100">
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type vm:SpeakingPart1ViewModel}">
+            <views:SpeakingPart1View />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SpeakingPart2ViewModel}">
+            <views:SpeakingPart2View />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type vm:SpeakingPart3ViewModel}">
+            <views:SpeakingPart3View />
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="0,0,0,12">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0"
+                    Content="‹ Отмена"
+                    Style="{StaticResource FlatButton}"
+                    Command="{Binding CancelCommand}" />
+            <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="{Binding SessionTitle}" Style="{StaticResource H2}" HorizontalAlignment="Center" />
+                <TextBlock Text="{Binding ProgressText}" Style="{StaticResource Caption}" HorizontalAlignment="Center" />
+            </StackPanel>
+            <TextBlock Grid.Column="2" />
+        </Grid>
+
+        <Border Grid.Row="1"
+                Background="{DynamicResource OverlayLight13Brush}"
+                CornerRadius="8" Padding="14">
+            <ContentControl Content="{Binding CurrentPartViewModel}" />
+        </Border>
+
+        <TextBlock Grid.Row="2"
+                   Style="{StaticResource MutedText}"
+                   Text="{Binding StatusText}"
+                   Margin="0,8,0,0"
+                   TextWrapping="Wrap" />
+    </Grid>
+</UserControl>

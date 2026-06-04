@@ -1,0 +1,43 @@
+<appshell:ChromedWindow x:Class="EnglishStudio.App.Views.Dialogs.RenameWindow"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:appshell="clr-namespace:EnglishStudio.App.Shell"
+                        mc:Ignorable="d"
+                        Title="Переименовать"
+                        Style="{StaticResource ChromedWindowStyle}"
+                        Width="460"
+                        SizeToContent="Height"
+                        ResizeMode="NoResize"
+                        AllowsTransparency="True"
+                        Background="Transparent"
+                        WindowStyle="None"
+                        WindowStartupLocation="CenterOwner"
+                        ShowInTaskbar="False"
+                        Loaded="OnLoaded">
+    <Border Padding="24,20,24,20">
+        <StackPanel>
+            <TextBlock x:Name="CaptionText"
+                       Text="Новое название"
+                       Style="{StaticResource Caption}"
+                       Margin="0,0,0,6" />
+            <TextBox x:Name="InputBox"
+                     Style="{StaticResource FlatTextBox}" />
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,22,0,0">
+                <Button Content="Отмена"
+                        Style="{StaticResource FlatButton}"
+                        MinWidth="96"
+                        Margin="0,0,10,0"
+                        IsCancel="True"
+                        Click="Cancel_Click" />
+                <Button Content="Сохранить"
+                        Style="{StaticResource AccentButton}"
+                        MinWidth="110"
+                        IsDefault="True"
+                        Click="Save_Click" />
+            </StackPanel>
+        </StackPanel>
+    </Border>
+</appshell:ChromedWindow>

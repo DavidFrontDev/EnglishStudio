@@ -1,0 +1,2696 @@
+{
+  "BatchId": "stubs_001",
+  "Count": 110,
+  "Items": [
+    {
+      "Kind": "word",
+      "Id": 6130,
+      "Headword": "AM",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Before noon.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6083,
+      "Headword": "Bible",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An exemplar of the Bible.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A comprehensive manual that describes something. (e.g., handyman’s bible).",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(at certain US universities) A compilation of problems and solutions from previous years of a given course, used by some students to cheat on tests or assignments.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Omasum, the third compartment of the stomach of ruminants",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A piece of soft sandstone used for scouring the wooden decks of ships, usually with sand and seawater.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5993,
+      "Headword": "Catholic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of the Western Christian church, as differentiated from e.g. the Orthodox church.",
+          "ExampleEn": "Christmas is celebrated at different dates in the Catholic and Orthodox calendars."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of the Roman Catholic church in particular.",
+          "ExampleEn": "Catholic churches are built differently than Protestant ones."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Universal; all-encompassing.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Pertaining to all kinds of people and their range of tastes, proclivities etc.; liberal.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6046,
+      "Headword": "Catholic",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of the Western Christian church, as differentiated from e.g. the Orthodox church.",
+          "ExampleEn": "Christmas is celebrated at different dates in the Catholic and Orthodox calendars."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of the Roman Catholic church in particular.",
+          "ExampleEn": "Catholic churches are built differently than Protestant ones."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Universal; all-encompassing.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Pertaining to all kinds of people and their range of tastes, proclivities etc.; liberal.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5985,
+      "Headword": "Congress",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A coming together of two or more people; a meeting.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A formal gathering or assembly; a conference held to discuss or decide on a specific question.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(often capitalized: Congress) A legislative body of a state, originally the bicameral legislature of the United States of America.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "An association, especially one consisting of other associations or representatives of interest groups.",
+          "ExampleEn": "The National Congress of American Indians"
+        },
+        {
+          "Index": 4,
+          "DefEn": "Coitus; sexual intercourse.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6070,
+      "Headword": "DNA",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The part of a living being that carries genetic information.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A biopolymer of deoxyribonucleic acid (a type of nucleic acid) that has four different chemical groups, called bases: adenine, guanine, cytosine, and thymine.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The fundamental values or vision of an organization.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6103,
+      "Headword": "Democrat",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A supporter of democracy; an advocate of democratic politics (originally as opposed to the aristocrats in Revolutionary France).",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Someone who rules a representative democracy.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A large light uncovered wagon with two or more seats.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6014,
+      "Headword": "English",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Spinning or rotary motion given to a ball around the vertical axis, as in billiards or bowling.",
+          "ExampleEn": "You can't hit it directly, but maybe if you give it some english."
+        },
+        {
+          "Index": 1,
+          "DefEn": "An unusual or unexpected interpretation of a text or idea, a spin, a nuance.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6007,
+      "Headword": "French",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To prepare food by cutting it into strips.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To kiss (another person) while inserting one’s tongue into the other person's mouth.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To kiss in this manner.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To French trim; to stylishly expose bone by removing the fat and meat covering it (as done to a rack of lamb or bone-in rib-eye steak).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6004,
+      "Headword": "German",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having the same mother and father; a full (brother or sister).",
+          "ExampleEn": "brother-german"
+        },
+        {
+          "Index": 1,
+          "DefEn": "Being born to one’s blood aunt or uncle, a first (cousin).",
+          "ExampleEn": "cousin-german"
+        },
+        {
+          "Index": 2,
+          "DefEn": "Closely related, akin.",
+          "ExampleEn": "Wert thou a leopard, thou wert german to the lion."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6127,
+      "Headword": "German",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A near relative.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "An elaborate round dance, often with a waltz movement.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A social party at which the german is danced.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6021,
+      "Headword": "PC",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A percentage, a proportion (especially per hundred).",
+          "ExampleEn": "only a small percent attain the top ranks"
+        },
+        {
+          "Index": 1,
+          "DefEn": "One part per hundred; one percent.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A part of a larger whole, usually in such a form that it is able to be separated from other parts.",
+          "ExampleEn": "I’d like another piece of pie."
+        },
+        {
+          "Index": 3,
+          "DefEn": "A single item belonging to a class of similar items",
+          "ExampleEn": "a piece of machinery"
+        },
+        {
+          "Index": 4,
+          "DefEn": "One of the figures used in playing chess, specifically a higher-value figure as distinguished from a pawn; by extension, a similar counter etc. in other games.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6036,
+      "Headword": "Republican",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Someone who favors a republic as a form of government.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A bird of a kind that builds many nests together: the American cliff swallow, or the South African weaver bird.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6080,
+      "Headword": "Roman",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of type) upright, as opposed to italic",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(of text) of or related to the Latin alphabet",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6056,
+      "Headword": "Senate",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In some bicameral legislative systems, the upper house or chamber.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A group of experienced, respected, wise individuals serving as decision makers or advisors in a political system or in institutional governance, as in a university, and traditionally of advanced age and male.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5992,
+      "Headword": "Soviet",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(history) Pertaining to the Soviet Union or its constituent republics.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Supporting or representing the Soviet Union or Sovietism; Sovietist.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Pertaining to or resembling a soviet (council).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6033,
+      "Headword": "Spanish",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To subject to spanishing, a printing process in which an ink is deposited on the bottoms and sides of depressions formed in a plastic material",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5979,
+      "Headword": "according",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To make to agree or correspond; to suit one thing to another; to adjust.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To bring (people) to an agreement; to reconcile, settle, adjust or harmonize.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To agree or correspond; to be in harmony; to be concordant.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To agree in pitch and tone.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To grant as suitable or proper; to concede or award.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6110,
+      "Headword": "actively",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In an active manner.",
+          "ExampleEn": "He was actively listening."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(grammar) In the active form; not passive.",
+          "ExampleEn": "a word used actively"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6063,
+      "Headword": "affiliation",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The relationship resulting from affiliating one thing with another.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The establishment of a child's paternity or maternity",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A club, society or umbrella organisation so formed, especially a trade union.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5944,
+      "Headword": "aggregate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A mass, assemblage, or sum of particulars; something consisting of elements but considered as a whole.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A mass formed by the union of homogeneous particles; – in distinction from a compound, formed by the union of heterogeneous particles.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A set (collection of objects).",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The full chromatic scale of twelve equal tempered pitches.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The total score in a set of games between teams or competitors, usually the combination of the home and away scores",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6102,
+      "Headword": "alpha",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The name of the first letter of the Greek alphabet (Α,  α), followed by beta. In the Latin alphabet it is the predecessor to A.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Latin alpha",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The name of the symbols Α and α used in science and mathematics, often interchangeable with the symbols when used as a prefix.",
+          "ExampleEn": "I will attempt to make an alpha particle (\"α-particle\") with the Large Hadron Collider."
+        },
+        {
+          "Index": 3,
+          "DefEn": "The return of a given asset or portfolio adjusted for systematic risk.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A person, especially a male, who is dominant, successful and attractive; (see alpha male).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5947,
+      "Headword": "ambiguous",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Open to multiple interpretations.",
+          "ExampleEn": "The politician was criticized for his ambiguous statements and lack of precision."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Vague and unclear.",
+          "ExampleEn": "He gave an ambiguous answer."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(of persons) Hesitant; uncertain; not taking sides.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5998,
+      "Headword": "analyze",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To subject to analysis.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To resolve (anything complex) into its elements.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To separate into the constituent parts, for the purpose of an examination of each separately.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To examine in such a manner as to ascertain the elements or nature of the thing examined; as, to analyze a fossil substance, to analyze a sentence or a word, or to analyze an action to ascertain its morality.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6039,
+      "Headword": "and/or",
+      "Pos": "conj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Joins two alternatives to mean either or both; indicates that inclusive or is meant where or alone might be taken to mean exclusive or.",
+          "ExampleEn": "List three personal and/or business references."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5948,
+      "Headword": "append",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An instance of writing more data to the end of an existing file.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To hang or attach to, as by a string, so that the thing is suspended",
+          "ExampleEn": "An inscription was appended to the column."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To add, as an accessory to the principal thing; to annex",
+          "ExampleEn": "notes appended to a book chapter"
+        },
+        {
+          "Index": 3,
+          "DefEn": "To write more data to the end of a pre-existing file, string, or other object.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6026,
+      "Headword": "astronomer",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who studies astronomy, the stars or the physical universe; a scientist whose area of research is astronomy or astrophysics",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6089,
+      "Headword": "astronomy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The study of the physical universe beyond the Earth's atmosphere, including the process of mapping locations and properties of the matter and radiation in the universe.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Astrology.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6095,
+      "Headword": "athletic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having to do with athletes.",
+          "ExampleEn": "Are you a member of the American Athletic Association?"
+        },
+        {
+          "Index": 1,
+          "DefEn": "Physically active.",
+          "ExampleEn": "Since you're such an athletic person, you may wish to consider joining."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Having a muscular, well developed body, being in shape.",
+          "ExampleEn": "You have such an athletic build—you must work out regularly."
+        },
+        {
+          "Index": 3,
+          "DefEn": "An attribute of a motion or play which requires fine physical ability.",
+          "ExampleEn": "The center fielder made an athletic play to snatch the ball from over the fence."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6133,
+      "Headword": "atom",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The smallest possible amount of matter which still retains its identity as a chemical element, now known to consist of a nucleus surrounded by electrons.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(history of science) A hypothetical particle posited by Greek philosophers as an ultimate and indivisible component of matter.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The smallest, indivisible constituent part or unit of something.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "In logical atomism, a fundamental fact that cannot be further broken down.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The smallest medieval unit of time, equal to fifteen ninety-fourths of a second.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6117,
+      "Headword": "baseline",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A line that is a base for measurement or for construction.",
+          "ExampleEn": "A laser level generates a convenient baseline for interior work."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A datum used as the basis for calculation or for comparison.",
+          "ExampleEn": "We used the last doctor visit to provide baselines for vital statistics."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A line used as the basis for the alignment of glyphs.",
+          "ExampleEn": "Several characters typically have descenders below the lower baseline."
+        },
+        {
+          "Index": 3,
+          "DefEn": "The line at the farthest ends of the court indicating the boundary of the area of play.",
+          "ExampleEn": "The umpire missed the call. The ball hit the baseline."
+        },
+        {
+          "Index": 4,
+          "DefEn": "A configuration of software, hardware, or a process that is established and documented as a point of reference.",
+          "ExampleEn": "The baseline configuration includes unsupported components."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5975,
+      "Headword": "behavior",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Human conduct relative to social norms.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The way a living creature behaves or acts generally.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A state of probation about one's conduct.",
+          "ExampleEn": "He was on his best behavior when her family visited."
+        },
+        {
+          "Index": 3,
+          "DefEn": "An instance of the way a living creature behaves.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Observable response produced by an organism.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6022,
+      "Headword": "behavioral",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or relating to behavior.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5977,
+      "Headword": "center",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The point in the interior of a circle that is equidistant from all points on the circumference.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The point in the interior of a sphere that is equidistant from all points on the circumference.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The middle portion of something; the part well away from the edges.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The point on a line that is midway between the ends.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The point in the interior of any figure of any number of dimensions that has as its coordinates the arithmetic mean of the coordinates of all points on the perimeter of the figure (or of all points in the interior for a center of volume).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6069,
+      "Headword": "changing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To become something different.",
+          "ExampleEn": "The tadpole changed into a frog.\u00A0\u00A0 Stock prices are constantly changing."
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make something into something else.",
+          "ExampleEn": "The fairy changed the frog into a prince.\u00A0\u00A0 I had to change the wording of the ad so it would fit."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To replace.",
+          "ExampleEn": "Ask the janitor to come and change the lightbulb.\u00A0\u00A0 After a brisk walk, I washed up and changed my shirt."
+        },
+        {
+          "Index": 3,
+          "DefEn": "To replace one's clothing.",
+          "ExampleEn": "You can't go into the dressing room while she's changing.\u00A0\u00A0 The clowns changed into their costumes before the circus started."
+        },
+        {
+          "Index": 4,
+          "DefEn": "To replace the clothing of (the one wearing it).",
+          "ExampleEn": "It's your turn to change the baby."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6079,
+      "Headword": "coefficient",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A constant by which an algebraic term is multiplied.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A number, value or item that serves as a measure of some property or characteristic.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5955,
+      "Headword": "coherent",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Unified; sticking together; making up a whole.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Orderly, logical and consistent.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Aesthetically ordered.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Having a natural or due agreement of parts; harmonious: a coherent design.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Of waves having the same direction, wavelength and phase, as light in a laser.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5980,
+      "Headword": "color",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The spectral composition of visible light",
+          "ExampleEn": "Humans and birds can perceive color."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A subset thereof:",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A paint.",
+          "ExampleEn": "The artist took out her colors and began work on a landscape."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Human skin tone, especially as an indicator of race or ethnicity.",
+          "ExampleEn": "Color has been a sensitive issue in many societies."
+        },
+        {
+          "Index": 4,
+          "DefEn": "Skin color, noted as normal, jaundiced, cyanotic, flush, mottled, pale, or ashen as part of the skin signs assessment.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6145,
+      "Headword": "comet",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A celestial body consisting mainly of ice, dust and gas in a (usually very eccentric) orbit around the Sun and having a \"tail\" of matter blown back from it by the solar wind as it approaches the Sun.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A celestial phenomenon with the appearance given by the orbiting celestial body.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Any of several species of hummingbird found in the Andes.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5956,
+      "Headword": "compatible",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Something that is compatible with something else.",
+          "ExampleEn": "a computer company that sells IBM compatibles"
+        },
+        {
+          "Index": 1,
+          "DefEn": "Capable of easy interaction.",
+          "ExampleEn": "This printer isn't compatible with my computer."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Able to get along well.",
+          "ExampleEn": "My neighbours and I are not very compatible: they're loud and I'm an introvert."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Consistent; congruous.",
+          "ExampleEn": "His actions were compatible with his sermons."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6086,
+      "Headword": "conceptual",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of, or relating to concepts or mental conception; existing in the imagination.",
+          "ExampleEn": "We defined a conceptual model before designing the real thing."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of or relating to conceptualism.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6028,
+      "Headword": "concerning",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Regarding, respecting.",
+          "ExampleEn": "Physically, everything is perfect, but concerning your mental state, you have some problems."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5957,
+      "Headword": "concurrent",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who, or that which, concurs; a joint or contributory cause.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "One pursuing the same course, or seeking the same objects; hence, a rival; an opponent.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "One of the supernumerary days of the year over fifty-two complete weeks; so called because they concur with the solar cycle, the course of which they follow.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "One who accompanies a sheriff's officer as witness.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Happening at the same time; simultaneous.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5949,
+      "Headword": "conform",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of persons, often followed by to) To act in accordance with expectations; to behave in the manner of others, especially as a result of social pressure.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(of things, situations, etc.) To be in accordance with a set of specifications or regulations, or with a policy or guideline.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To make similar in form or nature; to make suitable for a purpose; to adapt.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6092,
+      "Headword": "continued",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Prolonged; unstopped.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Uninterrupted.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6131,
+      "Headword": "continuing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To proceed with (doing an activity); to prolong (an activity).",
+          "ExampleEn": "Do you want me to continue to unload these?"
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make last; to prolong.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To retain (someone or something) in a given state, position, etc.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To remain in a given place or condition; to remain in connection with; to abide; to stay.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To resume.",
+          "ExampleEn": "When will the concert continue?"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5958,
+      "Headword": "converse",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Free verbal interchange of thoughts or views; conversation; chat.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To talk; to engage in conversation",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To keep company; to hold intimate intercourse; to commune; followed by with",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To have knowledge of (a thing), from long intercourse or study",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The opposite or reverse",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6018,
+      "Headword": "cooperation",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(usually uncountable) The act of cooperating.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Active help from a person, organization, etc., such as an orderly sharing of space or resources.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Association for mutual benefit, such as for purposes of production or purchase.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6049,
+      "Headword": "counseling",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Assistance (especially from a professional) in the resolution of personal difficulties.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6020,
+      "Headword": "counselor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A professional who counsels people, especially on personal problems.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A school counselor, often in a specialty such as careers, education, or health.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "An attorney.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A high ranking diplomat, usually just below an ambassador or minister.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A children’s supervisor, usually at camp.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5997,
+      "Headword": "criteria",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A single criterion.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A standard or test by which individual things or people may be compared and judged.",
+          "ExampleEn": "Criterion of choice, of decision, of selection"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6136,
+      "Headword": "culturally",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a cultural way.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5943,
+      "Headword": "deduce",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To reach a conclusion by applying rules of logic to given premises.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To take away; to deduct; to subtract.",
+          "ExampleEn": "to deduce a part from the whole"
+        },
+        {
+          "Index": 2,
+          "DefEn": "(Latinism) To lead forth.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5989,
+      "Headword": "defense",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The action of defending or protecting from attack, danger, or injury.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Anything employed to oppose attack(s).",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "An argument in support or justification of something.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Government policy or (infra)structure related to the military.",
+          "ExampleEn": "Department of Defense"
+        },
+        {
+          "Index": 4,
+          "DefEn": "A prohibition; a prohibitory ordinance.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6062,
+      "Headword": "demographic",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Of or pertaining to demography.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5950,
+      "Headword": "denote",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To indicate; to mark.",
+          "ExampleEn": "The yellow blazes denote the trail."
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make overt.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To refer to literally; to convey as meaning.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6078,
+      "Headword": "depending",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(followed by on or upon, formerly also by of) To be contingent or conditioned; to have something as a necessary condition; to hinge on.",
+          "ExampleEn": "We would like to go skiing, but it depends on the amount of snow."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(followed by on or upon) To trust; to have confidence; to rely.",
+          "ExampleEn": "we depend on the mailman to come at the usual time."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To hang down; to be sustained by being fastened or attached to something above.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To be pending; to be undetermined or undecided.",
+          "ExampleEn": "a cause depending in court"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6146,
+      "Headword": "developed",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(said of a country) Not primitive; not third-world.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Mature.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Containing man-made structures such as roads, sewers, electric lines, buildings, and so on.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Having useful or necessary infrastructure.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "Advanced, fully formed.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6009,
+      "Headword": "developing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In the process of development.",
+          "ExampleEn": "a developing foetus"
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of a country: becoming economically more mature or advanced; becoming industrialized.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6048,
+      "Headword": "developmental",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Related to development.",
+          "ExampleEn": "Developmental psychology studies how the mind forms as children and adolescents grow."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5951,
+      "Headword": "deviate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A person with deviant behaviour; a deviant, degenerate or pervert.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A value equal to the difference between a measured variable factor and a fixed or algorithmic reference value.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To go off course from; to change course; to change plans.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To fall outside of, or part from, some norm; to stray.",
+          "ExampleEn": "His exhibition of nude paintings deviated from the norm."
+        },
+        {
+          "Index": 4,
+          "DefEn": "To cause to diverge.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6051,
+      "Headword": "dynamics",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The branch of mechanics that is concerned with the effects of forces on the motion of objects.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The volume of the sound, such as piano, mezzo piano, mezzo forte, and forte.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6016,
+      "Headword": "e-mail",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A system for transferring messages from one computer to another, usually through a network.",
+          "ExampleEn": "He sent me his details via email."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A quantity of messages sent through an email system.",
+          "ExampleEn": "I am searching through my old email."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A message sent through an email system.",
+          "ExampleEn": "He sent me an email last week to remind me about the meeting."
+        },
+        {
+          "Index": 3,
+          "DefEn": "An email address.",
+          "ExampleEn": "Don’t send personal messages to my work email."
+        },
+        {
+          "Index": 4,
+          "DefEn": "Enamel.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6067,
+      "Headword": "ecosystem",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A system formed by an ecological community and its environment that functions as a unit.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The interconnectedness of organisms (plants, animals, microbes) with each other and their environment.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A set of interconnected products and services.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6137,
+      "Headword": "efficacy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Ability to produce a desired effect under ideal testing conditions.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Degree of ability to produce a desired effect.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6113,
+      "Headword": "electron",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The subatomic particle having a negative charge and orbiting the nucleus; the flow of electrons in a conductor constitutes electricity.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Alloys of magnesium and other metals, like aluminum or zinc, that were manufactured by the German company Chemische Fabrik Griesheim-Elektron.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6114,
+      "Headword": "emerging",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Becoming prominent; emergent; rising.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6119,
+      "Headword": "enroll",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To enter (a name, etc.) in a register, roll or list",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To enlist (someone) or make (someone) a member of",
+          "ExampleEn": "They were eager to enroll new recruits."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To enlist oneself (in something) or become a member (of something)",
+          "ExampleEn": "Have you enrolled in classes yet for this term?"
+        },
+        {
+          "Index": 3,
+          "DefEn": "To envelop; to enwrap.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6144,
+      "Headword": "equity",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Fairness, impartiality, or justice as determined in light of \"natural law\" or \"natural right\".",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Various related senses originating with the Court of Chancery in late Medieval England",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Various senses related to net value",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5959,
+      "Headword": "erode",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To wear away by abrasion, corrosion or chemical reaction.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To destroy gradually by an ongoing process.",
+          "ExampleEn": "to erode a person's trust"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6065,
+      "Headword": "etc",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Alternative form of etc.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6059,
+      "Headword": "ethics",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The study of principles relating to right and wrong conduct.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Morality.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The standards that govern the conduct of a person, especially a member of a profession.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6112,
+      "Headword": "ethnicity",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The common characteristics of a group of people, especially regarding ancestry, culture, language or national experiences.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "An ethnic group.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(casual) Race; common ancestry.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6001,
+      "Headword": "existing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That exists, or has existence, especially that exists now.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6054,
+      "Headword": "favor",
+      "Pos": "v",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To look upon fondly; to prefer.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To encourage, conduce to",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To do a favor [noun sense 1] for; to show beneficence toward.",
+          "ExampleEn": "Would you favor us with a poetry reading?"
+        },
+        {
+          "Index": 3,
+          "DefEn": "To treat with care.",
+          "ExampleEn": "Favoring your sore leg will only injure the other one."
+        },
+        {
+          "Index": 4,
+          "DefEn": "(including) To resemble, to look like (another person).",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6140,
+      "Headword": "favor",
+      "Pos": "prep",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A kind or helpful deed; an instance of voluntarily assisting (someone).",
+          "ExampleEn": "He did me a favor when he took the time to drive me home."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Goodwill; benevolent regard.",
+          "ExampleEn": "She enjoyed the queen's favor."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A small gift; a party favor.",
+          "ExampleEn": "A marriage favour is a bunch or knot of white ribbons or white flowers worn at a wedding."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Mildness or mitigation of punishment; lenity.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The object of regard; person or thing favoured.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6141,
+      "Headword": "favorite",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Preferred or liked above all others (unless qualified).",
+          "ExampleEn": "This is my second favourite occupation."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Belonging to a category whose members are all preferred or liked over nonmembers.",
+          "ExampleEn": "I just saw a movie with all my favourite actors in it."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6077,
+      "Headword": "fiber",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A single elongated piece of a given material, roughly round in cross-section, often twisted with other fibers to form thread.",
+          "ExampleEn": "The microscope showed a single blue fiber stuck to the sole of the shoe."
+        },
+        {
+          "Index": 1,
+          "DefEn": "A material in the form of fibers.",
+          "ExampleEn": "The cloth is made from strange, somewhat rough fiber."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A material whose length is at least 1000 times its width.",
+          "ExampleEn": "Please use polyester fiber for this shirt."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Dietary fiber.",
+          "ExampleEn": "Fresh vegetables are a good source of fiber"
+        },
+        {
+          "Index": 4,
+          "DefEn": "Moral strength and resolve.",
+          "ExampleEn": "The ordeal was a test of everyone's fiber."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6002,
+      "Headword": "fig",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A fruit-bearing tree or shrub of the genus Ficus that is native mainly to the tropics.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The fruit of the fig tree, pear-shaped and containing many small seeds.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A small piece of tobacco.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The value of a fig, practically nothing; a fico; a whit.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A raisin (dried grape)",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5945,
+      "Headword": "finite",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Having an end or limit; (of a quantity) constrained by bounds; (of a set) whose number of elements is a natural number.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(grammar, as opposed to infinite or nonfinite) limited by person or number.",
+          "ExampleEn": "The \"goes\" in \"he goes\" is a finite form of a verb"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6088,
+      "Headword": "fishery",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Fishing: the catching, processing and marketing of fish or other seafood.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A place related to fishing, particularly:",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A right to fish in a particular location; Territorial fishing waters.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A fishing company.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5952,
+      "Headword": "fluctuate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To vary irregularly; to swing.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To undulate.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To be irresolute; to waver.",
+          "ExampleEn": "I fluctuated between wishing he was back home and wishing I'd never met him."
+        },
+        {
+          "Index": 3,
+          "DefEn": "To cause to vary irregularly.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6005,
+      "Headword": "galaxy",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The Milky Way; the apparent band of concentrated stars which appears in the night sky over earth.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Any of the collections of many millions or billions of stars, galactic dust, black holes, etc. existing as independent and coherent systems, of which there are billions in the known universe.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Any print or pattern reminiscent of a galaxy, generally consisting of blending, semiopaque patches of vibrant color on a dark background.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6012,
+      "Headword": "gifted",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Endowed with special, in particular intellectual, abilities.",
+          "ExampleEn": "a gifted artist"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6034,
+      "Headword": "given",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Already arranged.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Currently discussed.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Particular, specific.",
+          "ExampleEn": "No more than three people can be in that space at a given time."
+        },
+        {
+          "Index": 3,
+          "DefEn": "Assumed as fact or hypothesis.",
+          "ExampleEn": "Given that we will get the resources, what do we want to achieve?"
+        },
+        {
+          "Index": 4,
+          "DefEn": "(with to) Prone, disposed.",
+          "ExampleEn": "He was given to taking a couple of glasses of port at his club."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6072,
+      "Headword": "graph",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(applied mathematics) A data chart (graphical representation of data) intended to illustrate the relationship between a set (or sets) of numbers (quantities, measurements or indicative numbers) and a reference set, whose elements are indexed to those of the former set(s) and may or may not be numbers.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A set of points constituting a graphical representation of a real function; (formally) a set of tuples (x_1, x_2, \\ldots, x_m, y)\\in\\R^{m+1}, where y=f(x_1, x_2, \\ldots, x_m) for a given function f: \\R^m\\rightarrow\\R.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(formally) An ordered pair of sets (V,E), where the elements of V are called vertices or nodes and E is a set of pairs (called edges) of elements of V; (less formally) a set of vertices (or nodes) together with a set of edges that connect (some of) the vertices.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A topological space which represents some graph (ordered pair of sets) and which is constructed by representing the vertices as points and the edges as copies of the real interval [0,1] (where, for any given edge, 0 and 1 are identified with the points representing the two vertices) and equipping the result with a particular topology called the graph topology.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "(of a morphism f) A morphism \\Gamma_f from the domain of f to the product of the domain and codomain of f, such that the first projection applied to \\Gamma_f equals the identity of the domain, and the second projection applied to \\Gamma_f is equal to f.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6023,
+      "Headword": "greatest",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Relatively large in scale, size, extent, number (i.e. having many parts or members) or duration (i.e. relatively long); very big.",
+          "ExampleEn": "A great storm is approaching our shores."
+        },
+        {
+          "Index": 1,
+          "DefEn": "Of larger size or more importance than others of its kind.",
+          "ExampleEn": "the great auk"
+        },
+        {
+          "Index": 2,
+          "DefEn": "(qualifying nouns of family relationship) Involving more generations than the qualified word implies — as many extra generations as repetitions of the word great (from 1510s). [see Derived terms]",
+          "ExampleEn": "great-grandfather, great-great-grandfather, great-great-great-grandfather"
+        },
+        {
+          "Index": 3,
+          "DefEn": "(followed by 'with') Pregnant; large with young; full of.",
+          "ExampleEn": "great with child"
+        },
+        {
+          "Index": 4,
+          "DefEn": "(except with 'friend' and similar words such as 'mate','buddy') Intimate; familiar.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5999,
+      "Headword": "growing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That grows.",
+          "ExampleEn": "Milk is good for growing children."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6106,
+      "Headword": "historically",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "In a historic manner; with reference to history or the historical record.",
+          "ExampleEn": "Historically speaking, this company has always collected payment before starting work."
+        },
+        {
+          "Index": 1,
+          "DefEn": "According to history: formerly, in the past, traditionally.",
+          "ExampleEn": "Historically, this company collected payment before starting work."
+        },
+        {
+          "Index": 2,
+          "DefEn": "To an unprecedented or extremely rare degree.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6107,
+      "Headword": "honor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Recognition of importance or value; respect; veneration (of someone, usually for being morally upright or successful)",
+          "ExampleEn": "The crowds gave the returning general much honor and praise."
+        },
+        {
+          "Index": 1,
+          "DefEn": "The state of being morally upright, honest, noble, virtuous, and magnanimous; excellence of character; the perception of such a state; favourable reputation; dignity",
+          "ExampleEn": "He was a most perfect knight, for he had great honor and chivalry."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A token of praise or respect; something that represents praiseworthiness or respect, such as a prize or award given by the state to a citizen",
+          "ExampleEn": "Audie Murphy received many honors, such as the Distinguished Service Cross."
+        },
+        {
+          "Index": 3,
+          "DefEn": "A privilege",
+          "ExampleEn": "I had the honour of dining with the ambassador."
+        },
+        {
+          "Index": 4,
+          "DefEn": "(in the plural) the privilege of going first",
+          "ExampleEn": "I'll let you have the honours, Bob—go ahead."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5994,
+      "Headword": "ie",
+      "Pos": "adv",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(initialism) That is, namely, in other words, that is to say.",
+          "ExampleEn": "While the final episode was made, the show itself was immediately cancelled after the penultimate episode i.e. the final episode never aired."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6058,
+      "Headword": "impairment",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The result of being impaired",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A deterioration or weakening",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A disability or handicap",
+          "ExampleEn": "visual impairment"
+        },
+        {
+          "Index": 3,
+          "DefEn": "An inefficient part or factor.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A downward revaluation, a write-down.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5953,
+      "Headword": "implicit",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Implied indirectly, without being directly expressed",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Contained in the essential nature of something but not openly shown",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Having no reservations or doubts; unquestioning or unconditional; usually said of faith or trust.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Entangled, twisted together.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6094,
+      "Headword": "improved",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "That has been made better; enhanced.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5995,
+      "Headword": "increased",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(of a quantity, etc.) To become larger or greater.",
+          "ExampleEn": "His rage only increased when I told him of the lost money."
+        },
+        {
+          "Index": 1,
+          "DefEn": "To make (a quantity, etc.) larger.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To multiply by the production of young; to be fertile, fruitful, or prolific.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To become more nearly full; to show more of the surface; to wax.",
+          "ExampleEn": "The Moon increases."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6006,
+      "Headword": "increasing",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "On the increase.",
+          "ExampleEn": "steadily increasing demand"
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6032,
+      "Headword": "instructional",
+      "Pos": "adj",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Intended for purposes of instruction, for teaching.",
+          "ExampleEn": "The manual might have been instructional had anybody actually taken the time to read it."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5967,
+      "Headword": "intrinsic",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A built-in function that is implemented directly by the compiler, without any intermediate call to a library.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "An ability possessed by a character and not requiring any external equipment.",
+          "ExampleEn": "You can acquire the fire-resistance intrinsic by eating dragon meat."
+        },
+        {
+          "Index": 2,
+          "DefEn": "Innate, inherent, inseparable from the thing itself, essential.",
+          "ExampleEn": "the intrinsic merit of an action"
+        },
+        {
+          "Index": 3,
+          "DefEn": "(of a body part) Situated, produced, secreted in, or coming from inside an organ, tissue, muscle or member.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6090,
+      "Headword": "inventory",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(operations) The stock of an item on hand at a particular location or business.",
+          "ExampleEn": "Due to an undersized inventory at the Boston outlet, customers had to travel to Providence to find the item."
+        },
+        {
+          "Index": 1,
+          "DefEn": "(operations) A detailed list of all of the items on hand.",
+          "ExampleEn": "The inventory included several items that one wouldn't normally think to find at a cheese shop."
+        },
+        {
+          "Index": 2,
+          "DefEn": "(operations) The process of producing or updating such a list.",
+          "ExampleEn": "This month's inventory took nearly three days."
+        },
+        {
+          "Index": 3,
+          "DefEn": "A space containing the items available to a character for immediate use.",
+          "ExampleEn": "You can't get through the underground tunnel if there are more than three items in your inventory."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6008,
+      "Headword": "judgment",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The act of judging.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The power or faculty of performing such operations; especially, when unqualified, the faculty of judging or deciding rightly, justly, or wisely",
+          "ExampleEn": "a man of judgment"
+        },
+        {
+          "Index": 2,
+          "DefEn": "The conclusion or result of judging; an opinion; a decision.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The act of determining, as in courts of law, what is conformable to law and justice; also, the determination, decision, or sentence of a court, or of a judge.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The final award; the last sentence.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5984,
+      "Headword": "labor",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Effort expended on a particular task; toil, work.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "That which requires hard work for its accomplishment; that which demands effort.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "Workers in general; the working class, the workforce; sometimes specifically the labour movement, organised labour.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "A political party or force aiming or claiming to represent the interests of labour.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "The act of a mother giving birth.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6066,
+      "Headword": "learner",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One who is learning.",
+          "ExampleEn": "She’s still a learner, so she’s prone to making mistakes."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5968,
+      "Headword": "levy",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "The act of levying.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "The tax, property or people so levied.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To impose (a tax or fine) to collect monies due, or to confiscate property.",
+          "ExampleEn": "to levy a tax"
+        },
+        {
+          "Index": 3,
+          "DefEn": "To raise or collect by assessment; to exact by authority.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To draft someone into military service.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6123,
+      "Headword": "liability",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "An obligation, debt or responsibility owed to someone.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A handicap that holds something back, a drawback, someone or something that is a burden to whoever is required to take care of them; an individual or action that exposes others to greater risk.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "The likelihood of something happening.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "The condition of being susceptible to something.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6060,
+      "Headword": "maker",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "Someone who makes; a person or thing that makes or produces something.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(usually capitalized and preceded by the) God.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "A poet.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "Someone who signs a promissory note, thereby becoming responsible for payment.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5960,
+      "Headword": "manual",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A handbook.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "A booklet that instructs on the usage of a particular machine or product.",
+          "ExampleEn": "The dishwasher isn't working; can you remember where we put the manual?"
+        },
+        {
+          "Index": 2,
+          "DefEn": "A drill in the use of weapons, etc.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "An old office-book like the modern Roman Catholic ritual.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A keyboard for the hands on a harpsichord, organ, or other musical instrument.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6040,
+      "Headword": "manufacturer",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "One that manufactures",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6111,
+      "Headword": "math",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "A mowing; what is gathered from mowing.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "Arithmetic calculations; (see do the math).",
+          "ExampleEn": "$170 a month? That doesn’t sound right. Let me check your math."
+        },
+        {
+          "Index": 2,
+          "DefEn": "A math course.",
+          "ExampleEn": "They needed to take two more maths in order to graduate."
+        },
+        {
+          "Index": 3,
+          "DefEn": "An abstract representational system used in the study of numbers, shapes, structure, change and the relationships between these concepts.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "A person's ability to count, calculate, and use different systems of mathematics at differing levels.",
+          "ExampleEn": "My mathematics is always improving."
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 5961,
+      "Headword": "mediate",
+      "Pos": "other",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "To resolve differences, or to bring about a settlement, between conflicting parties.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "To intervene between conflicting parties in order to resolve differences or bring about a settlement.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "To divide into two equal parts.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 3,
+          "DefEn": "To act as an intermediary causal or communicative agent; to convey.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "To act as a spiritualistic medium.",
+          "ExampleEn": null
+        }
+      ]
+    },
+    {
+      "Kind": "word",
+      "Id": 6075,
+      "Headword": "meter",
+      "Pos": "n",
+      "Senses": [
+        {
+          "Index": 0,
+          "DefEn": "(always meter) A device that measures things.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 1,
+          "DefEn": "(always meter) A parking meter or similar device for collecting payment.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 2,
+          "DefEn": "(always meter) One who metes or measures.",
+          "ExampleEn": "a labouring coal-meter"
+        },
+        {
+          "Index": 3,
+          "DefEn": "(elsewhere metre) The base unit of length in the International System of Units (SI), conceived of as 1/10000000 of the distance from the North Pole to the Equator, and now defined as the distance light will travel in a vacuum in 1/299792458 second.",
+          "ExampleEn": null
+        },
+        {
+          "Index": 4,
+          "DefEn": "(elsewhere metre) An increment of music; the overall rhythm; particularly, the number of beats in a measure.",
+          "ExampleEn": null
+        }
+      ]
+    }
+  ]
+}
