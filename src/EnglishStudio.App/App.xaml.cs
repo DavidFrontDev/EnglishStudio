@@ -47,12 +47,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Velopack;
 
 namespace EnglishStudio.App;
 
 public partial class App : Application
 {
     private IHost? _host;
+
+    public App()
+    {
+        // Must run before any other startup so Velopack can service install/update/uninstall hook
+        // invocations and exit, before the WPF UI initialises. Harmless (returns) on a normal launch.
+        VelopackApp.Build().Run();
+    }
 
     public IServiceProvider Services =>
         _host?.Services ?? throw new InvalidOperationException("Host is not initialised.");
