@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Audio;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Audio;
 using EnglishStudio.Modules.Dictionary.Entities;
 using EnglishStudio.Modules.Dictionary.Images;
@@ -19,6 +20,8 @@ public partial class TrainerViewModel : ObservableObject
     private readonly IReadingPracticeService _practice;
 
     private readonly Queue<TrainerCardViewModel> _sessionQueue = new();
+
+    private bool _isRating;
 
     /// <summary>Reading texts that have a practice pool — each can be drilled on demand.</summary>
     public ObservableCollection<TextPoolItem> Pools { get; } = new();
@@ -100,7 +103,7 @@ public partial class TrainerViewModel : ObservableObject
 
         if (SessionTotal == 0)
         {
-            SessionStatus = "В пуле этого текста пока нет карточек для повтора.";
+            SessionStatus = Loc.Tr("Trainer_PoolNoCards");
             CurrentCard = null;
             return;
         }
@@ -129,7 +132,7 @@ public partial class TrainerViewModel : ObservableObject
 
         if (SessionTotal == 0)
         {
-            SessionStatus = "Нет карточек к повторению. Добавьте слова в словаре через кнопку «📚 В изучение».";
+            SessionStatus = Loc.Tr("Trainer_NoCards");
             CurrentCard = null;
             return;
         }
@@ -141,17 +144,27 @@ public partial class TrainerViewModel : ObservableObject
     [RelayCommand]
     private void RevealAnswer() => IsAnswerRevealed = true;
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRate))]
     private Task RateAgainAsync() => RateAsync(SrsRating.Again);
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRate))]
     private Task RateHardAsync() => RateAsync(SrsRating.Hard);
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRate))]
     private Task RateGoodAsync() => RateAsync(SrsRating.Good);
 
-    [RelayCommand]
+    [RelayCommand(CanExecute = nameof(CanRate))]
     private Task RateEasyAsync() => RateAsync(SrsRating.Easy);
+
+    private bool CanRate() => !_isRating;
+
+    private void NotifyRateCommands()
+    {
+        RateAgainCommand.NotifyCanExecuteChanged();
+        RateHardCommand.NotifyCanExecuteChanged();
+        RateGoodCommand.NotifyCanExecuteChanged();
+        RateEasyCommand.NotifyCanExecuteChanged();
+    }
 
     [RelayCommand]
     private void EndSession()
@@ -160,7 +173,7 @@ public partial class TrainerViewModel : ObservableObject
         CurrentCard = null;
         IsAnswerRevealed = false;
         IsSessionActive = false;
-        SessionStatus = "Сессия завершена.";
+        SessionStatus = Loc.Tr("Trainer_SessionEnded");
         _ = LoadPoolsAsync();
     }
 
@@ -196,17 +209,27 @@ public partial class TrainerViewModel : ObservableObject
 
     private async Task RateAsync(SrsRating rating)
     {
-        if (CurrentCard is null) return;
+        if (CurrentCard is null || _isRating) return;
+        _isRating = true;
+        NotifyRateCommands();
         try
         {
-            await _srs.RateAsync(CurrentCard.ProgressId, rating, DateTime.UtcNow);
+            try
+            {
+                await _srs.RateAsync(CurrentCard.ProgressId, rating, DateTime.UtcNow);
+            }
+            catch (Exception)
+            {
+                // swallow — UI flow continues
+            }
+            SessionDone++;
+            Advance();
         }
-        catch (Exception)
+        finally
         {
-            // swallow — UI flow continues
+            _isRating = false;
+            NotifyRateCommands();
         }
-        SessionDone++;
-        Advance();
     }
 
     private void Advance()
@@ -216,7 +239,7 @@ public partial class TrainerViewModel : ObservableObject
         {
             CurrentCard = null;
             IsSessionActive = false;
-            SessionStatus = $"Сессия завершена. Готово: {SessionDone}.";
+            SessionStatus = Loc.Format("Trainer_SessionDone", SessionDone);
             return;
         }
         CurrentCard = _sessionQueue.Dequeue();
@@ -262,7 +285,7 @@ public partial class TrainerViewModel : ObservableObject
                 OwnerId = pv.Id,
                 Headword = pv.Headword,
                 PartOfSpeechCode = "phrasal_verb",
-                PartOfSpeechNameRu = "Фразовый глагол",
+                PartOfSpeechNameRu = Loc.Tr("Trainer_PhrasalVerb"),
                 TranslationsRu = pv.Senses
                     .OrderBy(s => s.OrderIndex)
                     .SelectMany(s => s.Translations.OrderBy(t => t.OrderIndex).Select(t => t.TextRu))
@@ -287,7 +310,7 @@ public partial class TrainerViewModel : ObservableObject
                 OwnerId = col.Id,
                 Headword = col.LinkedText,
                 PartOfSpeechCode = "collocation",
-                PartOfSpeechNameRu = "Коллокация",
+                PartOfSpeechNameRu = Loc.Tr("Trainer_Collocation"),
                 TranslationsRu = new[] { col.TranslationRu },
                 DefinitionEn = col.DefinitionEn,
                 Examples = string.IsNullOrWhiteSpace(col.ExampleEn)

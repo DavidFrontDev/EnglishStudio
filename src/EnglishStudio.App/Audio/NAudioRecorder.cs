@@ -15,6 +15,7 @@ public sealed class NAudioRecorder : IAudioRecorder, IDisposable
     private WaveInEvent? _waveIn;
     private WaveFileWriter? _writer;
     private string? _currentPath;
+    private ManualResetEventSlim? _stoppedSignal;
 
     public NAudioRecorder(ILogger<NAudioRecorder> logger, IAppSettings settings)
     {
@@ -41,20 +42,22 @@ public sealed class NAudioRecorder : IAudioRecorder, IDisposable
                 return;
             }
 
-            var dir = Path.Combine(DictionaryPaths.AppDataRoot, "Pronunciation");
-            Directory.CreateDirectory(dir);
-            _currentPath = Path.Combine(dir, $"rec_{DateTime.UtcNow:yyyyMMdd_HHmmss_fff}.wav");
-
-            // 16 kHz mono PCM — Whisper requirement
-            var fmt = new WaveFormat(16000, 16, 1);
-            _waveIn = new WaveInEvent { WaveFormat = fmt, DeviceNumber = ResolveDeviceNumber() };
-            _writer = new WaveFileWriter(_currentPath, fmt);
-
-            _waveIn.DataAvailable += OnDataAvailable;
-            _waveIn.RecordingStopped += OnRecordingStopped;
-
             try
             {
+                var dir = Path.Combine(DictionaryPaths.AppDataRoot, "Pronunciation");
+                Directory.CreateDirectory(dir);
+                _currentPath = Path.Combine(dir, $"rec_{DateTime.UtcNow:yyyyMMdd_HHmmss_fff}.wav");
+
+                // 16 kHz mono PCM — Whisper requirement
+                var fmt = new WaveFormat(16000, 16, 1);
+                _waveIn = CreateWaveIn(fmt, ResolveDeviceNumber());
+                _writer = new WaveFileWriter(_currentPath, fmt);
+
+                _waveIn.DataAvailable += OnDataAvailable;
+                _waveIn.RecordingStopped += OnRecordingStopped;
+
+                _stoppedSignal?.Dispose();
+                _stoppedSignal = new ManualResetEventSlim(false);
                 _waveIn.StartRecording();
                 IsRecording = true;
             }
@@ -80,6 +83,9 @@ public sealed class NAudioRecorder : IAudioRecorder, IDisposable
                 _logger.LogWarning(ex, "Error stopping recording");
             }
 
+            try { _stoppedSignal?.Wait(TimeSpan.FromSeconds(2)); }
+            catch (Exception ex) { _logger.LogDebug(ex, "waiting for recording stop"); }
+
             // Finalize writer & dispose
             try { _writer?.Flush(); }
             catch (Exception ex) { _logger.LogDebug(ex, "writer flush"); }
@@ -89,6 +95,19 @@ public sealed class NAudioRecorder : IAudioRecorder, IDisposable
             IsRecording = false;
             return path;
         }
+    }
+
+    /// <summary>
+    /// WaveInEvent posts RecordingStopped to the SynchronizationContext captured at construction;
+    /// construct without one so the stop signal fires on the capture thread rather than the
+    /// dispatcher that StopRecording is blocking.
+    /// </summary>
+    private static WaveInEvent CreateWaveIn(WaveFormat fmt, int deviceNumber)
+    {
+        var prev = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(null);
+        try { return new WaveInEvent { WaveFormat = fmt, DeviceNumber = deviceNumber }; }
+        finally { SynchronizationContext.SetSynchronizationContext(prev); }
     }
 
     /// <summary>
@@ -132,6 +151,7 @@ public sealed class NAudioRecorder : IAudioRecorder, IDisposable
 
     private void OnRecordingStopped(object? sender, StoppedEventArgs e)
     {
+        _stoppedSignal?.Set();
         if (e.Exception is not null)
             _logger.LogWarning(e.Exception, "Recording stopped with exception");
     }

@@ -16,4 +16,5 @@ public sealed record EssayIssue(
     [property: JsonPropertyName("category")] string Category,
     [property: JsonPropertyName("quote")] string Quote,
     [property: JsonPropertyName("explanationRu")] string ExplanationRu,
+    [property: JsonPropertyName("explanationEn")] string? ExplanationEn,
     [property: JsonPropertyName("suggestion")] string Suggestion);

@@ -31,10 +31,13 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
+    <Version>0.2.0</Version>
     <TargetFramework>net10.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <!-- Neutral (Strings.resx) resources are Russian; English ships as the 'en' satellite. -->
+    <NeutralLanguage>ru</NeutralLanguage>
   </PropertyGroup>
 
 </Project>

@@ -13,6 +13,7 @@
              xmlns:svm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:sv="clr-namespace:EnglishStudio.App.Views.Speaking"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:MockResultViewModel}"
              d:DesignHeight="760" d:DesignWidth="1100">
@@ -51,13 +52,13 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0"
-                        Content="‹ В меню"
+                        Content="{loc:Tr Mock_BackToMenu}"
                         Style="{StaticResource FlatButton}"
                         Command="{Binding BackToHubCommand}" />
                 <TextBlock Grid.Column="1"
                            Style="{StaticResource H2}"
                            HorizontalAlignment="Center"
-                           Text="Результат экзамена" />
+                           Text="{loc:Tr Mock_ExamResult}" />
             </Grid>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -111,7 +112,7 @@
                     <!--  Per-section bands + breakdown  -->
                     <Border Style="{StaticResource Card}">
                         <StackPanel>
-                            <TextBlock Text="Секции" Style="{StaticResource H3}" Margin="0,0,0,10" />
+                            <TextBlock Text="{loc:Tr Mock_Sections}" Style="{StaticResource H3}" Margin="0,0,0,10" />
                             <ItemsControl ItemsSource="{Binding Sections}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="{x:Type vm:MockResultSectionRow}">
@@ -149,7 +150,7 @@
                                                 </Border>
 
                                                 <Button Grid.Column="2"
-                                                        Content="Разобрать"
+                                                        Content="{loc:Tr Mock_Review}"
                                                         Style="{StaticResource FlatButton}"
                                                         VerticalAlignment="Center"
                                                         IsEnabled="{Binding CanReview}"

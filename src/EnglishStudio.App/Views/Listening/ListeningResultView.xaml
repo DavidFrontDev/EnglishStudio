@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ListeningResultScreen}"
              d:DesignHeight="900" d:DesignWidth="1100">
@@ -18,7 +19,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Row="0" Content="‹ К списку тестов" HorizontalAlignment="Left"
+        <Button Grid.Row="0" Content="{loc:Tr Listening_BackToTests}" HorizontalAlignment="Left"
                 Style="{StaticResource FlatButton}" Command="{Binding BackCommand}" Margin="0,0,0,12" />
 
         <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
@@ -39,7 +40,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
-                            <TextBlock Style="{StaticResource Caption}" Text="Правильно" />
+                            <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Listening_Correct}" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding RawScore}" FontSize="36" FontWeight="Light" Foreground="{DynamicResource StrongTextBrush}" />
                                 <TextBlock VerticalAlignment="Bottom" Foreground="{DynamicResource MutedTextBrush}" Margin="6,0,0,8">
@@ -50,15 +51,15 @@
 
                         <Border Grid.Column="2" Background="{DynamicResource AccentHotBrush}" CornerRadius="12" Padding="22,10" VerticalAlignment="Center">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="BAND" Foreground="#073a5a" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
-                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="#073a5a" />
+                                <TextBlock Text="BAND" Foreground="{DynamicResource OnAccentBrush}" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="{DynamicResource OnAccentBrush}" />
                             </StackPanel>
                         </Border>
                     </Grid>
                 </Border>
 
                 <!--  Breakdown: 2-column grid (by part / by type)  -->
-                <TextBlock Text="Разбор по частям и типам вопросов" Style="{StaticResource H3}" Margin="0,4,0,8" />
+                <TextBlock Text="{loc:Tr Listening_BreakdownHeading}" Style="{StaticResource H3}" Margin="0,4,0,8" />
                 <Grid Margin="0,0,0,16">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -67,7 +68,7 @@
 
                     <Border Grid.Column="0" Style="{StaticResource CardCompact}" Margin="0,0,6,0">
                         <StackPanel>
-                            <TextBlock Text="По частям (P1–P4)" Style="{StaticResource Caption}" Margin="0,0,0,8" />
+                            <TextBlock Text="{loc:Tr Listening_ByParts}" Style="{StaticResource Caption}" Margin="0,0,0,8" />
                             <ItemsControl ItemsSource="{Binding PartBreakdown}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -93,7 +94,7 @@
 
                     <Border Grid.Column="1" Style="{StaticResource CardCompact}" Margin="6,0,0,0">
                         <StackPanel>
-                            <TextBlock Text="По типам вопросов" Style="{StaticResource Caption}" Margin="0,0,0,8" />
+                            <TextBlock Text="{loc:Tr Listening_ByTypes}" Style="{StaticResource Caption}" Margin="0,0,0,8" />
                             <ItemsControl ItemsSource="{Binding TypeBreakdown}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -127,20 +128,20 @@
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                                <TextBlock Text="🤖 Разбор от AI (Claude)" Style="{StaticResource H3}" />
+                                <TextBlock Text="{loc:Tr Listening_AiAnalysis}" Style="{StaticResource H3}" />
                                 <TextBlock Text="{Binding AiStatus}" Style="{StaticResource Caption}" TextWrapping="Wrap" Margin="0,4,0,0" />
                             </StackPanel>
                             <Button Grid.Column="1" Command="{Binding EvaluateAiCommand}"
                                     VerticalAlignment="Center" Margin="12,0,0,0">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource AccentButton}">
-                                        <Setter Property="Content" Value="Получить разбор от AI" />
+                                        <Setter Property="Content" Value="{loc:Tr Listening_GetAiAnalysis}" />
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding IsLoadingAi}" Value="True">
-                                                <Setter Property="Content" Value="⏳ Анализирую…" />
+                                                <Setter Property="Content" Value="{loc:Tr Listening_AiAnalysing}" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding HasAiFeedback}" Value="True">
-                                                <Setter Property="Content" Value="Перезапустить разбор" />
+                                                <Setter Property="Content" Value="{loc:Tr Listening_RerunAnalysis}" />
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
@@ -153,20 +154,20 @@
 
                             <Border Background="{DynamicResource OverlayDark27Brush}" CornerRadius="6" Padding="12,10" Margin="0,0,0,12">
                                 <StackPanel>
-                                    <TextBlock Text="Кратко" Style="{StaticResource Caption}" Margin="0,0,0,4" />
-                                    <TextBlock Text="{Binding AiSummaryRu}" TextWrapping="Wrap"
+                                    <TextBlock Text="{loc:Tr Listening_Summary}" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                                    <TextBlock Text="{Binding AiSummary}" TextWrapping="Wrap"
                                                Foreground="{DynamicResource PrimaryTextBrush}" />
                                 </StackPanel>
                             </Border>
 
-                            <TextBlock Text="По частям" Style="{StaticResource Caption}" Margin="0,4,0,4" />
+                            <TextBlock Text="{loc:Tr Listening_ByPartsCaption}" Style="{StaticResource Caption}" Margin="0,4,0,4" />
                             <ItemsControl ItemsSource="{Binding AiPartInsights}" Margin="0,0,0,12">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
                                             <StackPanel>
                                                 <TextBlock Text="{Binding Heading}" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
-                                                <TextBlock Text="{Binding CommentRu}" TextWrapping="Wrap" Margin="0,3,0,0"
+                                                <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" Margin="0,3,0,0"
                                                            Foreground="{DynamicResource PrimaryTextBrush}" />
                                             </StackPanel>
                                         </Border>
@@ -174,14 +175,14 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <TextBlock Text="Объяснения по ошибкам" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                            <TextBlock Text="{loc:Tr Listening_ErrorExplanations}" Style="{StaticResource Caption}" Margin="0,0,0,4" />
                             <ItemsControl ItemsSource="{Binding AiQuestionExplanations}" Margin="0,0,0,12">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Border Style="{StaticResource CardCompact}" Margin="0,0,0,6">
                                             <StackPanel>
                                                 <TextBlock Text="{Binding Heading}" FontWeight="SemiBold" Foreground="{DynamicResource ErrorBrush}" TextWrapping="Wrap" />
-                                                <TextBlock Text="{Binding ExplanationRu}" TextWrapping="Wrap" Margin="0,4,0,0"
+                                                <TextBlock Text="{Binding Explanation}" TextWrapping="Wrap" Margin="0,4,0,0"
                                                            Foreground="{DynamicResource PrimaryTextBrush}" />
                                             </StackPanel>
                                         </Border>
@@ -189,7 +190,7 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
 
-                            <TextBlock Text="Советы для тренировки" Style="{StaticResource Caption}" Margin="0,0,0,4" />
+                            <TextBlock Text="{loc:Tr Listening_TrainingTips}" Style="{StaticResource Caption}" Margin="0,0,0,4" />
                             <ItemsControl ItemsSource="{Binding AiTips}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
@@ -209,7 +210,7 @@
                 </Border>
 
                 <!--  Per-question answers list (existing)  -->
-                <TextBlock Text="Ответы" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <TextBlock Text="{loc:Tr Listening_Answers}" Style="{StaticResource H3}" Margin="0,8,0,8" />
                 <ItemsControl ItemsSource="{Binding Answers}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -225,7 +226,7 @@
                                                FontWeight="SemiBold" Foreground="{DynamicResource MutedTextBrush}"
                                                Width="34" VerticalAlignment="Center" />
                                     <StackPanel Grid.Column="1" Margin="0,0,12,0">
-                                        <TextBlock Style="{StaticResource Caption}" Text="Ваш ответ" />
+                                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Listening_YourAnswer}" />
                                         <TextBlock Text="{Binding UserAnswer}" TextWrapping="Wrap">
                                             <TextBlock.Style>
                                                 <Style TargetType="TextBlock">
@@ -240,7 +241,7 @@
                                         </TextBlock>
                                     </StackPanel>
                                     <StackPanel Grid.Column="2">
-                                        <TextBlock Style="{StaticResource Caption}" Text="Правильный" />
+                                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Listening_CorrectAnswer}" />
                                         <TextBlock Text="{Binding CorrectAnswer}" TextWrapping="Wrap" Foreground="{DynamicResource SuccessBrush}" />
                                     </StackPanel>
                                     <TextBlock Grid.Column="3" VerticalAlignment="Center" FontSize="16" Margin="8,0,0,0">

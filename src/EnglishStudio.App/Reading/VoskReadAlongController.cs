@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Reading.Audio;
 using EnglishStudio.Modules.Reading;
 using EnglishStudio.Modules.Reading.Services;
@@ -21,12 +22,14 @@ public sealed class VoskReadAlongController : IReadAlongController, IDisposable
     private readonly ILogger<VoskReadAlongController> _logger;
 
     private readonly object _finishGate = new();
+    private readonly object _sessionGate = new();
     private SynchronizationContext? _uiContext;
     private ReadAlongAligner? _aligner;
     private VoskStreamSession? _session;
     private Stopwatch? _stopwatch;
     private TimeSpan _lastProgressReport;
     private int _consumedPartialWords;
+    private bool _starting;
     private bool _finished;
     private ReadingRunResult? _result;
 
@@ -71,80 +74,92 @@ public sealed class VoskReadAlongController : IReadAlongController, IDisposable
         // Capture the UI context up front (before any await) so all events marshal back to it.
         _uiContext = SynchronizationContext.Current;
 
-        if (State == ReadAlongState.Listening) return;
-
-        if (!_capture.IsMicrophoneAvailable())
-        {
-            _logger.LogWarning("No microphone — cannot start read-along.");
-            RaiseModelStatus("Микрофон не найден.");
-            SetState(ReadAlongState.Error);
-            return;
-        }
-
-        var ok = await EnsureModelAsync(null, ct);
-        if (!ok)
-        {
-            SetState(ReadAlongState.Error);
-            return;
-        }
-
-        var referenceWords = referenceTokens
-            .Where(t => t.Kind == TokenKind.Word && t.WordIndex.HasValue)
-            .OrderBy(t => t.WordIndex!.Value)
-            .Select(t => ReadingTokenizer.NormalizeWord(t.Text))
-            .ToList();
-
-        _aligner = new ReadAlongAligner(referenceWords);
-        _consumedPartialWords = 0;
-        _finished = false;
-        _result = null;
-        _lastProgressReport = TimeSpan.Zero;
-
+        if (State == ReadAlongState.Listening || _starting) return;
+        _starting = true;
         try
         {
-            _session = _recognizer.CreateSession();
+            if (!_capture.IsMicrophoneAvailable())
+            {
+                _logger.LogWarning("No microphone — cannot start read-along.");
+                RaiseModelStatus(Loc.Tr("Vosk_MicNotFound"));
+                SetState(ReadAlongState.Error);
+                return;
+            }
+
+            var ok = await EnsureModelAsync(null, ct);
+            if (!ok)
+            {
+                SetState(ReadAlongState.Error);
+                return;
+            }
+
+            var referenceWords = referenceTokens
+                .Where(t => t.Kind == TokenKind.Word && t.WordIndex.HasValue)
+                .OrderBy(t => t.WordIndex!.Value)
+                .Select(t => ReadingTokenizer.NormalizeWord(t.Text))
+                .ToList();
+
+            _aligner = new ReadAlongAligner(referenceWords);
+            _consumedPartialWords = 0;
+            _finished = false;
+            _result = null;
+            _lastProgressReport = TimeSpan.Zero;
+
+            try
+            {
+                _session = _recognizer.CreateSession();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed to create Vosk session.");
+                SetState(ReadAlongState.Error);
+                return;
+            }
+
+            _stopwatch = Stopwatch.StartNew();
+            _capture.FrameAvailable += OnFrame;
+            _capture.Start();
+            SetState(ReadAlongState.Listening);
+
+            // Empty text — nothing to read; finish immediately.
+            if (_aligner.Total == 0)
+                _ = Task.Run(() => FinishCore(completedByEnd: true));
         }
-        catch (Exception ex)
+        finally
         {
-            _logger.LogError(ex, "Failed to create Vosk session.");
-            SetState(ReadAlongState.Error);
-            return;
+            _starting = false;
         }
-
-        _stopwatch = Stopwatch.StartNew();
-        _capture.FrameAvailable += OnFrame;
-        _capture.Start();
-        SetState(ReadAlongState.Listening);
-
-        // Empty text — nothing to read; finish immediately.
-        if (_aligner.Total == 0)
-            _ = Task.Run(() => FinishCore(completedByEnd: true));
     }
 
     public Task<ReadingRunResult> StopAsync() => Task.Run(() => FinishCore(completedByEnd: false));
 
     private void OnFrame(object? sender, ReadingPcmFrame frame)
     {
-        var session = _session;
         var aligner = _aligner;
-        if (session is null || aligner is null || _finished) return;
+        if (aligner is null) return;
 
         try
         {
-            var chunk = session.Accept(frame.Buffer, frame.Count);
-            if (chunk.IsFinal)
+            lock (_sessionGate)
             {
-                FeedRange(aligner, chunk.Words, _consumedPartialWords, chunk.Words.Count);
-                _consumedPartialWords = 0;
-            }
-            else
-            {
-                // Feed all but the trailing (still-refining) partial word.
-                var stable = chunk.Words.Count - 1;
-                if (stable > _consumedPartialWords)
+                var session = _session;
+                if (session is null || _finished) return;
+
+                var chunk = session.Accept(frame.Buffer, frame.Count);
+                if (chunk.IsFinal)
                 {
-                    FeedRange(aligner, chunk.Words, _consumedPartialWords, stable);
-                    _consumedPartialWords = stable;
+                    FeedRange(aligner, chunk.Words, _consumedPartialWords, chunk.Words.Count);
+                    _consumedPartialWords = 0;
+                }
+                else
+                {
+                    // Feed all but the trailing (still-refining) partial word.
+                    var stable = chunk.Words.Count - 1;
+                    if (stable > _consumedPartialWords)
+                    {
+                        FeedRange(aligner, chunk.Words, _consumedPartialWords, stable);
+                        _consumedPartialWords = stable;
+                    }
                 }
             }
 
@@ -189,35 +204,48 @@ public sealed class VoskReadAlongController : IReadAlongController, IDisposable
         {
             if (_finished) return _result!;
             _finished = true;
+
+            _capture.FrameAvailable -= OnFrame;
+            string? wav;
+            try { wav = _capture.Stop(); }
+            catch (Exception ex) { _logger.LogWarning(ex, "Error stopping capture."); wav = _capture.LastWavPath; }
+
+            var aligner = _aligner;
+            lock (_sessionGate)
+            {
+                try
+                {
+                    if (_session is not null)
+                    {
+                        var chunk = _session.Flush();
+                        if (aligner is not null)
+                            FeedRange(aligner, chunk.Words, _consumedPartialWords, chunk.Words.Count);
+                        _consumedPartialWords = 0;
+                    }
+                }
+                catch (Exception ex) { _logger.LogDebug(ex, "Vosk flush failed."); }
+
+                try { _session?.Dispose(); } catch { /* best effort */ }
+                _session = null;
+            }
+
+            if (aligner is not null) ReportProgress(aligner, force: true);
+
+            _stopwatch?.Stop();
+            var elapsedSec = _stopwatch?.Elapsed.TotalSeconds ?? 0;
+            var words = aligner?.Cursor ?? 0;
+            var total = aligner?.Total ?? 0;
+            var wpm = elapsedSec > 1.0 ? words / (elapsedSec / 60.0) : 0;
+            var completed = completedByEnd || (total > 0 && words >= total);
+
+            _result = new ReadingRunResult(
+                words, Math.Round(wpm, 1), Math.Round(elapsedSec, 1), completed, wav);
+
+            SetState(ReadAlongState.Finished);
+            var result = _result;
+            Post(() => Finished?.Invoke(this, result));
+            return result;
         }
-
-        _capture.FrameAvailable -= OnFrame;
-        string? wav;
-        try { wav = _capture.Stop(); }
-        catch (Exception ex) { _logger.LogWarning(ex, "Error stopping capture."); wav = _capture.LastWavPath; }
-
-        try { _session?.Flush(); } catch (Exception ex) { _logger.LogDebug(ex, "Vosk flush failed."); }
-
-        var aligner = _aligner;
-        if (aligner is not null) ReportProgress(aligner, force: true);
-
-        _stopwatch?.Stop();
-        var elapsedSec = _stopwatch?.Elapsed.TotalSeconds ?? 0;
-        var words = aligner?.Cursor ?? 0;
-        var total = aligner?.Total ?? 0;
-        var wpm = elapsedSec > 1.0 ? words / (elapsedSec / 60.0) : 0;
-        var completed = completedByEnd || (total > 0 && words >= total);
-
-        _result = new ReadingRunResult(
-            words, Math.Round(wpm, 1), Math.Round(elapsedSec, 1), completed, wav);
-
-        try { _session?.Dispose(); } catch { /* best effort */ }
-        _session = null;
-
-        SetState(ReadAlongState.Finished);
-        var result = _result;
-        Post(() => Finished?.Invoke(this, result));
-        return result;
     }
 
     private void SetState(ReadAlongState state)
@@ -240,7 +268,10 @@ public sealed class VoskReadAlongController : IReadAlongController, IDisposable
         try { if (!_finished) FinishCore(completedByEnd: false); } catch { /* best effort */ }
         _capture.FrameAvailable -= OnFrame;
         try { _capture.Dispose(); } catch { /* best effort */ }
-        try { _session?.Dispose(); } catch { /* best effort */ }
-        _session = null;
+        lock (_sessionGate)
+        {
+            try { _session?.Dispose(); } catch { /* best effort */ }
+            _session = null;
+        }
     }
 }

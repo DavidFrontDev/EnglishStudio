@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Writing;
 using EnglishStudio.App.Views.Writing;
 using EnglishStudio.Modules.Ielts.Speaking;
@@ -55,7 +56,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
         _mode = mode;
 
         IsBusy = true;
-        StatusText = "Подготовка топика…";
+        StatusText = Loc.Tr("Speaking_PreparingTopic");
         try
         {
             switch (mode)
@@ -124,7 +125,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to start Speaking session");
-            StatusText = "Не удалось запустить сессию: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_FailedToStartSession") + ex.Message;
         }
         finally
         {
@@ -180,7 +181,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
         vm.Initialize(_attemptId, questions);
         vm.Completed += OnPart1Completed;
         CurrentPartViewModel = vm;
-        ProgressText = _mode == SpeakingMode.FullMock ? "Шаг 1 из 3 · Part 1" : "Part 1";
+        ProgressText = _mode == SpeakingMode.FullMock ? Loc.Tr("Speaking_Step1of3Part1") : "Part 1";
     }
 
     private void BeginPart2(SpeakingTopicSummary topic, SpeakingQuestionDetail question)
@@ -189,7 +190,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
         vm.Initialize(_attemptId, topic, question, subpoints: topic.CueCardSubpoints);
         vm.Completed += OnPart2Completed;
         CurrentPartViewModel = vm;
-        ProgressText = _mode == SpeakingMode.FullMock ? "Шаг 2 из 3 · Part 2" : "Part 2";
+        ProgressText = _mode == SpeakingMode.FullMock ? Loc.Tr("Speaking_Step2of3Part2") : "Part 2";
     }
 
     private void BeginPart3(IReadOnlyList<SpeakingQuestionDetail> questions)
@@ -198,7 +199,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
         vm.Initialize(_attemptId, questions);
         vm.Completed += OnPart3Completed;
         CurrentPartViewModel = vm;
-        ProgressText = _mode == SpeakingMode.FullMock ? "Шаг 3 из 3 · Part 3" : "Part 3";
+        ProgressText = _mode == SpeakingMode.FullMock ? Loc.Tr("Speaking_Step3of3Part3") : "Part 3";
     }
 
     private async void OnPart1Completed(IReadOnlyList<SpeakingResponseRecord> responses)
@@ -239,7 +240,7 @@ public partial class SpeakingSessionViewModel : ObservableObject
     private async Task FinishAttemptAsync()
     {
         IsBusy = true;
-        StatusText = "Сохранение ответов…";
+        StatusText = Loc.Tr("Speaking_SavingResponses");
         try
         {
             foreach (var r in _allResponses)
@@ -257,12 +258,12 @@ public partial class SpeakingSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to persist responses / finish attempt");
-            StatusText = "Не удалось сохранить ответы: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_FailedToSaveResponses") + ex.Message;
             IsBusy = false;
             return;
         }
 
-        _aiVm = new AiProcessingViewModel { StatusText = "AI оценивает запись…" };
+        _aiVm = new AiProcessingViewModel { StatusText = Loc.Tr("Speaking_AiEvaluating") };
         _aiVm.Start();
         _aiWindow = new AiProcessingWindow
         {
@@ -274,12 +275,12 @@ public partial class SpeakingSessionViewModel : ObservableObject
         try
         {
             await _feedback.EvaluateAndSaveAsync(_attemptId);
-            _aiVm.StatusText = "Готово. Открываем результат…";
+            _aiVm.StatusText = Loc.Tr("Speaking_AiDoneOpeningResult");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Speaking evaluation failed");
-            _aiVm.StatusText = "AI-оценка не сработала: " + ex.Message;
+            _aiVm.StatusText = Loc.Tr("Speaking_AiEvaluationFailed") + ex.Message;
             await Task.Delay(1500);
         }
         finally
@@ -297,12 +298,22 @@ public partial class SpeakingSessionViewModel : ObservableObject
     [RelayCommand]
     private void Cancel()
     {
+        Cleanup();
+        Cancelled?.Invoke(_attemptId != 0 ? _attemptId : null);
+    }
+
+    private bool _isCleanedUp;
+
+    /// <summary>Stops timers/recording of the active part. Safe to call more than once (Cancel + window Closed).</summary>
+    public void Cleanup()
+    {
+        if (_isCleanedUp) return;
+        _isCleanedUp = true;
         switch (CurrentPartViewModel)
         {
             case SpeakingPart1ViewModel p1: p1.ForceStop(); break;
             case SpeakingPart2ViewModel p2: p2.ForceStop(); break;
             case SpeakingPart3ViewModel p3: p3.ForceStop(); break;
         }
-        Cancelled?.Invoke(_attemptId != 0 ? _attemptId : null);
     }
 }

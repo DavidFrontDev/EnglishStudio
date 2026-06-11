@@ -21,6 +21,7 @@ public sealed class NAudioReadingCapture : IReadingAudioCapture
 
     private WaveInEvent? _waveIn;
     private WaveFileWriter? _writer;
+    private ManualResetEventSlim? _stoppedSignal;
 
     public NAudioReadingCapture(ILogger<NAudioReadingCapture> logger, IAppSettings settings)
     {
@@ -51,19 +52,21 @@ public sealed class NAudioReadingCapture : IReadingAudioCapture
                 return;
             }
 
-            var dir = Path.Combine(DictionaryPaths.AppDataRoot, "Reading");
-            Directory.CreateDirectory(dir);
-            LastWavPath = Path.Combine(dir, $"rec_{DateTime.UtcNow:yyyyMMdd_HHmmss_fff}.wav");
-
-            var fmt = new WaveFormat(16000, 16, 1);
-            _waveIn = new WaveInEvent { WaveFormat = fmt, DeviceNumber = ResolveDeviceNumber() };
-            _writer = new WaveFileWriter(LastWavPath, fmt);
-
-            _waveIn.DataAvailable += OnDataAvailable;
-            _waveIn.RecordingStopped += OnRecordingStopped;
-
             try
             {
+                var dir = Path.Combine(DictionaryPaths.AppDataRoot, "Reading");
+                Directory.CreateDirectory(dir);
+                LastWavPath = Path.Combine(dir, $"rec_{DateTime.UtcNow:yyyyMMdd_HHmmss_fff}.wav");
+
+                var fmt = new WaveFormat(16000, 16, 1);
+                _waveIn = CreateWaveIn(fmt, ResolveDeviceNumber());
+                _writer = new WaveFileWriter(LastWavPath, fmt);
+
+                _waveIn.DataAvailable += OnDataAvailable;
+                _waveIn.RecordingStopped += OnRecordingStopped;
+
+                _stoppedSignal?.Dispose();
+                _stoppedSignal = new ManualResetEventSlim(false);
                 _waveIn.StartRecording();
                 IsCapturing = true;
             }
@@ -83,6 +86,9 @@ public sealed class NAudioReadingCapture : IReadingAudioCapture
             try { _waveIn?.StopRecording(); }
             catch (Exception ex) { _logger.LogWarning(ex, "Error stopping reading capture"); }
 
+            try { _stoppedSignal?.Wait(TimeSpan.FromSeconds(2)); }
+            catch (Exception ex) { _logger.LogDebug(ex, "waiting for reading capture stop"); }
+
             try { _writer?.Flush(); }
             catch (Exception ex) { _logger.LogDebug(ex, "reading writer flush"); }
 
@@ -91,6 +97,19 @@ public sealed class NAudioReadingCapture : IReadingAudioCapture
             IsCapturing = false;
             return path;
         }
+    }
+
+    /// <summary>
+    /// WaveInEvent posts RecordingStopped to the SynchronizationContext captured at construction;
+    /// construct without one so the stop signal fires on the capture thread rather than the
+    /// dispatcher that Stop is blocking.
+    /// </summary>
+    private static WaveInEvent CreateWaveIn(WaveFormat fmt, int deviceNumber)
+    {
+        var prev = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(null);
+        try { return new WaveInEvent { WaveFormat = fmt, DeviceNumber = deviceNumber }; }
+        finally { SynchronizationContext.SetSynchronizationContext(prev); }
     }
 
     /// <summary>
@@ -135,6 +154,7 @@ public sealed class NAudioReadingCapture : IReadingAudioCapture
 
     private void OnRecordingStopped(object? sender, StoppedEventArgs e)
     {
+        _stoppedSignal?.Set();
         if (e.Exception is not null)
             _logger.LogWarning(e.Exception, "Reading capture stopped with exception");
     }

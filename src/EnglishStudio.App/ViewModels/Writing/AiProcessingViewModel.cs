@@ -1,5 +1,6 @@
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 
 namespace EnglishStudio.App.ViewModels.Writing;
 
@@ -12,7 +13,7 @@ public partial class AiProcessingViewModel : ObservableObject
     private DispatcherTimer? _timer;
     private DateTime _startedAt;
 
-    [ObservableProperty] private string _statusText = "Отправка задания в AI…";
+    [ObservableProperty] private string _statusText = Loc.Tr("Writing_SendingTaskToAi");
     [ObservableProperty] private int _elapsedSeconds;
 
     public string ElapsedDisplay

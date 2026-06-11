@@ -208,7 +208,7 @@ public sealed class ContentImportServiceTests
         var result = await sp.GetRequiredService<IContentImportService>().ImportAsync(pack);
 
         Assert.False(result.Success);
-        Assert.Contains(result.Errors, e => e.Contains("packVersion"));
+        Assert.Contains(result.Errors, e => e.Contains("Content_ErrUnsupportedVersion"));
 
         // Rejected before copy despite valid section files being present.
         Assert.False(File.Exists(Path.Combine(env.ContentRoot, "Reading", "ielts_reading_tests.json")));

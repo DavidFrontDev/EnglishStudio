@@ -6,8 +6,8 @@ public static class MockServiceCollectionExtensions
 {
     public static IServiceCollection AddIeltsMockModule(this IServiceCollection services)
     {
-        services.AddScoped<IMockSessionService, MockSessionService>();
-        services.AddScoped<MockBundlePicker>();
+        services.AddSingleton<IMockSessionService, MockSessionService>();
+        services.AddSingleton<MockBundlePicker>();
         return services;
     }
 }

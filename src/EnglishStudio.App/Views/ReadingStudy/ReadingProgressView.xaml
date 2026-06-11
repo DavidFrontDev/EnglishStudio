@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingProgressViewModel}"
              d:DesignWidth="640" d:DesignHeight="640">
@@ -36,11 +37,11 @@
 
             <!-- Header -->
             <Grid Grid.Row="0" Margin="0,0,0,14">
-                <TextBlock Text="📈  Прогресс чтения" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <TextBlock Text="{loc:Tr Reader_ProgressTitle}" Style="{StaticResource H2}" VerticalAlignment="Center" />
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                         Content="✕" Padding="8,3" FontSize="12"
                         Style="{StaticResource FlatButton}"
-                        ToolTip="Закрыть"
+                        ToolTip="{loc:Tr Reader_Close}"
                         Command="{Binding CloseCommand}" />
             </Grid>
 
@@ -57,29 +58,29 @@
                        Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
                 <Border Style="{StaticResource ProgTile}">
                     <StackPanel>
-                        <TextBlock Text="Сессий" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Reader_Sessions}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding SessionsTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource ProgTile}">
                     <StackPanel>
-                        <TextBlock Text="Слов прочитано" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Reader_WordsRead}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding WordsReadTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource ProgTile}">
                     <StackPanel>
-                        <TextBlock Text="Среднее / лучшее" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Reader_AvgBest}" Style="{StaticResource Caption}" />
                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                             <TextBlock Text="{Binding AvgWpm, StringFormat={}{0:0}}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" />
                             <TextBlock Text="{Binding BestWpm, StringFormat=' / {0:0}'}" FontSize="14" Foreground="{DynamicResource CaptionTextBrush}" VerticalAlignment="Bottom" Margin="2,0,0,3" />
-                            <TextBlock Text=" сл/мин" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="3,0,0,4" />
+                            <TextBlock Text="{loc:Tr Reader_WordsPerMin}" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="3,0,0,4" />
                         </StackPanel>
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource ProgTile}">
                     <StackPanel>
-                        <TextBlock Text="Минут чтения" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Reader_ReadingMinutes}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding MinutesReadTotal}" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource StrongTextBrush}" Margin="0,4,0,0" />
                     </StackPanel>
                 </Border>
@@ -88,7 +89,7 @@
             <!-- Speed trend chart -->
             <StackPanel Grid.Row="2" Margin="0,4,0,0"
                         Visibility="{Binding HasData, Converter={StaticResource BoolToVis}}">
-                <TextBlock Text="Скорость чтения во времени" Style="{StaticResource H3}" Margin="0,0,0,6" />
+                <TextBlock Text="{loc:Tr Reader_SpeedOverTime}" Style="{StaticResource H3}" Margin="0,0,0,6" />
                 <Border Style="{StaticResource CardCompact}" Height="240">
                     <local:ReadingSpeedChart Points="{Binding SpeedTrend}" />
                 </Border>
@@ -98,7 +99,7 @@
             <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0"
                           Visibility="{Binding HasCoverage, Converter={StaticResource BoolToVis}}">
                 <StackPanel>
-                    <TextBlock Text="Словарный охват текстов" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                    <TextBlock Text="{loc:Tr Reader_VocabCoverage}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                     <ItemsControl ItemsSource="{Binding Coverage}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -131,7 +132,7 @@
 
             <!-- Footer -->
             <Button Grid.Row="4"
-                    Content="Закрыть"
+                    Content="{loc:Tr Reader_Close}"
                     HorizontalAlignment="Right"
                     Margin="0,14,0,0"
                     Padding="16,8"

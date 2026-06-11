@@ -5,11 +5,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Writing"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:WritingHubViewModel}"
              d:DesignHeight="700" d:DesignWidth="1100">
 
     <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <conv:NullToVisibilityConverter x:Key="NullToVis" />
     </UserControl.Resources>
 
@@ -30,11 +32,23 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="0,0,0,12">
-                <TextBlock Text="✍ IELTS Academic Writing" Style="{StaticResource H1}" />
-                <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,4,0,0">
-                    Полный тест = Task 1 (≥150 слов / 20 мин) + Task 2 (≥250 слов / 40 мин), общий таймер 60 минут.
-                    После завершения AI оценивает каждое задание по 4 критериям band 0–9.
-                </TextBlock>
+                <TextBlock Text="{loc:Tr Writing_HubTitle}" Style="{StaticResource H1}" />
+                <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,4,0,0"
+                           Text="{loc:Tr Writing_HubDescription}" />
+
+                <!-- AI unavailable warning -->
+                <Border Background="{DynamicResource OverlayLight13Brush}"
+                        BorderBrush="{DynamicResource WarningBrush}"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="10,8"
+                        Margin="0,10,0,0"
+                        Visibility="{Binding IsAiUnavailable, Converter={StaticResource BoolToVis}}">
+                    <TextBlock Text="{loc:Tr Hub_AiUnavailable}"
+                               Style="{StaticResource MutedText}"
+                               Foreground="{DynamicResource WarningBrush}"
+                               TextWrapping="Wrap" />
+                </Border>
             </StackPanel>
 
             <!-- Filter bar -->
@@ -54,31 +68,50 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
-                               Text="Фильтры:"
+                               Text="{loc:Tr Writing_Filters}"
                                Style="{StaticResource Caption}"
                                VerticalAlignment="Center"
                                Margin="0,0,10,0" />
 
                     <StackPanel Grid.Column="1" Margin="0,0,6,0">
-                        <TextBlock Style="{StaticResource Caption}" Text="Книга" />
+                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Writing_FilterBook}" />
                         <ComboBox ItemsSource="{Binding AvailableBooks}"
-                                  SelectedItem="{Binding SelectedBook, Mode=TwoWay}"
-                                  Style="{StaticResource FlatComboBox}" />
+                                  SelectedValuePath="Token"
+                                  SelectedValue="{Binding SelectedBook, Mode=TwoWay}"
+                                  Style="{StaticResource FlatComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
 
                     <StackPanel Grid.Column="2" Margin="6,0,6,0">
-                        <TextBlock Style="{StaticResource Caption}" Text="Тип задания" />
+                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Writing_FilterTaskType}" />
                         <ComboBox ItemsSource="{Binding AvailableChartTypes}"
                                   SelectedItem="{Binding SelectedChartType, Mode=TwoWay}"
-                                  DisplayMemberPath="Label"
-                                  Style="{StaticResource FlatComboBox}" />
+                                  Style="{StaticResource FlatComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
 
                     <StackPanel Grid.Column="3" Margin="6,0,6,0">
-                        <TextBlock Style="{StaticResource Caption}" Text="Прогресс" />
+                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Writing_FilterProgress}" />
                         <ComboBox ItemsSource="{Binding AvailableCompletionFilters}"
-                                  SelectedItem="{Binding SelectedCompletion, Mode=TwoWay}"
-                                  Style="{StaticResource FlatComboBox}" />
+                                  SelectedValuePath="Token"
+                                  SelectedValue="{Binding SelectedCompletion, Mode=TwoWay}"
+                                  Style="{StaticResource FlatComboBox}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
                     </StackPanel>
 
                     <Border Grid.Column="4"
@@ -91,13 +124,13 @@
                                    FontWeight="SemiBold"
                                    FontSize="12">
                             <Run Text="{Binding VisibleCount, Mode=OneWay}" />
-                            <Run Text=" из " />
+                            <Run Text="{loc:Tr Writing_Of}" />
                             <Run Text="{Binding TestSets.Count, Mode=OneWay}" />
                         </TextBlock>
                     </Border>
 
                     <Button Grid.Column="5"
-                            Content="Сбросить"
+                            Content="{loc:Tr Writing_Reset}"
                             Style="{StaticResource FlatButton}"
                             Padding="10,4"
                             FontSize="12"
@@ -172,7 +205,7 @@
 
                                     <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
                                         <TextBlock Style="{StaticResource Caption}">
-                                            <Run Text="Попыток: " /><Run Text="{Binding CompletedAttempts, Mode=OneWay}" />
+                                            <Run Text="{loc:Tr Writing_AttemptsPrefixColon}" /><Run Text="{Binding CompletedAttempts, Mode=OneWay}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
@@ -205,7 +238,7 @@
                        TextWrapping="Wrap" />
 
             <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,14,0,0" HorizontalAlignment="Right">
-                <Button Content="Начать тест"
+                <Button Content="{loc:Tr Writing_StartTest}"
                         Style="{StaticResource AccentButton}"
                         Command="{Binding StartCommand}" />
             </StackPanel>
@@ -224,21 +257,21 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="История" Style="{StaticResource H2}" />
+                <TextBlock Grid.Column="0" Text="{loc:Tr Writing_History}" Style="{StaticResource H2}" />
                 <Button Grid.Column="1"
-                        Content="📊 Подробнее"
+                        Content="{loc:Tr Writing_Details}"
                         Style="{StaticResource FlatButton}"
                         Padding="10,4"
                         FontSize="12"
                         Margin="0,0,6,0"
-                        ToolTip="График прогресса band'а + детальный список всех попыток"
+                        ToolTip="{loc:Tr Writing_DetailsTooltip}"
                         Command="{Binding ShowHistoryCommand}" />
                 <Button Grid.Column="2"
-                        Content="Очистить"
+                        Content="{loc:Tr Writing_Clear}"
                         Style="{StaticResource FlatButton}"
                         Padding="10,4"
                         FontSize="12"
-                        ToolTip="Удалить все записи о пройденных тестах"
+                        ToolTip="{loc:Tr Writing_ClearTooltip}"
                         Command="{Binding ClearHistoryCommand}" />
             </Grid>
 
@@ -264,7 +297,7 @@
                                 </StackPanel>
                                 <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0">
                                     <Run Text="{Binding WordCount, Mode=OneWay}" />
-                                    <Run Text=" слов  ·  " />
+                                    <Run Text="{loc:Tr Writing_WordsMiddleDot}" />
                                     <Run Text="{Binding StartedAt, StringFormat='dd.MM HH:mm', Mode=OneWay}" />
                                 </TextBlock>
                             </StackPanel>

@@ -1,5 +1,6 @@
 using System.IO;
 using System.Windows;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Shell;
 
 namespace EnglishStudio.App.Views.Dialogs;
@@ -22,8 +23,8 @@ public partial class AddTextWindow : ChromedWindow
     {
         var dlg = new Microsoft.Win32.OpenFileDialog
         {
-            Title = "Импорт текста",
-            Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*",
+            Title = Loc.Tr("Dialog_ImportTextTitle"),
+            Filter = Loc.Tr("Dialog_ImportTextFilter"),
             CheckFileExists = true
         };
         if (dlg.ShowDialog(this) != true) return;
@@ -37,7 +38,7 @@ public partial class AddTextWindow : ChromedWindow
         }
         catch (Exception ex)
         {
-            ShowError($"Не удалось прочитать файл: {ex.Message}");
+            ShowError(Loc.Format("Dialog_ReadFileFailed", ex.Message));
         }
     }
 
@@ -45,7 +46,7 @@ public partial class AddTextWindow : ChromedWindow
     {
         if (string.IsNullOrWhiteSpace(BodyBox.Text))
         {
-            ShowError("Вставьте или импортируйте текст.");
+            ShowError(Loc.Tr("Dialog_PasteOrImportText"));
             return;
         }
         DialogResult = true;

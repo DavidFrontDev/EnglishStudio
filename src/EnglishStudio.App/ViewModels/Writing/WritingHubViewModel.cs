@@ -6,8 +6,10 @@ using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Content;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.App.Views.Writing;
+using EnglishStudio.Modules.Ai;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Writing;
@@ -22,6 +24,7 @@ public partial class WritingHubViewModel : ObservableObject
     private readonly WritingFeedbackService _feedback;
     private readonly IContentStore _content;
     private readonly ContentImportLauncher _importLauncher;
+    private readonly IClaudeCliClient _claudeCli;
     private readonly IServiceProvider _services;
     private readonly ILogger<WritingHubViewModel> _log;
 
@@ -29,8 +32,12 @@ public partial class WritingHubViewModel : ObservableObject
     private AiProcessingWindow? _processingWindow;
     private AiProcessingViewModel? _processingVm;
 
-    // Token used in filter ComboBoxes to mean "no filter / show all".
-    public const string AllFilterToken = "Все";
+    // Stable, language-neutral filter tokens. The displayed label is localized separately
+    // (see FilterOption / RebuildCompletionFilters) so switching language never breaks filtering.
+    public const string AllBooksToken = "";
+    public const string CompletionAll = "all";
+    public const string CompletionNotDone = "notdone";
+    public const string CompletionDone = "done";
 
     public ObservableCollection<WritingTestSetSummary> TestSets { get; } = new();
     public ObservableCollection<WritingAttemptSummary> RecentAttempts { get; } = new();
@@ -38,16 +45,13 @@ public partial class WritingHubViewModel : ObservableObject
     /// <summary>Live, filterable view over <see cref="TestSets"/>. Bound to the ListBox.</summary>
     public ICollectionView TestSetsView { get; }
 
-    public ObservableCollection<string> AvailableBooks { get; } = new();
+    public ObservableCollection<FilterOption> AvailableBooks { get; } = new();
     public ObservableCollection<ChartTypeOption> AvailableChartTypes { get; } = new();
-    public ObservableCollection<string> AvailableCompletionFilters { get; } = new()
-    {
-        AllFilterToken, "Не пройденные", "Пройденные"
-    };
+    public ObservableCollection<FilterOption> AvailableCompletionFilters { get; } = new();
 
-    [ObservableProperty] private string _selectedBook = AllFilterToken;
+    [ObservableProperty] private string _selectedBook = AllBooksToken;
     [ObservableProperty] private ChartTypeOption? _selectedChartType;
-    [ObservableProperty] private string _selectedCompletion = AllFilterToken;
+    [ObservableProperty] private string _selectedCompletion = CompletionAll;
 
     [ObservableProperty] private WritingTestSetSummary? _selectedTestSet;
     [ObservableProperty] private bool _isLoading;
@@ -61,7 +65,10 @@ public partial class WritingHubViewModel : ObservableObject
     [ObservableProperty] private bool _isContentMissing;
 
     [ObservableProperty] private string _contentMissingText =
-        "Задания IELTS Writing входят в контент-пак. Импортируйте пак, чтобы открыть раздел.";
+        Loc.Tr("Writing_ContentMissing");
+
+    /// <summary>True when the Claude CLI isn't available — shows the AI-unavailable banner.</summary>
+    [ObservableProperty] private bool _isAiUnavailable;
 
     public bool IsHubVisible => CurrentScreen is null;
 
@@ -70,6 +77,7 @@ public partial class WritingHubViewModel : ObservableObject
         WritingFeedbackService feedback,
         IContentStore content,
         ContentImportLauncher importLauncher,
+        IClaudeCliClient claudeCli,
         IServiceProvider services,
         ILogger<WritingHubViewModel> log)
     {
@@ -77,6 +85,7 @@ public partial class WritingHubViewModel : ObservableObject
         _feedback = feedback;
         _content = content;
         _importLauncher = importLauncher;
+        _claudeCli = claudeCli;
         _services = services;
         _log = log;
         CurrentScreen = null;
@@ -86,9 +95,12 @@ public partial class WritingHubViewModel : ObservableObject
         TestSetsView = CollectionViewSource.GetDefaultView(TestSets);
         TestSetsView.Filter = MatchesFilter;
 
-        // Seed the chart-type ComboBox with "Все" + all enum values that actually appear in seed.
-        // (Populated once here so the dropdown is non-empty before the first load completes.)
-        AvailableBooks.Add(AllFilterToken);
+        RebuildCompletionFilters();
+        // Seed the books ComboBox with the "all" option so it is non-empty before the first load.
+        AvailableBooks.Add(new FilterOption(AllBooksToken, Loc.Tr("Writing_FilterAll")));
+
+        // Re-localize filter labels live when the interface language changes.
+        LocalizationManager.Instance.PropertyChanged += OnLanguageChanged;
 
         _ = LoadAsync();
     }
@@ -98,6 +110,9 @@ public partial class WritingHubViewModel : ObservableObject
     {
         public override string ToString() => Label;
     }
+
+    /// <summary>A filter ComboBox item: a stable <see cref="Token"/> + a localized display <see cref="Label"/>.</summary>
+    public sealed record FilterOption(string Token, string Label);
 
     private static readonly Regex BookNumberRegex = new(
         @"\bBook\s+(\d+)\b", RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -127,7 +142,7 @@ public partial class WritingHubViewModel : ObservableObject
         if (obj is not WritingTestSetSummary s) return false;
 
         // Book filter — extracted from the Title.
-        if (SelectedBook != AllFilterToken)
+        if (!string.IsNullOrEmpty(SelectedBook))
         {
             var book = ExtractBookNumber(s.Title);
             if (book != SelectedBook) return false;
@@ -137,8 +152,8 @@ public partial class WritingHubViewModel : ObservableObject
         if (SelectedChartType?.Value is { } ct && s.Task1ChartType != ct) return false;
 
         // Completion filter.
-        if (SelectedCompletion == "Не пройденные" && s.CompletedAttempts > 0) return false;
-        if (SelectedCompletion == "Пройденные" && s.CompletedAttempts == 0) return false;
+        if (SelectedCompletion == CompletionNotDone && s.CompletedAttempts > 0) return false;
+        if (SelectedCompletion == CompletionDone && s.CompletedAttempts == 0) return false;
 
         return true;
     }
@@ -160,9 +175,28 @@ public partial class WritingHubViewModel : ObservableObject
         }
     }
 
+    private void OnLanguageChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        // Re-create the filter options so their labels follow the new language (tokens are preserved).
+        RebuildCompletionFilters();
+        RebuildFilterOptions();
+    }
+
+    /// <summary>(Re)builds the completion filter with localized labels, preserving the selected token.</summary>
+    private void RebuildCompletionFilters()
+    {
+        var prev = SelectedCompletion;
+        AvailableCompletionFilters.Clear();
+        AvailableCompletionFilters.Add(new FilterOption(CompletionAll, Loc.Tr("Writing_FilterAll")));
+        AvailableCompletionFilters.Add(new FilterOption(CompletionNotDone, Loc.Tr("Writing_FilterNotDone")));
+        AvailableCompletionFilters.Add(new FilterOption(CompletionDone, Loc.Tr("Writing_FilterDone")));
+        SelectedCompletion = prev;
+        OnPropertyChanged(nameof(SelectedCompletion));
+    }
+
     private void RebuildFilterOptions()
     {
-        // Books: derive from TestSet titles. Numeric sort, "Все" stays on top.
+        // Books: derive from TestSet titles. Numeric sort, the localized "all" item stays on top.
         var books = TestSets
             .Select(t => ExtractBookNumber(t.Title))
             .Where(b => b is not null)
@@ -171,9 +205,10 @@ public partial class WritingHubViewModel : ObservableObject
             .ToList();
         var prevBook = SelectedBook;
         AvailableBooks.Clear();
-        AvailableBooks.Add(AllFilterToken);
-        foreach (var b in books) AvailableBooks.Add(b!);
-        SelectedBook = AvailableBooks.Contains(prevBook) ? prevBook : AllFilterToken;
+        AvailableBooks.Add(new FilterOption(AllBooksToken, Loc.Tr("Writing_FilterAll")));
+        foreach (var b in books) AvailableBooks.Add(new FilterOption(b!, b!));
+        SelectedBook = books.Contains(prevBook) ? prevBook : AllBooksToken;
+        OnPropertyChanged(nameof(SelectedBook));
 
         // Chart types: only those that actually appear (excluding None).
         var chartTypes = TestSets
@@ -182,13 +217,14 @@ public partial class WritingHubViewModel : ObservableObject
             .Distinct()
             .OrderBy(t => FormatChartType(t))
             .ToList();
-        var prevChartLabel = SelectedChartType?.Label;
+        var prevChartValue = SelectedChartType?.Value;
         AvailableChartTypes.Clear();
-        AvailableChartTypes.Add(new ChartTypeOption(AllFilterToken, null));
+        AvailableChartTypes.Add(new ChartTypeOption(Loc.Tr("Writing_FilterAll"), null));
         foreach (var ct in chartTypes) AvailableChartTypes.Add(new ChartTypeOption(FormatChartType(ct), ct));
         SelectedChartType =
-            AvailableChartTypes.FirstOrDefault(o => o.Label == prevChartLabel)
+            AvailableChartTypes.FirstOrDefault(o => o.Value == prevChartValue)
             ?? AvailableChartTypes.First();
+        OnPropertyChanged(nameof(SelectedChartType));
     }
 
     partial void OnSelectedBookChanged(string value) => RefreshView();
@@ -198,9 +234,9 @@ public partial class WritingHubViewModel : ObservableObject
     [RelayCommand]
     private void ResetFilters()
     {
-        SelectedBook = AllFilterToken;
+        SelectedBook = AllBooksToken;
         SelectedChartType = AvailableChartTypes.FirstOrDefault();
-        SelectedCompletion = AllFilterToken;
+        SelectedCompletion = CompletionAll;
     }
 
     /// <summary>Opens the content importer, then reloads (picks up freshly imported content).</summary>
@@ -217,6 +253,7 @@ public partial class WritingHubViewModel : ObservableObject
         StatusText = string.Empty;
         try
         {
+            IsAiUnavailable = !_claudeCli.IsAvailable;
             IsContentMissing = !_content.IsImported(ContentSection.Writing);
             if (IsContentMissing)
             {
@@ -239,13 +276,13 @@ public partial class WritingHubViewModel : ObservableObject
 
             if (TestSets.Count == 0)
             {
-                StatusText = "Тесты ещё не загружены. Перезапустите приложение для импорта seed.";
+                StatusText = Loc.Tr("Writing_NoTestsLoaded");
             }
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load writing hub data");
-            StatusText = "Не удалось загрузить список тестов.";
+            StatusText = Loc.Tr("Writing_LoadTestsFailed");
         }
         finally
         {
@@ -269,18 +306,20 @@ public partial class WritingHubViewModel : ObservableObject
 
         await sessionVm.StartAsync(SelectedTestSet.Id);
 
-        _sessionWindow = new WritingSessionWindow
+        var window = new WritingSessionWindow
         {
             DataContext = sessionVm,
             Owner = Application.Current.MainWindow
         };
-        _sessionWindow.Closed += (_, _) =>
+        window.Closed += (_, _) =>
         {
+            sessionVm.Cleanup();
             sessionVm.Submitted -= OnSessionSubmitted;
             sessionVm.Cancelled -= OnSessionCancelled;
-            _sessionWindow = null;
+            if (ReferenceEquals(_sessionWindow, window)) _sessionWindow = null;
         };
-        _sessionWindow.Show();
+        _sessionWindow = window;
+        window.Show();
     }
 
     private bool CanStart() => SelectedTestSet is not null;
@@ -317,15 +356,15 @@ public partial class WritingHubViewModel : ObservableObject
         {
             for (var i = 0; i < attemptIds.Count; i++)
             {
-                _processingVm.StatusText = $"Оценка Task {i + 1} из {attemptIds.Count}…";
+                _processingVm.StatusText = Loc.Format("Writing_EvalTaskProgress", i + 1, attemptIds.Count);
                 await _feedback.EvaluateAndSaveAsync(attemptIds[i]);
             }
-            _processingVm.StatusText = "Готово. Открываем результат…";
+            _processingVm.StatusText = Loc.Tr("Writing_EvalDoneOpeningResult");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Writing evaluator failed");
-            _processingVm.StatusText = "AI-оценка частично не сработала: " + ex.Message;
+            _processingVm.StatusText = Loc.Tr("Writing_EvalPartialFail") + ex.Message;
             await Task.Delay(2000);
         }
         finally
@@ -386,9 +425,9 @@ public partial class WritingHubViewModel : ObservableObject
     {
         var confirm = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Очистить историю",
-            "Удалить все записи о пройденных Writing-тестах? Это действие необратимо.",
-            confirmText: "Очистить");
+            Loc.Tr("Writing_ClearHistoryTitle"),
+            Loc.Tr("Writing_ClearHistoryBody"),
+            confirmText: Loc.Tr("Writing_ClearHistoryConfirm"));
 
         if (!confirm) return;
 
@@ -396,13 +435,13 @@ public partial class WritingHubViewModel : ObservableObject
         {
             var removed = await _taskSvc.ClearHistoryAsync();
             StatusText = removed == 0
-                ? "История уже была пуста."
-                : $"Удалено записей: {removed}.";
+                ? Loc.Tr("Writing_HistoryAlreadyEmpty")
+                : Loc.Format("Writing_HistoryCleared", removed);
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to clear writing history");
-            StatusText = "Не удалось очистить историю: " + ex.Message;
+            StatusText = Loc.Tr("Writing_ClearHistoryFailed") + ex.Message;
         }
 
         await LoadAsync();

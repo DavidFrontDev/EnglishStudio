@@ -1,6 +1,7 @@
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Writing;
 using Microsoft.Extensions.Logging;
@@ -66,7 +67,7 @@ public partial class WritingTaskViewModel : ObservableObject
         Task = await _taskSvc.GetFullAsync(taskId);
         if (Task is null)
         {
-            StatusText = "Задание не найдено.";
+            StatusText = Loc.Tr("Writing_TaskNotFound");
             return;
         }
 
@@ -115,16 +116,16 @@ public partial class WritingTaskViewModel : ObservableObject
     {
         if (_attemptId == 0) return;
         IsBusy = true;
-        StatusText = "Сохранение...";
+        StatusText = Loc.Tr("Writing_Saving");
         try
         {
             await _taskSvc.SaveDraftAsync(_attemptId, UserText);
-            StatusText = "Черновик сохранён.";
+            StatusText = Loc.Tr("Writing_DraftSaved");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to save writing draft");
-            StatusText = "Не удалось сохранить черновик.";
+            StatusText = Loc.Tr("Writing_SaveDraftFailed");
         }
         finally { IsBusy = false; }
     }
@@ -134,7 +135,7 @@ public partial class WritingTaskViewModel : ObservableObject
     {
         if (_attemptId == 0) return;
         IsBusy = true;
-        StatusText = "Отправка и оценка...";
+        StatusText = Loc.Tr("Writing_SubmittingAndEvaluating");
         try
         {
             await _taskSvc.SubmitAttemptAsync(_attemptId, UserText);
@@ -145,13 +146,13 @@ public partial class WritingTaskViewModel : ObservableObject
                 var report = await _feedback.EvaluateAndSaveAsync(_attemptId);
                 if (report is null)
                 {
-                    StatusText = "Ответ сохранён. AI-оценка недоступна (Claude CLI не настроен или не ответил).";
+                    StatusText = Loc.Tr("Writing_AnswerSavedNoAi");
                 }
             }
             catch (Exception evalEx)
             {
                 _log.LogError(evalEx, "Essay evaluator failed");
-                StatusText = "Ответ сохранён, но AI-оценка не сработала: " + evalEx.Message;
+                StatusText = Loc.Tr("Writing_AnswerSavedAiFailed") + evalEx.Message;
             }
 
             Submitted?.Invoke(_attemptId);
@@ -159,7 +160,7 @@ public partial class WritingTaskViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to submit writing attempt");
-            StatusText = "Не удалось отправить ответ.";
+            StatusText = Loc.Tr("Writing_SubmitAnswerFailed");
         }
         finally { IsBusy = false; }
     }

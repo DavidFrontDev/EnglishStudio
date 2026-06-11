@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Reading.Services;
 
 namespace EnglishStudio.App.ViewModels.ReadingStudy;
@@ -53,6 +54,6 @@ public sealed class PhonemeUnitViewModel
     }
 
     public string ToolTipText => IsTricky
-        ? $"/{Ipa}/ ({Arpabet}) — трудный для русскоговорящих звук"
-        : $"/{Ipa}/ ({Arpabet})";
+        ? Loc.Format("ReadStudy_PhonemeTooltipTricky", Ipa, Arpabet)
+        : Loc.Format("ReadStudy_PhonemeTooltip", Ipa, Arpabet);
 }

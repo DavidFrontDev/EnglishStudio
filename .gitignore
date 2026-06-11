@@ -64,3 +64,6 @@ src/EnglishStudio.Modules.Ai/Rubrics/IeltsRubric_Speaking.md
 EnglishStudio-Content/
 /content/
 *.content-pack.zip
+
+# Velopack publish output
+publish/

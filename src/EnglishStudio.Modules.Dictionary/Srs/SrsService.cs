@@ -179,8 +179,9 @@ public sealed class SrsService : ISrsService
         var dueToday = await db.UserWordProgress
             .CountAsync(p => p.State != SrsState.New && p.NextReviewAt != null && p.NextReviewAt <= now, ct);
 
-        var startOfDay = now.Date;
-        var endOfDay = startOfDay.AddDays(1);
+        var localNow = now.ToLocalTime();
+        var startOfDay = localNow.Date.ToUniversalTime();
+        var endOfDay = localNow.Date.AddDays(1).ToUniversalTime();
         var reviewedToday = await db.ReviewLogs
             .CountAsync(r => r.ReviewedAt >= startOfDay && r.ReviewedAt < endOfDay, ct);
         var lapsesToday = await db.ReviewLogs

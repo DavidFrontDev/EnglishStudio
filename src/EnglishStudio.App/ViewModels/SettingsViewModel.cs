@@ -5,8 +5,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Audio;
 using EnglishStudio.App.Content;
+using EnglishStudio.App.Localization;
+using EnglishStudio.App.Theming;
 using EnglishStudio.Modules.Ai;
 using EnglishStudio.Modules.Dictionary.Images;
+using EnglishStudio.Modules.Dictionary.Srs;
 // Both EnglishStudio.App.Audio and …Dictionary.Images declare WhisperModelSize; settings use the Images one.
 using WhisperModelSize = EnglishStudio.Modules.Dictionary.Images.WhisperModelSize;
 
@@ -19,6 +22,19 @@ public partial class SettingsViewModel : ObservableObject
     private readonly IMicrophoneTester _micTester;
     private readonly IAudioPlayer _audioPlayer;
     private readonly ContentImportLauncher _importLauncher;
+    private readonly ILocalizer _localizer;
+    private readonly IThemeManager _themeManager;
+    private readonly FsrsParameters _fsrsParameters;
+
+    /// <summary>Colour theme. Changing it re-skins the whole UI live and persists the choice.</summary>
+    [ObservableProperty] private AppTheme _theme;
+
+    /// <summary>A theme choice with a label resolved in the current language.</summary>
+    public sealed record ThemeChoice(AppTheme Theme, string Label);
+
+    /// <summary>Theme options with localized names; rebuilt on language change (the language
+    /// selector lives in this same window).</summary>
+    public ObservableCollection<ThemeChoice> Themes { get; } = new();
 
     [ObservableProperty] private string? _pexelsApiKey;
     [ObservableProperty] private int _dailyNewLimit;
@@ -26,7 +42,7 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private double _targetRetention;
 
     [ObservableProperty] private string? _claudeCliPath;
-    [ObservableProperty] private string _claudeCliStatus = "Проверка…";
+    [ObservableProperty] private string _claudeCliStatus = Loc.Tr("Settings_Checking");
 
     [ObservableProperty] private WhisperModelSize _whisperModel;
 
@@ -44,12 +60,10 @@ public partial class SettingsViewModel : ObservableObject
     [ObservableProperty] private string? _listeningVoiceUsMale;
 
     [ObservableProperty] private string? _saveStatus;
+    [ObservableProperty] private string? _backupStatus;
 
-    public ObservableCollection<WhisperOption> WhisperOptions { get; } =
-    [
-        new(WhisperModelSize.Base, "Base — быстро (142 МБ), для тренировки произношения"),
-        new(WhisperModelSize.Medium, "Medium — точно (1.5 ГБ), для Speaking long-form")
-    ];
+    /// <summary>Whisper model options with localized labels; rebuilt on language change.</summary>
+    public ObservableCollection<WhisperOption> WhisperOptions { get; } = new();
 
     public ObservableCollection<MicrophoneDeviceInfo> Microphones { get; } = new();
 
@@ -58,14 +72,22 @@ public partial class SettingsViewModel : ObservableObject
         IClaudeCliClient claudeCli,
         IMicrophoneTester micTester,
         IAudioPlayer audioPlayer,
-        ContentImportLauncher importLauncher)
+        ContentImportLauncher importLauncher,
+        ILocalizer localizer,
+        IThemeManager themeManager,
+        FsrsParameters fsrsParameters)
     {
         _settings = settings;
         _claudeCli = claudeCli;
         _micTester = micTester;
         _audioPlayer = audioPlayer;
         _importLauncher = importLauncher;
-        _micTester.LevelChanged += OnMicLevelChanged;
+        _localizer = localizer;
+        _themeManager = themeManager;
+        _fsrsParameters = fsrsParameters;
+
+        // Seed from the live theme so OnThemeChanged does not re-apply at load.
+        _theme = themeManager.Current;
 
         _pexelsApiKey = settings.PexelsApiKey;
         _dailyNewLimit = settings.DailyNewLimit;
@@ -78,8 +100,38 @@ public partial class SettingsViewModel : ObservableObject
         _listeningVoiceUsFemale = settings.ListeningVoiceUsFemale;
         _listeningVoiceUsMale = settings.ListeningVoiceUsMale;
 
+        RebuildLocalizedLists();
+        LocalizationManager.Instance.PropertyChanged += OnLanguageChanged;
+
+        _micTester.LevelChanged += OnMicLevelChanged;
         LoadMicrophones();
         _ = RefreshClaudeStatusAsync();
+    }
+
+    private void OnLanguageChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        => RebuildLocalizedLists();
+
+    /// <summary>(Re)builds the language-dependent combo lists, preserving the current selection
+    /// (the bound <see cref="Theme"/> / <see cref="WhisperModel"/> re-match by value).</summary>
+    private void RebuildLocalizedLists()
+    {
+        Themes.Clear();
+        foreach (var t in AppThemes.All)
+            Themes.Add(new ThemeChoice(t.Theme, Loc.Tr(t.LabelKey)));
+
+        WhisperOptions.Clear();
+        WhisperOptions.Add(new WhisperOption(WhisperModelSize.Base, Loc.Tr("Settings_WhisperBase")));
+        WhisperOptions.Add(new WhisperOption(WhisperModelSize.Medium, Loc.Tr("Settings_WhisperMedium")));
+
+        OnPropertyChanged(nameof(Theme));
+        OnPropertyChanged(nameof(WhisperModel));
+    }
+
+    partial void OnThemeChanged(AppTheme value)
+    {
+        // Live re-skin: swap palette MergedDictionaries[0] so every DynamicResource repaints, then persist.
+        _themeManager.Apply(value);
+        _settings.Update(new SettingsUpdate { Theme = Optional<string?>.Set(value.ToString()) });
     }
 
     private void OnMicLevelChanged(object? sender, double level) => MicLevel = level;
@@ -96,7 +148,7 @@ public partial class SettingsViewModel : ObservableObject
             ?? devices.FirstOrDefault();
 
         MicStatus = Microphones.Count <= 1
-            ? "Микрофоны не обнаружены. Подключите устройство и нажмите ⟳."
+            ? Loc.Tr("Settings_NoMicsFound")
             : null;
     }
 
@@ -126,12 +178,12 @@ public partial class SettingsViewModel : ObservableObject
         if (_micTester.IsActive)
         {
             IsMicTesting = true;
-            MicStatus = "Идёт проверка — говорите в микрофон…";
+            MicStatus = Loc.Tr("Settings_MicTesting");
         }
         else
         {
             IsMicTesting = false;
-            MicStatus = "Не удалось открыть микрофон. Выберите другое устройство.";
+            MicStatus = Loc.Tr("Settings_MicOpenFailed");
         }
     }
 
@@ -144,8 +196,8 @@ public partial class SettingsViewModel : ObservableObject
         MicLevel = 0;
         HasTestRecording = _testRecordingPath is not null && File.Exists(_testRecordingPath);
         MicStatus = HasTestRecording
-            ? "Запись готова — нажмите «▶ Прослушать запись»."
-            : "Проверка остановлена.";
+            ? Loc.Tr("Settings_RecordingReady")
+            : Loc.Tr("Settings_TestStopped");
     }
 
     [RelayCommand]
@@ -168,6 +220,7 @@ public partial class SettingsViewModel : ObservableObject
     /// <summary>Releases the microphone and stops playback when the settings window closes.</summary>
     public void Cleanup()
     {
+        LocalizationManager.Instance.PropertyChanged -= OnLanguageChanged;
         _micTester.LevelChanged -= OnMicLevelChanged;
         try { _micTester.Dispose(); } catch { /* ignore */ }
         try { _audioPlayer.Stop(); } catch { /* ignore */ }
@@ -178,28 +231,29 @@ public partial class SettingsViewModel : ObservableObject
     [RelayCommand]
     private async Task RefreshClaudeStatusAsync()
     {
-        ClaudeCliStatus = "Проверка…";
+        ClaudeCliStatus = Loc.Tr("Settings_Checking");
         await _claudeCli.RefreshAsync();
         if (_claudeCli.IsAvailable)
         {
-            var version = _claudeCli.Version ?? "(версия не определена)";
-            ClaudeCliStatus = $"✓ Найден: {_claudeCli.ExecutablePath}  ({version})";
+            var version = _claudeCli.Version ?? Loc.Tr("Settings_VersionUnknown");
+            ClaudeCliStatus = Loc.Format("Settings_ClaudeFound", _claudeCli.ExecutablePath ?? string.Empty, version);
         }
         else
         {
-            ClaudeCliStatus = "✗ Не найден. Установите Claude CLI или укажите путь вручную.";
+            ClaudeCliStatus = Loc.Tr("Settings_ClaudeNotFound");
         }
     }
 
     [RelayCommand]
     private void Save()
     {
+        var targetRetention = Math.Clamp(TargetRetention, 0.7, 0.99);
         _settings.Update(new SettingsUpdate
         {
             PexelsApiKey = Optional<string?>.Set(string.IsNullOrWhiteSpace(PexelsApiKey) ? null : PexelsApiKey.Trim()),
             DailyNewLimit = Math.Clamp(DailyNewLimit, 0, 1000),
             DailyReviewLimit = Math.Clamp(DailyReviewLimit, 0, 5000),
-            TargetRetention = Math.Clamp(TargetRetention, 0.7, 0.99),
+            TargetRetention = targetRetention,
             ClaudeCliPath = Optional<string?>.Set(string.IsNullOrWhiteSpace(ClaudeCliPath) ? null : ClaudeCliPath.Trim()),
             WhisperModel = WhisperModel,
             // System-default device is stored as null so it always resolves to the OS default.
@@ -211,7 +265,9 @@ public partial class SettingsViewModel : ObservableObject
             ListeningVoiceUsMale = Optional<string?>.Set(ListeningVoiceUsMale)
         });
 
-        SaveStatus = "Сохранено.";
+        _fsrsParameters.TargetRetention = targetRetention;
+
+        SaveStatus = _localizer["Settings_Saved"];
         _ = RefreshClaudeStatusAsync();
     }
 
@@ -224,7 +280,41 @@ public partial class SettingsViewModel : ObservableObject
     {
         PexelsApiKey = null;
         _settings.Update(new SettingsUpdate { PexelsApiKey = Optional<string?>.Set(null) });
-        SaveStatus = "Pexels ключ очищен.";
+        SaveStatus = Loc.Tr("Settings_PexelsCleared");
+    }
+
+    [RelayCommand]
+    private async Task CreateBackupAsync()
+    {
+        try
+        {
+            var path = await Task.Run(() => Diagnostics.DatabaseBackup.Create("manual"));
+            BackupStatus = path is null
+                ? Loc.Tr("Settings_BackupNoDb")
+                : Loc.Format("Settings_BackupDone", path);
+        }
+        catch (Exception ex)
+        {
+            BackupStatus = Loc.Format("Settings_BackupFailed", ex.Message);
+        }
+    }
+
+    [RelayCommand]
+    private void OpenBackupFolder()
+    {
+        try
+        {
+            System.IO.Directory.CreateDirectory(Diagnostics.DatabaseBackup.BackupDirectory);
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+            {
+                FileName = Diagnostics.DatabaseBackup.BackupDirectory,
+                UseShellExecute = true
+            });
+        }
+        catch (Exception ex)
+        {
+            BackupStatus = Loc.Format("Settings_BackupFailed", ex.Message);
+        }
     }
 }
 

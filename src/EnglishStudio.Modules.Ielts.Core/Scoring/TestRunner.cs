@@ -53,6 +53,12 @@ public sealed class TestRunner : ITestRunner
         {
             await using var db = await _dbFactory.CreateDbContextAsync(ct);
 
+            var finishedAt = await db.TestAttempts
+                .Where(a => a.Id == attemptId)
+                .Select(a => a.FinishedAt)
+                .FirstOrDefaultAsync(ct);
+            if (finishedAt is not null) return;
+
             // Include Group so the registry can decide on label-text vs. dropdown routing
             // for Map/DiagramLabeling questions.
             var question = await db.TestQuestions
@@ -97,37 +103,48 @@ public sealed class TestRunner : ITestRunner
 
     public async Task<TestAttempt> FinishAsync(int attemptId, CancellationToken ct = default)
     {
-        await using var db = await _dbFactory.CreateDbContextAsync(ct);
-
-        var attempt = await db.TestAttempts
-            .Include(a => a.Answers)
-            .Include(a => a.TestSet)
-            .FirstOrDefaultAsync(a => a.Id == attemptId, ct)
-            ?? throw new InvalidOperationException($"Attempt {attemptId} not found.");
-
-        if (attempt.FinishedAt is not null) return attempt;
-
-        var answeredQuestionIds = attempt.Answers.Select(a => a.TestQuestionId).Distinct().ToList();
-        var questions = await db.TestQuestions
-            .AsNoTracking()
-            .Where(q => answeredQuestionIds.Contains(q.Id))
-            .ToListAsync(ct);
-        EnforceChooseTwoUniqueness(attempt.Answers, questions);
-
-        attempt.FinishedAt = DateTime.UtcNow;
-        attempt.DurationSeconds = (int)(attempt.FinishedAt.Value - attempt.StartedAt).TotalSeconds;
-        // Defensive: collapse any legacy duplicate rows so RawScore is not double-counted.
-        attempt.RawScore = attempt.Answers
-            .GroupBy(a => a.TestQuestionId)
-            .Sum(g => g.First().PointsEarned);
-
-        if (attempt.TestSet.Section is IeltsSection.Reading or IeltsSection.Listening)
+        var sem = _attemptLocks.GetOrAdd(attemptId, _ => new SemaphoreSlim(1, 1));
+        await sem.WaitAsync(ct);
+        TestAttempt attempt;
+        try
         {
-            attempt.BandEstimate = _bandMapper.RawToBand(
-                attempt.RawScore, attempt.TestSet.Section, attempt.TestSet.Mode);
-        }
+            await using var db = await _dbFactory.CreateDbContextAsync(ct);
 
-        await db.SaveChangesAsync(ct);
+            attempt = await db.TestAttempts
+                .Include(a => a.Answers)
+                .Include(a => a.TestSet)
+                .FirstOrDefaultAsync(a => a.Id == attemptId, ct)
+                ?? throw new InvalidOperationException($"Attempt {attemptId} not found.");
+
+            if (attempt.FinishedAt is null)
+            {
+                var answeredQuestionIds = attempt.Answers.Select(a => a.TestQuestionId).Distinct().ToList();
+                var questions = await db.TestQuestions
+                    .AsNoTracking()
+                    .Where(q => answeredQuestionIds.Contains(q.Id))
+                    .ToListAsync(ct);
+                EnforceChooseTwoUniqueness(attempt.Answers, questions);
+
+                attempt.FinishedAt = DateTime.UtcNow;
+                attempt.DurationSeconds = (int)(attempt.FinishedAt.Value - attempt.StartedAt).TotalSeconds;
+                // Defensive: collapse any legacy duplicate rows so RawScore is not double-counted.
+                attempt.RawScore = attempt.Answers
+                    .GroupBy(a => a.TestQuestionId)
+                    .Sum(g => g.First().PointsEarned);
+
+                if (attempt.TestSet.Section is IeltsSection.Reading or IeltsSection.Listening)
+                {
+                    attempt.BandEstimate = _bandMapper.RawToBand(
+                        attempt.RawScore, attempt.TestSet.Section, attempt.TestSet.Mode);
+                }
+
+                await db.SaveChangesAsync(ct);
+            }
+        }
+        finally
+        {
+            sem.Release();
+        }
         _attemptLocks.TryRemove(attemptId, out _);
         return attempt;
     }

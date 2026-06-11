@@ -3,10 +3,12 @@ using EnglishStudio.Modules.Dictionary.Audio;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Dictionary.Data;
 using EnglishStudio.Modules.Dictionary.Images;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Dictionary.Seed;
 using EnglishStudio.Modules.Dictionary.Srs;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Polly;
 using Polly.Extensions.Http;
 
@@ -20,6 +22,9 @@ public static class DictionaryServiceCollectionExtensions
 
         // Единый источник правды о наличии импортированного контента (см. план §2).
         services.AddSingleton<IContentStore, FileSystemContentStore>();
+
+        // Хост (App) перекрывает это реальным локализатором; в тестах/тулинге работает key-echo.
+        services.TryAddSingleton<IMessageLocalizer, KeyEchoMessageLocalizer>();
 
         services.AddDbContext<DictionaryDbContext>(opt =>
             opt.UseSqlite(DictionaryPaths.SqliteConnectionString));
@@ -58,7 +63,11 @@ public static class DictionaryServiceCollectionExtensions
         services.AddSingleton<IImageProvider, PexelsImageProvider>();
         services.AddSingleton<IImageCacheService, ImageCacheService>();
 
-        services.AddSingleton(new FsrsParameters());
+        services.AddSingleton(sp => new FsrsParameters
+        {
+            TargetRetention = Math.Clamp(
+                sp.GetRequiredService<IAppSettings>().TargetRetention, 0.7, 0.99),
+        });
         services.AddSingleton<IFsrsScheduler, FsrsScheduler>();
         services.AddSingleton<ISrsService, SrsService>();
 

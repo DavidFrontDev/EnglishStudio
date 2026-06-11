@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ai;
 using EnglishStudio.Modules.Ai.Reports;
 using EnglishStudio.Modules.Ielts.Core.Entities;
@@ -34,10 +35,11 @@ public partial class ListeningResultViewModel : ObservableObject
     public ObservableCollection<AiQuestionRow> AiQuestionExplanations { get; } = new();
     public ObservableCollection<string> AiTips { get; } = new();
 
-    [ObservableProperty] private string _aiSummaryRu = string.Empty;
+    [ObservableProperty] private string _aiSummary = string.Empty;
     [ObservableProperty] private bool _hasAiFeedback;
     [ObservableProperty] private bool _isLoadingAi;
     [ObservableProperty] private string _aiStatus = string.Empty;
+    [ObservableProperty] private string _statusText = string.Empty;
 
     public bool IsAiAvailable => _cli.IsAvailable;
 
@@ -56,6 +58,20 @@ public partial class ListeningResultViewModel : ObservableObject
     public async Task LoadAsync(int attemptId)
     {
         _attemptId = attemptId;
+        StatusText = string.Empty;
+        try
+        {
+            await LoadCoreAsync(attemptId);
+        }
+        catch (Exception ex)
+        {
+            _log.LogError(ex, "Failed to load listening result {Id}", attemptId);
+            StatusText = Loc.Tr("Listening_LoadTestsFailed");
+        }
+    }
+
+    private async Task LoadCoreAsync(int attemptId)
+    {
         var attempt = await _testSvc.GetAttemptAsync(attemptId);
         if (attempt is null) return;
 
@@ -65,7 +81,7 @@ public partial class ListeningResultViewModel : ObservableObject
         BandEstimate = attempt.BandEstimate;
         BandLabel = BandEstimate.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture);
         IsTrainingMode = attempt.IsTrainingMode;
-        DurationLabel = $"⏱ Время прохождения: {attempt.DurationSeconds / 60} мин {attempt.DurationSeconds % 60} с";
+        DurationLabel = Loc.Format("Listening_Duration", attempt.DurationSeconds / 60, attempt.DurationSeconds % 60);
 
         var byQid = attempt.Answers
             .GroupBy(a => a.TestQuestionId)
@@ -121,8 +137,8 @@ public partial class ListeningResultViewModel : ObservableObject
         if (saved is null)
         {
             AiStatus = IsAiAvailable
-                ? "Нажмите «Разбор от AI», чтобы получить объяснение ошибок и советы."
-                : "Claude CLI не настроен — раздел доступен после установки.";
+                ? Loc.Tr("Listening_AiStatusPrompt")
+                : Loc.Tr("Listening_AiStatusUnavailable");
         }
         EvaluateAiCommand.NotifyCanExecuteChanged();
     }
@@ -132,19 +148,19 @@ public partial class ListeningResultViewModel : ObservableObject
     {
         if (_attemptId == 0) return;
         IsLoadingAi = true;
-        AiStatus = "Claude обрабатывает результат — это занимает 1–3 минуты…";
+        AiStatus = Loc.Tr("Listening_AiStatusProcessing");
         EvaluateAiCommand.NotifyCanExecuteChanged();
         try
         {
             var report = await _feedback.EvaluateAndSaveAsync(_attemptId);
             ApplyReport(report);
             if (report is null)
-                AiStatus = "Claude CLI вернул пустой / некорректный ответ. Попробуйте ещё раз.";
+                AiStatus = Loc.Tr("Listening_AiStatusEmptyResponse");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Listening AI evaluation failed for attempt {Id}", _attemptId);
-            AiStatus = "Ошибка при вызове Claude CLI. Подробности — в логах.";
+            AiStatus = Loc.Tr("Listening_AiStatusError");
         }
         finally
         {
@@ -162,18 +178,19 @@ public partial class ListeningResultViewModel : ObservableObject
         AiTips.Clear();
         if (report is null)
         {
-            AiSummaryRu = string.Empty;
+            AiSummary = string.Empty;
             HasAiFeedback = false;
             return;
         }
-        AiSummaryRu = report.SummaryRu;
+        AiSummary = Loc.Pick(report.SummaryEn, report.SummaryRu);
         foreach (var pi in report.PartInsights)
-            AiPartInsights.Add(new AiInsightRow(pi.PartNumber, pi.PartTitle, pi.CommentRu));
+            AiPartInsights.Add(new AiInsightRow(pi.PartNumber, pi.PartTitle, Loc.Pick(pi.CommentEn, pi.CommentRu)));
         foreach (var qe in report.QuestionExplanations)
-            AiQuestionExplanations.Add(new AiQuestionRow(qe.QuestionNumber, qe.UserAnswer, qe.CorrectAnswer, qe.ExplanationRu));
-        foreach (var t in report.TipsRu) AiTips.Add(t);
+            AiQuestionExplanations.Add(new AiQuestionRow(qe.QuestionNumber, qe.UserAnswer, qe.CorrectAnswer, Loc.Pick(qe.ExplanationEn, qe.ExplanationRu)));
+        var tips = Loc.IsEnglish && report.TipsEn is { Count: > 0 } ? report.TipsEn : report.TipsRu;
+        foreach (var t in tips) AiTips.Add(t);
         HasAiFeedback = true;
-        AiStatus = "Разбор готов. Источник: Claude CLI.";
+        AiStatus = Loc.Tr("Listening_AiStatusReady");
     }
 
     private static string Strip(string? json)
@@ -190,20 +207,20 @@ public partial class ListeningResultViewModel : ObservableObject
 
     private static string HumanizeType(QuestionType t) => t switch
     {
-        QuestionType.NoteCompletion => "Заметки (note completion)",
-        QuestionType.SummaryCompletion => "Summary completion",
-        QuestionType.SentenceCompletion => "Sentence completion",
-        QuestionType.TableCompletion => "Таблица (table)",
-        QuestionType.FlowChartCompletion => "Каскад (flow chart)",
-        QuestionType.MultipleChoiceSingle => "MCQ (один ответ)",
-        QuestionType.MultipleChoiceMulti => "MCQ (несколько ответов)",
-        QuestionType.MatchingFeatures => "Сопоставление (matching)",
-        QuestionType.MatchingHeadings => "Подбор заголовков",
-        QuestionType.MatchingInformation => "Сопоставление информации",
-        QuestionType.MatchingSentenceEndings => "Окончания предложений",
-        QuestionType.ShortAnswer => "Короткий ответ",
-        QuestionType.TrueFalseNotGiven => "True / False / Not Given",
-        QuestionType.YesNoNotGiven => "Yes / No / Not Given",
+        QuestionType.NoteCompletion => Loc.Tr("Listening_TypeNoteCompletion"),
+        QuestionType.SummaryCompletion => Loc.Tr("Listening_TypeSummaryCompletion"),
+        QuestionType.SentenceCompletion => Loc.Tr("Listening_TypeSentenceCompletion"),
+        QuestionType.TableCompletion => Loc.Tr("Listening_TypeTableCompletion"),
+        QuestionType.FlowChartCompletion => Loc.Tr("Listening_TypeFlowChartCompletion"),
+        QuestionType.MultipleChoiceSingle => Loc.Tr("Listening_TypeMcqSingle"),
+        QuestionType.MultipleChoiceMulti => Loc.Tr("Listening_TypeMcqMulti"),
+        QuestionType.MatchingFeatures => Loc.Tr("Listening_TypeMatchingFeatures"),
+        QuestionType.MatchingHeadings => Loc.Tr("Listening_TypeMatchingHeadings"),
+        QuestionType.MatchingInformation => Loc.Tr("Listening_TypeMatchingInformation"),
+        QuestionType.MatchingSentenceEndings => Loc.Tr("Listening_TypeMatchingSentenceEndings"),
+        QuestionType.ShortAnswer => Loc.Tr("Listening_TypeShortAnswer"),
+        QuestionType.TrueFalseNotGiven => Loc.Tr("Listening_TypeTrueFalseNotGiven"),
+        QuestionType.YesNoNotGiven => Loc.Tr("Listening_TypeYesNoNotGiven"),
         _ => t.ToString()
     };
 }
@@ -217,12 +234,12 @@ public sealed record BreakdownRow(string Label, int Correct, int Total)
     public string PercentLabel => $"{Math.Round(Percent * 100)}%";
 }
 
-public sealed record AiInsightRow(int PartNumber, string PartTitle, string CommentRu)
+public sealed record AiInsightRow(int PartNumber, string PartTitle, string Comment)
 {
     public string Heading => $"Part {PartNumber} — {PartTitle}";
 }
 
-public sealed record AiQuestionRow(int QuestionNumber, string UserAnswer, string CorrectAnswer, string ExplanationRu)
+public sealed record AiQuestionRow(int QuestionNumber, string UserAnswer, string CorrectAnswer, string Explanation)
 {
-    public string Heading => $"Q{QuestionNumber}: ваш «{UserAnswer}» → правильный «{CorrectAnswer}»";
+    public string Heading => Loc.Format("Listening_AiQuestionHeading", QuestionNumber, UserAnswer, CorrectAnswer);
 }

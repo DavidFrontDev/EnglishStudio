@@ -57,6 +57,7 @@ public sealed class NAudioPlayer : IAudioPlayer, IDisposable
     {
         lock (_gate)
         {
+            if (!ReferenceEquals(sender, _output)) return;
             DisposeOutputs();
         }
     }

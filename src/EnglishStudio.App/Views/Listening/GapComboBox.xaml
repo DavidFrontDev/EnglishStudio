@@ -10,11 +10,16 @@
     <Grid Width="76" HorizontalAlignment="Left" VerticalAlignment="Bottom">
         <ComboBox x:Name="Picker"
                   Style="{StaticResource FlatComboBox}"
-                  DisplayMemberPath="Display"
                   MinHeight="22"
                   Padding="6,1"
                   FontWeight="SemiBold"
-                  HorizontalContentAlignment="Center" />
+                  HorizontalContentAlignment="Center">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Display}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
         <TextBlock x:Name="NumberText"
                    IsHitTestVisible="False"
                    HorizontalAlignment="Center"

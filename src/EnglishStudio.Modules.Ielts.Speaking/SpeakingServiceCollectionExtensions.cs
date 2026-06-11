@@ -13,8 +13,8 @@ public static class SpeakingServiceCollectionExtensions
     public static IServiceCollection AddIeltsSpeakingModule(this IServiceCollection services)
     {
         services.AddSingleton<SpeechMetricsAnalyzer>();
-        services.AddScoped<ISpeakingTestService, SpeakingTestService>();
-        services.AddScoped<ISpeakingFeedbackService, SpeakingFeedbackService>();
+        services.AddSingleton<ISpeakingTestService, SpeakingTestService>();
+        services.AddSingleton<ISpeakingFeedbackService, SpeakingFeedbackService>();
         services.AddSingleton<CambridgeSpeakingTestParser>();
 
         // Speaking content lives in the imported content-pack at IeltsContent/Speaking

@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Writing"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:WritingTaskViewModel}"
              d:DesignHeight="700" d:DesignWidth="1100">
@@ -24,7 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    Content="‹ Отмена"
+                    Content="{loc:Tr Writing_Cancel}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding CancelCommand}" />
 
@@ -42,8 +43,8 @@
                 </Border>
                 <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Padding="10,4">
                     <TextBlock Foreground="{DynamicResource StrongTextBrush}">
-                        <Run Text="Рекомендация: " />
-                        <Run Text="{Binding RecommendedMinutes, Mode=OneWay}" /><Run Text=" мин" />
+                        <Run Text="{loc:Tr Writing_Recommendation}" />
+                        <Run Text="{Binding RecommendedMinutes, Mode=OneWay}" /><Run Text="{loc:Tr Writing_MinSuffix}" />
                     </TextBlock>
                 </Border>
             </StackPanel>
@@ -59,7 +60,7 @@
             <Border Grid.Column="0" Style="{StaticResource Card}" Margin="0,0,8,0">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock Text="Задание" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <TextBlock Text="{loc:Tr Writing_Task}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                         <TextBlock Text="{Binding PromptText}"
                                    Style="{StaticResource BodyText}"
                                    TextWrapping="Wrap" />
@@ -73,7 +74,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="Ваш ответ" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                    <TextBlock Grid.Row="0" Text="{loc:Tr Writing_YourAnswer}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                     <TextBox Grid.Row="1"
                              Text="{Binding UserText, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource FlatTextBox}"
@@ -103,7 +104,7 @@
                             <Run Text="{Binding WordCount, Mode=OneWay}" />
                             <Run Text=" / " />
                             <Run Text="{Binding MinWords, Mode=OneWay}" />
-                            <Run Text=" слов" />
+                            <Run Text="{loc:Tr Writing_WordsSuffix}" />
                         </TextBlock>
                     </StackPanel>
                 </Border>
@@ -114,11 +115,11 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Content="Сохранить черновик"
+                <Button Content="{loc:Tr Writing_SaveDraft}"
                         Style="{StaticResource FlatButton}"
                         Margin="0,0,8,0"
                         Command="{Binding SaveDraftCommand}" />
-                <Button Content="Отправить на проверку"
+                <Button Content="{loc:Tr Writing_Submit}"
                         Style="{StaticResource AccentButton}"
                         Command="{Binding SubmitCommand}" />
             </StackPanel>

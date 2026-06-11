@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ComprehensionViewModel}"
              d:DesignWidth="560" d:DesignHeight="680">
@@ -12,6 +13,7 @@
     <UserControl.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <conv:InverseBoolToVisibilityConverter x:Key="InvBoolToVis" />
+        <conv:NullToVisibilityConverter x:Key="NullToVis" />
     </UserControl.Resources>
 
     <Border Style="{StaticResource Card}" Background="{DynamicResource WindowBaseBrush}" MaxWidth="600" Padding="22">
@@ -28,7 +30,7 @@
 
             <!-- Header -->
             <Grid Grid.Row="0" Margin="0,0,0,12">
-                <TextBlock Text="❓  Вопросы на понимание" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <TextBlock Text="{loc:Tr ReadStudy_ComprehensionTitle}" Style="{StaticResource H2}" VerticalAlignment="Center" />
                 <Border HorizontalAlignment="Right" VerticalAlignment="Center"
                         Background="{DynamicResource OverlayLight13Brush}"
                         CornerRadius="12" Padding="10,4"
@@ -39,7 +41,7 @@
 
             <!-- Loading / empty / questions -->
             <Grid Grid.Row="1">
-                <TextBlock Text="⏳ Генерирую вопросы…"
+                <TextBlock Text="{loc:Tr ReadStudy_GeneratingQuestions}"
                            Style="{StaticResource MutedText}"
                            VerticalAlignment="Top"
                            Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" />
@@ -92,39 +94,38 @@
 
                                         <!-- Check button / spinner -->
                                         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                                            <Button Content="Проверить"
+                                            <Button Content="{loc:Tr ReadStudy_Check}"
                                                     Padding="12,5"
                                                     FontSize="12"
                                                     Style="{StaticResource FlatButton}"
                                                     Command="{Binding CheckCommand}"
                                                     Visibility="{Binding IsChecking, Converter={StaticResource InvBoolToVis}}" />
-                                            <TextBlock Text="⏳ проверяю…"
+                                            <TextBlock Text="{loc:Tr ReadStudy_Checking}"
                                                        Style="{StaticResource MutedText}"
                                                        VerticalAlignment="Center"
                                                        Visibility="{Binding IsChecking, Converter={StaticResource BoolToVis}}" />
                                         </StackPanel>
 
                                         <!-- Verdict -->
-                                        <StackPanel Margin="0,8,0,0"
+                                        <StackPanel Orientation="Horizontal" Margin="0,8,0,0"
                                                     Visibility="{Binding HasVerdict, Converter={StaticResource BoolToVis}}">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="✓ Верно"
-                                                           Foreground="{DynamicResource SuccessBrush}"
-                                                           FontWeight="SemiBold"
-                                                           Visibility="{Binding IsCorrect, Converter={StaticResource BoolToVis}}" />
-                                                <TextBlock Text="✗ Неверно"
-                                                           Foreground="{DynamicResource ErrorBrush}"
-                                                           FontWeight="SemiBold"
-                                                           Visibility="{Binding IsCorrect, Converter={StaticResource InvBoolToVis}}" />
-                                                <TextBlock Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="8,0,0,0">
-                                                    <Run Text="·" /><Run Text="{Binding Score, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" баллов" />
-                                                </TextBlock>
-                                            </StackPanel>
-                                            <TextBlock Text="{Binding FeedbackRu}"
-                                                       Style="{StaticResource MutedText}"
-                                                       TextWrapping="Wrap"
-                                                       Margin="0,4,0,0" />
+                                            <TextBlock Text="{loc:Tr ReadStudy_Correct}"
+                                                       Foreground="{DynamicResource SuccessBrush}"
+                                                       FontWeight="SemiBold"
+                                                       Visibility="{Binding IsCorrect, Converter={StaticResource BoolToVis}}" />
+                                            <TextBlock Text="{loc:Tr ReadStudy_Incorrect}"
+                                                       Foreground="{DynamicResource ErrorBrush}"
+                                                       FontWeight="SemiBold"
+                                                       Visibility="{Binding IsCorrect, Converter={StaticResource InvBoolToVis}}" />
+                                            <TextBlock Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="8,0,0,0">
+                                                <Run Text="·" /><Run Text="{Binding Score, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text="{loc:Tr ReadStudy_Points}" />
+                                            </TextBlock>
                                         </StackPanel>
+                                        <TextBlock Text="{Binding FeedbackRu}"
+                                                   Style="{StaticResource MutedText}"
+                                                   TextWrapping="Wrap"
+                                                   Margin="0,4,0,0"
+                                                   Visibility="{Binding FeedbackRu, Converter={StaticResource NullToVis}}" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>
@@ -135,13 +136,13 @@
 
             <!-- Footer -->
             <Grid Grid.Row="2" Margin="0,14,0,0">
-                <Button Content="Проверить все"
+                <Button Content="{loc:Tr ReadStudy_CheckAll}"
                         HorizontalAlignment="Left"
                         Padding="14,8"
                         Style="{StaticResource FlatButton}"
                         Command="{Binding CheckAllCommand}"
                         Visibility="{Binding HasQuestions, Converter={StaticResource BoolToVis}}" />
-                <Button Content="Закрыть"
+                <Button Content="{loc:Tr ReadStudy_Close}"
                         HorizontalAlignment="Right"
                         Padding="16,8"
                         Style="{StaticResource AccentButton}"

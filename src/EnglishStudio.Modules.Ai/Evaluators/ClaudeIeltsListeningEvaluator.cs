@@ -66,17 +66,19 @@ public sealed class ClaudeIeltsListeningEvaluator : IIeltsListeningEvaluator
           "summaryRu": "3-6 предложений на русском: какая часть/тип сильнее, какая слабее, главный actionable шаг",
           "summaryEn": "same summary in English, 3-6 sentences",
           "partInsights": [
-            { "partNumber": 1, "partTitle": "...", "commentRu": "1-2 предложения на русском о том, что характерно для ошибок в этой части" }
+            { "partNumber": 1, "partTitle": "...", "commentRu": "1-2 предложения на русском о том, что характерно для ошибок в этой части", "commentEn": "same comment in English" }
           ],
           "questionExplanations": [
             {
               "questionNumber": 14,
               "userAnswer": "...",
               "correctAnswer": "...",
-              "explanationRu": "Почему правильный ответ именно такой, со ссылкой на конкретную фразу из транскрипта"
+              "explanationRu": "Почему правильный ответ именно такой, со ссылкой на конкретную фразу из транскрипта",
+              "explanationEn": "same explanation in English"
             }
           ],
-          "tipsRu": ["3-5 практических советов на русском, наиболее приоритетные для исправления слабых мест"]
+          "tipsRu": ["3-5 практических советов на русском, наиболее приоритетные для исправления слабых мест"],
+          "tipsEn": ["the same tips in English"]
         }
         """);
         sb.AppendLine();
@@ -86,6 +88,7 @@ public sealed class ClaudeIeltsListeningEvaluator : IIeltsListeningEvaluator
         sb.AppendLine("3. In `partInsights`, give one entry per part (4 entries total), even if the user got everything right in a part — say so.");
         sb.AppendLine("4. `tipsRu` must be concrete and actionable (e.g. \"перед прослушиванием подчёркивай ключевые слова в вопросе\", not \"больше слушать\").");
         sb.AppendLine("5. Do NOT comment on the band estimate or invent new scores — the raw score is given for context only.");
+        sb.AppendLine("6. Fill BOTH language variants of every text field (summaryRu+summaryEn, commentRu+commentEn, explanationRu+explanationEn, tipsRu+tipsEn) with the same content in the respective language.");
         sb.AppendLine();
         sb.AppendLine($"===== TEST META =====");
         sb.AppendLine($"Test: {testTitle}");

@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Content;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Ielts.Reading;
@@ -28,8 +29,7 @@ public partial class ReadingHubViewModel : ObservableObject
     /// <summary>True when the Reading content pack isn't imported — shows the gating banner.</summary>
     [ObservableProperty] private bool _isContentMissing;
 
-    [ObservableProperty] private string _contentMissingText =
-        "Тесты IELTS Reading входят в контент-пак. Импортируйте пак, чтобы открыть раздел.";
+    [ObservableProperty] private string _contentMissingText = Loc.Tr("ReadIelts_ContentMissingText");
 
     /// <summary>The currently displayed sub-view: this hub, an active test, or a results screen.</summary>
     [ObservableProperty] private object? _currentScreen;
@@ -87,13 +87,13 @@ public partial class ReadingHubViewModel : ObservableObject
 
             if (Tests.Count == 0)
             {
-                StatusText = "Тесты ещё не сгенерированы. Запустите tools/IeltsReadingGen для bulk-генерации.";
+                StatusText = Loc.Tr("ReadIelts_NoTestsGenerated");
             }
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load reading hub data");
-            StatusText = "Не удалось загрузить список тестов.";
+            StatusText = Loc.Tr("ReadIelts_LoadTestsFailed");
         }
         finally
         {
@@ -129,12 +129,14 @@ public partial class ReadingHubViewModel : ObservableObject
         };
         testVm.Cancelled += async () =>
         {
+            (CurrentScreen as IDisposable)?.Dispose();
             CurrentScreen = null;
             await LoadAsync();
             OnPropertyChanged(nameof(IsHubVisible));
         };
 
         await testVm.StartAsync(SelectedTest.Id, trainingMode);
+        (CurrentScreen as IDisposable)?.Dispose();
         CurrentScreen = testVm;
         OnPropertyChanged(nameof(IsHubVisible));
     }
@@ -152,9 +154,9 @@ public partial class ReadingHubViewModel : ObservableObject
         var total = await _testSvc.CountAttemptsAsync();
         var confirm = ConfirmWindow.Show(
             System.Windows.Application.Current.MainWindow,
-            "Очистить историю",
-            $"Удалить всю историю попыток Reading ({total} запис(ей))? Это действие необратимо.",
-            confirmText: "Очистить");
+            Loc.Tr("ReadIelts_ClearHistoryTitle"),
+            Loc.Format("ReadIelts_ClearHistoryBody", total),
+            confirmText: Loc.Tr("ReadIelts_ClearHistoryConfirm"));
 
         if (!confirm) return;
 
@@ -166,7 +168,7 @@ public partial class ReadingHubViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to clear reading attempts");
-            StatusText = "Не удалось очистить историю.";
+            StatusText = Loc.Tr("ReadIelts_ClearHistoryFailed");
         }
         await LoadAsync();
     }
@@ -185,6 +187,7 @@ public partial class ReadingHubViewModel : ObservableObject
             await LoadAsync();
             OnPropertyChanged(nameof(IsHubVisible));
         });
+        (CurrentScreen as IDisposable)?.Dispose();
         CurrentScreen = holder;
         OnPropertyChanged(nameof(IsHubVisible));
     }

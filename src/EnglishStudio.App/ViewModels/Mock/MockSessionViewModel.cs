@@ -1,6 +1,7 @@
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Listening;
 using EnglishStudio.App.ViewModels.Reading;
 using EnglishStudio.App.ViewModels.Speaking;
@@ -74,7 +75,7 @@ public partial class MockSessionViewModel : ObservableObject
                 return;
             }
 
-            ExamTitle = $"Cambridge {detail.Summary.Book} · Test {detail.Summary.TestNumber}";
+            ExamTitle = Loc.Format("Mock_ExamTitle", (object?)detail.Summary.Book ?? string.Empty, (object?)detail.Summary.TestNumber ?? string.Empty);
 
             var next = detail.Summary.CurrentSection ?? FirstPending(detail);
             if (next is null)
@@ -87,7 +88,7 @@ public partial class MockSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Mock session start failed");
-            StatusText = "Не удалось открыть экзамен: " + ex.Message;
+            StatusText = Loc.Tr("Mock_OpenExamFailed") + ex.Message;
         }
     }
 
@@ -104,9 +105,10 @@ public partial class MockSessionViewModel : ObservableObject
             StatusText = string.Empty;
 
             var hint = IsWindowed(section)
-                ? "Секция откроется в отдельном окне. Завершите его, чтобы вернуться к экзамену."
-                : "Таймер секции запустится после «Начать секцию».";
+                ? Loc.Tr("Mock_HintWindowed")
+                : Loc.Tr("Mock_HintInline");
 
+            (CurrentSectionVm as IDisposable)?.Dispose();
             CurrentSectionVm = new MockSectionGate(
                 section, IndexOf(section), NameOf(section), hint,
                 onStart: () => LaunchSectionAsync(section, sourceId),
@@ -116,7 +118,7 @@ public partial class MockSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Enter section {Section} failed", section);
-            StatusText = "Не удалось открыть секцию: " + ex.Message;
+            StatusText = Loc.Tr("Mock_OpenSectionFailed") + ex.Message;
         }
     }
 
@@ -131,22 +133,22 @@ public partial class MockSessionViewModel : ObservableObject
 
     // ---- Inline sections (Reading / Listening) ----
 
-    private Task LaunchInlineListeningAsync(int testSetId)
+    private async Task LaunchInlineListeningAsync(int testSetId)
     {
         var vm = _services.GetRequiredService<ListeningSessionViewModel>();
         vm.Finished += attemptId => _ = OnInlineFinishedAsync(MockSection.Listening, attemptId);
         vm.Cancelled += OnSectionCancelled;
+        await vm.StartAsync(testSetId, trainingMode: false);
         CurrentSectionVm = vm;
-        return vm.StartAsync(testSetId, trainingMode: false);
     }
 
-    private Task LaunchInlineReadingAsync(int testSetId)
+    private async Task LaunchInlineReadingAsync(int testSetId)
     {
         var vm = _services.GetRequiredService<ReadingTestViewModel>();
         vm.Finished += attemptId => _ = OnInlineFinishedAsync(MockSection.Reading, attemptId);
         vm.Cancelled += OnSectionCancelled;
+        await vm.StartAsync(testSetId, trainingMode: false);
         CurrentSectionVm = vm;
-        return vm.StartAsync(testSetId, trainingMode: false);
     }
 
     private async Task OnInlineFinishedAsync(MockSection section, int childAttemptId)
@@ -160,7 +162,7 @@ public partial class MockSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Complete inline section {Section} failed", section);
-            StatusText = "Ошибка завершения секции: " + ex.Message;
+            StatusText = Loc.Tr("Mock_SectionCompleteError") + ex.Message;
         }
     }
 
@@ -170,7 +172,7 @@ public partial class MockSessionViewModel : ObservableObject
 
     private async Task RunWritingAsync(int writingTestSetId)
     {
-        CurrentSectionVm = new MockSectionRunning("Writing идёт в отдельном окне. Завершите оба задания, чтобы продолжить.");
+        CurrentSectionVm = new MockSectionRunning(Loc.Tr("Mock_WritingRunning"));
 
         var vm = _services.GetRequiredService<WritingSessionViewModel>();
         var window = new WritingSessionWindow { DataContext = vm, Owner = Application.Current.MainWindow };
@@ -181,7 +183,7 @@ public partial class MockSessionViewModel : ObservableObject
 
         vm.Submitted += ids => { submitted = ids; window.Close(); };
         vm.Cancelled += ids => { cancelled = ids; window.Close(); };
-        window.Closed += (_, _) => closedTcs.TrySetResult();
+        window.Closed += (_, _) => { vm.Cleanup(); closedTcs.TrySetResult(); };
 
         await vm.StartAsync(writingTestSetId);
         window.Show();
@@ -216,7 +218,7 @@ public partial class MockSessionViewModel : ObservableObject
         {
             for (var i = 0; i < attemptIds.Count; i++)
             {
-                aiVm.StatusText = $"Оценка Task {i + 1} из {attemptIds.Count}…";
+                aiVm.StatusText = Loc.Format("Mock_EvaluatingTask", i + 1, attemptIds.Count);
                 await feedback.EvaluateAndSaveAsync(attemptIds[i]);
             }
         }
@@ -258,7 +260,7 @@ public partial class MockSessionViewModel : ObservableObject
 
     private async Task RunSpeakingAsync(int part2BankId)
     {
-        CurrentSectionVm = new MockSectionRunning("Speaking идёт в отдельном окне. Завершите все части, чтобы продолжить.");
+        CurrentSectionVm = new MockSectionRunning(Loc.Tr("Mock_SpeakingRunning"));
 
         var vm = _services.GetRequiredService<SpeakingSessionViewModel>();
         var window = new SpeakingSessionWindow { DataContext = vm, Owner = Application.Current.MainWindow };
@@ -269,7 +271,7 @@ public partial class MockSessionViewModel : ObservableObject
 
         vm.Submitted += aid => { submittedId = aid; window.Close(); };
         vm.Cancelled += aid => { cancelledId = aid; window.Close(); };
-        window.Closed += (_, _) => closedTcs.TrySetResult();
+        window.Closed += (_, _) => { vm.Cleanup(); closedTcs.TrySetResult(); };
 
         // FullMock привязан к Cambridge-тесту бандла: Part2 = sourceId (SpeakingPart2BankId),
         // Part1/Part3 — того же теста. При отсутствии банка сервис деградирует к случайному набору.
@@ -308,7 +310,7 @@ public partial class MockSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Skip section {Section} failed", section);
-            StatusText = "Ошибка пропуска секции: " + ex.Message;
+            StatusText = Loc.Tr("Mock_SkipSectionError") + ex.Message;
         }
     }
 
@@ -337,7 +339,11 @@ public partial class MockSessionViewModel : ObservableObject
         Close(_mockAttemptId);
     }
 
-    private void Close(int? finalisedMockAttemptId) => Closed?.Invoke(finalisedMockAttemptId);
+    private void Close(int? finalisedMockAttemptId)
+    {
+        (CurrentSectionVm as IDisposable)?.Dispose();
+        Closed?.Invoke(finalisedMockAttemptId);
+    }
 }
 
 /// <summary>

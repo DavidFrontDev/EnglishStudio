@@ -17,6 +17,8 @@ public sealed class AppSettings : IAppSettings
         Load();
     }
 
+    public AppLanguage Language => _state.Language;
+    public string? Theme => Nullify(_state.Theme);
     public string? PexelsApiKey => Nullify(_state.PexelsApiKey);
     public int DailyNewLimit => _state.DailyNewLimit;
     public int DailyReviewLimit => _state.DailyReviewLimit;
@@ -33,6 +35,8 @@ public sealed class AppSettings : IAppSettings
     {
         _state = _state with
         {
+            Language = u.Language ?? _state.Language,
+            Theme = u.Theme.HasValue ? u.Theme.Value : _state.Theme,
             PexelsApiKey = u.PexelsApiKey.HasValue ? u.PexelsApiKey.Value : _state.PexelsApiKey,
             DailyNewLimit = u.DailyNewLimit ?? _state.DailyNewLimit,
             DailyReviewLimit = u.DailyReviewLimit ?? _state.DailyReviewLimit,
@@ -90,5 +94,7 @@ public sealed class AppSettings : IAppSettings
         string? ListeningVoiceUkFemale = null,
         string? ListeningVoiceUkMale = null,
         string? ListeningVoiceUsFemale = null,
-        string? ListeningVoiceUsMale = null);
+        string? ListeningVoiceUsMale = null,
+        AppLanguage Language = AppLanguage.Ru,
+        string? Theme = null);
 }

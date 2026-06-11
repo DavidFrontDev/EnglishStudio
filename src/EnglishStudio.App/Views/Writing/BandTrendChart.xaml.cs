@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Writing;
 
 namespace EnglishStudio.App.Views.Writing;
@@ -110,7 +111,7 @@ public partial class BandTrendChart : UserControl
             {
                 Width = 8, Height = 8,
                 Fill = line.Stroke,
-                ToolTip = $"{points[i].WeekStart:dd MMM yyyy}: band {points[i].AverageBand:F1} · {points[i].AttemptCount} попыток"
+                ToolTip = Loc.Format("Writing_BandTooltip", points[i].WeekStart.ToString("dd MMM yyyy"), points[i].AverageBand, points[i].AttemptCount)
             };
             Canvas.SetLeft(dot, p.X - 4);
             Canvas.SetTop(dot, p.Y - 4);
@@ -125,7 +126,7 @@ public partial class BandTrendChart : UserControl
             };
             label.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             Canvas.SetLeft(label, p.X - label.DesiredSize.Width / 2);
-            Canvas.SetTop(label, p.Y - 22);
+            Canvas.SetTop(label, Math.Max(0, p.Y - 22));
             PlotCanvas.Children.Add(label);
 
             // Date tick beneath the dot.

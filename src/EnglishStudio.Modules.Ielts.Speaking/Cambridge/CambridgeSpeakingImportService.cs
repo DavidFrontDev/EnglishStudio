@@ -64,13 +64,32 @@ public sealed class CambridgeSpeakingImportService
             .AnyAsync(b => b.TopicCode.StartsWith(TopicCodePrefix), ct);
         if (!hasCambridge)
         {
-            var legacy = await db.SpeakingQuestionBanks
-                .Where(b => !b.TopicCode.StartsWith(TopicCodePrefix))
-                .ToListAsync(ct);
-            if (legacy.Count > 0)
+            try
             {
-                db.SpeakingQuestionBanks.RemoveRange(legacy);
-                _log.LogInformation("Cambridge Speaking import: removed {Count} legacy bank(s).", legacy.Count);
+                var legacy = await db.SpeakingQuestionBanks
+                    .Where(b => !b.TopicCode.StartsWith(TopicCodePrefix))
+                    .ToListAsync(ct);
+                if (legacy.Count > 0)
+                {
+                    // SpeakingResponses → SpeakingQuestions is Restrict, so responses recorded
+                    // against legacy questions must go first or the bank delete fails.
+                    var legacyResponses = await db.SpeakingResponses
+                        .Where(r => !r.Question.Bank.TopicCode.StartsWith(TopicCodePrefix))
+                        .ToListAsync(ct);
+                    if (legacyResponses.Count > 0)
+                        db.SpeakingResponses.RemoveRange(legacyResponses);
+
+                    db.SpeakingQuestionBanks.RemoveRange(legacy);
+                    await db.SaveChangesAsync(ct);
+                    _log.LogInformation(
+                        "Cambridge Speaking import: removed {Count} legacy bank(s) and {Responses} dependent response(s).",
+                        legacy.Count, legacyResponses.Count);
+                }
+            }
+            catch (Exception ex)
+            {
+                db.ChangeTracker.Clear();
+                _log.LogWarning(ex, "Cambridge Speaking import: legacy bank cleanup failed; continuing with import.");
             }
         }
 

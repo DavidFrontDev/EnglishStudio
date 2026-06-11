@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Reading.Services;
 
 namespace EnglishStudio.App.Views.ReadingStudy;
@@ -110,7 +111,7 @@ public partial class ReadingSpeedChart : UserControl
             {
                 Width = 8, Height = 8,
                 Fill = stroke,
-                ToolTip = $"{points[i].Date:dd MMM yyyy}: {points[i].Wpm:F0} сл/мин · точность {points[i].AccuracyPct:F0}%"
+                ToolTip = Loc.Format("Reader_WpmTooltip", points[i].Date.ToLocalTime().ToString("dd MMM yyyy"), points[i].Wpm, points[i].AccuracyPct)
             };
             Canvas.SetLeft(dot, p.X - 4);
             Canvas.SetTop(dot, p.Y - 4);
@@ -125,12 +126,12 @@ public partial class ReadingSpeedChart : UserControl
             };
             label.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
             Canvas.SetLeft(label, p.X - label.DesiredSize.Width / 2);
-            Canvas.SetTop(label, p.Y - 22);
+            Canvas.SetTop(label, Math.Max(0, p.Y - 22));
             PlotCanvas.Children.Add(label);
 
             var tick = new TextBlock
             {
-                Text = points[i].Date.ToString("dd.MM", CultureInfo.InvariantCulture),
+                Text = points[i].Date.ToLocalTime().ToString("dd.MM", CultureInfo.InvariantCulture),
                 Foreground = TryFindResource("MutedTextBrush") as Brush ?? Brushes.Gray,
                 FontSize = 10
             };

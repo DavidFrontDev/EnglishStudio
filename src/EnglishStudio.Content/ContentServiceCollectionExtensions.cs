@@ -1,5 +1,7 @@
 using EnglishStudio.Modules.Dictionary.Content;
+using EnglishStudio.Modules.Dictionary.Localization;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace EnglishStudio.Content;
 
@@ -11,6 +13,8 @@ public static class ContentServiceCollectionExtensions
     /// </summary>
     public static IServiceCollection AddContentModule(this IServiceCollection services)
     {
+        // Хост (App) перекрывает это реальным локализатором; в тестах/тулинге работает key-echo.
+        services.TryAddSingleton<IMessageLocalizer, KeyEchoMessageLocalizer>();
         services.AddSingleton<IContentImportService, ContentImportService>();
         return services;
     }

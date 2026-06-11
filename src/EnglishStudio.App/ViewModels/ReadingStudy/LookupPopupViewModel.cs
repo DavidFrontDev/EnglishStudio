@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Srs;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.Extensions.Logging;
@@ -79,8 +80,8 @@ public partial class LookupPopupViewModel : ObservableObject
         if (!r.Found)
         {
             Message = canEnrich
-                ? "Перевод не найден."
-                : "Нет в словаре. Claude CLI недоступен — подключите его в настройках для автоперевода.";
+                ? Loc.Tr("ReadStudy_LookupNotFound")
+                : Loc.Tr("ReadStudy_LookupNoCliOffline");
             return;
         }
 

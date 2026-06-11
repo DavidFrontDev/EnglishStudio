@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:TrainerViewModel}"
              d:DesignHeight="600" d:DesignWidth="900"
@@ -33,19 +34,19 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" VerticalAlignment="Center" Style="{StaticResource Caption}">
-                <Run Text="Сегодня: " />
+                <Run Text="{loc:Tr Trainer_Today}" />
                 <Run Text="{Binding SessionDone}" FontWeight="SemiBold" />
-                <Run Text=" из " />
+                <Run Text="{loc:Tr Trainer_Of}" />
                 <Run Text="{Binding SessionTotal}" FontWeight="SemiBold" />
             </TextBlock>
             <Button Grid.Column="1"
-                    Content="Начать сессию"
+                    Content="{loc:Tr Trainer_StartSession}"
                     Style="{StaticResource AccentButton}"
                     Margin="0,0,8,0"
                     Command="{Binding StartSessionCommand}"
                     Visibility="{Binding IsSessionActive, Converter={StaticResource InverseBoolToVis}}" />
             <Button Grid.Column="2"
-                    Content="Завершить"
+                    Content="{loc:Tr Trainer_EndSession}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding EndSessionCommand}"
                     Visibility="{Binding IsSessionActive, Converter={StaticResource BoolToVis}}" />
@@ -57,7 +58,7 @@
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                         Visibility="{Binding CurrentCard, Converter={StaticResource NullToVisInverted}}">
                 <TextBlock Text="🎯" FontSize="64" HorizontalAlignment="Center" Margin="0,0,0,12" />
-                <TextBlock Text="Тренажёр готов"
+                <TextBlock Text="{loc:Tr Trainer_ReadyTitle}"
                            Style="{StaticResource H2}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,8" />
@@ -67,7 +68,7 @@
                            TextWrapping="Wrap"
                            MaxWidth="500"
                            Margin="0,0,0,16" />
-                <Button Content="Начать сессию"
+                <Button Content="{loc:Tr Trainer_StartSession}"
                         HorizontalAlignment="Center"
                         Style="{StaticResource AccentButton}"
                         Padding="24,10"
@@ -77,13 +78,13 @@
                 <StackPanel Margin="0,28,0,0" MaxWidth="520"
                             Visibility="{Binding HasPools, Converter={StaticResource BoolToVis}}">
                     <Grid Margin="0,0,0,8">
-                        <TextBlock Text="🎯 Пулы текстов" Style="{StaticResource H3}" VerticalAlignment="Center" />
+                        <TextBlock Text="{loc:Tr Trainer_TextPools}" Style="{StaticResource H3}" VerticalAlignment="Center" />
                         <Button Content="↻"
                                 HorizontalAlignment="Right"
                                 Padding="8,2"
                                 FontSize="12"
                                 Style="{StaticResource FlatButton}"
-                                ToolTip="Обновить список"
+                                ToolTip="{loc:Tr Trainer_RefreshList}"
                                 Command="{Binding LoadPoolsCommand}" />
                     </Grid>
                     <ItemsControl ItemsSource="{Binding Pools}">
@@ -101,7 +102,7 @@
                                                    TextTrimming="CharacterEllipsis"
                                                    Foreground="{DynamicResource StrongTextBrush}" />
                                         <Button Grid.Column="1"
-                                                Content="▶  Повторить"
+                                                Content="{loc:Tr Trainer_ReviewPool}"
                                                 Padding="12,5"
                                                 FontSize="12"
                                                 Style="{StaticResource FlatButton}"
@@ -166,7 +167,7 @@
 
                     <!-- Reveal button or back content -->
                     <Grid Grid.Row="2" Margin="0,24,0,0">
-                        <Button Content="Показать перевод"
+                        <Button Content="{loc:Tr Trainer_ShowTranslation}"
                                 Style="{StaticResource AccentButton}"
                                 Padding="32,12"
                                 FontSize="14"
@@ -260,28 +261,28 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    Content="Снова"
+                    Content="{loc:Tr Trainer_RateAgain}"
                     Style="{StaticResource FlatButton}"
                     Padding="0,12"
                     Margin="0,0,6,0"
                     FontSize="14"
                     Command="{Binding RateAgainCommand}" />
             <Button Grid.Column="1"
-                    Content="Сложно"
+                    Content="{loc:Tr Trainer_RateHard}"
                     Style="{StaticResource FlatButton}"
                     Padding="0,12"
                     Margin="6,0,6,0"
                     FontSize="14"
                     Command="{Binding RateHardCommand}" />
             <Button Grid.Column="2"
-                    Content="Хорошо"
+                    Content="{loc:Tr Trainer_RateGood}"
                     Style="{StaticResource AccentButton}"
                     Padding="0,12"
                     Margin="6,0,6,0"
                     FontSize="14"
                     Command="{Binding RateGoodCommand}" />
             <Button Grid.Column="3"
-                    Content="Легко"
+                    Content="{loc:Tr Trainer_RateEasy}"
                     Style="{StaticResource FlatButton}"
                     Padding="0,12"
                     Margin="6,0,0,0"

@@ -3,6 +3,7 @@ using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Content;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Ielts.Mock;
@@ -36,7 +37,7 @@ public partial class MockHubViewModel : ObservableObject
     [ObservableProperty] private bool _isContentMissing;
 
     [ObservableProperty] private string _contentMissingText =
-        "Полный экзамен собирается из секций Reading, Listening, Writing и Speaking.";
+        Loc.Tr("Mock_ContentMissingDefault");
 
     /// <summary>null = виден Hub; иначе — активный под-экран (сессия/результат).</summary>
     [ObservableProperty] private object? _currentScreen;
@@ -82,8 +83,7 @@ public partial class MockHubViewModel : ObservableObject
             if (IsContentMissing)
             {
                 ContentMissingText =
-                    "Полный экзамен собирается из секций Reading, Listening, Writing и Speaking. " +
-                    $"Не хватает: {string.Join(", ", missing)}. Импортируйте контент-пак.";
+                    Loc.Format("Mock_ContentMissingDetail", string.Join(", ", missing));
                 Bundles.Clear();
                 RecentAttempts.Clear();
                 ResumableMock = null;
@@ -102,12 +102,12 @@ public partial class MockHubViewModel : ObservableObject
             foreach (var a in history) RecentAttempts.Add(a);
 
             if (Bundles.Count == 0)
-                StatusText = "Бандлы не найдены. Нужны импортированные Cambridge Speaking/Listening/Reading.";
+                StatusText = Loc.Tr("Mock_NoBundles");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load mock hub");
-            StatusText = "Не удалось загрузить данные экзамена.";
+            StatusText = Loc.Tr("Mock_LoadFailed");
         }
         finally
         {
@@ -132,7 +132,7 @@ public partial class MockHubViewModel : ObservableObject
 
             if (bundle is null)
             {
-                StatusText = "Нет доступного набора для старта.";
+                StatusText = Loc.Tr("Mock_NoBundleForStart");
                 return;
             }
 
@@ -142,7 +142,7 @@ public partial class MockHubViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to start mock");
-            StatusText = "Не удалось начать экзамен: " + ex.Message;
+            StatusText = Loc.Tr("Mock_StartExamFailed") + ex.Message;
         }
     }
 
@@ -160,9 +160,9 @@ public partial class MockHubViewModel : ObservableObject
 
         var ok = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Прервать экзамен",
-            "Прервать и удалить незаконченный экзамен? Пройденные секции не удаляются из своих модулей.",
-            confirmText: "Прервать");
+            Loc.Tr("Mock_DiscardTitle"),
+            Loc.Tr("Mock_DiscardMessage"),
+            confirmText: Loc.Tr("Mock_DiscardConfirm"));
         if (!ok) return;
 
         try
@@ -188,20 +188,20 @@ public partial class MockHubViewModel : ObservableObject
     {
         var ok = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Очистить историю",
-            "Удалить все записи о mock-экзаменах? Это действие необратимо.",
-            confirmText: "Очистить");
+            Loc.Tr("Mock_ClearHistoryTitle"),
+            Loc.Tr("Mock_ClearHistoryMessage"),
+            confirmText: Loc.Tr("Mock_ClearHistoryConfirm"));
         if (!ok) return;
 
         try
         {
             var n = await _mock.ClearHistoryAsync();
-            StatusText = n == 0 ? "История уже была пуста." : $"Удалено записей: {n}.";
+            StatusText = n == 0 ? Loc.Tr("Mock_HistoryAlreadyEmpty") : Loc.Format("Mock_HistoryCleared", n);
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to clear mock history");
-            StatusText = "Не удалось очистить историю: " + ex.Message;
+            StatusText = Loc.Tr("Mock_ClearHistoryFailed") + ex.Message;
         }
         await LoadAsync();
     }

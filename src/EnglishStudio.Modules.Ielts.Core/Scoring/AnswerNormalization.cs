@@ -12,13 +12,19 @@ public static class AnswerNormalization
 {
     private static readonly Regex WhitespaceRun = new(@"\s+", RegexOptions.Compiled);
     private static readonly Regex TrailingPunctuation = new(@"[\.\!\?\,\;\:]+$", RegexOptions.Compiled);
-    private static readonly Regex AllowedChars = new(@"[^\p{L}\p{N}\s\-']", RegexOptions.Compiled);
+    // A comma between digits is a thousands separator when exactly three digits follow
+    // ("1,000" → "1000"); otherwise treat it as a decimal comma ("3,5" → "3.5").
+    private static readonly Regex ThousandsSeparator = new(@"(?<=\d),(?=\d{3}(?!\d))", RegexOptions.Compiled);
+    private static readonly Regex DecimalComma = new(@"(?<=\d),(?=\d)", RegexOptions.Compiled);
+    private static readonly Regex AllowedChars = new(@"[^\p{L}\p{N}\s\-'.]|(?<!\d)\.|\.(?!\d)", RegexOptions.Compiled);
 
     public static string Normalize(string input)
     {
         if (string.IsNullOrWhiteSpace(input)) return string.Empty;
 
         var s = input.Trim().ToLowerInvariant();
+        s = ThousandsSeparator.Replace(s, string.Empty);
+        s = DecimalComma.Replace(s, ".");
         s = AllowedChars.Replace(s, " ");
         s = WhitespaceRun.Replace(s, " ").Trim();
         s = TrailingPunctuation.Replace(s, string.Empty);

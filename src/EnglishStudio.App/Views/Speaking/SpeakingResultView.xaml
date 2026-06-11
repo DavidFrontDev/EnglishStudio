@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:SpeakingResultScreen}"
              d:DesignHeight="800" d:DesignWidth="1200">
@@ -27,15 +28,15 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
-                    Content="‹ К Hub"
+                    Content="{loc:Tr Speaking_BackToHub}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding BackCommand}" />
             <TextBlock Grid.Column="1"
                        Style="{StaticResource H2}"
                        HorizontalAlignment="Center"
-                       Text="Результат Speaking" />
+                       Text="{loc:Tr Speaking_ResultTitle}" />
             <Button Grid.Column="2"
-                    Content="🔄 Перезапустить AI"
+                    Content="{loc:Tr Speaking_RestartAI}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding Result.ReevaluateCommand}" />
         </Grid>
@@ -114,20 +115,20 @@
                 <!-- speech metrics -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="Метрики речи" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <TextBlock Text="{loc:Tr Speaking_SpeechMetrics}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                         <UniformGrid Columns="4">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource Caption}" Text="Темп (WPM)" HorizontalAlignment="Center" />
+                                <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Speaking_SpeedWpm}" HorizontalAlignment="Center" />
                                 <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
                                            Text="{Binding AvgWpm, StringFormat='F0', Mode=OneWay}" />
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource Caption}" Text="Паузы (доля)" HorizontalAlignment="Center" />
+                                <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Speaking_PauseRatio}" HorizontalAlignment="Center" />
                                 <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
                                            Text="{Binding AvgPauseRatio, StringFormat='P0', Mode=OneWay}" />
                             </StackPanel>
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource Caption}" Text="Filler-слова" HorizontalAlignment="Center" />
+                                <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr Speaking_FillerWords}" HorizontalAlignment="Center" />
                                 <TextBlock FontSize="22" FontWeight="Bold" HorizontalAlignment="Center"
                                            Text="{Binding TotalFillers, Mode=OneWay}" />
                             </StackPanel>
@@ -142,18 +143,17 @@
 
                 <!-- feedback -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,12"
-                        Visibility="{Binding FeedbackRu, Converter={StaticResource NullToVis}}">
+                        Visibility="{Binding FeedbackText, Converter={StaticResource NullToVis}}">
                     <StackPanel>
-                        <TextBlock Text="Комментарий" Style="{StaticResource H3}" Margin="0,0,0,6" />
-                        <TextBlock Text="{Binding FeedbackRu}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,0,0,8" />
-                        <TextBlock Text="{Binding FeedbackEn}" Style="{StaticResource BodyText}" TextWrapping="Wrap" />
+                        <TextBlock Text="{loc:Tr Speaking_Comment}" Style="{StaticResource H3}" Margin="0,0,0,6" />
+                        <TextBlock Text="{Binding FeedbackText}" Style="{StaticResource BodyText}" TextWrapping="Wrap" />
                     </StackPanel>
                 </Border>
 
                 <!-- responses -->
                 <Border Style="{StaticResource Card}" Margin="0,0,0,12">
                     <StackPanel>
-                        <TextBlock Text="Ответы" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <TextBlock Text="{loc:Tr Speaking_Responses}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                         <ItemsControl ItemsSource="{Binding Responses}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type vm:SpeakingResponseRow}">
@@ -185,7 +185,7 @@
                                                         Padding="10,4"
                                                         Margin="6,0,0,0"
                                                         VerticalAlignment="Top"
-                                                        ToolTip="Показать транскрипт"
+                                                        ToolTip="{loc:Tr Speaking_ShowTranscript}"
                                                         Command="{Binding ToggleExpandCommand}" />
                                             </Grid>
 
@@ -203,7 +203,7 @@
                                                         Style="{StaticResource FlatButton}"
                                                         Padding="10,4"
                                                         MinWidth="40"
-                                                        ToolTip="Воспроизведение / пауза"
+                                                        ToolTip="{loc:Tr Speaking_PlayPause}"
                                                         Command="{Binding PlayPauseCommand}" />
                                                 <Button Grid.Column="1"
                                                         Content="⏹"
@@ -211,7 +211,7 @@
                                                         Padding="10,4"
                                                         MinWidth="40"
                                                         Margin="6,0,0,0"
-                                                        ToolTip="Стоп"
+                                                        ToolTip="{loc:Tr Speaking_Stop}"
                                                         Command="{Binding StopCommand}" />
 
                                                 <Slider Grid.Column="2"

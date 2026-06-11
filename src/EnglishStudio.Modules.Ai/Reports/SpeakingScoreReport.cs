@@ -9,6 +9,11 @@ public sealed record SpeakingScoreReport(
     [property: JsonPropertyName("pronunciation")] double Pronunciation,
     [property: JsonPropertyName("overall")] double Overall,
     [property: JsonPropertyName("feedbackEn")] string FeedbackEn,
-    [property: JsonPropertyName("feedbackRu")] string FeedbackRu,
-    [property: JsonPropertyName("strengths")] IReadOnlyList<string> Strengths,
-    [property: JsonPropertyName("improvements")] IReadOnlyList<string> Improvements);
+    [property: JsonPropertyName("feedbackRu")] string FeedbackRu)
+{
+    [JsonPropertyName("strengths")]
+    public IReadOnlyList<string> Strengths { get; init; } = [];
+
+    [JsonPropertyName("improvements")]
+    public IReadOnlyList<string> Improvements { get; init; } = [];
+}

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Entities;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.Extensions.Logging;
@@ -62,12 +63,12 @@ public partial class PreTeachViewModel : ObservableObject
                 Candidates.Add(new PreTeachCandidateViewModel(c));
 
             if (Candidates.Count == 0)
-                StatusText = "Незнакомых слов не нашлось — можно сразу читать.";
+                StatusText = Loc.Tr("ReadStudy_PreTeachNoUnknown");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Pre-teach analysis failed for text {TextId}", textId);
-            StatusText = "Не удалось проанализировать текст.";
+            StatusText = Loc.Tr("ReadStudy_PreTeachAnalyzeFailed");
         }
         finally
         {
@@ -102,7 +103,7 @@ public partial class PreTeachViewModel : ObservableObject
 
         if (chosen.Count == 0)
         {
-            StatusText = "Отметьте хотя бы одно слово.";
+            StatusText = Loc.Tr("ReadStudy_PreTeachSelectAtLeastOne");
             return;
         }
 
@@ -113,13 +114,13 @@ public partial class PreTeachViewModel : ObservableObject
             var progress = new Progress<string>(s => AddProgress = s);
             AddedCount = await _service.AddToTrainingAsync(chosen, progress);
             IsDone = true;
-            StatusText = $"Добавлено в изучение: {AddedCount}. Можно начинать читать.";
+            StatusText = Loc.Format("ReadStudy_PreTeachAddedCount", AddedCount);
         }
         catch (OperationCanceledException) { /* panel closing */ }
         catch (Exception ex)
         {
             _log.LogError(ex, "Pre-teach add-to-training failed");
-            StatusText = "Не удалось добавить слова в изучение.";
+            StatusText = Loc.Tr("ReadStudy_PreTeachAddFailed");
         }
         finally
         {
@@ -154,7 +155,7 @@ public partial class PreTeachCandidateViewModel : ObservableObject
     public string TranslationDisplay =>
         !string.IsNullOrWhiteSpace(Model.TranslationRu)
             ? Model.TranslationRu!
-            : (Model.InDictionary ? "— нет перевода" : "🤖 подберётся при добавлении");
+            : (Model.InDictionary ? Loc.Tr("ReadStudy_PreTeachNoTranslation") : Loc.Tr("ReadStudy_PreTeachAiWillAdd"));
 
     /// <summary>Not in the dictionary yet → will be AI-enriched on add.</summary>
     public bool IsAiWord => !Model.InDictionary;

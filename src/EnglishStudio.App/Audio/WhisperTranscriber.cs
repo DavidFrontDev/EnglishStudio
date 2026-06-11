@@ -1,5 +1,6 @@
 using System.IO;
 using System.Net.Http;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Data;
 using Microsoft.Extensions.Logging;
 using NAudio.Wave;
@@ -41,9 +42,9 @@ public sealed class WhisperTranscriber : IWhisperTranscriber, IDisposable
         size switch
         {
             WhisperModelSize.Base => (BaseModelUrl, BaseModelFile, BaseModelExpectedSize,
-                "Скачивание модели Whisper base.en (~142 МБ, одноразово)…"),
+                Loc.Tr("Whisper_DownloadingBase")),
             WhisperModelSize.Medium => (MediumModelUrl, MediumModelFile, MediumModelExpectedSize,
-                "Скачивание модели Whisper medium.en (~1.5 ГБ, одноразово)…"),
+                Loc.Tr("Whisper_DownloadingMedium")),
             _ => throw new ArgumentOutOfRangeException(nameof(size))
         };
 
@@ -89,33 +90,37 @@ public sealed class WhisperTranscriber : IWhisperTranscriber, IDisposable
                         {
                             var mb = received / 1024.0 / 1024.0;
                             var totalMb = total / 1024.0 / 1024.0;
-                            progress?.Report($"Скачивание Whisper {size}: {mb:0.0} / {totalMb:0.0} МБ");
+                            progress?.Report(Loc.Format("Whisper_DownloadProgress", size, mb, totalMb));
                             lastReport = DateTime.UtcNow;
                         }
                     }
                 }
                 File.Move(tmp, modelPath, overwrite: true);
-                progress?.Report("Модель загружена. Инициализация…");
+                progress?.Report(Loc.Tr("Whisper_ModelDownloaded"));
             }
 
             if (size == WhisperModelSize.Base && _baseFactory is null)
             {
-                progress?.Report("Загрузка движка Whisper base…");
+                progress?.Report(Loc.Tr("Whisper_LoadingBase"));
                 _baseFactory = WhisperFactory.FromPath(modelPath);
             }
             else if (size == WhisperModelSize.Medium && _mediumFactory is null)
             {
-                progress?.Report("Загрузка движка Whisper medium…");
+                progress?.Report(Loc.Tr("Whisper_LoadingMedium"));
                 _mediumFactory = WhisperFactory.FromPath(modelPath);
             }
 
             progress?.Report(string.Empty);
             return true;
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to ensure whisper model {Size}", size);
-            progress?.Report($"Ошибка: {ex.Message}");
+            progress?.Report(Loc.Format("Whisper_Error", ex.Message));
             return false;
         }
         finally

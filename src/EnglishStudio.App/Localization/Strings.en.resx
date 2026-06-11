@@ -1,0 +1,2296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- English (en) UI strings. Keys must match Strings.resx; any missing key falls back to Russian. -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- Mock -->
+  <data name="Mock_BackToMenu" xml:space="preserve">
+    <value>‹ Back to menu</value>
+  </data>
+  <data name="Mock_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Mock_ClearHistoryTooltip" xml:space="preserve">
+    <value>Delete all mock exam records</value>
+  </data>
+  <data name="Mock_Discard" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="Mock_ExamResult" xml:space="preserve">
+    <value>Exam result</value>
+  </data>
+  <data name="Mock_ExitToMenu" xml:space="preserve">
+    <value>Exit to menu</value>
+  </data>
+  <data name="Mock_FullExamDesc" xml:space="preserve">
+    <value>Four sections in sequence: Listening → Reading → Writing → Speaking (~2.5 hours). Final overall band calculated using the official IELTS rounding formula.</value>
+  </data>
+  <data name="Mock_FullExamTitle" xml:space="preserve">
+    <value>🏁 Full IELTS exam</value>
+  </data>
+  <data name="Mock_Mode" xml:space="preserve">
+    <value>Mode:</value>
+  </data>
+  <data name="Mock_Partial" xml:space="preserve">
+    <value>partial</value>
+  </data>
+  <data name="Mock_ProgressOf4_Sep" xml:space="preserve">
+    <value>/4 · </value>
+  </data>
+  <data name="Mock_RandomSet" xml:space="preserve">
+    <value>🎲 Random mix</value>
+  </data>
+  <data name="Mock_Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="Mock_ResumeSection" xml:space="preserve">
+    <value>  ·  section: </value>
+  </data>
+  <data name="Mock_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Mock_Sections" xml:space="preserve">
+    <value>Sections</value>
+  </data>
+  <data name="Mock_SectionOf4_Post" xml:space="preserve">
+    <value> of 4</value>
+  </data>
+  <data name="Mock_SectionOf4_Pre" xml:space="preserve">
+    <value>Section </value>
+  </data>
+  <data name="Mock_SelectedTest" xml:space="preserve">
+    <value>Selected test</value>
+  </data>
+  <data name="Mock_SkipSection" xml:space="preserve">
+    <value>Skip section</value>
+  </data>
+  <data name="Mock_StartExam" xml:space="preserve">
+    <value>Start exam</value>
+  </data>
+  <data name="Mock_StartSection" xml:space="preserve">
+    <value>▶ Start section</value>
+  </data>
+  <data name="Mock_UnfinishedExam" xml:space="preserve">
+    <value>⏸ Unfinished exam</value>
+  </data>
+  <!-- ReadIelts -->
+  <data name="ReadIelts_Back" xml:space="preserve">
+    <value>‹ Back</value>
+  </data>
+  <data name="ReadIelts_BackToList" xml:space="preserve">
+    <value>‹ Back to test list</value>
+  </data>
+  <data name="ReadIelts_ByQuestionType" xml:space="preserve">
+    <value>By question type</value>
+  </data>
+  <data name="ReadIelts_Cancel" xml:space="preserve">
+    <value>✕ Cancel</value>
+  </data>
+  <data name="ReadIelts_ClearHistory" xml:space="preserve">
+    <value>🗑 Clear</value>
+  </data>
+  <data name="ReadIelts_Correct" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <data name="ReadIelts_CorrectAnswer" xml:space="preserve">
+    <value>Correct: </value>
+  </data>
+  <data name="ReadIelts_Exam60Min" xml:space="preserve">
+    <value>Exam (60 min)</value>
+  </data>
+  <data name="ReadIelts_ExamBadge" xml:space="preserve">
+    <value>🎯 Exam</value>
+  </data>
+  <data name="ReadIelts_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="ReadIelts_Forward" xml:space="preserve">
+    <value>Next ›</value>
+  </data>
+  <data name="ReadIelts_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="ReadIelts_Practice" xml:space="preserve">
+    <value>Practice</value>
+  </data>
+  <data name="ReadIelts_PracticeTooltip" xml:space="preserve">
+    <value>Exam-only tests can only be launched in strict exam mode.</value>
+  </data>
+  <data name="ReadIelts_Questions" xml:space="preserve">
+    <value> questions</value>
+  </data>
+  <data name="ReadIelts_WrongAnswers" xml:space="preserve">
+    <value>Wrong answers</value>
+  </data>
+  <data name="ReadIelts_Words" xml:space="preserve">
+    <value> words</value>
+  </data>
+  <data name="ReadIelts_YourAnswer" xml:space="preserve">
+    <value>Your answer: </value>
+  </data>
+  <!-- Speaking -->
+  <data name="Speaking_BackToHub" xml:space="preserve">
+    <value>‹ Back to Hub</value>
+  </data>
+  <data name="Speaking_Cancel" xml:space="preserve">
+    <value>‹ Cancel</value>
+  </data>
+  <data name="Speaking_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Speaking_ClearHistoryTooltip" xml:space="preserve">
+    <value>Delete all Speaking test records</value>
+  </data>
+  <data name="Speaking_Comment" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Speaking_FillerWords" xml:space="preserve">
+    <value>Filler words</value>
+  </data>
+  <data name="Speaking_FinishPart2" xml:space="preserve">
+    <value>Finish Part 2 →</value>
+  </data>
+  <data name="Speaking_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Speaking_NextQuestion" xml:space="preserve">
+    <value>Next question →</value>
+  </data>
+  <data name="Speaking_PauseRatio" xml:space="preserve">
+    <value>Pause ratio</value>
+  </data>
+  <data name="Speaking_PlayPause" xml:space="preserve">
+    <value>Play / pause</value>
+  </data>
+  <data name="Speaking_PrepLabel" xml:space="preserve">
+    <value>PREPARATION</value>
+  </data>
+  <data name="Speaking_Preparing" xml:space="preserve">
+    <value>⏳ Preparation · </value>
+  </data>
+  <data name="Speaking_Questions" xml:space="preserve">
+    <value> questions</value>
+  </data>
+  <data name="Speaking_RandomTopicHint" xml:space="preserve">
+    <value>🎲  A topic will be chosen randomly at the start of the session.</value>
+  </data>
+  <data name="Speaking_RecordLabel" xml:space="preserve">
+    <value>RECORDING</value>
+  </data>
+  <data name="Speaking_Responses" xml:space="preserve">
+    <value>Responses</value>
+  </data>
+  <data name="Speaking_RestartAI" xml:space="preserve">
+    <value>🔄 Re-evaluate AI</value>
+  </data>
+  <data name="Speaking_ResultTitle" xml:space="preserve">
+    <value>Speaking Result</value>
+  </data>
+  <data name="Speaking_Sec" xml:space="preserve">
+    <value> sec</value>
+  </data>
+  <data name="Speaking_ShowTranscript" xml:space="preserve">
+    <value>Show transcript</value>
+  </data>
+  <data name="Speaking_Skip" xml:space="preserve">
+    <value>Skip →</value>
+  </data>
+  <data name="Speaking_SkipAndStart" xml:space="preserve">
+    <value>Skip and start</value>
+  </data>
+  <data name="Speaking_SpeechMetrics" xml:space="preserve">
+    <value>Speech metrics</value>
+  </data>
+  <data name="Speaking_SpeedWpm" xml:space="preserve">
+    <value>Speed (WPM)</value>
+  </data>
+  <data name="Speaking_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="Speaking_StartPrepMinute" xml:space="preserve">
+    <value>🕐 Start 1-minute preparation</value>
+  </data>
+  <data name="Speaking_StartRecording" xml:space="preserve">
+    <value>🎤 Start recording</value>
+  </data>
+  <data name="Speaking_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="Speaking_StopDot" xml:space="preserve">
+    <value>⏹  Stop · </value>
+  </data>
+  <data name="Speaking_TenSecPrep" xml:space="preserve">
+    <value>🕓 10 sec preparation</value>
+  </data>
+  <data name="Speaking_Transcript" xml:space="preserve">
+    <value>Transcript</value>
+  </data>
+  <!-- Settings -->
+  <data name="Settings_Header" xml:space="preserve">
+    <value>EnglishStudio Settings</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Settings_Saved" xml:space="preserve">
+    <value>Saved.</value>
+  </data>
+  <data name="Settings_WindowTitle" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <!-- Reader (study reading) -->
+  <data name="Reader_Transcription" xml:space="preserve">
+    <value>🔤 Transcription</value>
+  </data>
+  <data name="Reader_TranscriptionTooltip" xml:space="preserve">
+    <value>Show the [IPA] transcription above every word</value>
+  </data>
+  <!-- Trainer -->
+  <data name="Trainer_Today" xml:space="preserve">
+    <value>Today: </value>
+  </data>
+  <data name="Trainer_Of" xml:space="preserve">
+    <value> of </value>
+  </data>
+  <data name="Trainer_StartSession" xml:space="preserve">
+    <value>Start session</value>
+  </data>
+  <data name="Trainer_EndSession" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Trainer_ReadyTitle" xml:space="preserve">
+    <value>Trainer ready</value>
+  </data>
+  <data name="Trainer_TextPools" xml:space="preserve">
+    <value>🎯 Text pools</value>
+  </data>
+  <data name="Trainer_RefreshList" xml:space="preserve">
+    <value>Refresh list</value>
+  </data>
+  <data name="Trainer_ReviewPool" xml:space="preserve">
+    <value>▶  Review</value>
+  </data>
+  <data name="Trainer_ShowTranslation" xml:space="preserve">
+    <value>Show translation</value>
+  </data>
+  <data name="Trainer_RateAgain" xml:space="preserve">
+    <value>Again</value>
+  </data>
+  <data name="Trainer_RateHard" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+  <data name="Trainer_RateGood" xml:space="preserve">
+    <value>Good</value>
+  </data>
+  <data name="Trainer_RateEasy" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+  <!-- Stats -->
+  <data name="Stats_Header" xml:space="preserve">
+    <value>Learning statistics</value>
+  </data>
+  <data name="Stats_Refresh" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="Stats_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="Stats_DueToday" xml:space="preserve">
+    <value>Due today</value>
+  </data>
+  <data name="Stats_ReviewedToday" xml:space="preserve">
+    <value>Reviewed today</value>
+  </data>
+  <data name="Stats_Retention30" xml:space="preserve">
+    <value>Retention 30 days</value>
+  </data>
+  <data name="Stats_ByState" xml:space="preserve">
+    <value>By state</value>
+  </data>
+  <data name="Stats_StateNew" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Stats_StateLearning" xml:space="preserve">
+    <value>Learning</value>
+  </data>
+  <data name="Stats_StateReview" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="Stats_StateForgotten" xml:space="preserve">
+    <value>Forgotten</value>
+  </data>
+  <!-- Dict -->
+  <data name="Dict_SearchTooltip" xml:space="preserve">
+    <value>Search by word or lemma (prefix)</value>
+  </data>
+  <data name="Dict_FilterBySourceTooltip" xml:space="preserve">
+    <value>Filter by word source</value>
+  </data>
+  <data name="Dict_HideStubs" xml:space="preserve">
+    <value>Hide words without definitions</value>
+  </data>
+  <data name="Dict_HideStubsTooltip" xml:space="preserve">
+    <value>Hides words with no English/Russian meanings (newly added)</value>
+  </data>
+  <data name="Dict_Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Dict_FilterByCategoryTooltip" xml:space="preserve">
+    <value>Filter by IELTS Speaking category</value>
+  </data>
+  <data name="Dict_FilterByTagTooltip" xml:space="preserve">
+    <value>Filter by tag (AWL sublist, AVL band, IELTS Writing category, …)</value>
+  </data>
+  <data name="Dict_SelectWord" xml:space="preserve">
+    <value>Select a word from the list on the left</value>
+  </data>
+  <data name="Dict_SelectWordHint" xml:space="preserve">
+    <value>Tip: use search or CEFR-level filters</value>
+  </data>
+  <data name="Dict_AddToTraining" xml:space="preserve">
+    <value>📚 Add to study</value>
+  </data>
+  <data name="Dict_InTraining" xml:space="preserve">
+    <value>✓ In study</value>
+  </data>
+  <data name="Dict_Pronounce" xml:space="preserve">
+    <value>🎤 Pronounce</value>
+  </data>
+  <data name="Dict_PronunciationTooltip" xml:space="preserve">
+    <value>Pronunciation practice via Whisper (model ~142 MB, downloaded once)</value>
+  </data>
+  <data name="Dict_PronunciationTraining" xml:space="preserve">
+    <value>🎤 Pronunciation practice</value>
+  </data>
+  <data name="Dict_PronunciationHint" xml:space="preserve">
+    <value>Listen to the reference, then record your attempt. Whisper.net transcribes the audio; score is similarity 0–100.</value>
+  </data>
+  <data name="Dict_ReferenceUk" xml:space="preserve">
+    <value>🔊 Reference UK</value>
+  </data>
+  <data name="Dict_ReferenceUs" xml:space="preserve">
+    <value>🔊 Reference US</value>
+  </data>
+  <data name="Dict_StartRecording" xml:space="preserve">
+    <value>🎤 Start recording</value>
+  </data>
+  <data name="Dict_StopRecording" xml:space="preserve">
+    <value>⏹ Stop recording</value>
+  </data>
+  <data name="Dict_Score" xml:space="preserve">
+    <value>Score:</value>
+  </data>
+  <data name="Dict_Recognized" xml:space="preserve">
+    <value>Recognized: </value>
+  </data>
+  <data name="Dict_PlayUkTooltip" xml:space="preserve">
+    <value>Listen to British pronunciation</value>
+  </data>
+  <data name="Dict_PlayUsTooltip" xml:space="preserve">
+    <value>Listen to American pronunciation</value>
+  </data>
+  <data name="Dict_Senses" xml:space="preserve">
+    <value>Meanings</value>
+  </data>
+  <data name="Dict_Examples" xml:space="preserve">
+    <value>Examples</value>
+  </data>
+  <data name="Dict_Illustration" xml:space="preserve">
+    <value>Illustration</value>
+  </data>
+  <data name="Dict_Loading" xml:space="preserve">
+    <value>Loading...</value>
+  </data>
+  <data name="Dict_Total" xml:space="preserve">
+    <value>Total: </value>
+  </data>
+  <data name="Dict_Filtered" xml:space="preserve">
+    <value>Filtered: </value>
+  </data>
+  <data name="Dict_ShownUpTo200" xml:space="preserve">
+    <value> (showing up to 200)</value>
+  </data>
+  <!-- Listening -->
+  <data name="Listening_Questions" xml:space="preserve">
+    <value> questions</value>
+  </data>
+  <data name="Listening_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Listening_ClearHistory" xml:space="preserve">
+    <value>🗑 Clear</value>
+  </data>
+  <data name="Listening_Training" xml:space="preserve">
+    <value>Practice</value>
+  </data>
+  <data name="Listening_Exam40" xml:space="preserve">
+    <value>Exam (40 min)</value>
+  </data>
+  <data name="Listening_Cancel" xml:space="preserve">
+    <value>✕ Cancel</value>
+  </data>
+  <data name="Listening_ReplayTooltip" xml:space="preserve">
+    <value>Replay from start</value>
+  </data>
+  <data name="Listening_VolumeTooltip" xml:space="preserve">
+    <value>Volume</value>
+  </data>
+  <data name="Listening_ShowTranscriptTooltip" xml:space="preserve">
+    <value>Show recording transcript (practice mode only)</value>
+  </data>
+  <data name="Listening_Transcript" xml:space="preserve">
+    <value>📄 Transcript</value>
+  </data>
+  <data name="Listening_HideTranscript" xml:space="preserve">
+    <value>📄 Hide transcript</value>
+  </data>
+  <data name="Listening_TranscriptHeading" xml:space="preserve">
+    <value>📄 Recording transcript</value>
+  </data>
+  <data name="Listening_Back" xml:space="preserve">
+    <value>‹ Back</value>
+  </data>
+  <data name="Listening_Forward" xml:space="preserve">
+    <value>Forward ›</value>
+  </data>
+  <data name="Listening_Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="Listening_BackToTests" xml:space="preserve">
+    <value>‹ Back to tests</value>
+  </data>
+  <data name="Listening_Correct" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <data name="Listening_BreakdownHeading" xml:space="preserve">
+    <value>Breakdown by parts and question types</value>
+  </data>
+  <data name="Listening_ByParts" xml:space="preserve">
+    <value>By part (P1–P4)</value>
+  </data>
+  <data name="Listening_ByTypes" xml:space="preserve">
+    <value>By question type</value>
+  </data>
+  <data name="Listening_AiAnalysis" xml:space="preserve">
+    <value>🤖 AI Analysis (Claude)</value>
+  </data>
+  <data name="Listening_GetAiAnalysis" xml:space="preserve">
+    <value>Get AI analysis</value>
+  </data>
+  <data name="Listening_AiAnalysing" xml:space="preserve">
+    <value>⏳ Analysing…</value>
+  </data>
+  <data name="Listening_RerunAnalysis" xml:space="preserve">
+    <value>Re-run analysis</value>
+  </data>
+  <data name="Listening_Summary" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Listening_ByPartsCaption" xml:space="preserve">
+    <value>By part</value>
+  </data>
+  <data name="Listening_ErrorExplanations" xml:space="preserve">
+    <value>Error explanations</value>
+  </data>
+  <data name="Listening_TrainingTips" xml:space="preserve">
+    <value>Practice tips</value>
+  </data>
+  <data name="Listening_Answers" xml:space="preserve">
+    <value>Answers</value>
+  </data>
+  <data name="Listening_YourAnswer" xml:space="preserve">
+    <value>Your answer</value>
+  </data>
+  <data name="Listening_CorrectAnswer" xml:space="preserve">
+    <value>Correct</value>
+  </data>
+  <!-- Writing -->
+  <data name="Writing_HubTitle" xml:space="preserve">
+    <value>✍ IELTS Academic Writing</value>
+  </data>
+  <data name="Writing_HubDescription" xml:space="preserve">
+    <value>Full test = Task 1 (≥150 words / 20 min) + Task 2 (≥250 words / 40 min), total timer 60 minutes. After completion, AI scores each task on 4 criteria, band 0–9.</value>
+  </data>
+  <data name="Writing_Filters" xml:space="preserve">
+    <value>Filters:</value>
+  </data>
+  <data name="Writing_FilterBook" xml:space="preserve">
+    <value>Book</value>
+  </data>
+  <data name="Writing_FilterTaskType" xml:space="preserve">
+    <value>Task type</value>
+  </data>
+  <data name="Writing_FilterProgress" xml:space="preserve">
+    <value>Progress</value>
+  </data>
+  <data name="Writing_Of" xml:space="preserve">
+    <value> of </value>
+  </data>
+  <data name="Writing_Reset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Writing_AttemptsPrefixColon" xml:space="preserve">
+    <value>Attempts: </value>
+  </data>
+  <data name="Writing_History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="Writing_Details" xml:space="preserve">
+    <value>📊 Details</value>
+  </data>
+  <data name="Writing_DetailsTooltip" xml:space="preserve">
+    <value>Band progress chart + detailed list of all attempts</value>
+  </data>
+  <data name="Writing_Clear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Writing_ClearTooltip" xml:space="preserve">
+    <value>Delete all records of completed tests</value>
+  </data>
+  <data name="Writing_WordsMiddleDot" xml:space="preserve">
+    <value> words  ·  </value>
+  </data>
+  <data name="Writing_StartTest" xml:space="preserve">
+    <value>Start test</value>
+  </data>
+  <data name="Writing_Cancel" xml:space="preserve">
+    <value>‹ Cancel</value>
+  </data>
+  <data name="Writing_FinishTest" xml:space="preserve">
+    <value>Finish test</value>
+  </data>
+  <data name="Writing_WordsMinPrefix" xml:space="preserve">
+    <value> words  ·  ~</value>
+  </data>
+  <data name="Writing_MinSuffix" xml:space="preserve">
+    <value> min</value>
+  </data>
+  <data name="Writing_YourAnswer" xml:space="preserve">
+    <value>Your answer</value>
+  </data>
+  <data name="Writing_WordsSuffix" xml:space="preserve">
+    <value> words</value>
+  </data>
+  <data name="Writing_Recommendation" xml:space="preserve">
+    <value>Recommended: </value>
+  </data>
+  <data name="Writing_Task" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="Writing_SaveDraft" xml:space="preserve">
+    <value>Save draft</value>
+  </data>
+  <data name="Writing_Submit" xml:space="preserve">
+    <value>Submit for review</value>
+  </data>
+  <data name="Writing_BackToList" xml:space="preserve">
+    <value>‹ Back to test list</value>
+  </data>
+  <data name="Writing_TestResult" xml:space="preserve">
+    <value>Test result</value>
+  </data>
+  <data name="Writing_RestartAi" xml:space="preserve">
+    <value>🔄 Re-run AI</value>
+  </data>
+  <data name="Writing_OverallScore" xml:space="preserve">
+    <value>Overall Writing score</value>
+  </data>
+  <data name="Writing_OverallScoreFormula" xml:space="preserve">
+    <value>Calculated using the official IELTS formula: Task 1 weight ⅓, Task 2 — ⅔. Rounded to the nearest 0.5.</value>
+  </data>
+  <data name="Writing_TimeTaken" xml:space="preserve">
+    <value>    ⏱ Time taken: </value>
+  </data>
+  <data name="Writing_ShowModelAnswer" xml:space="preserve">
+    <value>📘 Show model answer band </value>
+  </data>
+  <data name="Writing_ModelAnswerBand" xml:space="preserve">
+    <value>Model answer band </value>
+  </data>
+  <data name="Writing_Back" xml:space="preserve">
+    <value>‹ Back</value>
+  </data>
+  <data name="Writing_HistoryTitle" xml:space="preserve">
+    <value>📊 Writing History</value>
+  </data>
+  <data name="Writing_HistorySubtitle" xml:space="preserve">
+    <value>Weekly band progress + detailed breakdown of attempts</value>
+  </data>
+  <data name="Writing_LastAttemptPrefix" xml:space="preserve">
+    <value>Last attempt: </value>
+  </data>
+  <data name="Writing_Attempts" xml:space="preserve">
+    <value>Attempts</value>
+  </data>
+  <data name="Writing_Completed" xml:space="preserve">
+    <value>completed: </value>
+  </data>
+  <data name="Writing_AverageBand" xml:space="preserve">
+    <value>Average band</value>
+  </data>
+  <data name="Writing_CompletedTests" xml:space="preserve">
+    <value>across completed tests</value>
+  </data>
+  <data name="Writing_BestBand" xml:space="preserve">
+    <value>Best band</value>
+  </data>
+  <data name="Writing_AllAttempts" xml:space="preserve">
+    <value>across all attempts</value>
+  </data>
+  <data name="Writing_WordsWritten" xml:space="preserve">
+    <value>Words written</value>
+  </data>
+  <data name="Writing_TimeAtDesk" xml:space="preserve">
+    <value>Time at desk</value>
+  </data>
+  <data name="Writing_Total" xml:space="preserve">
+    <value>total</value>
+  </data>
+  <data name="Writing_BandProgressByWeek" xml:space="preserve">
+    <value>Weekly band progress</value>
+  </data>
+  <data name="Writing_AllAttemptsHeader" xml:space="preserve">
+    <value>All attempts</value>
+  </data>
+  <data name="Writing_ColDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Writing_ColTest" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="Writing_ColTask" xml:space="preserve">
+    <value>Task</value>
+  </data>
+  <data name="Writing_ColWords" xml:space="preserve">
+    <value>Words</value>
+  </data>
+  <data name="Writing_ColTime" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Writing_LoadingHistory" xml:space="preserve">
+    <value>Loading history…</value>
+  </data>
+  <data name="Writing_AiWindowTitle" xml:space="preserve">
+    <value>AI scoring</value>
+  </data>
+  <data name="Writing_AiEvaluating" xml:space="preserve">
+    <value>AI is scoring your task</value>
+  </data>
+  <data name="Writing_ElapsedSinceSubmit" xml:space="preserve">
+    <value>  elapsed since submission</value>
+  </data>
+  <data name="Writing_NoChartData" xml:space="preserve">
+    <value>No chart data yet — complete at least one test first.</value>
+  </data>
+  <!-- Reader (study reading) — continued -->
+  <data name="Reader_Background" xml:space="preserve">
+    <value>Background</value>
+  </data>
+  <data name="Reader_Text" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Reader_Size" xml:space="preserve">
+    <value>Size</value>
+  </data>
+  <data name="Reader_ReadAloud" xml:space="preserve">
+    <value>▶  Read aloud</value>
+  </data>
+  <data name="Reader_Stop" xml:space="preserve">
+    <value>⏹  Stop</value>
+  </data>
+  <data name="Reader_Prepare" xml:space="preserve">
+    <value>🎓  Pre-teach</value>
+  </data>
+  <data name="Reader_PrepareTooltip" xml:space="preserve">
+    <value>Review unfamiliar words before reading</value>
+  </data>
+  <data name="Reader_Questions" xml:space="preserve">
+    <value>❓  Questions</value>
+  </data>
+  <data name="Reader_QuestionsTooltip" xml:space="preserve">
+    <value>Comprehension questions</value>
+  </data>
+  <data name="Reader_Practice" xml:space="preserve">
+    <value>🗣  Shadowing</value>
+  </data>
+  <data name="Reader_PracticeTooltip" xml:space="preserve">
+    <value>Pronunciation practice: listen and repeat sentence by sentence</value>
+  </data>
+  <data name="Reader_NotesTooltip" xml:space="preserve">
+    <value>Notes for this text</value>
+  </data>
+  <data name="Reader_BookmarkTooltip" xml:space="preserve">
+    <value>Bookmark current position</value>
+  </data>
+  <data name="Reader_ContinueTooltip" xml:space="preserve">
+    <value>Continue from bookmark</value>
+  </data>
+  <data name="Reader_AnalyzingRecording" xml:space="preserve">
+    <value>🎧 Analysing recording…</value>
+  </data>
+  <data name="Reader_PrevPageTooltip" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="Reader_NextPageTooltip" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="Reader_WordsPerMin" xml:space="preserve">
+    <value> wpm</value>
+  </data>
+  <data name="Reader_AiGeneratedTooltip" xml:space="preserve">
+    <value>Generated by Claude — not verified</value>
+  </data>
+  <data name="Reader_AddNote" xml:space="preserve">
+    <value>✎  Note</value>
+  </data>
+  <data name="Reader_AddNoteTooltip" xml:space="preserve">
+    <value>Save selection as a note</value>
+  </data>
+  <data name="Reader_Highlight" xml:space="preserve">
+    <value>🖍  Highlight</value>
+  </data>
+  <data name="Reader_RemoveHighlight" xml:space="preserve">
+    <value>🖍  Remove highlight</value>
+  </data>
+  <data name="Reader_HighlightTooltip" xml:space="preserve">
+    <value>Highlight selection (purple). Stays until removed.</value>
+  </data>
+  <data name="Reader_LookingUp" xml:space="preserve">
+    <value>⏳ looking up…</value>
+  </data>
+  <data name="Reader_AddToTraining" xml:space="preserve">
+    <value>📚  Add to study</value>
+  </data>
+  <data name="Reader_AddedToTraining" xml:space="preserve">
+    <value>✓ in study list</value>
+  </data>
+  <data name="Reader_AddToTextPool" xml:space="preserve">
+    <value>🎯  Add to text practice</value>
+  </data>
+  <data name="Reader_AddToTextPoolTooltip" xml:space="preserve">
+    <value>Add word to this text's practice pool</value>
+  </data>
+  <data name="Reader_AddedToPool" xml:space="preserve">
+    <value>✓ in text pool</value>
+  </data>
+  <data name="Reader_LibraryTitle" xml:space="preserve">
+    <value>📕 Reading</value>
+  </data>
+  <data name="Reader_Progress" xml:space="preserve">
+    <value>📈  Progress</value>
+  </data>
+  <data name="Reader_ProgressTooltip" xml:space="preserve">
+    <value>Reading speed and vocabulary coverage</value>
+  </data>
+  <data name="Reader_AddText" xml:space="preserve">
+    <value>➕  Add text</value>
+  </data>
+  <data name="Reader_Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="Reader_Level" xml:space="preserve">
+    <value>Level</value>
+  </data>
+  <data name="Reader_ShowHidden" xml:space="preserve">
+    <value>Show hidden</value>
+  </data>
+  <data name="Reader_Words" xml:space="preserve">
+    <value> words</value>
+  </data>
+  <data name="Reader_LastWpmTooltip" xml:space="preserve">
+    <value>Speed of last read-aloud session</value>
+  </data>
+  <data name="Reader_BuiltinTooltip" xml:space="preserve">
+    <value>Built-in text — read-only</value>
+  </data>
+  <data name="Reader_BuiltinBadge" xml:space="preserve">
+    <value>📦 built-in</value>
+  </data>
+  <data name="Reader_Read" xml:space="preserve">
+    <value>▶  Read</value>
+  </data>
+  <data name="Reader_PrepareTooltipLib" xml:space="preserve">
+    <value>Pre-teach: review unfamiliar words</value>
+  </data>
+  <data name="Reader_RenameTooltip" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Reader_DeleteTooltip" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Reader_HideTooltip" xml:space="preserve">
+    <value>Hide from library</value>
+  </data>
+  <data name="Reader_RestoreTooltip" xml:space="preserve">
+    <value>Restore to library</value>
+  </data>
+  <data name="Reader_ProgressTitle" xml:space="preserve">
+    <value>📈  Reading progress</value>
+  </data>
+  <data name="Reader_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Reader_Sessions" xml:space="preserve">
+    <value>Sessions</value>
+  </data>
+  <data name="Reader_WordsRead" xml:space="preserve">
+    <value>Words read</value>
+  </data>
+  <data name="Reader_AvgBest" xml:space="preserve">
+    <value>Avg / best</value>
+  </data>
+  <data name="Reader_ReadingMinutes" xml:space="preserve">
+    <value>Reading minutes</value>
+  </data>
+  <data name="Reader_SpeedOverTime" xml:space="preserve">
+    <value>Reading speed over time</value>
+  </data>
+  <data name="Reader_VocabCoverage" xml:space="preserve">
+    <value>Vocabulary coverage</value>
+  </data>
+  <data name="Reader_NoData" xml:space="preserve">
+    <value>No data — read at least one text aloud.</value>
+  </data>
+  <!-- ReadStudy -->
+  <data name="ReadStudy_ShadowingTitle" xml:space="preserve">
+    <value>🗣  Pronunciation Practice</value>
+  </data>
+  <data name="ReadStudy_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="ReadStudy_Listen" xml:space="preserve">
+    <value>▶  Listen</value>
+  </data>
+  <data name="ReadStudy_Stop" xml:space="preserve">
+    <value>⏹  Stop</value>
+  </data>
+  <data name="ReadStudy_Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="ReadStudy_Repeat" xml:space="preserve">
+    <value>🎤  Repeat</value>
+  </data>
+  <data name="ReadStudy_StopAndScore" xml:space="preserve">
+    <value>⏹  Finish &amp; Score</value>
+  </data>
+  <data name="ReadStudy_Scoring" xml:space="preserve">
+    <value>🎧 scoring…</value>
+  </data>
+  <data name="ReadStudy_Said" xml:space="preserve">
+    <value>said</value>
+  </data>
+  <data name="ReadStudy_Of" xml:space="preserve">
+    <value> of </value>
+  </data>
+  <data name="ReadStudy_PhonemeBreakdown" xml:space="preserve">
+    <value>ɪ/ə breakdown</value>
+  </data>
+  <data name="ReadStudy_Back" xml:space="preserve">
+    <value>◀  Back</value>
+  </data>
+  <data name="ReadStudy_Forward" xml:space="preserve">
+    <value>Forward  ▶</value>
+  </data>
+  <data name="ReadStudy_SummaryTitle" xml:space="preserve">
+    <value>🏁  Reading Summary</value>
+  </data>
+  <data name="ReadStudy_Speed" xml:space="preserve">
+    <value>Speed</value>
+  </data>
+  <data name="ReadStudy_WpmUnit" xml:space="preserve">
+    <value> wpm</value>
+  </data>
+  <data name="ReadStudy_Average" xml:space="preserve">
+    <value>average </value>
+  </data>
+  <data name="ReadStudy_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="ReadStudy_WordsRead" xml:space="preserve">
+    <value>Words Read</value>
+  </data>
+  <data name="ReadStudy_Accuracy" xml:space="preserve">
+    <value>Accuracy</value>
+  </data>
+  <data name="ReadStudy_Missed" xml:space="preserve">
+    <value>missed </value>
+  </data>
+  <data name="ReadStudy_PronUnavailable" xml:space="preserve">
+    <value>🎧 Pronunciation analysis unavailable (recogniser not ready). Showing speed and coverage.</value>
+  </data>
+  <data name="ReadStudy_DifficultWords" xml:space="preserve">
+    <value>Difficult Words</value>
+  </data>
+  <data name="ReadStudy_Phonetics" xml:space="preserve">
+    <value>ɪ/ə phonetics</value>
+  </data>
+  <data name="ReadStudy_ShowPhonemeBreakdown" xml:space="preserve">
+    <value>Show phoneme breakdown</value>
+  </data>
+  <data name="ReadStudy_AddToStudy" xml:space="preserve">
+    <value>📚 add to study</value>
+  </data>
+  <data name="ReadStudy_AddToStudyTip" xml:space="preserve">
+    <value>Add to study</value>
+  </data>
+  <data name="ReadStudy_InStudy" xml:space="preserve">
+    <value>✓ in study</value>
+  </data>
+  <data name="ReadStudy_ReadingHistory" xml:space="preserve">
+    <value>Reading History</value>
+  </data>
+  <data name="ReadStudy_Clear" xml:space="preserve">
+    <value>🗑  Clear</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryTip" xml:space="preserve">
+    <value>Delete all reading history for this text</value>
+  </data>
+  <data name="ReadStudy_QuestionsButton" xml:space="preserve">
+    <value>❓  Text Questions</value>
+  </data>
+  <data name="ReadStudy_CloseSummary" xml:space="preserve">
+    <value>Close Summary</value>
+  </data>
+  <data name="ReadStudy_NotesTitle" xml:space="preserve">
+    <value>✎  Notes</value>
+  </data>
+  <data name="ReadStudy_NewNote" xml:space="preserve">
+    <value>New Note</value>
+  </data>
+  <data name="ReadStudy_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ReadStudy_Save" xml:space="preserve">
+    <value>💾 Save</value>
+  </data>
+  <data name="ReadStudy_NoNotes" xml:space="preserve">
+    <value>No notes yet. Select a passage in the text and press "✎ Note".</value>
+  </data>
+  <data name="ReadStudy_GoToPlace" xml:space="preserve">
+    <value>Go to location</value>
+  </data>
+  <data name="ReadStudy_DeleteNote" xml:space="preserve">
+    <value>Delete note</value>
+  </data>
+  <data name="ReadStudy_ComprehensionTitle" xml:space="preserve">
+    <value>❓  Comprehension Questions</value>
+  </data>
+  <data name="ReadStudy_GeneratingQuestions" xml:space="preserve">
+    <value>⏳ Generating questions…</value>
+  </data>
+  <data name="ReadStudy_Check" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="ReadStudy_Checking" xml:space="preserve">
+    <value>⏳ checking…</value>
+  </data>
+  <data name="ReadStudy_Correct" xml:space="preserve">
+    <value>✓ Correct</value>
+  </data>
+  <data name="ReadStudy_Incorrect" xml:space="preserve">
+    <value>✗ Incorrect</value>
+  </data>
+  <data name="ReadStudy_Points" xml:space="preserve">
+    <value> pts</value>
+  </data>
+  <data name="ReadStudy_CheckAll" xml:space="preserve">
+    <value>Check All</value>
+  </data>
+  <data name="ReadStudy_PreTeachTitle" xml:space="preserve">
+    <value>🎓  Pre-Reading Prep</value>
+  </data>
+  <data name="ReadStudy_Known" xml:space="preserve">
+    <value>Known</value>
+  </data>
+  <data name="ReadStudy_WordsMarkUnknown" xml:space="preserve">
+    <value> words · mark unfamiliar ones to study before reading</value>
+  </data>
+  <data name="ReadStudy_ClaudeUnavailable" xml:space="preserve">
+    <value>⚠ Claude unavailable — words without a translation cannot be added.</value>
+  </data>
+  <data name="ReadStudy_SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="ReadStudy_SelectNone" xml:space="preserve">
+    <value>Deselect All</value>
+  </data>
+  <data name="ReadStudy_AnalyzingText" xml:space="preserve">
+    <value>⏳ Analysing text…</value>
+  </data>
+  <data name="ReadStudy_AiWordTip" xml:space="preserve">
+    <value>Not in dictionary — Claude will create a card when added</value>
+  </data>
+  <data name="ReadStudy_AlreadyInStudyTip" xml:space="preserve">
+    <value>Already in study</value>
+  </data>
+  <data name="ReadStudy_Studying" xml:space="preserve">
+    <value>✓ studying</value>
+  </data>
+  <data name="ReadStudy_OccurrencesTip" xml:space="preserve">
+    <value>Appears in text</value>
+  </data>
+  <data name="ReadStudy_StudySelected" xml:space="preserve">
+    <value>🎓  Study Selected</value>
+  </data>
+  <data name="ReadStudy_StartReading" xml:space="preserve">
+    <value>▶  Start Reading</value>
+  </data>
+  <data name="ReadStudy_NoPronData" xml:space="preserve">
+    <value>no pronunciation data</value>
+  </data>
+  <!-- Controls / Dialog / Content / Shell -->
+  <data name="Controls_ZoomTooltip" xml:space="preserve">
+    <value>Click to zoom (200%)</value>
+  </data>
+  <data name="Controls_ContentNotImported" xml:space="preserve">
+    <value>Section content not imported</value>
+  </data>
+  <data name="Controls_ImportContent" xml:space="preserve">
+    <value>📦 Import content</value>
+  </data>
+  <data name="Dialog_AddTextTitle" xml:space="preserve">
+    <value>Add text</value>
+  </data>
+  <data name="Dialog_FieldName" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Dialog_FieldText" xml:space="preserve">
+    <value>Text</value>
+  </data>
+  <data name="Dialog_ImportTxt" xml:space="preserve">
+    <value>📥  Import .txt</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Dialog_ImageZoomTitle" xml:space="preserve">
+    <value>Image viewer</value>
+  </data>
+  <data name="Dialog_ZoomScale" xml:space="preserve">
+    <value>🔍 Scale</value>
+  </data>
+  <data name="Dialog_ConfirmTitle" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Dialog_RenameTitle" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="Dialog_NewName" xml:space="preserve">
+    <value>New name</value>
+  </data>
+  <data name="Content_ImportTitle" xml:space="preserve">
+    <value>Import content</value>
+  </data>
+  <data name="Content_ImportHeader" xml:space="preserve">
+    <value>📦 Import content pack</value>
+  </data>
+  <data name="Content_ImportHint" xml:space="preserve">
+    <value>Choose a folder or ZIP archive with the content pack (IELTS tests, audio, dictionary). It must contain a manifest.json.</value>
+  </data>
+  <data name="Content_ChooseFolder" xml:space="preserve">
+    <value>📁 Choose folder…</value>
+  </data>
+  <data name="Content_ChooseZip" xml:space="preserve">
+    <value>🗜 Choose ZIP…</value>
+  </data>
+  <data name="Content_SelectedPak" xml:space="preserve">
+    <value>Selected pack:</value>
+  </data>
+  <data name="Content_Sections" xml:space="preserve">
+    <value>Pack sections</value>
+  </data>
+  <data name="Content_ImportSummary" xml:space="preserve">
+    <value>Import summary</value>
+  </data>
+  <data name="Content_Errors" xml:space="preserve">
+    <value>Errors</value>
+  </data>
+  <data name="Content_ImportButton" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="Content_Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <data name="Shell_AreaStudy" xml:space="preserve">
+    <value>🎓 Study</value>
+  </data>
+  <data name="Shell_Settings" xml:space="preserve">
+    <value>⚙  Settings</value>
+  </data>
+  <!-- Settings (extended cards) -->
+  <data name="Settings_AiTitle" xml:space="preserve">
+    <value>🤖 AI scoring (Writing / Speaking)</value>
+  </data>
+  <data name="Settings_AiHint" xml:space="preserve">
+    <value>Essays and speaking answers are scored via the Claude CLI using your Claude Max subscription. Install: 'claude code' via npm or the official installer.</value>
+  </data>
+  <data name="Settings_ClaudePathLabel" xml:space="preserve">
+    <value>Path to claude.exe (empty = auto-detect)</value>
+  </data>
+  <data name="Settings_RecheckButton" xml:space="preserve">
+    <value>Re-check</value>
+  </data>
+  <data name="Settings_MicTitle" xml:space="preserve">
+    <value>🎙 Microphone</value>
+  </data>
+  <data name="Settings_MicHint" xml:space="preserve">
+    <value>Recording device for pronunciation practice and IELTS Speaking. Start the test, speak into the mic and watch the signal level, then play back the test recording.</value>
+  </data>
+  <data name="Settings_MicLevel" xml:space="preserve">
+    <value>Signal level</value>
+  </data>
+  <data name="Settings_MicStartTest" xml:space="preserve">
+    <value>🎤 Start test</value>
+  </data>
+  <data name="Settings_MicStopTest" xml:space="preserve">
+    <value>⏹ Stop test</value>
+  </data>
+  <data name="Settings_MicPlayRecording" xml:space="preserve">
+    <value>▶ Play recording</value>
+  </data>
+  <data name="Settings_MicRefreshDevices" xml:space="preserve">
+    <value>Refresh device list</value>
+  </data>
+  <data name="Settings_WhisperTitle" xml:space="preserve">
+    <value>🎤 Speech recognition (Whisper)</value>
+  </data>
+  <data name="Settings_WhisperHint" xml:space="preserve">
+    <value>The model is downloaded on first use. Base is enough for word pronunciation practice; Medium is recommended for IELTS Speaking.</value>
+  </data>
+  <data name="Settings_VoicesTitle" xml:space="preserve">
+    <value>🎧 IELTS Listening voices</value>
+  </data>
+  <data name="Settings_VoicesHint" xml:space="preserve">
+    <value>Name of an installed Windows voice (e.g. 'Microsoft Sonia Online (Natural) - English (United Kingdom)'). Empty = use the first available voice for the matching region/gender.</value>
+  </data>
+  <data name="Settings_SrsTitle" xml:space="preserve">
+    <value>🎯 Trainer (SRS)</value>
+  </data>
+  <data name="Settings_SrsNewPerDay" xml:space="preserve">
+    <value>New words per day</value>
+  </data>
+  <data name="Settings_SrsReviewsPerDay" xml:space="preserve">
+    <value>Reviews per day</value>
+  </data>
+  <data name="Settings_SrsTargetRetention" xml:space="preserve">
+    <value>Target retention (0.70 – 0.99)</value>
+  </data>
+  <data name="Settings_PexelsTitle" xml:space="preserve">
+    <value>🖼 Pexels API key (optional)</value>
+  </data>
+  <data name="Settings_PexelsHint" xml:space="preserve">
+    <value>With a key, word-card images come from Pexels (nicer). Without a key — Wikipedia/Commons. Sign up: pexels.com/api</value>
+  </data>
+  <data name="Settings_PexelsClear" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Settings_ContentTitle" xml:space="preserve">
+    <value>📦 Content</value>
+  </data>
+  <data name="Settings_ContentHint" xml:space="preserve">
+    <value>IELTS tests, audio and the Oxford 5000 dictionary ship as a separate content pack. Import a folder or ZIP to populate the app's sections.</value>
+  </data>
+  <data name="Settings_ContentImportButton" xml:space="preserve">
+    <value>📦 Import content…</value>
+  </data>
+  <data name="Settings_ThemeTitle" xml:space="preserve">
+    <value>🎨 Colour theme</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>Changes the whole app's appearance instantly, without a restart.</value>
+  </data>
+  <!-- Theme display names (colour-theme switcher) -->
+  <data name="Theme_DarkBlue" xml:space="preserve">
+    <value>Dark Blue</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="Theme_Solarized" xml:space="preserve">
+    <value>Solarized</value>
+  </data>
+  <data name="Theme_Forest" xml:space="preserve">
+    <value>Forest</value>
+  </data>
+  <data name="Theme_Violet" xml:space="preserve">
+    <value>Violet</value>
+  </data>
+  <data name="Theme_Sepia" xml:space="preserve">
+    <value>Sepia</value>
+  </data>
+  <data name="Theme_Nord" xml:space="preserve">
+    <value>Nord</value>
+  </data>
+  <data name="Theme_RosePine" xml:space="preserve">
+    <value>Rosé Pine</value>
+  </data>
+  <data name="Theme_Sage" xml:space="preserve">
+    <value>Sage</value>
+  </data>
+  <data name="Theme_Mocha" xml:space="preserve">
+    <value>Mocha</value>
+  </data>
+  <data name="Theme_Blush" xml:space="preserve">
+    <value>Blush</value>
+  </data>
+  <!-- Window chrome (title bar) -->
+  <data name="Chrome_Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="Chrome_Maximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="Chrome_Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="Chrome_Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Chrome_LanguageToggle" xml:space="preserve">
+    <value>Switch interface language (Ru / En)</value>
+  </data>
+  <!-- Stage 2 (C# view-model / code strings) -->
+  <data name="Mock_ExamTitle" xml:space="preserve">
+    <value>Cambridge {0} · Test {1}</value>
+  </data>
+  <data name="Mock_OpenExamFailed" xml:space="preserve">
+    <value>Failed to open exam: </value>
+  </data>
+  <data name="Mock_HintWindowed" xml:space="preserve">
+    <value>This section will open in a separate window. Complete it to return to the exam.</value>
+  </data>
+  <data name="Mock_HintInline" xml:space="preserve">
+    <value>The section timer will start after you click "Start Section".</value>
+  </data>
+  <data name="Mock_OpenSectionFailed" xml:space="preserve">
+    <value>Failed to open section: </value>
+  </data>
+  <data name="Mock_WritingRunning" xml:space="preserve">
+    <value>Writing is running in a separate window. Complete both tasks to continue.</value>
+  </data>
+  <data name="Mock_EvaluatingTask" xml:space="preserve">
+    <value>Evaluating Task {0} of {1}…</value>
+  </data>
+  <data name="Mock_SpeakingRunning" xml:space="preserve">
+    <value>Speaking is running in a separate window. Complete all parts to continue.</value>
+  </data>
+  <data name="Mock_SectionCompleteError" xml:space="preserve">
+    <value>Error completing section: </value>
+  </data>
+  <data name="Mock_SkipSectionError" xml:space="preserve">
+    <value>Error skipping section: </value>
+  </data>
+  <data name="Mock_ContentMissingDefault" xml:space="preserve">
+    <value>The full exam consists of Reading, Listening, Writing, and Speaking sections.</value>
+  </data>
+  <data name="Mock_ContentMissingDetail" xml:space="preserve">
+    <value>The full exam consists of Reading, Listening, Writing, and Speaking sections. Missing: {0}. Please import a content pack.</value>
+  </data>
+  <data name="Mock_NoBundles" xml:space="preserve">
+    <value>No bundles found. Imported Cambridge Speaking/Listening/Reading content is required.</value>
+  </data>
+  <data name="Mock_LoadFailed" xml:space="preserve">
+    <value>Failed to load exam data.</value>
+  </data>
+  <data name="Mock_NoBundleForStart" xml:space="preserve">
+    <value>No bundle available to start.</value>
+  </data>
+  <data name="Mock_StartExamFailed" xml:space="preserve">
+    <value>Failed to start exam: </value>
+  </data>
+  <data name="Mock_DiscardTitle" xml:space="preserve">
+    <value>Discard Exam</value>
+  </data>
+  <data name="Mock_DiscardMessage" xml:space="preserve">
+    <value>Discard and delete the unfinished exam? Completed sections will not be removed from their modules.</value>
+  </data>
+  <data name="Mock_DiscardConfirm" xml:space="preserve">
+    <value>Discard</value>
+  </data>
+  <data name="Mock_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear History</value>
+  </data>
+  <data name="Mock_ClearHistoryMessage" xml:space="preserve">
+    <value>Delete all mock exam records? This action cannot be undone.</value>
+  </data>
+  <data name="Mock_ClearHistoryConfirm" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Mock_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>History was already empty.</value>
+  </data>
+  <data name="Mock_HistoryCleared" xml:space="preserve">
+    <value>{0} record(s) deleted.</value>
+  </data>
+  <data name="Mock_ClearHistoryFailed" xml:space="preserve">
+    <value>Failed to clear history: </value>
+  </data>
+  <data name="Mock_ResultNotFound" xml:space="preserve">
+    <value>Exam result not found.</value>
+  </data>
+  <data name="Mock_ExamTitleGeneric" xml:space="preserve">
+    <value>Full Exam</value>
+  </data>
+  <data name="Mock_CompletionPartial" xml:space="preserve">
+    <value>Partial · {0}/4 sections</value>
+  </data>
+  <data name="Mock_CompletionFull" xml:space="preserve">
+    <value>Completed · 4/4 sections</value>
+  </data>
+  <data name="Mock_LoadResultFailed" xml:space="preserve">
+    <value>Failed to load exam result.</value>
+  </data>
+  <data name="Mock_OpenBreakdownFailed" xml:space="preserve">
+    <value>Failed to open breakdown for section {0}.</value>
+  </data>
+  <data name="Mock_SectionCompleted" xml:space="preserve">
+    <value>completed</value>
+  </data>
+  <data name="Mock_SectionSkipped" xml:space="preserve">
+    <value>skipped</value>
+  </data>
+  <data name="Mock_SectionInProgress" xml:space="preserve">
+    <value>in progress</value>
+  </data>
+  <data name="Mock_SectionFailed" xml:space="preserve">
+    <value>error</value>
+  </data>
+  <data name="Mock_SectionNotDone" xml:space="preserve">
+    <value>not taken</value>
+  </data>
+  <data name="Speaking_AttemptNotFound" xml:space="preserve">
+    <value>Attempt not found.</value>
+  </data>
+  <data name="Speaking_FailedToLoadResult" xml:space="preserve">
+    <value>Failed to load result.</value>
+  </data>
+  <data name="Speaking_ReevaluatingAi" xml:space="preserve">
+    <value>Re-running AI evaluation…</value>
+  </data>
+  <data name="Speaking_EvaluationUpdated" xml:space="preserve">
+    <value>Evaluation updated.</value>
+  </data>
+  <data name="Speaking_ReevaluationFailed" xml:space="preserve">
+    <value>Failed to re-run evaluation: </value>
+  </data>
+  <data name="Speaking_ContentMissingText" xml:space="preserve">
+    <value>The IELTS Speaking topic bank is part of the content pack. Import the pack to unlock this section.</value>
+  </data>
+  <data name="Speaking_ModeDescFullMock" xml:space="preserve">
+    <value>Full mock exam: Part 1 (4–5 min) + Part 2 (1 min prep + 2 min response) + Part 3 (4–5 min). Topic is chosen randomly.</value>
+  </data>
+  <data name="Speaking_ModeDescPart1Only" xml:space="preserve">
+    <value>Part 1 only: 5 short questions on the selected topic, 30 seconds per answer.</value>
+  </data>
+  <data name="Speaking_ModeDescPart2Only" xml:space="preserve">
+    <value>Part 2 only: cue card with 1 minute of preparation and 2 minutes to speak.</value>
+  </data>
+  <data name="Speaking_ModeDescPart3Only" xml:space="preserve">
+    <value>Part 3 only: 4–5 in-depth follow-up questions on the selected topic, 60 seconds each.</value>
+  </data>
+  <data name="Speaking_ContentNotLoadedYet" xml:space="preserve">
+    <value>Speaking content has not been loaded yet. Restart the app after the seed data is delivered.</value>
+  </data>
+  <data name="Speaking_FailedToLoadTopics" xml:space="preserve">
+    <value>Failed to load the topic list.</value>
+  </data>
+  <data name="Speaking_CheckingWhisperModel" xml:space="preserve">
+    <value>Checking Whisper model…</value>
+  </data>
+  <data name="Speaking_WhisperModelFailed" xml:space="preserve">
+    <value>Failed to download the Whisper medium model. Speaking session is unavailable.</value>
+  </data>
+  <data name="Speaking_FailedToStartSession" xml:space="preserve">
+    <value>Failed to start session: </value>
+  </data>
+  <data name="Speaking_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear History</value>
+  </data>
+  <data name="Speaking_ClearHistoryConfirm" xml:space="preserve">
+    <value>Delete all records of completed Speaking tests? This action cannot be undone.</value>
+  </data>
+  <data name="Speaking_ClearHistoryButton" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Speaking_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>History was already empty.</value>
+  </data>
+  <data name="Speaking_HistoryCleared" xml:space="preserve">
+    <value>Records deleted: {0}.</value>
+  </data>
+  <data name="Speaking_FailedToClearHistory" xml:space="preserve">
+    <value>Failed to clear history: </value>
+  </data>
+  <data name="Speaking_PreparingTopic" xml:space="preserve">
+    <value>Preparing topic…</value>
+  </data>
+  <data name="Speaking_Step1of3Part1" xml:space="preserve">
+    <value>Step 1 of 3 · Part 1</value>
+  </data>
+  <data name="Speaking_Step2of3Part2" xml:space="preserve">
+    <value>Step 2 of 3 · Part 2</value>
+  </data>
+  <data name="Speaking_Step3of3Part3" xml:space="preserve">
+    <value>Step 3 of 3 · Part 3</value>
+  </data>
+  <data name="Speaking_SavingResponses" xml:space="preserve">
+    <value>Saving responses…</value>
+  </data>
+  <data name="Speaking_FailedToSaveResponses" xml:space="preserve">
+    <value>Failed to save responses: </value>
+  </data>
+  <data name="Speaking_AiEvaluating" xml:space="preserve">
+    <value>AI is evaluating the recording…</value>
+  </data>
+  <data name="Speaking_AiDoneOpeningResult" xml:space="preserve">
+    <value>Done. Opening result…</value>
+  </data>
+  <data name="Speaking_AiEvaluationFailed" xml:space="preserve">
+    <value>AI evaluation failed: </value>
+  </data>
+  <data name="Speaking_MicAccessDenied" xml:space="preserve">
+    <value>Could not access the microphone.</value>
+  </data>
+  <data name="Speaking_RecordingError" xml:space="preserve">
+    <value>Recording error: </value>
+  </data>
+  <data name="Speaking_RecordingFailed" xml:space="preserve">
+    <value>Recording failed.</value>
+  </data>
+  <data name="Speaking_Transcribing" xml:space="preserve">
+    <value>Transcribing response…</value>
+  </data>
+  <data name="Speaking_TranscriptFailed" xml:space="preserve">
+    <value>Failed to get transcript.</value>
+  </data>
+  <data name="Writing_ContentMissing" xml:space="preserve">
+    <value>IELTS Writing tasks are part of the content pack. Import the pack to unlock this section.</value>
+  </data>
+  <data name="Writing_NoTestsLoaded" xml:space="preserve">
+    <value>No tests loaded yet. Restart the app to import seed data.</value>
+  </data>
+  <data name="Writing_LoadTestsFailed" xml:space="preserve">
+    <value>Failed to load the test list.</value>
+  </data>
+  <data name="Writing_EvalTaskProgress" xml:space="preserve">
+    <value>Evaluating Task {0} of {1}…</value>
+  </data>
+  <data name="Writing_EvalDoneOpeningResult" xml:space="preserve">
+    <value>Done. Opening result…</value>
+  </data>
+  <data name="Writing_EvalPartialFail" xml:space="preserve">
+    <value>AI evaluation partially failed: </value>
+  </data>
+  <data name="Writing_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear History</value>
+  </data>
+  <data name="Writing_ClearHistoryBody" xml:space="preserve">
+    <value>Delete all completed Writing test records? This action cannot be undone.</value>
+  </data>
+  <data name="Writing_ClearHistoryConfirm" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Writing_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>History was already empty.</value>
+  </data>
+  <data name="Writing_HistoryCleared" xml:space="preserve">
+    <value>{0} record(s) deleted.</value>
+  </data>
+  <data name="Writing_ClearHistoryFailed" xml:space="preserve">
+    <value>Failed to clear history: </value>
+  </data>
+  <data name="Writing_TaskNotFound" xml:space="preserve">
+    <value>Task not found.</value>
+  </data>
+  <data name="Writing_Saving" xml:space="preserve">
+    <value>Saving…</value>
+  </data>
+  <data name="Writing_DraftSaved" xml:space="preserve">
+    <value>Draft saved.</value>
+  </data>
+  <data name="Writing_SaveDraftFailed" xml:space="preserve">
+    <value>Failed to save draft.</value>
+  </data>
+  <data name="Writing_SubmittingAndEvaluating" xml:space="preserve">
+    <value>Submitting and evaluating…</value>
+  </data>
+  <data name="Writing_AnswerSavedNoAi" xml:space="preserve">
+    <value>Answer saved. AI evaluation unavailable (Claude CLI is not configured or did not respond).</value>
+  </data>
+  <data name="Writing_AnswerSavedAiFailed" xml:space="preserve">
+    <value>Answer saved, but AI evaluation failed: </value>
+  </data>
+  <data name="Writing_SubmitAnswerFailed" xml:space="preserve">
+    <value>Failed to submit answer.</value>
+  </data>
+  <data name="Writing_TimeFormatHours" xml:space="preserve">
+    <value>{0:0.#} hr</value>
+  </data>
+  <data name="Writing_TimeFormatMinutes" xml:space="preserve">
+    <value>{0:0} min</value>
+  </data>
+  <data name="Writing_LoadHistoryFailed" xml:space="preserve">
+    <value>Failed to load history: </value>
+  </data>
+  <data name="Writing_LoadResultFailed" xml:space="preserve">
+    <value>Failed to load result.</value>
+  </data>
+  <data name="Writing_ReevaluatingBothTasks" xml:space="preserve">
+    <value>Re-running AI evaluation for both tasks…</value>
+  </data>
+  <data name="Writing_EvalUpdated" xml:space="preserve">
+    <value>Evaluation updated.</value>
+  </data>
+  <data name="Writing_ReevalFailed" xml:space="preserve">
+    <value>Failed to re-run evaluation.</value>
+  </data>
+  <data name="Writing_TestNotFound" xml:space="preserve">
+    <value>Test not found.</value>
+  </data>
+  <data name="Writing_SubmittingAnswers" xml:space="preserve">
+    <value>Submitting answers…</value>
+  </data>
+  <data name="Writing_SubmitAnswersFailed" xml:space="preserve">
+    <value>Failed to submit answers: </value>
+  </data>
+  <data name="Writing_SendingTaskToAi" xml:space="preserve">
+    <value>Sending task to AI…</value>
+  </data>
+  <data name="Listening_Duration" xml:space="preserve">
+    <value>⏱ Time: {0} min {1} sec</value>
+  </data>
+  <data name="Listening_AiStatusPrompt" xml:space="preserve">
+    <value>Press "AI Review" to get an explanation of your mistakes and tips.</value>
+  </data>
+  <data name="Listening_AiStatusUnavailable" xml:space="preserve">
+    <value>Claude CLI is not configured — this section is available after installation.</value>
+  </data>
+  <data name="Listening_AiStatusProcessing" xml:space="preserve">
+    <value>Claude is processing your result — this takes 1–3 minutes…</value>
+  </data>
+  <data name="Listening_AiStatusEmptyResponse" xml:space="preserve">
+    <value>Claude CLI returned an empty or invalid response. Please try again.</value>
+  </data>
+  <data name="Listening_AiStatusError" xml:space="preserve">
+    <value>Error calling Claude CLI. See logs for details.</value>
+  </data>
+  <data name="Listening_AiStatusReady" xml:space="preserve">
+    <value>Review ready. Source: Claude CLI.</value>
+  </data>
+  <data name="Listening_TypeNoteCompletion" xml:space="preserve">
+    <value>Notes (note completion)</value>
+  </data>
+  <data name="Listening_TypeSummaryCompletion" xml:space="preserve">
+    <value>Summary completion</value>
+  </data>
+  <data name="Listening_TypeSentenceCompletion" xml:space="preserve">
+    <value>Sentence completion</value>
+  </data>
+  <data name="Listening_TypeTableCompletion" xml:space="preserve">
+    <value>Table (table completion)</value>
+  </data>
+  <data name="Listening_TypeFlowChartCompletion" xml:space="preserve">
+    <value>Flow chart completion</value>
+  </data>
+  <data name="Listening_TypeMcqSingle" xml:space="preserve">
+    <value>MCQ (single answer)</value>
+  </data>
+  <data name="Listening_TypeMcqMulti" xml:space="preserve">
+    <value>MCQ (multiple answers)</value>
+  </data>
+  <data name="Listening_TypeMatchingFeatures" xml:space="preserve">
+    <value>Matching (features)</value>
+  </data>
+  <data name="Listening_TypeMatchingHeadings" xml:space="preserve">
+    <value>Matching headings</value>
+  </data>
+  <data name="Listening_TypeMatchingInformation" xml:space="preserve">
+    <value>Matching information</value>
+  </data>
+  <data name="Listening_TypeMatchingSentenceEndings" xml:space="preserve">
+    <value>Matching sentence endings</value>
+  </data>
+  <data name="Listening_TypeShortAnswer" xml:space="preserve">
+    <value>Short answer</value>
+  </data>
+  <data name="Listening_TypeTrueFalseNotGiven" xml:space="preserve">
+    <value>True / False / Not Given</value>
+  </data>
+  <data name="Listening_TypeYesNoNotGiven" xml:space="preserve">
+    <value>Yes / No / Not Given</value>
+  </data>
+  <data name="Listening_AiQuestionHeading" xml:space="preserve">
+    <value>Q{0}: your "{1}" → correct "{2}"</value>
+  </data>
+  <data name="Listening_KindNotes" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Listening_KindSummaryFlow" xml:space="preserve">
+    <value>Summary</value>
+  </data>
+  <data name="Listening_KindTable" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="Listening_KindMapLabeling" xml:space="preserve">
+    <value>Matching</value>
+  </data>
+  <data name="Listening_KindCascade" xml:space="preserve">
+    <value>Flow chart</value>
+  </data>
+  <data name="Listening_KindCascadeImage" xml:space="preserve">
+    <value>Flow chart + letters</value>
+  </data>
+  <data name="Listening_KindSelector" xml:space="preserve">
+    <value>Select from list</value>
+  </data>
+  <data name="Listening_KindAnketaImage" xml:space="preserve">
+    <value>Summary + letters</value>
+  </data>
+  <data name="Listening_KindDefault" xml:space="preserve">
+    <value>Multiple choice</value>
+  </data>
+  <data name="Listening_ContentMissing" xml:space="preserve">
+    <value>IELTS Listening tests (with audio) are part of the content pack. Import the pack to unlock this section.</value>
+  </data>
+  <data name="Listening_NoTestsInSeed" xml:space="preserve">
+    <value>No Listening tests have been added to the seed yet.</value>
+  </data>
+  <data name="Listening_LoadTestsFailed" xml:space="preserve">
+    <value>Failed to load the test list.</value>
+  </data>
+  <data name="Listening_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear History</value>
+  </data>
+  <data name="Listening_ClearHistoryConfirm" xml:space="preserve">
+    <value>Delete all Listening attempt history ({0} record(s))? This action cannot be undone.</value>
+  </data>
+  <data name="Listening_ClearHistoryConfirmBtn" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="Listening_ClearHistoryFailed" xml:space="preserve">
+    <value>Failed to clear the history.</value>
+  </data>
+  <data name="Listening_ProgressLabel" xml:space="preserve">
+    <value>Answered {0} / {1}</value>
+  </data>
+  <data name="Listening_CardPositionLabel" xml:space="preserve">
+    <value>Card {0} of {1}</value>
+  </data>
+  <data name="ReadStudy_SourceAll" xml:space="preserve">
+    <value>All texts</value>
+  </data>
+  <data name="ReadStudy_SourceMine" xml:space="preserve">
+    <value>Mine</value>
+  </data>
+  <data name="ReadStudy_SourceBuiltin" xml:space="preserve">
+    <value>Built-in</value>
+  </data>
+  <data name="ReadStudy_CefrAll" xml:space="preserve">
+    <value>All levels</value>
+  </data>
+  <data name="ReadStudy_NoTextsYet" xml:space="preserve">
+    <value>No texts yet. Click "Add text" to paste your own.</value>
+  </data>
+  <data name="ReadStudy_LoadTextsFailed" xml:space="preserve">
+    <value>Failed to load the text list.</value>
+  </data>
+  <data name="ReadStudy_NoTextsFilter" xml:space="preserve">
+    <value>No texts match the selected filter.</value>
+  </data>
+  <data name="ReadStudy_LargeTextTitle" xml:space="preserve">
+    <value>Very large text</value>
+  </data>
+  <data name="ReadStudy_LargeTextBody" xml:space="preserve">
+    <value>This text has ~{0:N0} words. The Reading module is designed for stories and chapters — texts over {1:N0} words (e.g. whole books) may open very slowly or freeze the reader window. Add anyway?</value>
+  </data>
+  <data name="ReadStudy_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="ReadStudy_SaveTextFailed" xml:space="preserve">
+    <value>Failed to save the text.</value>
+  </data>
+  <data name="ReadStudy_RenameTextTitle" xml:space="preserve">
+    <value>Rename text</value>
+  </data>
+  <data name="ReadStudy_RenameTextCaption" xml:space="preserve">
+    <value>Text title</value>
+  </data>
+  <data name="ReadStudy_RenameTextFailed" xml:space="preserve">
+    <value>Failed to rename the text.</value>
+  </data>
+  <data name="ReadStudy_DeleteTextTitle" xml:space="preserve">
+    <value>Delete text</value>
+  </data>
+  <data name="ReadStudy_DeleteTextBody" xml:space="preserve">
+    <value>Delete "{0}"? This action cannot be undone.</value>
+  </data>
+  <data name="ReadStudy_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="ReadStudy_DeleteTextFailed" xml:space="preserve">
+    <value>Failed to delete the text.</value>
+  </data>
+  <data name="ReadStudy_SetHiddenFailed" xml:space="preserve">
+    <value>Failed to update text visibility.</value>
+  </data>
+  <data name="ReadStudy_ShadowNoSentences" xml:space="preserve">
+    <value>Could not split the text into sentences.</value>
+  </data>
+  <data name="ReadStudy_ShadowNoTts" xml:space="preserve">
+    <value>No TTS voices found — playback unavailable (you can still record your repetition).</value>
+  </data>
+  <data name="ReadStudy_ShadowSentenceOf" xml:space="preserve">
+    <value>Sentence {0} of {1}</value>
+  </data>
+  <data name="ReadStudy_ShadowNoMic" xml:space="preserve">
+    <value>Microphone unavailable — recording your repetition is not possible.</value>
+  </data>
+  <data name="ReadStudy_ShadowRecordFailed" xml:space="preserve">
+    <value>Failed to start recording.</value>
+  </data>
+  <data name="ReadStudy_ShadowScoreFailed" xml:space="preserve">
+    <value>Failed to score the repetition.</value>
+  </data>
+  <data name="ReadStudy_PageOf" xml:space="preserve">
+    <value>Page {0} of {1}</value>
+  </data>
+  <data name="ReadStudy_PreparingSpeechModel" xml:space="preserve">
+    <value>Preparing speech recognizer…</value>
+  </data>
+  <data name="ReadStudy_LoadModelFailed" xml:space="preserve">
+    <value>Failed to load the speech recognizer.</value>
+  </data>
+  <data name="ReadStudy_PreTeachNoUnknown" xml:space="preserve">
+    <value>No unfamiliar words found — you can start reading right away.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAnalyzeFailed" xml:space="preserve">
+    <value>Failed to analyze the text.</value>
+  </data>
+  <data name="ReadStudy_PreTeachSelectAtLeastOne" xml:space="preserve">
+    <value>Select at least one word.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAddedCount" xml:space="preserve">
+    <value>Added to study: {0}. You can start reading now.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAddFailed" xml:space="preserve">
+    <value>Failed to add words to study.</value>
+  </data>
+  <data name="ReadStudy_PreTeachNoTranslation" xml:space="preserve">
+    <value>— no translation</value>
+  </data>
+  <data name="ReadStudy_PreTeachAiWillAdd" xml:space="preserve">
+    <value>🤖 will be looked up on add</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear history</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryBody" xml:space="preserve">
+    <value>Delete all reading history for this text? This action cannot be undone.</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryConfirm" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ReadStudy_WpmText" xml:space="preserve">
+    <value>{0} wpm</value>
+  </data>
+  <data name="ReadStudy_ComprehensionScore" xml:space="preserve">
+    <value>{0} / {1} correct</value>
+  </data>
+  <data name="ReadStudy_ComprehensionNoQuestions" xml:space="preserve">
+    <value>Could not generate questions for this text.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionOffline" xml:space="preserve">
+    <value>Questions unavailable offline — connect Claude CLI in settings.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionLoadFailed" xml:space="preserve">
+    <value>Failed to load questions.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionGradeFailed" xml:space="preserve">
+    <value>Failed to grade the answer.</value>
+  </data>
+  <data name="ReadStudy_ProgressNoData" xml:space="preserve">
+    <value>No completed read-aloud sessions yet — stats will appear after the first one.</value>
+  </data>
+  <data name="ReadStudy_ProgressLoadFailed" xml:space="preserve">
+    <value>Failed to load reading statistics.</value>
+  </data>
+  <data name="ReadStudy_LookupNotFound" xml:space="preserve">
+    <value>Translation not found.</value>
+  </data>
+  <data name="ReadStudy_LookupNoCliOffline" xml:space="preserve">
+    <value>Not in dictionary. Claude CLI is unavailable — connect it in settings for auto-translation.</value>
+  </data>
+  <data name="ReadStudy_PhonemeTooltipTricky" xml:space="preserve">
+    <value>/{0}/ ({1}) — tricky sound for Russian speakers</value>
+  </data>
+  <data name="ReadStudy_PhonemeTooltip" xml:space="preserve">
+    <value>/{0}/ ({1})</value>
+  </data>
+  <data name="Dict_ContentMissingText" xml:space="preserve">
+    <value>The Oxford 5000 dictionary is part of the content pack. Import the pack to open the dictionary (the AWL/AVL skeleton without Oxford is of limited use).</value>
+  </data>
+  <data name="Dict_AllPartsOfSpeech" xml:space="preserve">
+    <value>All parts of speech</value>
+  </data>
+  <data name="Dict_AllSources" xml:space="preserve">
+    <value>All sources</value>
+  </data>
+  <data name="Dict_SourcePhave" xml:space="preserve">
+    <value>Phrasal verbs (PHaVE)</value>
+  </data>
+  <data name="Dict_SourceMyWords" xml:space="preserve">
+    <value>My words</value>
+  </data>
+  <data name="Dict_AllCategories" xml:space="preserve">
+    <value>All categories</value>
+  </data>
+  <data name="Dict_AllTags" xml:space="preserve">
+    <value>All tags</value>
+  </data>
+  <data name="Dict_Recognizing" xml:space="preserve">
+    <value>Recognizing…</value>
+  </data>
+  <data name="Dict_WhisperModelNotLoaded" xml:space="preserve">
+    <value>Whisper model not loaded.</value>
+  </data>
+  <data name="Dict_NotRecognized" xml:space="preserve">
+    <value>(not recognized)</value>
+  </data>
+  <data name="Dict_PronError" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Dict_MicNotFound" xml:space="preserve">
+    <value>Microphone not found.</value>
+  </data>
+  <data name="Dict_RecordingHint" xml:space="preserve">
+    <value>Recording… press again to stop.</value>
+  </data>
+  <data name="Settings_Checking" xml:space="preserve">
+    <value>Checking…</value>
+  </data>
+  <data name="Settings_WhisperBase" xml:space="preserve">
+    <value>Base — fast (142 MB), for pronunciation practice</value>
+  </data>
+  <data name="Settings_WhisperMedium" xml:space="preserve">
+    <value>Medium — accurate (1.5 GB), for Speaking long-form</value>
+  </data>
+  <data name="Settings_NoMicsFound" xml:space="preserve">
+    <value>No microphones detected. Connect a device and press ⟳.</value>
+  </data>
+  <data name="Settings_MicTesting" xml:space="preserve">
+    <value>Testing — speak into the microphone…</value>
+  </data>
+  <data name="Settings_MicOpenFailed" xml:space="preserve">
+    <value>Could not open microphone. Please choose a different device.</value>
+  </data>
+  <data name="Settings_RecordingReady" xml:space="preserve">
+    <value>Recording ready — press ▶ Play recording.</value>
+  </data>
+  <data name="Settings_TestStopped" xml:space="preserve">
+    <value>Test stopped.</value>
+  </data>
+  <data name="Settings_VersionUnknown" xml:space="preserve">
+    <value>(version unknown)</value>
+  </data>
+  <data name="Settings_ClaudeFound" xml:space="preserve">
+    <value>✓ Found: {0}  ({1})</value>
+  </data>
+  <data name="Settings_ClaudeNotFound" xml:space="preserve">
+    <value>✗ Not found. Install Claude CLI or enter the path manually.</value>
+  </data>
+  <data name="Settings_PexelsCleared" xml:space="preserve">
+    <value>Pexels key cleared.</value>
+  </data>
+  <data name="Content_StatusInitial" xml:space="preserve">
+    <value>Select a folder or ZIP with the content pack.</value>
+  </data>
+  <data name="Content_ChooseFolderTitle" xml:space="preserve">
+    <value>Select the content-pack folder (must contain manifest.json)</value>
+  </data>
+  <data name="Content_ChooseZipTitle" xml:space="preserve">
+    <value>Select content-pack ZIP</value>
+  </data>
+  <data name="Content_ZipFilter" xml:space="preserve">
+    <value>Content pack (*.zip)|*.zip|All files (*.*)|*.*</value>
+  </data>
+  <data name="Content_ManifestNotFound" xml:space="preserve">
+    <value>No manifest.json found in the selected pack.</value>
+  </data>
+  <data name="Content_ReadyToImport" xml:space="preserve">
+    <value>Ready to import: {0} section(s) found.</value>
+  </data>
+  <data name="Content_ManifestNoSections" xml:space="preserve">
+    <value>Manifest found, but no sections are marked in it.</value>
+  </data>
+  <data name="Content_ManifestReadFailed" xml:space="preserve">
+    <value>Could not read pack manifest: </value>
+  </data>
+  <data name="Content_Updated" xml:space="preserve">
+    <value>updated</value>
+  </data>
+  <data name="Content_Skipped" xml:space="preserve">
+    <value>skipped</value>
+  </data>
+  <data name="Content_ImportDone" xml:space="preserve">
+    <value>Import completed successfully.</value>
+  </data>
+  <data name="Content_ImportDoneWithErrors" xml:space="preserve">
+    <value>Import completed with errors — see the list below.</value>
+  </data>
+  <data name="Content_ImportFailed" xml:space="preserve">
+    <value>Import failed: </value>
+  </data>
+  <data name="Content_SectionDictOxford" xml:space="preserve">
+    <value>Dictionary — Oxford 5000</value>
+  </data>
+  <data name="Content_SectionDictPhave" xml:space="preserve">
+    <value>Dictionary — phrasal verbs (PHaVE)</value>
+  </data>
+  <data name="ReadIelts_ContentMissingText" xml:space="preserve">
+    <value>IELTS Reading tests are part of the content pack. Import the pack to open this section.</value>
+  </data>
+  <data name="ReadIelts_NoTestsGenerated" xml:space="preserve">
+    <value>No tests generated yet. Run tools/IeltsReadingGen for bulk generation.</value>
+  </data>
+  <data name="ReadIelts_LoadTestsFailed" xml:space="preserve">
+    <value>Failed to load the test list.</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryTitle" xml:space="preserve">
+    <value>Clear History</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryBody" xml:space="preserve">
+    <value>Delete all Reading attempt history ({0} record(s))? This action cannot be undone.</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryConfirm" xml:space="preserve">
+    <value>Clear</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryFailed" xml:space="preserve">
+    <value>Failed to clear history.</value>
+  </data>
+  <data name="ReadIelts_ProgressLabel" xml:space="preserve">
+    <value>Answered {0} / {1}</value>
+  </data>
+  <data name="ReadIelts_CardPositionLabel" xml:space="preserve">
+    <value>Card {0} of {1}</value>
+  </data>
+  <data name="ReadIelts_DurationLabel" xml:space="preserve">
+    <value>⏱ Time taken: {0} min {1} s</value>
+  </data>
+  <data name="ReadIelts_NoAnswer" xml:space="preserve">
+    <value>(no answer)</value>
+  </data>
+  <data name="ReadIelts_QuestionSingle" xml:space="preserve">
+    <value>Question {0}</value>
+  </data>
+  <data name="ReadIelts_QuestionRange" xml:space="preserve">
+    <value>Questions {0}–{1}</value>
+  </data>
+  <data name="ReadIelts_WordLimit" xml:space="preserve">
+    <value>No more than {0} words</value>
+  </data>
+  <data name="Trainer_PoolNoCards" xml:space="preserve">
+    <value>This text's pool has no cards due for review yet.</value>
+  </data>
+  <data name="Trainer_NoCards" xml:space="preserve">
+    <value>No cards due for review. Add words in the dictionary using the 📚 Add to study button.</value>
+  </data>
+  <data name="Trainer_SessionEnded" xml:space="preserve">
+    <value>Session ended.</value>
+  </data>
+  <data name="Trainer_SessionDone" xml:space="preserve">
+    <value>Session complete. Done: {0}.</value>
+  </data>
+  <data name="Trainer_PhrasalVerb" xml:space="preserve">
+    <value>Phrasal verb</value>
+  </data>
+  <data name="Trainer_Collocation" xml:space="preserve">
+    <value>Collocation</value>
+  </data>
+  <data name="Main_AppTitle" xml:space="preserve">
+    <value>EnglishStudio — IELTS Trainer</value>
+  </data>
+  <data name="Shell_PlaceholderTitle" xml:space="preserve">
+    <value>Coming Soon</value>
+  </data>
+  <data name="Shell_PlaceholderDescription" xml:space="preserve">
+    <value>This section will appear in future updates.</value>
+  </data>
+  <data name="Dialog_ImportTextTitle" xml:space="preserve">
+    <value>Import Text</value>
+  </data>
+  <data name="Dialog_ImportTextFilter" xml:space="preserve">
+    <value>Text files (*.txt)|*.txt|All files (*.*)|*.*</value>
+  </data>
+  <data name="Dialog_ReadFileFailed" xml:space="preserve">
+    <value>Could not read file: {0}</value>
+  </data>
+  <data name="Dialog_PasteOrImportText" xml:space="preserve">
+    <value>Paste or import text.</value>
+  </data>
+  <data name="Dialog_RenameCaption" xml:space="preserve">
+    <value>New name</value>
+  </data>
+  <data name="Controls_ContentMissingDefault" xml:space="preserve">
+    <value>Download or assemble a content pack and import it to unlock this section.</value>
+  </data>
+  <data name="Controls_Transcribing" xml:space="preserve">
+    <value>Transcribing… {0:0}%</value>
+  </data>
+  <data name="Controls_PreparingModel" xml:space="preserve">
+    <value>Preparing model…</value>
+  </data>
+  <data name="Reader_WpmTooltip" xml:space="preserve">
+    <value>{0}: {1:F0} wpm · accuracy {2:F0}%</value>
+  </data>
+  <data name="Writing_BandTooltip" xml:space="preserve">
+    <value>{0}: band {1:F1} · {2} attempts</value>
+  </data>
+  <data name="Whisper_DownloadingBase" xml:space="preserve">
+    <value>Downloading Whisper base.en model (~142 MB, one-time)…</value>
+  </data>
+  <data name="Whisper_DownloadingMedium" xml:space="preserve">
+    <value>Downloading Whisper medium.en model (~1.5 GB, one-time)…</value>
+  </data>
+  <data name="Whisper_DownloadProgress" xml:space="preserve">
+    <value>Downloading Whisper {0}: {1:0.0} / {2:0.0} MB</value>
+  </data>
+  <data name="Whisper_ModelDownloaded" xml:space="preserve">
+    <value>Model downloaded. Initializing…</value>
+  </data>
+  <data name="Whisper_LoadingBase" xml:space="preserve">
+    <value>Loading Whisper base engine…</value>
+  </data>
+  <data name="Whisper_LoadingMedium" xml:space="preserve">
+    <value>Loading Whisper medium engine…</value>
+  </data>
+  <data name="Whisper_Error" xml:space="preserve">
+    <value>Error: {0}</value>
+  </data>
+  <data name="Whisper_PronUnrecognized" xml:space="preserve">
+    <value>Could not recognize speech. Please try again.</value>
+  </data>
+  <data name="Whisper_PronExcellent" xml:space="preserve">
+    <value>Excellent! Pronunciation is close to the reference.</value>
+  </data>
+  <data name="Whisper_PronGood" xml:space="preserve">
+    <value>Good, but there are differences. Listen to the reference and try again.</value>
+  </data>
+  <data name="Whisper_PronPoor" xml:space="preserve">
+    <value>Pronunciation differs significantly. Listen to the reference and repeat.</value>
+  </data>
+  <data name="Mic_DefaultDevice" xml:space="preserve">
+    <value>System default device</value>
+  </data>
+  <data name="Mic_DeviceFallback" xml:space="preserve">
+    <value>Microphone {0}</value>
+  </data>
+  <data name="Vosk_LoadingModel" xml:space="preserve">
+    <value>Loading speech recognizer…</value>
+  </data>
+  <data name="Vosk_Error" xml:space="preserve">
+    <value>Recognizer error: {0}</value>
+  </data>
+  <data name="Vosk_DownloadingModel" xml:space="preserve">
+    <value>Downloading recognition model (~40 MB, one-time)…</value>
+  </data>
+  <data name="Vosk_DownloadProgressKnown" xml:space="preserve">
+    <value>Downloading model: {0:0.0} / {1:0.0} MB</value>
+  </data>
+  <data name="Vosk_DownloadProgressUnknown" xml:space="preserve">
+    <value>Downloading model: {0:0.0} MB</value>
+  </data>
+  <data name="Vosk_ExtractingModel" xml:space="preserve">
+    <value>Extracting model…</value>
+  </data>
+  <data name="Vosk_MicNotFound" xml:space="preserve">
+    <value>No microphone found.</value>
+  </data>
+  <!-- Stage 3 (Writing filter labels) -->
+  <data name="Writing_FilterAll" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Writing_FilterNotDone" xml:space="preserve">
+    <value>Not done</value>
+  </data>
+  <data name="Writing_FilterDone" xml:space="preserve">
+    <value>Done</value>
+  </data>
+  <!-- Stage 4 (AI feedback label) -->
+  <data name="Writing_Feedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <!-- Global exception handling -->
+  <data name="App_UnexpectedErrorTitle" xml:space="preserve">
+    <value>Unexpected error</value>
+  </data>
+  <data name="App_UnexpectedErrorBody" xml:space="preserve">
+    <value>An unexpected error occurred. The app will keep running, but if problems persist, please restart it.
+
+{0}</value>
+  </data>
+  <data name="App_CrashPromptTitle" xml:space="preserve">
+    <value>Error report</value>
+  </data>
+  <data name="App_CrashPromptBody" xml:space="preserve">
+    <value>The application terminated with an error during the previous run. Open the error-report folder?</value>
+  </data>
+  <data name="Settings_BackupTitle" xml:space="preserve">
+    <value>Data backup</value>
+  </data>
+  <data name="Settings_BackupHint" xml:space="preserve">
+    <value>Your training progress, exam attempts and notes live in a local database. Create a copy so a disk failure or reinstall can't wipe them out.</value>
+  </data>
+  <data name="Settings_BackupCreateButton" xml:space="preserve">
+    <value>Create backup</value>
+  </data>
+  <data name="Settings_BackupOpenFolderButton" xml:space="preserve">
+    <value>Open backup folder</value>
+  </data>
+  <data name="Settings_BackupDone" xml:space="preserve">
+    <value>Backup saved: {0}</value>
+  </data>
+  <data name="Settings_BackupNoDb" xml:space="preserve">
+    <value>No database exists yet — nothing to back up.</value>
+  </data>
+  <data name="Settings_BackupFailed" xml:space="preserve">
+    <value>Backup failed: {0}</value>
+  </data>
+  <!-- Module messages: Dictionary (audio/images progress) -->
+  <data name="Dict_AudioDownloading" xml:space="preserve">
+    <value>Downloading {0} audio (~95 MB)…</value>
+  </data>
+  <data name="Dict_AudioDownloadingPart" xml:space="preserve">
+    <value>Downloading part {0} of {1} ({2})…</value>
+  </data>
+  <data name="Dict_AudioExtracting" xml:space="preserve">
+    <value>Extracting {0} audio…</value>
+  </data>
+  <data name="Dict_AudioDownloadError" xml:space="preserve">
+    <value>Download error: {0}</value>
+  </data>
+  <data name="Dict_ImagesSearching" xml:space="preserve">
+    <value>Searching images for “{0}”…</value>
+  </data>
+  <data name="Dict_ImagesDownloading" xml:space="preserve">
+    <value>Downloading ({0})…</value>
+  </data>
+  <!-- Module messages: Reading study (pre-teach progress) -->
+  <data name="ReadStudy_PreTeachSkipNoTranslation" xml:space="preserve">
+    <value>Skipping “{0}” — no offline translation</value>
+  </data>
+  <data name="ReadStudy_PreTeachTranslating" xml:space="preserve">
+    <value>Looking up translation: {0}…</value>
+  </data>
+  <data name="ReadStudy_PreTeachAdding" xml:space="preserve">
+    <value>Adding to trainer: {0}…</value>
+  </data>
+  <data name="ReadStudy_PreTeachDone" xml:space="preserve">
+    <value>Done: {0} added.</value>
+  </data>
+  <!-- Module messages: Reading study (comprehension verdicts) -->
+  <data name="ReadStudy_VerdictQuestionNotFound" xml:space="preserve">
+    <value>Question not found.</value>
+  </data>
+  <data name="ReadStudy_VerdictCorrect" xml:space="preserve">
+    <value>Correct!</value>
+  </data>
+  <data name="ReadStudy_VerdictWrongWithAnswer" xml:space="preserve">
+    <value>Incorrect. The correct answer is “{0}”.</value>
+  </data>
+  <data name="ReadStudy_VerdictWrong" xml:space="preserve">
+    <value>Incorrect.</value>
+  </data>
+  <data name="ReadStudy_VerdictEmptyAnswer" xml:space="preserve">
+    <value>The answer is empty.</value>
+  </data>
+  <data name="ReadStudy_VerdictOpenOffline" xml:space="preserve">
+    <value>Open-answer grading is unavailable offline.</value>
+  </data>
+  <data name="ReadStudy_VerdictEvaluateFailed" xml:space="preserve">
+    <value>Failed to evaluate the answer.</value>
+  </data>
+  <data name="ReadStudy_VerdictParseFailed" xml:space="preserve">
+    <value>Failed to parse the evaluation.</value>
+  </data>
+  <data name="ReadStudy_VerdictCorrectShort" xml:space="preserve">
+    <value>Correct.</value>
+  </data>
+  <!-- Module messages: Content import errors -->
+  <data name="Content_ErrManifestMissing" xml:space="preserve">
+    <value>manifest.json was not found in the content pack.</value>
+  </data>
+  <data name="Content_ErrUnsupportedVersion" xml:space="preserve">
+    <value>Unsupported content-pack version: packVersion={0}; this app supports up to {1}. Please update the app.</value>
+  </data>
+  <data name="Content_ErrSectionFileMissing" xml:space="preserve">
+    <value>Section '{0}' is marked in the manifest but its key file is missing from the content pack.</value>
+  </data>
+  <data name="Content_ErrReseedFailed" xml:space="preserve">
+    <value>Re-seeding section '{0}' failed: {1}</value>
+  </data>
+  <data name="Hub_AiUnavailable" xml:space="preserve">
+    <value>Claude CLI not found — AI evaluation of essays and speaking is unavailable. Set the Claude CLI path in Settings.</value>
+  </data>
+</root>

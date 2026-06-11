@@ -2,6 +2,7 @@ using System.IO;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Writing;
 using Microsoft.Extensions.Logging;
@@ -14,11 +15,15 @@ namespace EnglishStudio.App.ViewModels.Writing;
 /// </summary>
 public partial class WritingSessionViewModel : ObservableObject
 {
+    private const int AutoSaveDebounceMs = 400;
+
     private readonly IWritingTaskService _taskSvc;
     private readonly ILogger<WritingSessionViewModel> _log;
 
     private DispatcherTimer? _timer;
     private DateTime _startedAt;
+    private readonly Dictionary<int, DispatcherTimer> _saveDebounce = new();
+    private bool _saveInFlight;
 
     [ObservableProperty] private TestSet? _testSet;
     [ObservableProperty] private WritingSessionTaskViewModel? _task1;
@@ -63,7 +68,7 @@ public partial class WritingSessionViewModel : ObservableObject
         var detail = await _taskSvc.GetTestSetAsync(testSetId);
         if (detail is null)
         {
-            StatusText = "Тест не найден.";
+            StatusText = Loc.Tr("Writing_TestNotFound");
             return;
         }
 
@@ -122,16 +127,26 @@ public partial class WritingSessionViewModel : ObservableObject
         _timer.Start();
     }
 
-    private async void AutoSaveDraft(WritingSessionTaskViewModel sender)
+    private void AutoSaveDraft(WritingSessionTaskViewModel sender)
     {
-        try
+        if (_isCleanedUp) return;
+        if (!_saveDebounce.TryGetValue(sender.AttemptId, out var t))
         {
-            await _taskSvc.SaveDraftAsync(sender.AttemptId, sender.UserText);
+            t = new DispatcherTimer { Interval = TimeSpan.FromMilliseconds(AutoSaveDebounceMs) };
+            t.Tick += async (_, _) =>
+            {
+                t.Stop();
+                if (_isCleanedUp) return;
+                if (_saveInFlight) { t.Start(); return; }
+                _saveInFlight = true;
+                try { await _taskSvc.SaveDraftAsync(sender.AttemptId, sender.UserText); }
+                catch (Exception ex) { _log.LogWarning(ex, "Auto-save draft failed"); }
+                finally { _saveInFlight = false; }
+            };
+            _saveDebounce[sender.AttemptId] = t;
         }
-        catch (Exception ex)
-        {
-            _log.LogWarning(ex, "Auto-save draft failed");
-        }
+        t.Stop();
+        t.Start();
     }
 
     [RelayCommand]
@@ -140,8 +155,9 @@ public partial class WritingSessionViewModel : ObservableObject
         if (Task1 is null || Task2 is null) return;
 
         _timer?.Stop();
+        foreach (var t in _saveDebounce.Values) t.Stop();
         IsBusy = true;
-        StatusText = "Отправка ответов...";
+        StatusText = Loc.Tr("Writing_SubmittingAnswers");
 
         try
         {
@@ -153,7 +169,7 @@ public partial class WritingSessionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to submit writing session");
-            StatusText = "Не удалось отправить ответы: " + ex.Message;
+            StatusText = Loc.Tr("Writing_SubmitAnswersFailed") + ex.Message;
             IsBusy = false;
         }
     }
@@ -161,11 +177,23 @@ public partial class WritingSessionViewModel : ObservableObject
     [RelayCommand]
     private void Cancel()
     {
-        _timer?.Stop();
+        Cleanup();
         var ids = new List<int>(2);
         if (Task1 != null) ids.Add(Task1.AttemptId);
         if (Task2 != null) ids.Add(Task2.AttemptId);
         Cancelled?.Invoke(ids);
+    }
+
+    private bool _isCleanedUp;
+
+    /// <summary>Stops the session timer. Safe to call more than once (Cancel + window Closed).</summary>
+    public void Cleanup()
+    {
+        if (_isCleanedUp) return;
+        _isCleanedUp = true;
+        _timer?.Stop();
+        foreach (var t in _saveDebounce.Values) t.Stop();
+        _saveDebounce.Clear();
     }
 }
 

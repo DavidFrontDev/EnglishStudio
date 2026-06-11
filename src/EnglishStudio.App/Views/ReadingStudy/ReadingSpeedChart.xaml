@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DesignHeight="240" d:DesignWidth="560"
              Background="Transparent"
@@ -10,7 +11,7 @@
     <Grid>
         <Canvas x:Name="PlotCanvas" ClipToBounds="True" />
         <TextBlock x:Name="EmptyLabel"
-                   Text="Нет данных — прочитайте вслух хотя бы один текст."
+                   Text="{loc:Tr Reader_NoData}"
                    Visibility="Collapsed"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

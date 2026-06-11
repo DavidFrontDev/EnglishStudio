@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ShadowingViewModel}"
              d:DesignWidth="560" d:DesignHeight="680">
@@ -37,7 +38,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="🗣  Тренировка произношения" Style="{StaticResource H2}" />
+                    <TextBlock Text="{loc:Tr ReadStudy_ShadowingTitle}" Style="{StaticResource H2}" />
                     <TextBlock Text="{Binding PositionText}" Style="{StaticResource MutedText}" Margin="0,2,0,0" />
                 </StackPanel>
                 <Button Grid.Column="1"
@@ -46,7 +47,7 @@
                         Padding="8,3"
                         FontSize="12"
                         Style="{StaticResource FlatButton}"
-                        ToolTip="Закрыть"
+                        ToolTip="{loc:Tr ReadStudy_Close}"
                         Command="{Binding CloseCommand}" />
             </Grid>
 
@@ -61,19 +62,19 @@
 
                     <!-- Playback controls -->
                     <StackPanel Orientation="Horizontal" Margin="0,12,0,0" VerticalAlignment="Center">
-                        <Button Content="▶  Прослушать"
+                        <Button Content="{loc:Tr ReadStudy_Listen}"
                                 Padding="12,6"
                                 Style="{StaticResource AccentButton}"
                                 Command="{Binding PlayCurrentCommand}"
                                 IsEnabled="{Binding TtsAvailable}"
                                 Visibility="{Binding IsSpeaking, Converter={StaticResource InvBoolToVis}}" />
-                        <Button Content="⏹  Стоп"
+                        <Button Content="{loc:Tr ReadStudy_Stop}"
                                 Padding="12,6"
                                 Style="{StaticResource FlatButton}"
                                 Command="{Binding StopSpeakCommand}"
                                 Visibility="{Binding IsSpeaking, Converter={StaticResource BoolToVis}}" />
 
-                        <TextBlock Text="Темп" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="14,0,6,0" />
+                        <TextBlock Text="{loc:Tr ReadStudy_Rate}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="14,0,6,0" />
                         <Slider Width="110"
                                 VerticalAlignment="Center"
                                 Minimum="0.75" Maximum="1.0"
@@ -91,17 +92,17 @@
 
                     <!-- Record controls -->
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0" VerticalAlignment="Center">
-                        <Button Content="🎤  Повторить"
+                        <Button Content="{loc:Tr ReadStudy_Repeat}"
                                 Padding="12,6"
                                 Style="{StaticResource FlatButton}"
                                 Command="{Binding RecordToggleCommand}"
                                 Visibility="{Binding IsRecording, Converter={StaticResource InvBoolToVis}}" />
-                        <Button Content="⏹  Закончить и оценить"
+                        <Button Content="{loc:Tr ReadStudy_StopAndScore}"
                                 Padding="12,6"
                                 Style="{StaticResource AccentButton}"
                                 Command="{Binding RecordToggleCommand}"
                                 Visibility="{Binding IsRecording, Converter={StaticResource BoolToVis}}" />
-                        <TextBlock Text="🎧 оцениваю…"
+                        <TextBlock Text="{loc:Tr ReadStudy_Scoring}"
                                    Style="{StaticResource MutedText}"
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"
@@ -125,7 +126,7 @@
                                    FontSize="22" FontWeight="Bold"
                                    Foreground="{DynamicResource SuccessBrush}" />
                         <TextBlock VerticalAlignment="Bottom" Margin="8,0,0,3" Style="{StaticResource Caption}">
-                            <Run Text="сказано" /><Run Text=" " /><Run Text="{Binding WordsSpoken, Mode=OneWay}" /><Run Text=" из " /><Run Text="{Binding WordsExpected, Mode=OneWay}" />
+                            <Run Text="{loc:Tr ReadStudy_Said}" /><Run Text=" " /><Run Text="{Binding WordsSpoken, Mode=OneWay}" /><Run Text="{loc:Tr ReadStudy_Of}" /><Run Text="{Binding WordsExpected, Mode=OneWay}" />
                         </TextBlock>
                     </StackPanel>
 
@@ -149,7 +150,7 @@
                                                        FontWeight="SemiBold"
                                                        VerticalAlignment="Center" />
 
-                                            <Button Content="ɪ/ə разбор"
+                                            <Button Content="{loc:Tr ReadStudy_PhonemeBreakdown}"
                                                     Margin="10,0,0,0"
                                                     Padding="8,1"
                                                     FontSize="11"
@@ -172,19 +173,19 @@
             <!-- Footer: navigation -->
             <Grid Grid.Row="3" Margin="0,14,0,0">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Content="◀  Назад"
+                    <Button Content="{loc:Tr ReadStudy_Back}"
                             Padding="14,8"
                             Style="{StaticResource FlatButton}"
                             Command="{Binding PrevCommand}"
                             IsEnabled="{Binding CanGoPrev}" />
-                    <Button Content="Вперёд  ▶"
+                    <Button Content="{loc:Tr ReadStudy_Forward}"
                             Padding="14,8"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
                             Command="{Binding NextCommand}"
                             IsEnabled="{Binding CanGoNext}" />
                 </StackPanel>
-                <Button Content="Закрыть"
+                <Button Content="{loc:Tr ReadStudy_Close}"
                         HorizontalAlignment="Right"
                         Padding="16,8"
                         Style="{StaticResource AccentButton}"

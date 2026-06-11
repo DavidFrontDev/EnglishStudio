@@ -1,0 +1,93 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--
+        Blush — мягкая светлая тема в тёплых пудрово-розовых тонах.
+        СВЕТЛОЕ семейство: overlay-блоки инвертированы как в Light. Набор ключей идентичен всем палитрам.
+    -->
+
+    <SolidColorBrush x:Key="WindowBaseBrush" Color="#F6EEF0" />
+
+    <Color x:Key="AccentHotColor">#C98B9A</Color>
+    <Color x:Key="AccentMidColor">#B06A7D</Color>
+    <Color x:Key="AccentDeepColor">#8C4F62</Color>
+    <Color x:Key="AccentEdgeColor">#5E3340</Color>
+
+    <SolidColorBrush x:Key="AccentMidBrush" Color="#B06A7D" />
+    <SolidColorBrush x:Key="AccentHotBrush" Color="#C98B9A" />
+
+    <Color x:Key="ChromeStartColor">#FBF4F6</Color>
+    <Color x:Key="ChromeEndColor">#EFE2E6</Color>
+    <SolidColorBrush x:Key="ChromeCloseHoverBrush" Color="#E81123" />
+    <SolidColorBrush x:Key="ChromeClosePressedBrush" Color="#B3000F" />
+
+    <SolidColorBrush x:Key="PrimaryTextBrush" Color="#4A3B40" />
+    <SolidColorBrush x:Key="TitleTextBrush" Color="#3A2E32" />
+    <SolidColorBrush x:Key="StrongTextBrush" Color="#2A2024" />
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#6E5A60" />
+    <SolidColorBrush x:Key="CaptionTextBrush" Color="#7D6A70" />
+
+    <SolidColorBrush x:Key="SuccessBrush" Color="#2F8F57" />
+    <SolidColorBrush x:Key="ErrorBrush" Color="#C0473F" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#B07D2A" />
+    <SolidColorBrush x:Key="InfoBrush" Color="#3A6F9C" />
+
+    <SolidColorBrush x:Key="CtaBackgroundBrush" Color="#B06A7D" />
+    <SolidColorBrush x:Key="CtaForegroundBrush" Color="#FBF4F6" />
+    <SolidColorBrush x:Key="CtaHoverBrush" Color="#9D5C6F" />
+    <SolidColorBrush x:Key="CtaPressedBrush" Color="#8C4F62" />
+
+    <!--  Overlays — инвертированы как в Light (светлая база)  -->
+    <SolidColorBrush x:Key="OverlayLight13Brush" Color="#22000000" />
+    <SolidColorBrush x:Key="OverlayLight17Brush" Color="#2C000000" />
+    <SolidColorBrush x:Key="OverlayLight20Brush" Color="#33000000" />
+    <SolidColorBrush x:Key="OverlayLight33Brush" Color="#55000000" />
+    <SolidColorBrush x:Key="OverlayLight40Brush" Color="#66000000" />
+    <SolidColorBrush x:Key="OverlayLight47Brush" Color="#77000000" />
+    <SolidColorBrush x:Key="OverlayLight60Brush" Color="#99000000" />
+    <SolidColorBrush x:Key="OverlayLight67Brush" Color="#AA000000" />
+    <SolidColorBrush x:Key="OverlayLight80Brush" Color="#CC000000" />
+
+    <SolidColorBrush x:Key="OverlayDark13Brush" Color="#22FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark20Brush" Color="#33FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark27Brush" Color="#44FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark33Brush" Color="#55FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark40Brush" Color="#66FFFFFF" />
+    <SolidColorBrush x:Key="OverlayDark60Brush" Color="#99FFFFFF" />
+
+    <SolidColorBrush x:Key="SelectionBrush" Color="#33B06A7D" />
+    <SolidColorBrush x:Key="SelectionHoverBrush" Color="#22B06A7D" />
+
+    <!--  Pills — как в Light  -->
+    <SolidColorBrush x:Key="PillA1Brush" Color="#22C55E" />
+    <SolidColorBrush x:Key="PillA2Brush" Color="#16A34A" />
+    <SolidColorBrush x:Key="PillB1Brush" Color="#3B82F6" />
+    <SolidColorBrush x:Key="PillB2Brush" Color="#2563EB" />
+    <SolidColorBrush x:Key="PillC1Brush" Color="#9333EA" />
+    <SolidColorBrush x:Key="PillC2Brush" Color="#7E22CE" />
+    <SolidColorBrush x:Key="PillUnknownBrush" Color="#64748B" />
+
+    <SolidColorBrush x:Key="OnAccentBrush" Color="#3A2428" />
+    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#FFF8F0F2" />
+
+    <!--  Note/Warn — тёмные чипы (поверх белые цифры таймера)  -->
+    <SolidColorBrush x:Key="NotePanelBrush" Color="#3A2E34" />
+    <SolidColorBrush x:Key="NotePanelTextBrush" Color="#D0A8B4" />
+    <SolidColorBrush x:Key="WarnPanelBrush" Color="#4A2F2C" />
+    <SolidColorBrush x:Key="WarnPanelTextBrush" Color="#E0B0A4" />
+
+    <SolidColorBrush x:Key="RecordStartBrush" Color="#3DA66B" />
+    <SolidColorBrush x:Key="RecordStopBrush" Color="#C24545" />
+
+    <SolidColorBrush x:Key="ImageBackdropBrush" Color="#161616" />
+    <SolidColorBrush x:Key="ImageBackdropTextBrush" Color="#E0E0E0" />
+
+    <!--  Selection — БЛЕДНЫЙ тёплый акцент (тёмный текст читаем)  -->
+    <Color x:Key="SelectedItemStartColor">#ECD9DE</Color>
+    <Color x:Key="SelectedItemMidColor">#E1C8CF</Color>
+    <Color x:Key="SelectedItemEndColor">#D6B8C1</Color>
+    <Color x:Key="SidebarSelectStartColor">#F0E0E4</Color>
+    <Color x:Key="SidebarSelectEndColor">#E3CCD2</Color>
+    <Color x:Key="ShimmerColor">#55B06A7D</Color>
+
+</ResourceDictionary>

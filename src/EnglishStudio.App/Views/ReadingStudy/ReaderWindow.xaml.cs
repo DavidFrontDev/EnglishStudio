@@ -1,6 +1,10 @@
+using System.ComponentModel;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using EnglishStudio.App.Shell;
@@ -17,24 +21,72 @@ namespace EnglishStudio.App.Views.ReadingStudy;
 /// </summary>
 public partial class ReaderWindow : ChromedWindow
 {
+    /// <summary>Fade factor for words behind the read-along cursor (transcription mode dims via opacity).</summary>
+    private const double DimOpacity = 0.4;
+
     private readonly DispatcherTimer _debounce;
     private bool _built;
 
-    // Read-along dimming: every word Run keyed by its WordIndex, the cursor reached so far,
-    // and a cached semi-transparent brush used to fade words behind the cursor.
-    private readonly Dictionary<int, Run> _wordRuns = new();
+    // Read-along dimming + annotations: every word unit keyed by its global WordIndex, plus an
+    // ordered list (document order) used for selection mapping, highlight painting and dimming.
+    private readonly Dictionary<int, WordVisual> _wordByIndex = new();
+    private readonly List<WordVisual> _words = new();
     private int _dimmedUpTo;
     private SolidColorBrush? _dimBrush;
     private ReaderViewModel? _subscribed;
-
-    // F5: word runs with their BodyText char range, for note highlighting / selection→offset.
-    private readonly List<WordSpan> _wordSpans = new();
+    private ReadingAppearanceViewModel? _appearanceSub;
 
     // Latest annotation sets, repainted together (colour highlights under note highlights).
     private IReadOnlyList<NoteDto> _latestNotes = Array.Empty<NoteDto>();
     private IReadOnlyList<HighlightDto> _latestHighlights = Array.Empty<HighlightDto>();
 
-    private readonly record struct WordSpan(int Start, int Len, int WordIndex, Run Run);
+    /// <summary>
+    /// A single rendered word. In the default (fast) mode it is a flat <see cref="Run"/>; in
+    /// transcription mode it is a vertical stack (IPA over word) wrapped in an
+    /// <see cref="InlineUIContainer"/>. The accessor methods hide the difference so dimming,
+    /// highlighting and selection mapping work identically in both modes.
+    /// </summary>
+    private sealed class WordVisual
+    {
+        public int WordIndex { get; init; }
+        public int Start { get; init; }
+        public int Len { get; init; }
+        public string Text { get; init; } = string.Empty;
+
+        // Exactly one rendering is populated.
+        public Run? Run { get; init; }
+        public InlineUIContainer? Container { get; init; }
+        public TextBlock? WordBlock { get; init; }
+        public Panel? Stack { get; init; }
+
+        public TextPointer ContentStart => Run is not null ? Run.ContentStart : Container!.ContentStart;
+        public TextPointer ContentEnd => Run is not null ? Run.ContentEnd : Container!.ContentEnd;
+
+        public void Dim(Brush dimBrush)
+        {
+            if (Run is not null) Run.Foreground = dimBrush;
+            else if (Stack is not null) Stack.Opacity = DimOpacity;
+        }
+
+        public void Undim()
+        {
+            // Run: restore inheritance from the RichTextBox (null would render invisible).
+            if (Run is not null) Run.ClearValue(TextElement.ForegroundProperty);
+            else Stack?.ClearValue(UIElement.OpacityProperty);
+        }
+
+        public void SetBackground(Brush brush)
+        {
+            if (Run is not null) Run.Background = brush;
+            else if (WordBlock is not null) WordBlock.Background = brush;
+        }
+
+        public void ClearBackground()
+        {
+            if (Run is not null) Run.ClearValue(TextElement.BackgroundProperty);
+            else WordBlock?.ClearValue(TextBlock.BackgroundProperty);
+        }
+    }
 
     public ReaderWindow()
     {
@@ -50,6 +102,8 @@ public partial class ReaderWindow : ChromedWindow
 
     private ReaderViewModel? Vm => DataContext as ReaderViewModel;
 
+    private bool ShowTranscription => Vm?.Appearance.ShowTranscription == true;
+
     private void OnLoaded(object sender, RoutedEventArgs e) { }
 
     /// <summary>After the initial size-to-content pass, switch to manual so the user can resize.</summary>
@@ -58,10 +112,9 @@ public partial class ReaderWindow : ChromedWindow
         SizeToContent = SizeToContent.Manual;
     }
 
-    private void Reader_Loaded(object sender, RoutedEventArgs e)
+    private async void Reader_Loaded(object sender, RoutedEventArgs e)
     {
         if (_built) return;
-        BuildDocument();
         _built = true;
 
         if (Vm is { } vm && !ReferenceEquals(_subscribed, vm))
@@ -73,24 +126,61 @@ public partial class ReaderWindow : ChromedWindow
             vm.HighlightsChanged += OnHighlightsChanged;
             vm.ScrollToWordIndexRequested += OnScrollToWordIndex;
             vm.PageChanged += OnPageChanged;
+
+            // Rebuild the document when the transcription toggle flips.
+            _appearanceSub = vm.Appearance;
+            _appearanceSub.PropertyChanged += OnAppearanceChanged;
         }
 
+        // If transcription is already on (persisted within the session), warm the cache first
+        // so the very first render shows the IPA rather than flashing plain text.
+        if (ShowTranscription && Vm is { } v) await v.EnsureTranscriptionLoadedAsync();
+
+        BuildDocument();
         // Apply any preloaded note highlights now that the runs exist.
         Vm?.ApplyInitialAnnotations();
     }
 
-    /// <summary>Renders the tokens as a FlowDocument, one Run per word (Tag = word index for Phase 3 dimming).</summary>
+    private void OnAppearanceChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(ReadingAppearanceViewModel.ShowTranscription))
+            RebuildForTranscriptionToggle();
+    }
+
+    /// <summary>
+    /// Re-renders the current page in/out of transcription mode without losing read-along
+    /// progress or annotations (font size / colours rebind live and don't need a rebuild).
+    /// </summary>
+    private async void RebuildForTranscriptionToggle()
+    {
+        if (!_built) return;
+        Vm?.ClosePopupCommand.Execute(null);
+
+        // Turning transcription on: ensure the IPA cache is loaded before we render the stacks.
+        if (ShowTranscription && Vm is { } vm) await vm.EnsureTranscriptionLoadedAsync();
+
+        var cursor = _dimmedUpTo;
+        BuildDocument();
+        Vm?.ApplyInitialAnnotations();
+        if (cursor > 0) OnCursorChanged(cursor); // re-dim words already read
+    }
+
+    /// <summary>Renders the current page as a FlowDocument: one Run per word (fast mode), or a
+    /// stacked IPA-over-word unit per word when transcription is on.</summary>
     private void BuildDocument()
     {
         var vm = Vm;
         if (vm is null) return;
 
-        _wordRuns.Clear();
-        _wordSpans.Clear();
+        _wordByIndex.Clear();
+        _words.Clear();
         _dimmedUpTo = 0;
 
+        var transcription = ShowTranscription;
+        var appearance = vm.Appearance;
+
         // Font size / colour inherit from the RichTextBox (bound to Appearance) so they
-        // update live without rebuilding the document.
+        // update live without rebuilding the document. The transcription units bind explicitly.
         var doc = new FlowDocument
         {
             PagePadding = new Thickness(0),
@@ -130,12 +220,14 @@ public partial class ReaderWindow : ChromedWindow
             switch (t.Kind)
             {
                 case TokenKind.Word:
-                    var wordRun = new Run(t.Text) { Tag = t.WordIndex };
-                    para.Inlines.Add(wordRun);
+                    var visual = transcription
+                        ? BuildTranscriptionWord(t, appearance)
+                        : BuildPlainWord(t);
+                    para.Inlines.Add(visual.Run is { } r ? r : (Inline)visual.Container!);
                     if (t.WordIndex is int wi)
                     {
-                        _wordRuns[wi] = wordRun;
-                        _wordSpans.Add(new WordSpan(t.StartOffset, t.Length, wi, wordRun));
+                        _wordByIndex[wi] = visual;
+                        _words.Add(visual);
                     }
                     break;
                 case TokenKind.Space:
@@ -152,6 +244,83 @@ public partial class ReaderWindow : ChromedWindow
             doc.Blocks.Add(para);
 
         Reader.Document = doc;
+    }
+
+    private static WordVisual BuildPlainWord(TextToken t)
+    {
+        var run = new Run(t.Text) { Tag = t.WordIndex };
+        return new WordVisual
+        {
+            WordIndex = t.WordIndex ?? -1,
+            Start = t.StartOffset,
+            Len = t.Length,
+            Text = t.Text,
+            Run = run
+        };
+    }
+
+    /// <summary>A vertical stack — small IPA line over the word — wrapped so it flows/wraps inline.</summary>
+    private WordVisual BuildTranscriptionWord(TextToken t, ReadingAppearanceViewModel appearance)
+    {
+        var ipa = Vm?.IpaFor(t.Text);
+
+        var ipaBlock = new TextBlock
+        {
+            Text = ipa ?? string.Empty,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            TextAlignment = TextAlignment.Center,
+            Opacity = 0.7,                       // a touch muted, so the word stays primary
+            Margin = new Thickness(0, 0, 0, 1)
+        };
+        ipaBlock.SetBinding(TextBlock.FontSizeProperty,
+            new Binding(nameof(ReadingAppearanceViewModel.TranscriptionFontSize)) { Source = appearance });
+        ipaBlock.SetBinding(TextBlock.ForegroundProperty,
+            new Binding(nameof(ReadingAppearanceViewModel.TextBrush)) { Source = appearance });
+
+        var wordBlock = new TextBlock
+        {
+            Text = t.Text,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            TextAlignment = TextAlignment.Center,
+            Tag = t.WordIndex
+        };
+        wordBlock.SetBinding(TextBlock.FontSizeProperty,
+            new Binding(nameof(ReadingAppearanceViewModel.FontSize)) { Source = appearance });
+        wordBlock.SetBinding(TextBlock.ForegroundProperty,
+            new Binding(nameof(ReadingAppearanceViewModel.TextBrush)) { Source = appearance });
+
+        var stack = new StackPanel { Orientation = Orientation.Vertical, Tag = t.WordIndex };
+        stack.Children.Add(ipaBlock);
+        stack.Children.Add(wordBlock);
+        // A click selects the word so the existing select→translate / notes machinery applies
+        // (drag-selection over InlineUIContainers is awkward, a click is reliable and natural).
+        stack.MouseLeftButtonUp += OnWordStackClicked;
+
+        var container = new InlineUIContainer(stack) { BaselineAlignment = BaselineAlignment.Bottom };
+
+        return new WordVisual
+        {
+            WordIndex = t.WordIndex ?? -1,
+            Start = t.StartOffset,
+            Len = t.Length,
+            Text = t.Text,
+            Container = container,
+            WordBlock = wordBlock,
+            Stack = stack
+        };
+    }
+
+    /// <summary>Transcription mode: a word click selects that word and triggers the lookup popup.</summary>
+    private void OnWordStackClicked(object sender, MouseButtonEventArgs e)
+    {
+        if (sender is not FrameworkElement fe || fe.Tag is not int wi) return;
+        if (!_wordByIndex.TryGetValue(wi, out var wv) || wv.Container is null) return;
+
+        Reader.Selection.Select(wv.Container.ContentStart, wv.Container.ContentEnd);
+        e.Handled = true; // keep our selection (don't let the RichTextBox collapse it to a caret)
+
+        _debounce.Stop();
+        _ = RunLookupAsync();
     }
 
     private static Paragraph NewParagraph() => new() { Margin = new Thickness(0, 0, 0, 10) };
@@ -182,10 +351,16 @@ public partial class ReaderWindow : ChromedWindow
     private async void OnDebounceTick(object? sender, EventArgs e)
     {
         _debounce.Stop();
+        await RunLookupAsync();
+    }
+
+    /// <summary>Resolves the current selection to a translation and positions/opens the popup.</summary>
+    private async Task RunLookupAsync()
+    {
         var vm = Vm;
         if (vm is null) return;
 
-        var text = Reader.Selection.Text?.Trim() ?? string.Empty;
+        var text = GetSelectionText();
 
         if (text.Length == 0 || text.Length > 300 || !ContainsLetter(text))
         {
@@ -220,12 +395,55 @@ public partial class ReaderWindow : ChromedWindow
         await vm.LookupSelectionAsync(text, GetContextSentence(Reader.Selection));
     }
 
-    private static string? GetContextSentence(TextSelection sel)
+    /// <summary>
+    /// Selected text. In transcription mode the RichTextBox reports object-replacement chars for
+    /// the per-word <see cref="InlineUIContainer"/>s, so the text is rebuilt from the word units
+    /// that the selection overlaps (document order).
+    /// </summary>
+    private string GetSelectionText()
+    {
+        if (!ShowTranscription)
+            return Reader.Selection.Text?.Trim() ?? string.Empty;
+
+        var sel = Reader.Selection;
+        var sb = new StringBuilder();
+        foreach (var wv in _words)
+        {
+            if (sel.Start.CompareTo(wv.ContentEnd) < 0 && sel.End.CompareTo(wv.ContentStart) > 0)
+            {
+                if (sb.Length > 0) sb.Append(' ');
+                sb.Append(wv.Text);
+            }
+        }
+        return sb.ToString().Trim();
+    }
+
+    private string? GetContextSentence(TextSelection sel)
     {
         var para = sel.Start.Paragraph;
         if (para is null) return null;
 
-        var txt = new TextRange(para.ContentStart, para.ContentEnd).Text?.Trim();
+        string? txt;
+        if (ShowTranscription)
+        {
+            // Rebuild the paragraph text from its word units (Selection.Text is object chars here).
+            var sb = new StringBuilder();
+            foreach (var wv in _words)
+            {
+                if (wv.ContentStart.CompareTo(para.ContentStart) >= 0 &&
+                    wv.ContentEnd.CompareTo(para.ContentEnd) <= 0)
+                {
+                    if (sb.Length > 0) sb.Append(' ');
+                    sb.Append(wv.Text);
+                }
+            }
+            txt = sb.ToString().Trim();
+        }
+        else
+        {
+            txt = new TextRange(para.ContentStart, para.ContentEnd).Text?.Trim();
+        }
+
         if (string.IsNullOrEmpty(txt)) return null;
         return txt.Length > 400 ? txt[..400] : txt;
     }
@@ -240,16 +458,16 @@ public partial class ReaderWindow : ChromedWindow
     // ── Read-along dimming ─────────────────────────────────────────────────
 
     /// <summary>Cursor moved forward (GLOBAL WordIndex): fade page words behind it. Iterates the
-    /// current page's spans (bounded ~page size) rather than a 0..cursor range, which would be huge
+    /// current page's units (bounded ~page size) rather than a 0..cursor range, which would be huge
     /// for a page deep inside a book.</summary>
     private void OnCursorChanged(int cursor)
     {
         if (cursor <= _dimmedUpTo) return;
         _dimBrush ??= BuildDimBrush();
 
-        foreach (var span in _wordSpans)
-            if (span.WordIndex >= _dimmedUpTo && span.WordIndex < cursor)
-                span.Run.Foreground = _dimBrush;
+        foreach (var wv in _words)
+            if (wv.WordIndex >= _dimmedUpTo && wv.WordIndex < cursor)
+                wv.Dim(_dimBrush);
 
         _dimmedUpTo = cursor;
     }
@@ -257,7 +475,7 @@ public partial class ReaderWindow : ChromedWindow
     /// <summary>Page changed: rebuild the slice, re-apply note highlights, scroll to top.</summary>
     private void OnPageChanged()
     {
-        BuildDocument();          // resets _wordRuns/_wordSpans/_dimmedUpTo for the new slice
+        BuildDocument();          // resets _wordByIndex/_words/_dimmedUpTo for the new slice
         Vm?.ApplyInitialAnnotations();
         FindContentScrollViewer()?.ScrollToVerticalOffset(0);
     }
@@ -265,8 +483,8 @@ public partial class ReaderWindow : ChromedWindow
     /// <summary>New session: restore full opacity and recapture the current text colour.</summary>
     private void OnDimReset()
     {
-        foreach (var run in _wordRuns.Values)
-            run.ClearValue(TextElement.ForegroundProperty); // restore inheritance from the RichTextBox (null would render invisible)
+        foreach (var wv in _words)
+            wv.Undim();
 
         _dimmedUpTo = 0;
         _dimBrush = BuildDimBrush();
@@ -276,7 +494,7 @@ public partial class ReaderWindow : ChromedWindow
     private SolidColorBrush BuildDimBrush()
     {
         var color = (Reader.Foreground as SolidColorBrush)?.Color ?? Colors.Gray;
-        var dim = new SolidColorBrush(Color.FromArgb((byte)(0.4 * 255), color.R, color.G, color.B));
+        var dim = new SolidColorBrush(Color.FromArgb((byte)(DimOpacity * 255), color.R, color.G, color.B));
         dim.Freeze();
         return dim;
     }
@@ -299,8 +517,8 @@ public partial class ReaderWindow : ChromedWindow
     /// (notes on top, so a note's colour wins where they overlap).</summary>
     private void RepaintAnnotations()
     {
-        foreach (var span in _wordSpans)
-            span.Run.ClearValue(TextElement.BackgroundProperty);
+        foreach (var wv in _words)
+            wv.ClearBackground();
 
         foreach (var h in _latestHighlights)
             PaintRange(h.StartOffset, h.Length, BuildHighlightBrush(h.Color));
@@ -309,27 +527,27 @@ public partial class ReaderWindow : ChromedWindow
             PaintRange(note.StartOffset, note.Length, BuildHighlightBrush(note.Color));
     }
 
-    /// <summary>Tints every word run whose char-range overlaps [start, start+length).</summary>
+    /// <summary>Tints every word unit whose char-range overlaps [start, start+length).</summary>
     private void PaintRange(int start, int length, SolidColorBrush brush)
     {
         var end = start + length;
-        foreach (var span in _wordSpans)
+        foreach (var wv in _words)
         {
-            var spanEnd = span.Start + span.Len;
-            if (span.Start < end && spanEnd > start)
-                span.Run.Background = brush;
+            var wvEnd = wv.Start + wv.Len;
+            if (wv.Start < end && wvEnd > start)
+                wv.SetBackground(brush);
         }
     }
 
     private void OnScrollToWordIndex(int wordIndex)
     {
-        if (!_wordRuns.TryGetValue(wordIndex, out var run)) return;
+        if (!_wordByIndex.TryGetValue(wordIndex, out var wv)) return;
         var sv = FindContentScrollViewer();
         if (sv is null) return;
 
         try
         {
-            var rect = run.ContentStart.GetCharacterRect(LogicalDirection.Forward);
+            var rect = wv.ContentStart.GetCharacterRect(LogicalDirection.Forward);
             sv.ScrollToVerticalOffset(Math.Max(0, sv.VerticalOffset + rect.Top - 40));
         }
         catch { /* layout not ready — ignore */ }
@@ -372,17 +590,17 @@ public partial class ReaderWindow : ChromedWindow
         start = 0; len = 0; quote = string.Empty;
 
         var sel = Reader.Selection;
-        var text = sel.Text?.Trim() ?? string.Empty;
+        var text = GetSelectionText();
         if (text.Length == 0) return false;
 
         var min = int.MaxValue;
         var max = int.MinValue;
-        foreach (var span in _wordSpans)
+        foreach (var wv in _words)
         {
-            if (sel.Start.CompareTo(span.Run.ContentEnd) < 0 && sel.End.CompareTo(span.Run.ContentStart) > 0)
+            if (sel.Start.CompareTo(wv.ContentEnd) < 0 && sel.End.CompareTo(wv.ContentStart) > 0)
             {
-                min = Math.Min(min, span.Start);
-                max = Math.Max(max, span.Start + span.Len);
+                min = Math.Min(min, wv.Start);
+                max = Math.Max(max, wv.Start + wv.Len);
             }
         }
 
@@ -395,16 +613,16 @@ public partial class ReaderWindow : ChromedWindow
 
     private int? TopVisibleWordIndex()
     {
-        foreach (var span in _wordSpans)
+        foreach (var wv in _words)
         {
             try
             {
-                var rect = span.Run.ContentStart.GetCharacterRect(LogicalDirection.Forward);
-                if (rect.Bottom > 0) return span.WordIndex;
+                var rect = wv.ContentStart.GetCharacterRect(LogicalDirection.Forward);
+                if (rect.Bottom > 0) return wv.WordIndex;
             }
             catch { /* skip */ }
         }
-        return _wordSpans.Count > 0 ? _wordSpans[0].WordIndex : null;
+        return _words.Count > 0 ? _words[0].WordIndex : null;
     }
 
     private ScrollViewer? FindContentScrollViewer() =>
@@ -425,6 +643,14 @@ public partial class ReaderWindow : ChromedWindow
 
     protected override void OnClosed(EventArgs e)
     {
+        _debounce.Stop();
+
+        if (_appearanceSub is { } ap)
+        {
+            ap.PropertyChanged -= OnAppearanceChanged;
+            _appearanceSub = null;
+        }
+
         if (_subscribed is { } vm)
         {
             vm.CursorChanged -= OnCursorChanged;

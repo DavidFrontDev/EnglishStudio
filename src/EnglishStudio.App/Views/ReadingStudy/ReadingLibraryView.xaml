@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingLibraryViewModel}"
              d:DesignHeight="700" d:DesignWidth="1000">
@@ -75,15 +76,15 @@
 
         <!-- Header -->
         <Grid Grid.Row="0" Margin="0,0,0,12">
-            <TextBlock Text="📕 Чтение" Style="{StaticResource H1}" VerticalAlignment="Center" />
+            <TextBlock Text="{loc:Tr Reader_LibraryTitle}" Style="{StaticResource H1}" VerticalAlignment="Center" />
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-                <Button Content="📈  Прогресс"
+                <Button Content="{loc:Tr Reader_Progress}"
                         Padding="14,8"
                         Margin="0,0,8,0"
                         Style="{StaticResource FlatButton}"
-                        ToolTip="Скорость чтения и словарный охват"
+                        ToolTip="{loc:Tr Reader_ProgressTooltip}"
                         Command="{Binding ShowProgressCommand}" />
-                <Button Content="➕  Добавить текст"
+                <Button Content="{loc:Tr Reader_AddText}"
                         Padding="14,8"
                         Style="{StaticResource AccentButton}"
                         Command="{Binding AddTextCommand}" />
@@ -92,15 +93,29 @@
 
         <!-- F7 filters -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" VerticalAlignment="Center">
-            <TextBlock Text="Источник" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
+            <TextBlock Text="{loc:Tr Reader_Source}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
             <ComboBox Width="150" VerticalAlignment="Center"
                       ItemsSource="{Binding SourceOptions}"
-                      SelectedItem="{Binding SelectedSource, Mode=TwoWay}" />
-            <TextBlock Text="Уровень" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="18,0,8,0" />
+                      SelectedValuePath="Token"
+                      SelectedValue="{Binding SelectedSource, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="{loc:Tr Reader_Level}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="18,0,8,0" />
             <ComboBox Width="120" VerticalAlignment="Center"
                       ItemsSource="{Binding CefrOptions}"
-                      SelectedItem="{Binding SelectedCefr, Mode=TwoWay}" />
-            <CheckBox Content="Показывать скрытые"
+                      SelectedValuePath="Token"
+                      SelectedValue="{Binding SelectedCefr, Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Label}" TextTrimming="CharacterEllipsis" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <CheckBox Content="{loc:Tr Reader_ShowHidden}"
                       VerticalAlignment="Center"
                       Margin="18,0,0,0"
                       IsChecked="{Binding ShowHidden, Mode=TwoWay}" />
@@ -158,7 +173,7 @@
                                     <TextBlock Style="{StaticResource Caption}" Text="  ·  " VerticalAlignment="Center" />
                                     <TextBlock Style="{StaticResource Caption}" VerticalAlignment="Center">
                                         <Run Text="{Binding WordCount, Mode=OneWay}" />
-                                        <Run Text=" слов" />
+                                        <Run Text="{loc:Tr Reader_Words}" />
                                     </TextBlock>
 
                                     <!-- Last reading speed (after a read-along session) -->
@@ -168,21 +183,21 @@
                                                Visibility="{Binding LastWpm, Converter={StaticResource NullToVis}}" />
                                     <TextBlock Style="{StaticResource Caption}"
                                                VerticalAlignment="Center"
-                                               ToolTip="Скорость последнего чтения вслух"
+                                               ToolTip="{loc:Tr Reader_LastWpmTooltip}"
                                                Visibility="{Binding LastWpm, Converter={StaticResource NullToVis}}">
                                         <Run Text="📈 " />
                                         <Run Text="{Binding LastWpm, Mode=OneWay, StringFormat={}{0:0}}" />
-                                        <Run Text=" сл/мин" />
+                                        <Run Text="{loc:Tr Reader_WordsPerMin}" />
                                     </TextBlock>
 
-                                    <Border Style="{StaticResource BuiltinBadge}" Margin="6,0,0,0" ToolTip="Встроенный текст — только чтение">
-                                        <TextBlock Text="📦 встроенный" Foreground="{DynamicResource MutedTextBrush}" FontSize="10" FontWeight="SemiBold" />
+                                    <Border Style="{StaticResource BuiltinBadge}" Margin="6,0,0,0" ToolTip="{loc:Tr Reader_BuiltinTooltip}">
+                                        <TextBlock Text="{loc:Tr Reader_BuiltinBadge}" Foreground="{DynamicResource MutedTextBrush}" FontSize="10" FontWeight="SemiBold" />
                                     </Border>
                                 </StackPanel>
 
                                 <!-- Actions -->
                                 <Grid Grid.Row="2">
-                                    <Button Content="▶  Читать"
+                                    <Button Content="{loc:Tr Reader_Read}"
                                             HorizontalAlignment="Left"
                                             Padding="12,6"
                                             Style="{StaticResource AccentButton}"
@@ -194,7 +209,7 @@
                                                 FontSize="13"
                                                 Margin="0,0,6,0"
                                                 Style="{StaticResource FlatButton}"
-                                                ToolTip="Подготовка: разобрать незнакомые слова"
+                                                ToolTip="{loc:Tr Reader_PrepareTooltipLib}"
                                                 Command="{Binding DataContext.PrepareCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" />
                                         <Button Content="✏"
@@ -202,28 +217,28 @@
                                                 FontSize="13"
                                                 Margin="0,0,6,0"
                                                 Style="{StaticResource OwnerActionButton}"
-                                                ToolTip="Переименовать"
+                                                ToolTip="{loc:Tr Reader_RenameTooltip}"
                                                 Command="{Binding DataContext.RenameCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" />
                                         <Button Content="🗑"
                                                 Padding="10,6"
                                                 FontSize="13"
                                                 Style="{StaticResource OwnerActionButton}"
-                                                ToolTip="Удалить"
+                                                ToolTip="{loc:Tr Reader_DeleteTooltip}"
                                                 Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" />
                                         <Button Content="🙈"
                                                 Padding="10,6"
                                                 FontSize="13"
                                                 Style="{StaticResource HideActionButton}"
-                                                ToolTip="Скрыть из библиотеки"
+                                                ToolTip="{loc:Tr Reader_HideTooltip}"
                                                 Command="{Binding DataContext.HideCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" />
                                         <Button Content="↩"
                                                 Padding="10,6"
                                                 FontSize="13"
                                                 Style="{StaticResource RestoreActionButton}"
-                                                ToolTip="Вернуть в библиотеку"
+                                                ToolTip="{loc:Tr Reader_RestoreTooltip}"
                                                 Command="{Binding DataContext.RestoreCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                                 CommandParameter="{Binding}" />
                                     </StackPanel>

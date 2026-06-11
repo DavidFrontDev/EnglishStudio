@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:NotesPanelViewModel}"
              d:DesignWidth="420" d:DesignHeight="600">
@@ -30,11 +31,11 @@
 
             <!-- Header -->
             <Grid Grid.Row="0" Margin="0,0,0,12">
-                <TextBlock Text="✎  Заметки" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <TextBlock Text="{loc:Tr ReadStudy_NotesTitle}" Style="{StaticResource H2}" VerticalAlignment="Center" />
                 <Button HorizontalAlignment="Right" VerticalAlignment="Top"
                         Content="✕" Padding="8,3" FontSize="12"
                         Style="{StaticResource FlatButton}"
-                        ToolTip="Закрыть"
+                        ToolTip="{loc:Tr ReadStudy_Close}"
                         Command="{Binding CloseCommand}" />
             </Grid>
 
@@ -42,7 +43,7 @@
             <Border Grid.Row="1" Style="{StaticResource CardCompact}" Margin="0,0,0,10"
                     Visibility="{Binding IsAdding, Converter={StaticResource BoolToVis}}">
                 <StackPanel>
-                    <TextBlock Text="Новая заметка" Style="{StaticResource Caption}" />
+                    <TextBlock Text="{loc:Tr ReadStudy_NewNote}" Style="{StaticResource Caption}" />
                     <TextBlock Text="{Binding PendingQuote}"
                                FontStyle="Italic"
                                Foreground="{DynamicResource StrongTextBrush}"
@@ -79,15 +80,15 @@
                     </ItemsControl>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
-                        <Button Content="Отмена" Padding="12,5" FontSize="12" Style="{StaticResource FlatButton}" Command="{Binding CancelAddCommand}" />
-                        <Button Content="💾 Сохранить" Padding="12,5" FontSize="12" Margin="8,0,0,0" Style="{StaticResource AccentButton}" Command="{Binding SaveNoteCommand}" />
+                        <Button Content="{loc:Tr ReadStudy_Cancel}" Padding="12,5" FontSize="12" Style="{StaticResource FlatButton}" Command="{Binding CancelAddCommand}" />
+                        <Button Content="{loc:Tr ReadStudy_Save}" Padding="12,5" FontSize="12" Margin="8,0,0,0" Style="{StaticResource AccentButton}" Command="{Binding SaveNoteCommand}" />
                     </StackPanel>
                 </StackPanel>
             </Border>
 
             <!-- Notes list -->
             <Grid Grid.Row="2">
-                <TextBlock Text="Пока нет заметок. Выделите фрагмент в тексте и нажмите «✎ Заметка»."
+                <TextBlock Text="{loc:Tr ReadStudy_NoNotes}"
                            Style="{StaticResource MutedText}"
                            TextWrapping="Wrap"
                            VerticalAlignment="Top"
@@ -126,12 +127,12 @@
                                         <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Top">
                                             <Button Content="↪" Padding="7,2" FontSize="12" Margin="0,0,4,0"
                                                     Style="{StaticResource FlatButton}"
-                                                    ToolTip="Перейти к месту"
+                                                    ToolTip="{loc:Tr ReadStudy_GoToPlace}"
                                                     Command="{Binding DataContext.GoToCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}" />
                                             <Button Content="🗑" Padding="7,2" FontSize="12"
                                                     Style="{StaticResource FlatButton}"
-                                                    ToolTip="Удалить заметку"
+                                                    ToolTip="{loc:Tr ReadStudy_DeleteNote}"
                                                     Command="{Binding DataContext.DeleteNoteCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
                                                     CommandParameter="{Binding}" />
                                         </StackPanel>
@@ -145,7 +146,7 @@
 
             <!-- Footer -->
             <Button Grid.Row="3"
-                    Content="Закрыть"
+                    Content="{loc:Tr ReadStudy_Close}"
                     HorizontalAlignment="Right"
                     Margin="0,14,0,0"
                     Padding="16,8"

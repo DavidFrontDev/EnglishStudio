@@ -1,8 +1,9 @@
-<UserControl x:Class="EnglishStudio.App.Views.Controls.ContentMissingView"
+﻿<UserControl x:Class="EnglishStudio.App.Views.Controls.ContentMissingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DesignHeight="420" d:DesignWidth="700">
 
@@ -18,7 +19,7 @@
                            FontSize="42"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,14" />
-                <TextBlock Text="Контент раздела не импортирован"
+                <TextBlock Text="{loc:Tr Controls_ContentNotImported}"
                            Style="{StaticResource H2}"
                            TextAlignment="Center"
                            HorizontalAlignment="Center"
@@ -28,7 +29,7 @@
                            HorizontalAlignment="Center"
                            Margin="0,0,0,20"
                            Text="{Binding MessageText, RelativeSource={RelativeSource AncestorType=UserControl}}" />
-                <Button Content="📦 Импортировать контент"
+                <Button Content="{loc:Tr Controls_ImportContent}"
                         Style="{StaticResource AccentButton}"
                         HorizontalAlignment="Center"
                         Command="{Binding ImportCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" />

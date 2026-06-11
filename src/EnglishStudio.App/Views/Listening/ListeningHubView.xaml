@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ListeningHubViewModel}"
              d:DesignHeight="700" d:DesignWidth="1000">
@@ -49,7 +50,7 @@
                                         <TextBlock Style="{StaticResource Caption}" Text="  ·  " />
                                         <TextBlock Style="{StaticResource Caption}">
                                             <Run Text="{Binding QuestionCount, Mode=OneWay}" />
-                                            <Run Text=" вопросов" />
+                                            <Run Text="{loc:Tr Listening_Questions}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
@@ -71,9 +72,9 @@
                        Margin="0,8,0,0" TextWrapping="Wrap" />
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,14,0,0" HorizontalAlignment="Right">
-                <Button Content="Тренировка" Style="{StaticResource FlatButton}" Margin="0,0,8,0"
+                <Button Content="{loc:Tr Listening_Training}" Style="{StaticResource FlatButton}" Margin="0,0,8,0"
                         Command="{Binding StartTrainingCommand}" />
-                <Button Content="Экзамен (40 мин)" Style="{StaticResource AccentButton}"
+                <Button Content="{loc:Tr Listening_Exam40}" Style="{StaticResource AccentButton}"
                         Command="{Binding StartExamCommand}" />
             </StackPanel>
         </Grid>
@@ -89,8 +90,8 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="История" Style="{StaticResource H2}" VerticalAlignment="Center" />
-                <Button Grid.Column="1" Content="🗑 Очистить" Style="{StaticResource FlatButton}"
+                <TextBlock Grid.Column="0" Text="{loc:Tr Listening_History}" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <Button Grid.Column="1" Content="{loc:Tr Listening_ClearHistory}" Style="{StaticResource FlatButton}"
                         Command="{Binding ClearHistoryCommand}" VerticalAlignment="Center" />
             </Grid>
 

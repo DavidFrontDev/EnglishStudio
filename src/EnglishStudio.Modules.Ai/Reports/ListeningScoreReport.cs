@@ -14,26 +14,38 @@ public sealed record ListeningScoreReport(
     [property: JsonPropertyName("summaryRu")] string SummaryRu,
 
     /// <summary>Same overall summary in English.</summary>
-    [property: JsonPropertyName("summaryEn")] string SummaryEn,
-
+    [property: JsonPropertyName("summaryEn")] string SummaryEn)
+{
     /// <summary>Per-part diagnostics (Part 1..4) — what kind of mistakes the listener tends to make in this section.</summary>
-    [property: JsonPropertyName("partInsights")] IReadOnlyList<PartInsight> PartInsights,
+    [JsonPropertyName("partInsights")]
+    public IReadOnlyList<PartInsight> PartInsights { get; init; } = [];
 
     /// <summary>Per-question explanations for the wrong answers. Only filled for questions the user missed; correct ones are omitted to keep the prompt focused.</summary>
-    [property: JsonPropertyName("questionExplanations")] IReadOnlyList<QuestionExplanation> QuestionExplanations,
+    [JsonPropertyName("questionExplanations")]
+    public IReadOnlyList<QuestionExplanation> QuestionExplanations { get; init; } = [];
 
     /// <summary>3-5 prioritised study tips in Russian — concrete habits / drills to fix the listener's weakest area.</summary>
-    [property: JsonPropertyName("tipsRu")] IReadOnlyList<string> TipsRu);
+    [JsonPropertyName("tipsRu")]
+    public IReadOnlyList<string> TipsRu { get; init; } = [];
+
+    /// <summary>Same study tips in English (shown when the UI language is English).</summary>
+    [JsonPropertyName("tipsEn")]
+    public IReadOnlyList<string>? TipsEn { get; init; }
+}
 
 public sealed record PartInsight(
     [property: JsonPropertyName("partNumber")] int PartNumber,
     [property: JsonPropertyName("partTitle")] string PartTitle,
     /// <summary>1-2 sentence diagnosis of what went wrong (or right) in this part.</summary>
-    [property: JsonPropertyName("commentRu")] string CommentRu);
+    [property: JsonPropertyName("commentRu")] string CommentRu,
+    /// <summary>Same diagnosis in English.</summary>
+    [property: JsonPropertyName("commentEn")] string? CommentEn = null);
 
 public sealed record QuestionExplanation(
     [property: JsonPropertyName("questionNumber")] int QuestionNumber,
     [property: JsonPropertyName("userAnswer")] string UserAnswer,
     [property: JsonPropertyName("correctAnswer")] string CorrectAnswer,
     /// <summary>Why this answer was correct, citing the exact phrase in the transcript when possible.</summary>
-    [property: JsonPropertyName("explanationRu")] string ExplanationRu);
+    [property: JsonPropertyName("explanationRu")] string ExplanationRu,
+    /// <summary>Same explanation in English.</summary>
+    [property: JsonPropertyName("explanationEn")] string? ExplanationEn = null);

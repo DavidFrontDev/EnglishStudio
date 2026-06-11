@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Mock"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:MockHubViewModel}"
              d:DesignHeight="700" d:DesignWidth="1100">
@@ -33,11 +34,9 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" Margin="0,0,0,12">
-                <TextBlock Text="🏁 Полный IELTS-экзамен" Style="{StaticResource H1}" />
-                <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,4,0,0">
-                    Четыре секции подряд: Listening → Reading → Writing → Speaking (~2,5 часа).
-                    Итоговый overall band — по официальной IELTS-формуле округления.
-                </TextBlock>
+                <TextBlock Text="{loc:Tr Mock_FullExamTitle}" Style="{StaticResource H1}" />
+                <TextBlock Style="{StaticResource MutedText}" TextWrapping="Wrap" Margin="0,4,0,0"
+                           Text="{loc:Tr Mock_FullExamDesc}" />
             </StackPanel>
 
             <!--  Resume banner — только при незаконченном экзамене  -->
@@ -57,21 +56,21 @@
                     <StackPanel Grid.Column="0" VerticalAlignment="Center">
                         <TextBlock FontWeight="SemiBold"
                                    Foreground="{DynamicResource StrongTextBrush}"
-                                   Text="⏸ Незаконченный экзамен" />
+                                   Text="{loc:Tr Mock_UnfinishedExam}" />
                         <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0">
                             <Run Text="Cambridge " /><Run Text="{Binding ResumableMock.Book, Mode=OneWay}" />
                             <Run Text=" · Test " /><Run Text="{Binding ResumableMock.TestNumber, Mode=OneWay}" />
-                            <Run Text="  ·  секция: " /><Run Text="{Binding ResumableMock.CurrentSection, Mode=OneWay}" />
+                            <Run Text="{loc:Tr Mock_ResumeSection}" /><Run Text="{Binding ResumableMock.CurrentSection, Mode=OneWay}" />
                         </TextBlock>
                     </StackPanel>
 
                     <Button Grid.Column="1"
-                            Content="Продолжить"
+                            Content="{loc:Tr Mock_Resume}"
                             Style="{StaticResource AccentButton}"
                             Margin="0,0,8,0"
                             Command="{Binding ResumeCommand}" />
                     <Button Grid.Column="2"
-                            Content="Прервать"
+                            Content="{loc:Tr Mock_Discard}"
                             Style="{StaticResource FlatButton}"
                             Command="{Binding DiscardResumableCommand}" />
                 </Grid>
@@ -84,13 +83,13 @@
                     Padding="12,8"
                     Margin="0,0,0,8">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Режим:" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,12,0" />
-                    <RadioButton Content="Выбранный тест"
+                    <TextBlock Text="{loc:Tr Mock_Mode}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,12,0" />
+                    <RadioButton Content="{loc:Tr Mock_SelectedTest}"
                                  GroupName="MockMode"
                                  VerticalAlignment="Center"
                                  Margin="0,0,16,0"
                                  IsChecked="{Binding SelectedMode, Converter={StaticResource EnumBool}, ConverterParameter=CambridgeBundle}" />
-                    <RadioButton Content="🎲 Случайный набор"
+                    <RadioButton Content="{loc:Tr Mock_RandomSet}"
                                  GroupName="MockMode"
                                  VerticalAlignment="Center"
                                  IsChecked="{Binding SelectedMode, Converter={StaticResource EnumBool}, ConverterParameter=RandomMix}" />
@@ -144,7 +143,7 @@
                        TextWrapping="Wrap" />
 
             <StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,14,0,0" HorizontalAlignment="Right">
-                <Button Content="Начать экзамен"
+                <Button Content="{loc:Tr Mock_StartExam}"
                         Style="{StaticResource AccentButton}"
                         Command="{Binding StartCommand}" />
             </StackPanel>
@@ -162,13 +161,13 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="История" Style="{StaticResource H2}" />
+                <TextBlock Grid.Column="0" Text="{loc:Tr ReadIelts_History}" Style="{StaticResource H2}" />
                 <Button Grid.Column="1"
-                        Content="Очистить"
+                        Content="{loc:Tr Mock_Clear}"
                         Style="{StaticResource FlatButton}"
                         Padding="10,4"
                         FontSize="12"
-                        ToolTip="Удалить все записи о mock-экзаменах"
+                        ToolTip="{loc:Tr Mock_ClearHistoryTooltip}"
                         Command="{Binding ClearHistoryCommand}" />
             </Grid>
 
@@ -199,7 +198,7 @@
                                                 CornerRadius="4" Padding="5,1"
                                                 Margin="0,0,6,0"
                                                 Visibility="{Binding IsPartial, Converter={StaticResource BoolToVis}}">
-                                            <TextBlock Text="частичный"
+                                            <TextBlock Text="{loc:Tr Mock_Partial}"
                                                        FontSize="10"
                                                        Foreground="{DynamicResource AccentHotBrush}" />
                                         </Border>

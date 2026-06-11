@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:PreTeachViewModel}"
              d:DesignWidth="540" d:DesignHeight="640">
@@ -36,11 +37,11 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0">
-                    <TextBlock Text="🎓  Подготовка к чтению" Style="{StaticResource H2}" />
+                    <TextBlock Text="{loc:Tr ReadStudy_PreTeachTitle}" Style="{StaticResource H2}" />
                     <TextBlock Style="{StaticResource MutedText}" Margin="0,2,0,0" TextWrapping="Wrap">
-                        <Run Text="Знакомо" /><Run Text=" " /><Run Text="{Binding KnownCount, Mode=OneWay}" /><Run Text=" из " /><Run Text="{Binding TotalDistinctWords, Mode=OneWay}" /><Run Text=" слов · отметьте незнакомые, чтобы изучить их перед чтением" />
+                        <Run Text="{loc:Tr ReadStudy_Known}" /><Run Text=" " /><Run Text="{Binding KnownCount, Mode=OneWay}" /><Run Text="{loc:Tr ReadStudy_Of}" /><Run Text="{Binding TotalDistinctWords, Mode=OneWay}" /><Run Text="{loc:Tr ReadStudy_WordsMarkUnknown}" />
                     </TextBlock>
-                    <TextBlock Text="⚠ Claude недоступен — слова без перевода добавить не получится."
+                    <TextBlock Text="{loc:Tr ReadStudy_ClaudeUnavailable}"
                                Style="{StaticResource MutedText}"
                                Foreground="{DynamicResource WarningBrush}"
                                Margin="0,6,0,0"
@@ -54,20 +55,20 @@
                         Padding="8,3"
                         FontSize="12"
                         Style="{StaticResource FlatButton}"
-                        ToolTip="Закрыть"
+                        ToolTip="{loc:Tr ReadStudy_Close}"
                         Command="{Binding CloseCommand}" />
             </Grid>
 
             <!-- Select all / none -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8"
                         Visibility="{Binding HasCandidates, Converter={StaticResource BoolToVis}}">
-                <Button Content="Выбрать все" Padding="10,4" FontSize="12" Style="{StaticResource FlatButton}" Command="{Binding SelectAllCommand}" />
-                <Button Content="Снять все" Padding="10,4" FontSize="12" Margin="8,0,0,0" Style="{StaticResource FlatButton}" Command="{Binding SelectNoneCommand}" />
+                <Button Content="{loc:Tr ReadStudy_SelectAll}" Padding="10,4" FontSize="12" Style="{StaticResource FlatButton}" Command="{Binding SelectAllCommand}" />
+                <Button Content="{loc:Tr ReadStudy_SelectNone}" Padding="10,4" FontSize="12" Margin="8,0,0,0" Style="{StaticResource FlatButton}" Command="{Binding SelectNoneCommand}" />
             </StackPanel>
 
             <!-- Loading / empty / list -->
             <Grid Grid.Row="2">
-                <TextBlock Text="⏳ Анализирую текст…"
+                <TextBlock Text="{loc:Tr ReadStudy_AnalyzingText}"
                            Style="{StaticResource MutedText}"
                            VerticalAlignment="Top"
                            Visibility="{Binding IsLoading, Converter={StaticResource BoolToVis}}" />
@@ -111,15 +112,15 @@
                                                 </Border>
                                                 <Border Background="{DynamicResource AccentHotBrush}"
                                                         CornerRadius="6" Padding="5,1" Margin="6,0,0,0" VerticalAlignment="Center"
-                                                        ToolTip="Нет в словаре — карточку подберёт Claude при добавлении"
+                                                        ToolTip="{loc:Tr ReadStudy_AiWordTip}"
                                                         Visibility="{Binding IsAiWord, Converter={StaticResource BoolToVis}}">
                                                     <TextBlock Text="🤖 AI" Foreground="White" FontSize="10" FontWeight="SemiBold" />
                                                 </Border>
                                                 <Border Background="{DynamicResource SuccessBrush}"
                                                         CornerRadius="6" Padding="5,1" Margin="6,0,0,0" VerticalAlignment="Center"
-                                                        ToolTip="Уже в изучении"
+                                                        ToolTip="{loc:Tr ReadStudy_AlreadyInStudyTip}"
                                                         Visibility="{Binding AlreadyInTraining, Converter={StaticResource BoolToVis}}">
-                                                    <TextBlock Text="✓ изучается" Foreground="White" FontSize="10" FontWeight="SemiBold" />
+                                                    <TextBlock Text="{loc:Tr ReadStudy_Studying}" Foreground="White" FontSize="10" FontWeight="SemiBold" />
                                                 </Border>
                                             </StackPanel>
                                             <TextBlock Text="{Binding TranslationDisplay}"
@@ -131,7 +132,7 @@
                                         <TextBlock Grid.Column="2"
                                                    VerticalAlignment="Center"
                                                    Style="{StaticResource Caption}"
-                                                   ToolTip="Встречается в тексте">
+                                                   ToolTip="{loc:Tr ReadStudy_OccurrencesTip}">
                                             <Run Text="×" /><Run Text="{Binding Occurrences, Mode=OneWay}" />
                                         </TextBlock>
                                     </Grid>
@@ -158,12 +159,12 @@
                            Visibility="{Binding IsAdding, Converter={StaticResource BoolToVis}}" />
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Content="🎓  Изучить выбранные"
+                    <Button Content="{loc:Tr ReadStudy_StudySelected}"
                             Padding="14,8"
                             Style="{StaticResource AccentButton}"
                             Command="{Binding StudySelectedCommand}"
                             Visibility="{Binding HasCandidates, Converter={StaticResource BoolToVis}}" />
-                    <Button Content="▶  Начать чтение"
+                    <Button Content="{loc:Tr ReadStudy_StartReading}"
                             Padding="14,8"
                             Margin="10,0,0,0"
                             Style="{StaticResource FlatButton}"

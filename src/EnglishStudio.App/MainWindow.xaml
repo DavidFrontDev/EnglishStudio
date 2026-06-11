@@ -9,6 +9,7 @@
                         d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
                         Title="{Binding Title}"
                         Style="{StaticResource ChromedWindowStyle}"
+                        ShowLanguageToggle="True"
                         Width="1480" Height="860"
                         MinWidth="900" MinHeight="600"
                         AllowsTransparency="True"

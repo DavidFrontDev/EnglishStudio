@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
              xmlns:lsn="clr-namespace:EnglishStudio.App.Views.Listening"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ListeningSessionViewModel}"
              d:DesignHeight="720" d:DesignWidth="1100">
@@ -63,7 +64,7 @@
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource Caption}" Text="{Binding ProgressLabel}" Margin="0,0,12,0" VerticalAlignment="Center" />
-                    <Button Content="✕ Отмена" Style="{StaticResource FlatButton}" Command="{Binding CancelCommand}" />
+                    <Button Content="{loc:Tr Listening_Cancel}" Style="{StaticResource FlatButton}" Command="{Binding CancelCommand}" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -103,7 +104,7 @@
 
                 <Button Grid.Column="1" Content="↺" Width="40" Margin="0,0,12,0"
                         Style="{StaticResource FlatButton}" Command="{Binding ReplayCommand}"
-                        ToolTip="Воспроизвести заново" />
+                        ToolTip="{loc:Tr Listening_ReplayTooltip}" />
 
                 <Slider Grid.Column="2" VerticalAlignment="Center"
                         Minimum="0" Maximum="1"
@@ -120,20 +121,20 @@
                 <Slider Grid.Column="5" Width="92" VerticalAlignment="Center"
                         Minimum="0" Maximum="1" SmallChange="0.05" LargeChange="0.1"
                         Value="{Binding Volume, Mode=TwoWay}"
-                        ToolTip="Громкость" />
+                        ToolTip="{loc:Tr Listening_VolumeTooltip}" />
 
                 <Button Grid.Column="6" Margin="12,0,0,0"
                         Style="{StaticResource FlatButton}"
                         Command="{Binding ToggleTranscriptCommand}"
                         Visibility="{Binding TranscriptAvailable, Converter={StaticResource BoolToVis}}"
-                        ToolTip="Показать транскрипт записи (только в тренировке)">
+                        ToolTip="{loc:Tr Listening_ShowTranscriptTooltip}">
                     <TextBlock>
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
-                                <Setter Property="Text" Value="📄 Транскрипт" />
+                                <Setter Property="Text" Value="{loc:Tr Listening_Transcript}" />
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding ShowTranscript}" Value="True">
-                                        <Setter Property="Text" Value="📄 Скрыть текст" />
+                                        <Setter Property="Text" Value="{loc:Tr Listening_HideTranscript}" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -152,7 +153,7 @@
                     Background="{DynamicResource WindowBaseBrush}"
                     Visibility="{Binding ShowTranscript, Converter={StaticResource BoolToVis}}">
                 <DockPanel>
-                    <TextBlock DockPanel.Dock="Top" Text="📄 Транскрипт записи" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                    <TextBlock DockPanel.Dock="Top" Text="{loc:Tr Listening_TranscriptHeading}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <TextBlock Text="{Binding CurrentTranscript}" TextWrapping="Wrap"
                                    LineHeight="24" FontSize="14" Foreground="{DynamicResource PrimaryTextBrush}" />
@@ -211,12 +212,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="‹ Назад" Style="{StaticResource FlatButton}" Command="{Binding PrevCardCommand}" />
+            <Button Grid.Column="0" Content="{loc:Tr Listening_Back}" Style="{StaticResource FlatButton}" Command="{Binding PrevCardCommand}" />
             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Style="{StaticResource MutedText}" Text="{Binding CardPositionLabel}" />
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Content="Вперёд ›" Style="{StaticResource FlatButton}" Margin="0,0,8,0" Command="{Binding NextCardCommand}" />
-                <Button Content="Завершить" Style="{StaticResource AccentButton}" Command="{Binding FinishCommand}" />
+                <Button Content="{loc:Tr Listening_Forward}" Style="{StaticResource FlatButton}" Margin="0,0,8,0" Command="{Binding NextCardCommand}" />
+                <Button Content="{loc:Tr Listening_Finish}" Style="{StaticResource AccentButton}" Command="{Binding FinishCommand}" />
             </StackPanel>
         </Grid>
     </Grid>

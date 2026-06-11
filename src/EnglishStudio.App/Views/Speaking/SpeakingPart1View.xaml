@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:ctrl="clr-namespace:EnglishStudio.App.Views.Speaking.Controls"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:SpeakingPart1ViewModel}"
              d:DesignHeight="600" d:DesignWidth="900">
@@ -52,15 +53,15 @@
             <Border Background="{DynamicResource OverlayLight13Brush}"
                     CornerRadius="6" Padding="10,6">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="⏳ Подготовка · "
+                    <TextBlock Text="{loc:Tr Speaking_Preparing}"
                                Foreground="{DynamicResource StrongTextBrush}" />
                     <TextBlock Text="{Binding PrepRemaining}"
                                FontWeight="Bold"
                                Foreground="{DynamicResource AccentHotBrush}" />
-                    <TextBlock Text=" сек" Foreground="{DynamicResource MutedTextBrush}" />
+                    <TextBlock Text="{loc:Tr Speaking_Sec}" Foreground="{DynamicResource MutedTextBrush}" />
                 </StackPanel>
             </Border>
-            <Button Content="Пропустить →"
+            <Button Content="{loc:Tr Speaking_Skip}"
                     Style="{StaticResource FlatButton}"
                     Margin="10,0,0,0"
                     Command="{Binding SkipPrepCommand}" />
@@ -82,7 +83,7 @@
                     RecordRequested="OnRecordRequested"
                     StopRequested="OnStopRequested" />
 
-                <Button Content="🕓 10 сек на подготовку"
+                <Button Content="{loc:Tr Speaking_TenSecPrep}"
                         Style="{StaticResource FlatButton}"
                         HorizontalAlignment="Center"
                         Margin="0,8,0,0"
@@ -94,7 +95,7 @@
                     Style="{StaticResource Card}"
                     Visibility="{Binding CurrentTranscript, Converter={StaticResource NullToVis}}">
                 <StackPanel>
-                    <TextBlock Text="Транскрипт"
+                    <TextBlock Text="{loc:Tr Speaking_Transcript}"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource StrongTextBrush}"
                                Margin="0,0,0,6" />
@@ -113,7 +114,7 @@
                        Style="{StaticResource MutedText}"
                        VerticalAlignment="Center"
                        Margin="0,0,12,0" />
-            <Button Content="Следующий вопрос →"
+            <Button Content="{loc:Tr Speaking_NextQuestion}"
                     Style="{StaticResource AccentButton}"
                     Command="{Binding GoNextCommand}"
                     IsEnabled="{Binding CanGoNext}" />

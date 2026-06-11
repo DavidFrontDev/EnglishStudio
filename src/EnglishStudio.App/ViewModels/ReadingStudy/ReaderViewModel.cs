@@ -1,5 +1,6 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Entities;
 using EnglishStudio.Modules.Dictionary.Srs;
 using EnglishStudio.Modules.Reading;
@@ -25,8 +26,13 @@ public partial class ReaderViewModel : ObservableObject
     private readonly INotesService? _notesService;
     private readonly IPaginationService? _pagination;
     private readonly IReadingPracticeService _practice;
+    private readonly ITranscriptionService _transcription;
     private readonly IServiceProvider _services;
     private readonly ILogger<ReaderViewModel> _log;
+
+    /// <summary>Normalized word → display IPA, loaded once for the whole text (lazy, on first use).</summary>
+    private readonly Dictionary<string, string> _ipaCache = new(StringComparer.Ordinal);
+    private bool _ipaLoaded;
 
     /// <summary>Default highlight colour (purple) for "🖍 Выделить".</summary>
     private const string HighlightColor = "#7C4DFF";
@@ -153,12 +159,14 @@ public partial class ReaderViewModel : ObservableObject
         ISrsService srs,
         ReadingAppearanceViewModel appearance,
         IReadAlongController controller,
+        ITranscriptionService transcription,
         IServiceProvider services,
         ILogger<ReaderViewModel> log)
     {
         _library = library;
         _lookup = lookup;
         _controller = controller;
+        _transcription = transcription;
         _services = services;
         _log = log;
         Appearance = appearance;
@@ -180,6 +188,49 @@ public partial class ReaderViewModel : ObservableObject
     }
 
     partial void OnElapsedSecChanged(double value) => OnPropertyChanged(nameof(ElapsedText));
+
+    /// <summary>
+    /// Display IPA for a single (raw) word from the preloaded cache, or null if unresolved (proper
+    /// nouns, numbers, OOV). The view calls this synchronously while building the document; the
+    /// cache is filled by <see cref="EnsureTranscriptionLoadedAsync"/> before the first transcription
+    /// render. Used when <see cref="ReadingAppearanceViewModel.ShowTranscription"/> is on.
+    /// </summary>
+    public string? IpaFor(string rawWord)
+    {
+        var key = ReadingTokenizer.NormalizeWord(rawWord);
+        if (key.Length == 0) return null;
+        return _ipaCache.TryGetValue(key, out var ipa) ? ipa : null;
+    }
+
+    /// <summary>
+    /// Resolves and caches the IPA for every distinct word in the text (once). Awaited by the view
+    /// before rendering in transcription mode, so a page build is then a synchronous cache read.
+    /// </summary>
+    public async Task EnsureTranscriptionLoadedAsync()
+    {
+        if (_ipaLoaded) return;
+
+        var words = new HashSet<string>(StringComparer.Ordinal);
+        foreach (var t in Tokens)
+        {
+            if (t.Kind != TokenKind.Word) continue;
+            var k = ReadingTokenizer.NormalizeWord(t.Text);
+            if (k.Length > 0) words.Add(k);
+        }
+
+        try
+        {
+            var map = await _transcription.ResolveAsync(words, _lifetimeCts.Token);
+            foreach (var kv in map) _ipaCache[kv.Key] = kv.Value;
+        }
+        catch (OperationCanceledException) { return; }
+        catch (Exception ex)
+        {
+            _log.LogWarning(ex, "Failed to load transcriptions for text {TextId}", _textId);
+        }
+
+        _ipaLoaded = true;
+    }
 
     public async Task LoadAsync(int textId)
     {
@@ -302,7 +353,7 @@ public partial class ReaderViewModel : ObservableObject
 
         PageLabel = !string.IsNullOrWhiteSpace(_currentPage.Heading)
             ? _currentPage.Heading!
-            : $"Стр. {index + 1} из {_pages.Count}";
+            : Loc.Format("ReadStudy_PageOf", index + 1, _pages.Count);
 
         if (raisePageChanged) PageChanged?.Invoke();
     }
@@ -363,14 +414,14 @@ public partial class ReaderViewModel : ObservableObject
         if (!_controller.IsModelReady)
         {
             IsModelLoading = true;
-            ModelStatus = "Готовлю распознаватель речи…";
+            ModelStatus = Loc.Tr("ReadStudy_PreparingSpeechModel");
             try
             {
                 var progress = new Progress<string>(s => ModelStatus = s);
                 var ok = await _controller.EnsureModelAsync(progress, ct);
                 if (!ok)
                 {
-                    ModelStatus = "Не удалось загрузить распознаватель.";
+                    ModelStatus = Loc.Tr("ReadStudy_LoadModelFailed");
                     return;
                 }
             }
@@ -378,7 +429,7 @@ public partial class ReaderViewModel : ObservableObject
             catch (Exception ex)
             {
                 _log.LogError(ex, "Failed to prepare the speech model");
-                ModelStatus = "Не удалось загрузить распознаватель.";
+                ModelStatus = Loc.Tr("ReadStudy_LoadModelFailed");
                 return;
             }
             finally
@@ -388,7 +439,7 @@ public partial class ReaderViewModel : ObservableObject
             ModelStatus = null;
         }
 
-        _startedAt = DateTime.Now;
+        _startedAt = DateTime.UtcNow;
         IsReading = true;
         try
         {

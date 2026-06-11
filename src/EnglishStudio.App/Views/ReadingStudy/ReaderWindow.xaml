@@ -8,6 +8,7 @@
                         xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
                         xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
                         xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+                        xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
                         mc:Ignorable="d"
                         d:DataContext="{d:DesignInstance Type=vm:ReaderViewModel}"
                         Title="{Binding Title}"
@@ -77,7 +78,7 @@
             <WrapPanel Orientation="Horizontal" DataContext="{Binding Appearance}">
                 <!-- Background swatches -->
                 <StackPanel Orientation="Horizontal" Margin="0,4,18,4" VerticalAlignment="Center">
-                    <TextBlock Text="Фон" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                    <TextBlock Text="{loc:Tr Reader_Background}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
                     <ItemsControl ItemsSource="{Binding BackgroundSwatches}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate>
@@ -95,7 +96,7 @@
 
                 <!-- Text colour swatches -->
                 <StackPanel Orientation="Horizontal" Margin="0,4,18,4" VerticalAlignment="Center">
-                    <TextBlock Text="Текст" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                    <TextBlock Text="{loc:Tr Reader_Text}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
                     <ItemsControl ItemsSource="{Binding TextSwatches}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate><StackPanel Orientation="Horizontal" /></ItemsPanelTemplate>
@@ -113,8 +114,8 @@
 
                 <!-- Font size -->
                 <StackPanel Orientation="Horizontal" Margin="0,4,0,4" VerticalAlignment="Center">
-                    <TextBlock Text="Размер" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
-                    <Button Content="А−" MinWidth="38" Padding="8,3" Style="{StaticResource FlatButton}" Command="{Binding DecreaseFontCommand}" />
+                    <TextBlock Text="{loc:Tr Reader_Size}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,8,0" />
+                    <Button Content="A−" MinWidth="38" Padding="8,3" Style="{StaticResource FlatButton}" Command="{Binding DecreaseFontCommand}" />
                     <TextBlock Text="{Binding FontSize, StringFormat={}{0:0}}"
                                Foreground="{DynamicResource StrongTextBrush}"
                                FontWeight="SemiBold"
@@ -122,7 +123,15 @@
                                TextAlignment="Center"
                                VerticalAlignment="Center"
                                Margin="6,0" />
-                    <Button Content="А+" MinWidth="38" Padding="8,3" FontSize="15" Style="{StaticResource FlatButton}" Command="{Binding IncreaseFontCommand}" />
+                    <Button Content="A+" MinWidth="38" Padding="8,3" FontSize="15" Style="{StaticResource FlatButton}" Command="{Binding IncreaseFontCommand}" />
+                </StackPanel>
+
+                <!-- Transcription toggle: IPA above every word, scales with the font size -->
+                <StackPanel Orientation="Horizontal" Margin="20,4,0,4" VerticalAlignment="Center">
+                    <ToggleButton Style="{StaticResource ChipToggleButton}"
+                                  IsChecked="{Binding ShowTranscription}"
+                                  Content="{loc:Tr Reader_Transcription}"
+                                  ToolTip="{loc:Tr Reader_TranscriptionTooltip}" />
                 </StackPanel>
             </WrapPanel>
         </Border>
@@ -143,12 +152,12 @@
                 <!-- Start / Stop (one shows at a time) + pre-teach / questions -->
                 <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                     <Grid VerticalAlignment="Center">
-                        <Button Content="▶  Читать вслух"
+                        <Button Content="{loc:Tr Reader_ReadAloud}"
                                 Padding="14,7"
                                 Style="{StaticResource AccentButton}"
                                 Command="{Binding StartReadingCommand}"
                                 Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
-                        <Button Content="⏹  Стоп"
+                        <Button Content="{loc:Tr Reader_Stop}"
                                 Padding="14,7"
                                 Style="{StaticResource FlatButton}"
                                 Command="{Binding StopReadingCommand}"
@@ -156,25 +165,25 @@
                     </Grid>
 
                     <!-- F1/F2 entry points (hidden during active reading) -->
-                    <Button Content="🎓  Подготовка"
+                    <Button Content="{loc:Tr Reader_Prepare}"
                             Padding="12,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Разобрать незнакомые слова перед чтением"
+                            ToolTip="{loc:Tr Reader_PrepareTooltip}"
                             Command="{Binding ShowPreTeachCommand}"
                             Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
-                    <Button Content="❓  Вопросы"
+                    <Button Content="{loc:Tr Reader_Questions}"
                             Padding="12,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Вопросы на понимание текста"
+                            ToolTip="{loc:Tr Reader_QuestionsTooltip}"
                             Command="{Binding ShowComprehensionCommand}"
                             Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
-                    <Button Content="🗣  Тренировка"
+                    <Button Content="{loc:Tr Reader_Practice}"
                             Padding="12,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Тренировка произношения: слушать и повторять по предложениям"
+                            ToolTip="{loc:Tr Reader_PracticeTooltip}"
                             Command="{Binding ShowShadowingCommand}"
                             Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
 
@@ -183,21 +192,21 @@
                             Padding="11,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Заметки к тексту"
+                            ToolTip="{loc:Tr Reader_NotesTooltip}"
                             Command="{Binding ShowNotesCommand}"
                             Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
                     <Button Content="🔖"
                             Padding="11,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Заложить текущее место"
+                            ToolTip="{loc:Tr Reader_BookmarkTooltip}"
                             Click="BookmarkButton_Click"
                             Visibility="{Binding IsReading, Converter={StaticResource InvBoolToVis}}" />
                     <Button Content="↩"
                             Padding="11,7"
                             Margin="8,0,0,0"
                             Style="{StaticResource FlatButton}"
-                            ToolTip="Продолжить с закладки"
+                            ToolTip="{loc:Tr Reader_ContinueTooltip}"
                             Command="{Binding ContinueFromBookmarkCommand}"
                             Visibility="{Binding HasBookmark, Converter={StaticResource BoolToVis}}" />
                 </StackPanel>
@@ -241,7 +250,7 @@
                                 </EventTrigger>
                             </Ellipse.Triggers>
                         </Ellipse>
-                        <TextBlock Text="🎧 Анализирую запись…"
+                        <TextBlock Text="{loc:Tr Reader_AnalyzingRecording}"
                                    Style="{StaticResource MutedText}"
                                    VerticalAlignment="Center" />
                     </StackPanel>
@@ -254,7 +263,7 @@
                         <Button Content="◀"
                                 Padding="11,5"
                                 Style="{StaticResource FlatButton}"
-                                ToolTip="Предыдущая страница"
+                                ToolTip="{loc:Tr Reader_PrevPageTooltip}"
                                 Command="{Binding PrevPageCommand}"
                                 IsEnabled="{Binding CanPrevPage}" />
                         <TextBlock Text="{Binding PageLabel}"
@@ -267,7 +276,7 @@
                         <Button Content="▶"
                                 Padding="11,5"
                                 Style="{StaticResource FlatButton}"
-                                ToolTip="Следующая страница"
+                                ToolTip="{loc:Tr Reader_NextPageTooltip}"
                                 Command="{Binding NextPageCommand}"
                                 IsEnabled="{Binding CanNextPage}" />
                     </StackPanel>
@@ -282,7 +291,7 @@
                                FontWeight="SemiBold"
                                VerticalAlignment="Center">
                         <Run Text="{Binding CurrentWpm, Mode=OneWay, StringFormat={}{0:0}}" />
-                        <Run Text=" сл/мин" FontWeight="Normal" Foreground="{DynamicResource CaptionTextBrush}" />
+                        <Run Text="{loc:Tr Reader_WordsPerMin}" FontWeight="Normal" Foreground="{DynamicResource CaptionTextBrush}" />
                     </TextBlock>
                     <TextBlock Text="{Binding ElapsedText}"
                                Foreground="{DynamicResource StrongTextBrush}"
@@ -354,7 +363,7 @@
                                     Padding="5,1"
                                     Margin="8,0,0,0"
                                     VerticalAlignment="Center"
-                                    ToolTip="Сгенерировано Claude — не проверено"
+                                    ToolTip="{loc:Tr Reader_AiGeneratedTooltip}"
                                     Visibility="{Binding Popup.IsAiGenerated, Converter={StaticResource BoolToVis}}">
                                 <TextBlock Text="🤖 AI" Foreground="White" FontSize="10" FontWeight="SemiBold" />
                             </Border>
@@ -376,24 +385,24 @@
 
                     <!-- Selection-level actions: note + colour highlight -->
                     <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-                        <Button Content="✎  Заметка"
+                        <Button Content="{loc:Tr Reader_AddNote}"
                                 Padding="10,4"
                                 FontSize="12"
                                 Style="{StaticResource FlatButton}"
-                                ToolTip="Сохранить выделение как заметку"
+                                ToolTip="{loc:Tr Reader_AddNoteTooltip}"
                                 Click="AddNoteButton_Click" />
                         <Button Margin="6,0,0,0"
                                 Padding="10,4"
                                 FontSize="12"
-                                ToolTip="Подсветить выделенное (фиолетовым). Держится, пока не уберёте."
+                                ToolTip="{loc:Tr Reader_HighlightTooltip}"
                                 Click="HighlightButton_Click"
                                 Visibility="{Binding Popup.CanHighlight, Converter={StaticResource BoolToVis}}">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource FlatButton}">
-                                    <Setter Property="Content" Value="🖍  Выделить" />
+                                    <Setter Property="Content" Value="{loc:Tr Reader_Highlight}" />
                                     <Style.Triggers>
                                         <DataTrigger Binding="{Binding Popup.IsSelectionHighlighted}" Value="True">
-                                            <Setter Property="Content" Value="🖍  Убрать выделение" />
+                                            <Setter Property="Content" Value="{loc:Tr Reader_RemoveHighlight}" />
                                         </DataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -401,7 +410,7 @@
                         </Button>
                     </StackPanel>
 
-                    <TextBlock Text="⏳ ищу перевод…"
+                    <TextBlock Text="{loc:Tr Reader_LookingUp}"
                                Style="{StaticResource MutedText}"
                                Margin="0,8,0,0"
                                Visibility="{Binding Popup.IsLoading, Converter={StaticResource BoolToVis}}" />
@@ -417,7 +426,7 @@
                                    TextWrapping="Wrap"
                                    Margin="0,6,0,0" />
 
-                        <Button Content="📚  В изучение"
+                        <Button Content="{loc:Tr Reader_AddToTraining}"
                                 HorizontalAlignment="Left"
                                 Margin="0,10,0,0"
                                 Padding="10,5"
@@ -425,7 +434,7 @@
                                 Style="{StaticResource AccentButton}"
                                 Visibility="{Binding Popup.CanAddToTraining, Converter={StaticResource BoolToVis}}"
                                 Command="{Binding Popup.AddToTrainingCommand}" />
-                        <TextBlock Text="✓ в изучении"
+                        <TextBlock Text="{loc:Tr Reader_AddedToTraining}"
                                    Foreground="{DynamicResource SuccessBrush}"
                                    FontSize="12"
                                    FontWeight="SemiBold"
@@ -433,16 +442,16 @@
                                    Visibility="{Binding Popup.AddedToTraining, Converter={StaticResource BoolToVis}}" />
 
                         <!-- Add to THIS text's practice pool (text-scoped FSRS trainer) -->
-                        <Button Content="🎯  В тренировку по тексту"
+                        <Button Content="{loc:Tr Reader_AddToTextPool}"
                                 HorizontalAlignment="Left"
                                 Margin="0,8,0,0"
                                 Padding="10,5"
                                 FontSize="12"
                                 Style="{StaticResource FlatButton}"
-                                ToolTip="Добавить слово в пул тренировки этого текста"
+                                ToolTip="{loc:Tr Reader_AddToTextPoolTooltip}"
                                 Visibility="{Binding Popup.CanAddToPool, Converter={StaticResource BoolToVis}}"
                                 Command="{Binding Popup.AddToPoolCommand}" />
-                        <TextBlock Text="✓ в пуле текста"
+                        <TextBlock Text="{loc:Tr Reader_AddedToPool}"
                                    Foreground="{DynamicResource SuccessBrush}"
                                    FontSize="12"
                                    FontWeight="SemiBold"

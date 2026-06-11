@@ -1,14 +1,17 @@
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Reading;
+using Microsoft.Extensions.Logging;
 
 namespace EnglishStudio.App.ViewModels.Reading;
 
 public partial class ReadingResultViewModel : ObservableObject
 {
     private readonly IReadingTestService _testSvc;
+    private readonly ILogger<ReadingResultViewModel> _log;
 
     [ObservableProperty] private string _title = string.Empty;
     [ObservableProperty] private int _rawScore;
@@ -17,16 +20,32 @@ public partial class ReadingResultViewModel : ObservableObject
     [ObservableProperty] private string _bandLabel = string.Empty;
     [ObservableProperty] private string _durationLabel = string.Empty;
     [ObservableProperty] private bool _isTrainingMode;
+    [ObservableProperty] private string _statusText = string.Empty;
 
     public ObservableCollection<QuestionResultRow> Wrong { get; } = new();
     public ObservableCollection<TypeBreakdownRow> Breakdown { get; } = new();
 
-    public ReadingResultViewModel(IReadingTestService testSvc)
+    public ReadingResultViewModel(IReadingTestService testSvc, ILogger<ReadingResultViewModel> log)
     {
         _testSvc = testSvc;
+        _log = log;
     }
 
     public async Task LoadAsync(int attemptId)
+    {
+        StatusText = string.Empty;
+        try
+        {
+            await LoadCoreAsync(attemptId);
+        }
+        catch (Exception ex)
+        {
+            _log.LogError(ex, "Failed to load reading result {Id}", attemptId);
+            StatusText = Loc.Tr("ReadIelts_LoadTestsFailed");
+        }
+    }
+
+    private async Task LoadCoreAsync(int attemptId)
     {
         var attempt = await _testSvc.GetAttemptAsync(attemptId);
         if (attempt is null) return;
@@ -37,7 +56,7 @@ public partial class ReadingResultViewModel : ObservableObject
         BandEstimate = attempt.BandEstimate;
         BandLabel = BandEstimate.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture);
         IsTrainingMode = attempt.IsTrainingMode;
-        DurationLabel = $"⏱ Время прохождения: {attempt.DurationSeconds / 60} мин {attempt.DurationSeconds % 60} с";
+        DurationLabel = Loc.Format("ReadIelts_DurationLabel", attempt.DurationSeconds / 60, attempt.DurationSeconds % 60);
 
         // Defensive: tolerate legacy duplicate TestAnswer rows (pre-unique-index) by keeping
         // the first answer per question rather than throwing on ToDictionary.
@@ -55,7 +74,7 @@ public partial class ReadingResultViewModel : ObservableObject
             foreach (var q in part.Questions.OrderBy(qq => qq.OrderInPart))
             {
                 byQid.TryGetValue(q.Id, out var ans);
-                var userAnswer = ans is not null ? Strip(ans.UserAnswerJson) : "(нет ответа)";
+                var userAnswer = ans is not null ? Strip(ans.UserAnswerJson) : Loc.Tr("ReadIelts_NoAnswer");
                 var correctAnswer = Strip(q.AnswerKeyJson);
                 var isCorrect = ans?.IsCorrect ?? false;
 

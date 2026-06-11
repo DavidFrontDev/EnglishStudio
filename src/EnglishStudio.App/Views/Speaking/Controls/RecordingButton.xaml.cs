@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using EnglishStudio.App.Localization;
 
 namespace EnglishStudio.App.Views.Speaking.Controls;
 
@@ -46,8 +47,8 @@ public partial class RecordingButton : UserControl, INotifyPropertyChanged
 
     /// <summary>Подпись в состоянии обработки: процент когда известен, иначе «готовлю модель».</summary>
     public string ProcessingCaption => TranscribeProgress > 0.0
-        ? $"Транскрибирую… {TranscribeProgress * 100:0}%"
-        : "Готовлю модель…";
+        ? Loc.Format("Controls_Transcribing", TranscribeProgress * 100)
+        : Loc.Tr("Controls_PreparingModel");
 
     public event RoutedEventHandler? RecordRequested;
     public event RoutedEventHandler? StopRequested;
@@ -56,7 +57,14 @@ public partial class RecordingButton : UserControl, INotifyPropertyChanged
     public RecordingButton()
     {
         InitializeComponent();
+        // Weak subscription: re-resolve the localized caption on a language switch without
+        // leaking repeatedly-created instances.
+        PropertyChangedEventManager.AddHandler(
+            LocalizationManager.Instance, OnLanguageChanged, string.Empty);
     }
+
+    private void OnLanguageChanged(object? sender, PropertyChangedEventArgs e) =>
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ProcessingCaption)));
 
     private static void OnStateChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
     {

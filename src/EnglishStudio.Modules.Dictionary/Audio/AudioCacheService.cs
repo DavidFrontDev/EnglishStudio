@@ -1,4 +1,5 @@
 using EnglishStudio.Modules.Dictionary.Data;
+using EnglishStudio.Modules.Dictionary.Localization;
 using Ionic.Zip;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ public sealed class AudioCacheService : IAudioCacheService
 
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IMessageLocalizer _messages;
     private readonly ILogger<AudioCacheService> _logger;
 
     private readonly SemaphoreSlim _ukLock = new(1, 1);
@@ -26,10 +28,12 @@ public sealed class AudioCacheService : IAudioCacheService
     public AudioCacheService(
         IHttpClientFactory httpClientFactory,
         IServiceScopeFactory scopeFactory,
+        IMessageLocalizer messages,
         ILogger<AudioCacheService> logger)
     {
         _httpClientFactory = httpClientFactory;
         _scopeFactory = scopeFactory;
+        _messages = messages;
         _logger = logger;
     }
 
@@ -96,7 +100,7 @@ public sealed class AudioCacheService : IAudioCacheService
 
             var baseName = $"{VariantSlug(variant)}_audio_split_24m";
 
-            progress?.Report($"Скачиваем {VariantSlug(variant).ToUpperInvariant()} аудио (~95 МБ)…");
+            progress?.Report(_messages.Format("Dict_AudioDownloading", VariantSlug(variant).ToUpperInvariant()));
 
             var http = _httpClientFactory.CreateClient(HttpClientName);
             for (var i = 0; i < SplitSuffixes.Length; i++)
@@ -109,7 +113,7 @@ public sealed class AudioCacheService : IAudioCacheService
                     continue;
                 }
 
-                progress?.Report($"Скачиваем часть {i + 1} из {SplitSuffixes.Length} ({VariantSlug(variant).ToUpperInvariant()})…");
+                progress?.Report(_messages.Format("Dict_AudioDownloadingPart", i + 1, SplitSuffixes.Length, VariantSlug(variant).ToUpperInvariant()));
                 _logger.LogInformation("Downloading {Url}", url);
 
                 using var response = await http.GetAsync(url, HttpCompletionOption.ResponseHeadersRead, ct);
@@ -123,7 +127,7 @@ public sealed class AudioCacheService : IAudioCacheService
                 File.Move(tmp, target, overwrite: true);
             }
 
-            progress?.Report($"Распаковка {VariantSlug(variant).ToUpperInvariant()} аудио…");
+            progress?.Report(_messages.Format("Dict_AudioExtracting", VariantSlug(variant).ToUpperInvariant()));
 
             var zipPath = Path.Combine(dlDir, baseName + ".zip");
             ExtractFlat(zipPath, localDir);
@@ -144,7 +148,7 @@ public sealed class AudioCacheService : IAudioCacheService
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to fetch+unpack audio variant {Variant}", variant);
-            progress?.Report($"Ошибка загрузки: {ex.Message}");
+            progress?.Report(_messages.Format("Dict_AudioDownloadError", ex.Message));
             return false;
         }
         finally

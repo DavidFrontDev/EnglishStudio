@@ -3,6 +3,7 @@ using EnglishStudio.Modules.Ai.Evaluators;
 using EnglishStudio.Modules.Ai.Reports;
 using EnglishStudio.Modules.Ielts.Core.Data;
 using EnglishStudio.Modules.Ielts.Core.Entities;
+using EnglishStudio.Modules.Ielts.Core.Scoring;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -140,9 +141,11 @@ public sealed class SpeakingFeedbackService : ISpeakingFeedbackService
             Pronunciation: attempt.BandPronunciation.Value,
             Overall: overall,
             FeedbackEn: combinedFeedbackEn,
-            FeedbackRu: combinedFeedbackRu,
-            Strengths: combinedStrengths,
-            Improvements: combinedImprovements);
+            FeedbackRu: combinedFeedbackRu)
+        {
+            Strengths = combinedStrengths,
+            Improvements = combinedImprovements
+        };
     }
 
     private static SpeakingMetrics AggregateMetrics(IEnumerable<SpeakingResponse> responses)
@@ -173,14 +176,7 @@ public sealed class SpeakingFeedbackService : ISpeakingFeedbackService
 
     /// <summary>
     /// Official IELTS overall rounding: arithmetic mean of the four criterion bands rounded to
-    /// the nearest .25 maps up to the next .5 (mean ends in .25 → +0.25; .75 → +0.25).
+    /// the nearest half band, with exact .25/.75 midpoints rounding up.
     /// </summary>
-    private static double IeltsRound(double mean)
-    {
-        var x4 = Math.Round(mean * 4, MidpointRounding.AwayFromZero) / 4.0;
-        var frac = x4 - Math.Floor(x4);
-        if (frac is 0.25) return Math.Floor(x4) + 0.5;
-        if (frac is 0.75) return Math.Floor(x4) + 1.0;
-        return x4; // .0 or .5 stays as-is
-    }
+    private static double IeltsRound(double mean) => OverallBandCalculator.RoundToOfficialBand(mean);
 }

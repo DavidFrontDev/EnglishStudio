@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Reading.Questions;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 
@@ -155,15 +156,15 @@ public partial class ListeningCardViewModel : ObservableObject
             && source.Questions.All(q => q.Type == QuestionType.MatchingFeatures && IsPlaceholderStem(q.Stem));
         KindLabel = Layout switch
         {
-            QuestionGroupLayout.StructuredNotes => "Заметки",
-            QuestionGroupLayout.SummaryFlow => "Краткое изложение",
-            QuestionGroupLayout.Table => "Таблица",
-            QuestionGroupLayout.MapLabeling => "Сопоставление",
-            QuestionGroupLayout.Cascade => "Схема",
-            QuestionGroupLayout.CascadeImage => "Схема + буквы",
-            QuestionGroupLayout.Selector => "Выбор из списка",
-            QuestionGroupLayout.AnketaImage => "Изложение + буквы",
-            _ => "Выбор ответа"
+            QuestionGroupLayout.StructuredNotes => Loc.Tr("Listening_KindNotes"),
+            QuestionGroupLayout.SummaryFlow => Loc.Tr("Listening_KindSummaryFlow"),
+            QuestionGroupLayout.Table => Loc.Tr("Listening_KindTable"),
+            QuestionGroupLayout.MapLabeling => Loc.Tr("Listening_KindMapLabeling"),
+            QuestionGroupLayout.Cascade => Loc.Tr("Listening_KindCascade"),
+            QuestionGroupLayout.CascadeImage => Loc.Tr("Listening_KindCascadeImage"),
+            QuestionGroupLayout.Selector => Loc.Tr("Listening_KindSelector"),
+            QuestionGroupLayout.AnketaImage => Loc.Tr("Listening_KindAnketaImage"),
+            _ => Loc.Tr("Listening_KindDefault")
         };
     }
 

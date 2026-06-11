@@ -1,4 +1,5 @@
 using System.Text.Json;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Reading.Entities;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.Extensions.Logging.Abstractions;
@@ -11,7 +12,8 @@ public class ComprehensionServiceTests
     private const int TextId = 1;
 
     private static ComprehensionService Make(InMemoryReadingDb db, FakeClaudeCliClient cli, string body = "Some text.") =>
-        new(db.Factory, new FakeTextLibraryService(TextId, body), cli, NullLogger<ComprehensionService>.Instance);
+        new(db.Factory, new FakeTextLibraryService(TextId, body), cli, new KeyEchoMessageLocalizer(),
+            NullLogger<ComprehensionService>.Instance);
 
     private static int SeedText(InMemoryReadingDb db)
     {
@@ -167,7 +169,7 @@ public class ComprehensionServiceTests
         var verdict = await svc.EvaluateAsync(qid, "my answer");
 
         Assert.False(verdict.IsCorrect);
-        Assert.Contains("офлайн", verdict.FeedbackRu);
+        Assert.Contains("ReadStudy_VerdictOpenOffline", verdict.FeedbackRu);
     }
 
     [Fact]

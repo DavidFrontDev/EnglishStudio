@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingResultScreen}"
              d:DesignHeight="700" d:DesignWidth="1000">
@@ -19,7 +20,7 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="‹ К списку тестов"
+            <Button Grid.Column="0" Content="{loc:Tr ReadIelts_BackToList}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding BackCommand}" />
         </Grid>
@@ -44,7 +45,7 @@
                         </StackPanel>
 
                         <StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="0,0,24,0">
-                            <TextBlock Style="{StaticResource Caption}" Text="Правильно" />
+                            <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr ReadIelts_Correct}" />
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="{Binding RawScore}" FontSize="36" FontWeight="Light" Foreground="{DynamicResource StrongTextBrush}" />
                                 <TextBlock VerticalAlignment="Bottom" Foreground="{DynamicResource MutedTextBrush}" Margin="6,0,0,8">
@@ -59,15 +60,15 @@
                                 Padding="22,10"
                                 VerticalAlignment="Center">
                             <StackPanel HorizontalAlignment="Center">
-                                <TextBlock Text="BAND" Foreground="#073a5a" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
-                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="#073a5a" />
+                                <TextBlock Text="BAND" Foreground="{DynamicResource OnAccentBrush}" FontSize="11" FontWeight="SemiBold" HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding BandLabel}" FontSize="32" FontWeight="Light" Foreground="{DynamicResource OnAccentBrush}" />
                             </StackPanel>
                         </Border>
                     </Grid>
                 </Border>
 
                 <!-- Breakdown by type -->
-                <TextBlock Text="По типам вопросов" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <TextBlock Text="{loc:Tr ReadIelts_ByQuestionType}" Style="{StaticResource H3}" Margin="0,8,0,8" />
                 <ItemsControl ItemsSource="{Binding Breakdown}" Margin="0,0,0,16">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -94,7 +95,7 @@
                 </ItemsControl>
 
                 <!-- Wrong answers -->
-                <TextBlock Text="Неверные ответы" Style="{StaticResource H3}" Margin="0,8,0,8" />
+                <TextBlock Text="{loc:Tr ReadIelts_WrongAnswers}" Style="{StaticResource H3}" Margin="0,8,0,8" />
                 <ItemsControl ItemsSource="{Binding Wrong}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -106,11 +107,11 @@
                                     </StackPanel>
                                     <TextBlock Text="{Binding Stem}" TextWrapping="Wrap" Margin="0,0,0,6" />
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Style="{StaticResource Caption}" Text="Ваш ответ: " />
+                                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr ReadIelts_YourAnswer}" />
                                         <TextBlock Foreground="{DynamicResource ErrorBrush}" Text="{Binding UserAnswer}" />
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
-                                        <TextBlock Style="{StaticResource Caption}" Text="Правильный: " />
+                                        <TextBlock Style="{StaticResource Caption}" Text="{loc:Tr ReadIelts_CorrectAnswer}" />
                                         <TextBlock Foreground="{DynamicResource SuccessBrush}" Text="{Binding CorrectAnswer}" />
                                     </StackPanel>
                                 </StackPanel>

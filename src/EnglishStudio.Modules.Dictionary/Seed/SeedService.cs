@@ -25,10 +25,10 @@ public class SeedService
 
     public async Task SeedIfEmptyAsync(CancellationToken ct = default)
     {
-        if (await _db.Words.AnyAsync(ct))
+        if (await _db.Words.AnyAsync(w => w.Source == WordSource.Seed, ct))
         {
-            _logger.LogInformation("Dictionary already seeded ({Count} words); skipping.",
-                await _db.Words.CountAsync(ct));
+            _logger.LogInformation("Dictionary (Oxford 5000) already seeded ({Count} words); skipping.",
+                await _db.Words.CountAsync(w => w.Source == WordSource.Seed, ct));
             return;
         }
 
@@ -62,71 +62,96 @@ public class SeedService
 
         var posByCode = await SeedPartsOfSpeechAsync(ct);
 
+        var existingByKey = (await _db.Words
+                .Select(w => new { w.Id, w.Headword, w.PartOfSpeechId })
+                .ToListAsync(ct))
+            .ToDictionary(x => (x.Headword, x.PartOfSpeechId), x => x.Id);
+
         var prevAutoDetect = _db.ChangeTracker.AutoDetectChangesEnabled;
         _db.ChangeTracker.AutoDetectChangesEnabled = false;
         try
         {
             var now = DateTime.UtcNow;
             var inserted = 0;
-            var grouped = doc.Words.GroupBy(w => (w.Headword, w.Pos));
+            var upgraded = 0;
+            var grouped = doc.Words.GroupBy(w =>
+            {
+                var posId = posByCode.TryGetValue(w.Pos, out var pid) ? pid : posByCode["other"];
+                return (Headword: w.Headword.Trim(), PartOfSpeechId: posId);
+            });
 
             foreach (var group in grouped)
             {
-                if (!posByCode.TryGetValue(group.Key.Pos, out var partOfSpeechId))
-                {
-                    partOfSpeechId = posByCode["other"];
-                }
-
                 var first = group.First();
-                var word = new Word
+                Word word;
+                if (existingByKey.TryGetValue(group.Key, out var existingId))
                 {
-                    Headword = first.Headword.Trim(),
-                    Lemma = first.Headword.Trim().ToLowerInvariant(),
-                    IpaUk = NormalizeIpa(first.IpaUk),
-                    IpaUs = NormalizeIpa(first.IpaUs),
-                    AudioUkPath = NormalizeAudioPath(first.AudioUk),
-                    AudioUsPath = NormalizeAudioPath(first.AudioUs),
-                    CefrLevel = ParseCefr(first.Cefr),
-                    Source = WordSource.Seed,
-                    PartOfSpeechId = partOfSpeechId,
-                    CreatedAt = now,
-                    UpdatedAt = now,
-                };
-
-                var orderIdx = 0;
-                foreach (var entry in group)
+                    word = await _db.Words
+                        .Include(w => w.Senses)
+                        .FirstAsync(w => w.Id == existingId, ct);
+                    word.IpaUk ??= NormalizeIpa(first.IpaUk);
+                    word.IpaUs ??= NormalizeIpa(first.IpaUs);
+                    word.AudioUkPath ??= NormalizeAudioPath(first.AudioUk);
+                    word.AudioUsPath ??= NormalizeAudioPath(first.AudioUs);
+                    if (word.CefrLevel == CefrLevel.Unknown) word.CefrLevel = ParseCefr(first.Cefr);
+                    word.Source = WordSource.Seed;
+                    word.UpdatedAt = now;
+                    upgraded++;
+                }
+                else
                 {
-                    var sense = new Sense
+                    word = new Word
                     {
-                        DefinitionEn = (entry.DefinitionEn ?? string.Empty).Trim(),
-                        DefinitionRu = string.Empty,
-                        OrderIndex = orderIdx,
+                        Headword = group.Key.Headword,
+                        Lemma = group.Key.Headword.ToLowerInvariant(),
+                        IpaUk = NormalizeIpa(first.IpaUk),
+                        IpaUs = NormalizeIpa(first.IpaUs),
+                        AudioUkPath = NormalizeAudioPath(first.AudioUk),
+                        AudioUsPath = NormalizeAudioPath(first.AudioUs),
+                        CefrLevel = ParseCefr(first.Cefr),
+                        Source = WordSource.Seed,
+                        PartOfSpeechId = group.Key.PartOfSpeechId,
+                        CreatedAt = now,
+                        UpdatedAt = now,
                     };
-
-                    if (!string.IsNullOrWhiteSpace(entry.ExampleEn))
-                    {
-                        var example = new Example
-                        {
-                            TextEn = entry.ExampleEn.Trim(),
-                            Source = "oxford-5000",
-                        };
-                        sense.Examples.Add(example);
-                        word.Examples.Add(example);
-                    }
-
-                    word.Senses.Add(sense);
-                    orderIdx++;
+                    _db.Words.Add(word);
+                    inserted++;
                 }
 
-                _db.Words.Add(word);
-                inserted++;
+                if (word.Senses.Count == 0)
+                {
+                    var orderIdx = 0;
+                    foreach (var entry in group)
+                    {
+                        var sense = new Sense
+                        {
+                            DefinitionEn = (entry.DefinitionEn ?? string.Empty).Trim(),
+                            DefinitionRu = string.Empty,
+                            OrderIndex = orderIdx,
+                        };
 
-                if (inserted % 500 == 0)
+                        if (!string.IsNullOrWhiteSpace(entry.ExampleEn))
+                        {
+                            var example = new Example
+                            {
+                                TextEn = entry.ExampleEn.Trim(),
+                                Source = "oxford-5000",
+                            };
+                            sense.Examples.Add(example);
+                            word.Examples.Add(example);
+                        }
+
+                        word.Senses.Add(sense);
+                        orderIdx++;
+                    }
+                }
+
+                if ((inserted + upgraded) % 500 == 0)
                 {
                     _db.ChangeTracker.DetectChanges();
                     await _db.SaveChangesAsync(ct);
                     _db.ChangeTracker.Clear();
-                    _logger.LogDebug("Seeded {Count} words so far...", inserted);
+                    _logger.LogDebug("Seeded {Count} words so far...", inserted + upgraded);
                 }
             }
 
@@ -134,7 +159,8 @@ public class SeedService
             await _db.SaveChangesAsync(ct);
             _db.ChangeTracker.Clear();
 
-            _logger.LogInformation("Inserted {Total} words.", inserted);
+            _logger.LogInformation("Inserted {Inserted} new words, upgraded {Upgraded} existing words.",
+                inserted, upgraded);
         }
         finally
         {
@@ -615,12 +641,12 @@ public class SeedService
 
         var updated = 0;
         const int pageSize = 500;
-        var skip = 0;
+        var lastId = 0;
 
         while (true)
         {
             var batch = await _db.Words
-                .Where(w => w.AudioUkPath == null && w.AudioUsPath == null)
+                .Where(w => w.AudioUkPath == null && w.AudioUsPath == null && w.Id > lastId)
                 .OrderBy(w => w.Id)
                 .Take(pageSize)
                 .ToListAsync(ct);
@@ -642,7 +668,7 @@ public class SeedService
             }
 
             await _db.SaveChangesAsync(ct);
-            skip += batch.Count;
+            lastId = batch[^1].Id;
             if (batch.Count < pageSize) break;
         }
 

@@ -83,6 +83,7 @@ public sealed class ListeningAudioPlayer : IListeningAudioPlayer
         lock (_gate)
         {
             if (_output is null || _reader is null) return;
+            _suppressEndedEvent = false;
             // Restart from the beginning if we previously ran to the end.
             if (_reader.CurrentTime >= _reader.TotalTime) _reader.CurrentTime = TimeSpan.Zero;
             _output.Play();
@@ -110,7 +111,6 @@ public sealed class ListeningAudioPlayer : IListeningAudioPlayer
             {
                 _suppressEndedEvent = true;
                 _output.Stop();
-                _suppressEndedEvent = false;
             }
             if (_reader is not null) _reader.CurrentTime = TimeSpan.Zero;
         }
@@ -132,10 +132,17 @@ public sealed class ListeningAudioPlayer : IListeningAudioPlayer
 
     private void OnPlaybackStopped(object? sender, StoppedEventArgs e)
     {
-        _tick.Stop();
-        // Reaching the natural end: position is at (or near) total time. Distinguish from an
-        // explicit Stop() (which suppresses) so we only fire PlaybackEnded for true completion.
-        var ended = !_suppressEndedEvent && _reader is not null && _reader.CurrentTime >= _reader.TotalTime - TimeSpan.FromMilliseconds(300);
+        bool ended;
+        lock (_gate)
+        {
+            if (!ReferenceEquals(sender, _output)) return;
+            _tick.Stop();
+            // Reaching the natural end: position is at (or near) total time. Distinguish from an
+            // explicit Stop() (which suppresses) so we only fire PlaybackEnded for true completion.
+            var suppress = _suppressEndedEvent;
+            _suppressEndedEvent = false;
+            ended = !suppress && _reader is not null && _reader.CurrentTime >= _reader.TotalTime - TimeSpan.FromMilliseconds(300);
+        }
         PositionChanged?.Invoke();
         if (ended) PlaybackEnded?.Invoke();
     }
@@ -149,7 +156,6 @@ public sealed class ListeningAudioPlayer : IListeningAudioPlayer
                 _output.PlaybackStopped -= OnPlaybackStopped;
                 _suppressEndedEvent = true;
                 _output.Stop();
-                _suppressEndedEvent = false;
                 _output.Dispose();
             }
             catch (Exception ex) { _logger.LogDebug(ex, "Error disposing WaveOutEvent"); }

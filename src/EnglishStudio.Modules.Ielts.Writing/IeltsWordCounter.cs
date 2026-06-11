@@ -13,8 +13,9 @@ public static class IeltsWordCounter
         var count = 0;
         var inToken = false;
 
-        foreach (var ch in text)
+        for (var i = 0; i < text.Length; i++)
         {
+            var ch = text[i];
             if (char.IsWhiteSpace(ch))
             {
                 inToken = false;
@@ -24,7 +25,7 @@ public static class IeltsWordCounter
                 count++;
                 inToken = true;
             }
-            else if (inToken && !IsWordChar(ch) && !IsIntraWord(ch))
+            else if (inToken && !IsWordChar(ch) && !IsIntraWord(text, i))
             {
                 inToken = false;
             }
@@ -35,5 +36,12 @@ public static class IeltsWordCounter
 
     private static bool IsWordChar(char ch) => char.IsLetterOrDigit(ch);
 
-    private static bool IsIntraWord(char ch) => ch is '-' or '\'' or '’' or '/' or '.';
+    private static bool IsIntraWord(string text, int i)
+    {
+        var ch = text[i];
+        if (ch is '-' or '\'' or '’' or '/' or '.') return true;
+        return ch == ','
+            && i > 0 && char.IsDigit(text[i - 1])
+            && i + 1 < text.Length && char.IsDigit(text[i + 1]);
+    }
 }

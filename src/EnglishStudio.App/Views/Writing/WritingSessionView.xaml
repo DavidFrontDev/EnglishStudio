@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Writing"
              xmlns:ctrls="clr-namespace:EnglishStudio.App.Views.Controls"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:WritingSessionViewModel}"
              d:DesignHeight="700" d:DesignWidth="1200"
@@ -76,7 +77,7 @@
             </Grid.ColumnDefinitions>
 
             <Button Grid.Column="0"
-                    Content="‹ Отмена"
+                    Content="{loc:Tr Writing_Cancel}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding CancelCommand}" />
 
@@ -96,7 +97,7 @@
             </Border>
 
             <Button Grid.Column="3"
-                    Content="Завершить тест"
+                    Content="{loc:Tr Writing_FinishTest}"
                     Style="{StaticResource AccentButton}"
                     Command="{Binding FinishCommand}" />
         </Grid>
@@ -166,9 +167,9 @@
                                 <Run Text="{Binding KindLabel, Mode=OneWay}" />
                                 <Run Text="  ·  ≥" />
                                 <Run Text="{Binding MinWords, Mode=OneWay}" />
-                                <Run Text=" слов  ·  ~" />
+                                <Run Text="{loc:Tr Writing_WordsMinPrefix}" />
                                 <Run Text="{Binding RecommendedMinutes, Mode=OneWay}" />
-                                <Run Text=" мин" />
+                                <Run Text="{loc:Tr Writing_MinSuffix}" />
                             </TextBlock>
 
                             <ctrls:ZoomableImage Source="{Binding ImagePath}"
@@ -195,7 +196,7 @@
                             <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="Ваш ответ" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <TextBlock Grid.Row="0" Text="{loc:Tr Writing_YourAnswer}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                         <TextBox Grid.Row="1"
                                  x:Name="AnswerTextBox"
                                  Text="{Binding UserText, UpdateSourceTrigger=PropertyChanged}"
@@ -215,7 +216,7 @@
                                     <Run Text="{Binding WordCount, Mode=OneWay}" />
                                     <Run Text=" / " />
                                     <Run Text="{Binding MinWords, Mode=OneWay}" />
-                                    <Run Text=" слов" />
+                                    <Run Text="{loc:Tr Writing_WordsSuffix}" />
                                 </TextBlock>
                             </Border>
                         </StackPanel>

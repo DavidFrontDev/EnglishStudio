@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Text;
 using System.Text.Json;
 using EnglishStudio.Modules.Ai;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Reading.Data;
 using EnglishStudio.Modules.Reading.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ public sealed class ComprehensionService : IComprehensionService
     private readonly IDbContextFactory<ReadingDbContext> _factory;
     private readonly ITextLibraryService _library;
     private readonly IClaudeCliClient _cli;
+    private readonly IMessageLocalizer _messages;
     private readonly ILogger<ComprehensionService> _log;
 
     // One gate per text so concurrent opens don't double-generate.
@@ -32,11 +34,13 @@ public sealed class ComprehensionService : IComprehensionService
         IDbContextFactory<ReadingDbContext> factory,
         ITextLibraryService library,
         IClaudeCliClient cli,
+        IMessageLocalizer messages,
         ILogger<ComprehensionService> log)
     {
         _factory = factory;
         _library = library;
         _cli = cli;
+        _messages = messages;
         _log = log;
     }
 
@@ -77,14 +81,14 @@ public sealed class ComprehensionService : IComprehensionService
         await using var db = await _factory.CreateDbContextAsync(ct);
         var q = await db.ComprehensionQuestions.FirstOrDefaultAsync(x => x.Id == questionId, ct);
         if (q is null)
-            return new ComprehensionVerdictDto(false, 0, "Вопрос не найден.");
+            return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictQuestionNotFound"));
 
         return q.Kind == ComprehensionKind.MultipleChoice
             ? EvaluateMultipleChoice(q, userAnswer)
             : await EvaluateOpenAsync(q, userAnswer, ct);
     }
 
-    private static ComprehensionVerdictDto EvaluateMultipleChoice(ComprehensionQuestion q, string userAnswer)
+    private ComprehensionVerdictDto EvaluateMultipleChoice(ComprehensionQuestion q, string userAnswer)
     {
         var options = DeserializeOptions(q.OptionsJson);
         var answer = (userAnswer ?? string.Empty).Trim();
@@ -96,43 +100,45 @@ public sealed class ComprehensionService : IComprehensionService
 
         var correct = chosen >= 0 && chosen == q.CorrectOptionIndex;
         if (correct)
-            return new ComprehensionVerdictDto(true, 100, "Верно!");
+            return new ComprehensionVerdictDto(true, 100, _messages.Format("ReadStudy_VerdictCorrect"));
 
         var hasKey = q.CorrectOptionIndex >= 0 && q.CorrectOptionIndex < options.Count;
         var feedback = hasKey
-            ? $"Неверно. Правильный ответ: «{options[q.CorrectOptionIndex]}»."
-            : "Неверно.";
+            ? _messages.Format("ReadStudy_VerdictWrongWithAnswer", options[q.CorrectOptionIndex])
+            : _messages.Format("ReadStudy_VerdictWrong");
         return new ComprehensionVerdictDto(false, 0, feedback);
     }
 
     private async Task<ComprehensionVerdictDto> EvaluateOpenAsync(ComprehensionQuestion q, string userAnswer, CancellationToken ct)
     {
         if (string.IsNullOrWhiteSpace(userAnswer))
-            return new ComprehensionVerdictDto(false, 0, "Ответ пуст.");
+            return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictEmptyAnswer"));
         if (!_cli.IsAvailable)
-            return new ComprehensionVerdictDto(false, 0, "Оценка открытого ответа недоступна офлайн.");
+            return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictOpenOffline"));
 
         var prompt = BuildGradePrompt(q.Prompt, q.ModelAnswer, userAnswer);
         try
         {
             var response = await _cli.RunAsync(prompt, ClaudeOutputFormat.Json, timeout: TimeSpan.FromSeconds(90), ct: ct);
             if (response.IsError || string.IsNullOrWhiteSpace(response.Text))
-                return new ComprehensionVerdictDto(false, 0, "Не удалось оценить ответ.");
+                return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictEvaluateFailed"));
 
             var json = ExtractObject(response.Text);
-            if (json is null) return new ComprehensionVerdictDto(false, 0, "Не удалось разобрать оценку.");
+            if (json is null) return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictParseFailed"));
 
             using var doc = JsonDocument.Parse(json);
             var root = doc.RootElement;
             var isCorrect = root.TryGetProperty("isCorrect", out var ic) && ic.ValueKind == JsonValueKind.True;
             var score = root.TryGetProperty("score", out var sc) && sc.TryGetDouble(out var s) ? Math.Clamp(s, 0, 100) : (isCorrect ? 100 : 0);
             var feedback = root.TryGetProperty("feedbackRu", out var fb) ? fb.GetString() ?? "" : "";
-            return new ComprehensionVerdictDto(isCorrect, score, string.IsNullOrWhiteSpace(feedback) ? (isCorrect ? "Верно." : "Неверно.") : feedback);
+            return new ComprehensionVerdictDto(isCorrect, score, string.IsNullOrWhiteSpace(feedback)
+                ? (isCorrect ? _messages.Format("ReadStudy_VerdictCorrectShort") : _messages.Format("ReadStudy_VerdictWrong"))
+                : feedback);
         }
         catch (Exception ex)
         {
             _log.LogWarning(ex, "Open-answer grading failed for question {Id}.", q.Id);
-            return new ComprehensionVerdictDto(false, 0, "Ошибка оценки ответа.");
+            return new ComprehensionVerdictDto(false, 0, _messages.Format("ReadStudy_VerdictEvaluateFailed"));
         }
     }
 
@@ -229,7 +235,7 @@ public sealed class ComprehensionService : IComprehensionService
                 var options = item.Options?.Where(o => !string.IsNullOrWhiteSpace(o)).Select(o => o.Trim()).ToList() ?? new List<string>();
                 if (options.Count < 2) continue; // not a usable MCQ
                 var correct = item.CorrectIndex ?? -1;
-                if (correct < 0 || correct >= options.Count) correct = 0; // clamp to a valid key
+                if (correct < 0 || correct >= options.Count) continue; // no usable answer key
                 result.Add(new ParsedQuestion(ComprehensionKind.MultipleChoice, item.Prompt!.Trim(), options, correct, null));
             }
             else

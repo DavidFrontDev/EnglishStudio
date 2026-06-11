@@ -58,7 +58,7 @@ public sealed class MockSessionService : IMockSessionService
     public async Task<int> StartAttemptAsync(MockMode mode, MockBundleSummary? bundle, CancellationToken ct = default)
     {
         if (bundle is null)
-            throw new ArgumentNullException(nameof(bundle), "v1 требует bundle (режим Custom не реализован).");
+            throw new ArgumentNullException(nameof(bundle), "v1 requires a bundle (Custom mode is not implemented).");
 
         var sections = AllSections.Select(s =>
         {
@@ -91,11 +91,11 @@ public sealed class MockSessionService : IMockSessionService
 
         var sections = Deserialize(attempt.SectionsJson);
         var idx = sections.FindIndex(s => s.Section == (int)section);
-        if (idx < 0) throw new InvalidOperationException($"Секция {section} отсутствует в mock {mockAttemptId}.");
+        if (idx < 0) throw new InvalidOperationException($"Section {section} is missing in mock {mockAttemptId}.");
 
         var state = sections[idx];
         if (state.SourceId is null)
-            throw new InvalidOperationException($"Секция {section} недоступна в этом бандле.");
+            throw new InvalidOperationException($"Section {section} is unavailable in this bundle.");
 
         // Идемпотентно: повторный вход в InProgress-секцию не сбрасывает StartedAt.
         if (state.Status != (int)MockSectionStatus.InProgress)
@@ -120,7 +120,7 @@ public sealed class MockSessionService : IMockSessionService
 
         var sections = Deserialize(attempt.SectionsJson);
         var idx = sections.FindIndex(s => s.Section == (int)section);
-        if (idx < 0) throw new InvalidOperationException($"Секция {section} отсутствует в mock {mockAttemptId}.");
+        if (idx < 0) throw new InvalidOperationException($"Section {section} is missing in mock {mockAttemptId}.");
 
         sections[idx] = sections[idx] with
         {
@@ -146,7 +146,7 @@ public sealed class MockSessionService : IMockSessionService
 
         var sections = Deserialize(attempt.SectionsJson);
         var idx = sections.FindIndex(s => s.Section == (int)section);
-        if (idx < 0) throw new InvalidOperationException($"Секция {section} отсутствует в mock {mockAttemptId}.");
+        if (idx < 0) throw new InvalidOperationException($"Section {section} is missing in mock {mockAttemptId}.");
 
         // reason пока не персистится (зарезервировано под будущий audit-лог).
         sections[idx] = sections[idx] with
@@ -169,7 +169,7 @@ public sealed class MockSessionService : IMockSessionService
         // могла завершиться уже после CompleteSectionAsync).
         attempt.ListeningBand ??= await PullTestBandAsync(attempt.ListeningAttemptId, ct);
         attempt.ReadingBand ??= await PullTestBandAsync(attempt.ReadingAttemptId, ct);
-        attempt.WritingBand ??= await PullWritingBandAsync(attempt.WritingAttemptId, ct);
+        attempt.WritingBand ??= await PullWritingBandAsync(attempt, ct);
         attempt.SpeakingBand ??= await PullSpeakingBandAsync(attempt.SpeakingAttemptId, ct);
 
         var bands = new List<double>(4);
@@ -252,7 +252,7 @@ public sealed class MockSessionService : IMockSessionService
 
     private static async Task<MockAttempt> LoadAsync(IeltsDbContext db, int id, CancellationToken ct)
         => await db.MockAttempts.FindAsync([id], ct)
-           ?? throw new InvalidOperationException($"MockAttempt {id} не найден.");
+           ?? throw new InvalidOperationException($"MockAttempt {id} not found.");
 
     private static int? SourceIdFor(MockBundleSummary b, MockSection s) => s switch
     {
@@ -317,11 +317,21 @@ public sealed class MockSessionService : IMockSessionService
         return ta is { IsCompleted: true } ? ta.BandEstimate : null;
     }
 
-    private async Task<double?> PullWritingBandAsync(int? attemptId, CancellationToken ct)
+    private async Task<double?> PullWritingBandAsync(MockAttempt attempt, CancellationToken ct)
     {
-        if (attemptId is not int id) return null;
-        var wa = await _writing.GetAttemptAsync(id, ct);
-        return wa?.BandOverall;
+        if (attempt.WritingAttemptId is not int id) return null;
+        var t1 = (await _writing.GetAttemptAsync(id, ct))?.BandOverall;
+
+        var secondaryId = Deserialize(attempt.SectionsJson)
+            .FirstOrDefault(s => s.Section == (int)MockSection.Writing)?.SecondaryChildAttemptId;
+        if (secondaryId is not int sid) return t1;
+
+        var t2 = (await _writing.GetAttemptAsync(sid, ct))?.BandOverall;
+        if (t1 is not double b1 || t2 is not double b2) return null;
+
+        // Task1·1/3 + Task2·2/3, округление к ближайшей половине — как WeightedWritingBand в UI.
+        var raw = (b1 + 2 * b2) / 3.0;
+        return Math.Round(raw * 2) / 2;
     }
 
     private async Task<double?> PullSpeakingBandAsync(int? attemptId, CancellationToken ct)

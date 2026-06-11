@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:ctrl="clr-namespace:EnglishStudio.App.Views.Speaking.Controls"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:SpeakingPart2ViewModel}"
              d:DesignHeight="640" d:DesignWidth="900">
@@ -60,21 +61,21 @@
             </Grid.ColumnDefinitions>
 
             <Border Grid.Column="0"
-                    Background="#26365E"
+                    Background="{DynamicResource NotePanelBrush}"
                     CornerRadius="10" Padding="20,14" Margin="0,0,8,0"
                     Visibility="{Binding IsPreparing, Converter={StaticResource BoolToVis}}">
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="ПОДГОТОВКА"
+                    <TextBlock Text="{loc:Tr Speaking_PrepLabel}"
                                FontWeight="SemiBold"
                                FontSize="13"
                                HorizontalAlignment="Center"
-                               Foreground="#A4C0FF" />
+                               Foreground="{DynamicResource NotePanelTextBrush}" />
                     <TextBlock Text="{Binding PrepDisplay}"
                                FontSize="46"
                                FontWeight="Bold"
                                HorizontalAlignment="Center"
                                Foreground="White" />
-                    <Button Content="Пропустить и начать"
+                    <Button Content="{loc:Tr Speaking_SkipAndStart}"
                             Style="{StaticResource FlatButton}"
                             HorizontalAlignment="Center"
                             Margin="0,4,0,0"
@@ -83,15 +84,15 @@
             </Border>
 
             <Border Grid.Column="1"
-                    Background="#5C2A2A"
+                    Background="{DynamicResource WarnPanelBrush}"
                     CornerRadius="10" Padding="20,14" Margin="8,0,0,0"
                     Visibility="{Binding IsRecording, Converter={StaticResource BoolToVis}}">
                 <StackPanel HorizontalAlignment="Center">
-                    <TextBlock Text="ЗАПИСЬ"
+                    <TextBlock Text="{loc:Tr Speaking_RecordLabel}"
                                FontWeight="SemiBold"
                                FontSize="13"
                                HorizontalAlignment="Center"
-                               Foreground="#FFB7B7" />
+                               Foreground="{DynamicResource WarnPanelTextBrush}" />
                     <TextBlock Text="{Binding RecordDisplay}"
                                FontSize="46"
                                FontWeight="Bold"
@@ -109,7 +110,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="0,0,0,12">
-                <Button Content="🕐 Начать минуту подготовки"
+                <Button Content="{loc:Tr Speaking_StartPrepMinute}"
                         Style="{StaticResource AccentButton}"
                         Padding="22,10"
                         Command="{Binding StartPrepCommand}"
@@ -130,7 +131,7 @@
                     Visibility="{Binding Transcript, Converter={StaticResource NullToVis}}">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
-                        <TextBlock Text="Транскрипт"
+                        <TextBlock Text="{loc:Tr Speaking_Transcript}"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource StrongTextBrush}"
                                    Margin="0,0,0,6" />
@@ -150,7 +151,7 @@
                        Style="{StaticResource MutedText}"
                        VerticalAlignment="Center"
                        Margin="0,0,12,0" />
-            <Button Content="Завершить Part 2 →"
+            <Button Content="{loc:Tr Speaking_FinishPart2}"
                     Style="{StaticResource AccentButton}"
                     Command="{Binding FinishCommand}"
                     IsEnabled="{Binding CanFinish}" />

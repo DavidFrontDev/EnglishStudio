@@ -5,9 +5,11 @@ using System.Windows.Data;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Audio;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Content;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.App.Views.Speaking;
+using EnglishStudio.Modules.Ai;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Ielts.Speaking;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,13 +19,12 @@ namespace EnglishStudio.App.ViewModels.Speaking;
 
 public partial class SpeakingHubViewModel : ObservableObject
 {
-    public const string AllFilterToken = "Все";
-
     private readonly ISpeakingTestService _svc;
     private readonly ISpeakingFeedbackService _feedback;
     private readonly IWhisperTranscriber _whisper;
     private readonly IContentStore _content;
     private readonly ContentImportLauncher _importLauncher;
+    private readonly IClaudeCliClient _claudeCli;
     private readonly IServiceProvider _services;
     private readonly ILogger<SpeakingHubViewModel> _log;
 
@@ -49,8 +50,10 @@ public partial class SpeakingHubViewModel : ObservableObject
     /// <summary>True when the Speaking content pack isn't imported — shows the gating banner.</summary>
     [ObservableProperty] private bool _isContentMissing;
 
-    [ObservableProperty] private string _contentMissingText =
-        "Банк тем IELTS Speaking входит в контент-пак. Импортируйте пак, чтобы открыть раздел.";
+    [ObservableProperty] private string _contentMissingText = Loc.Tr("Speaking_ContentMissingText");
+
+    /// <summary>True when the Claude CLI isn't available — shows the AI-unavailable banner.</summary>
+    [ObservableProperty] private bool _isAiUnavailable;
 
     public bool IsHubVisible => CurrentScreen is null;
 
@@ -62,10 +65,10 @@ public partial class SpeakingHubViewModel : ObservableObject
 
     public string ModeDescription => SelectedMode switch
     {
-        SpeakingMode.FullMock   => "Полный mock-экзамен: Part 1 (4–5 мин) + Part 2 (1 мин подготовки + 2 мин ответ) + Part 3 (4–5 мин). Топик выбирается случайно.",
-        SpeakingMode.Part1Only  => "Только Part 1: 5 коротких вопросов по выбранному топику, 30 секунд на каждый ответ.",
-        SpeakingMode.Part2Only  => "Только Part 2: cue card с 1 минутой подготовки и 2 минутами ответа.",
-        SpeakingMode.Part3Only  => "Только Part 3: 4–5 углублённых вопросов по выбранной теме, 60 секунд на каждый.",
+        SpeakingMode.FullMock   => Loc.Tr("Speaking_ModeDescFullMock"),
+        SpeakingMode.Part1Only  => Loc.Tr("Speaking_ModeDescPart1Only"),
+        SpeakingMode.Part2Only  => Loc.Tr("Speaking_ModeDescPart2Only"),
+        SpeakingMode.Part3Only  => Loc.Tr("Speaking_ModeDescPart3Only"),
         _ => string.Empty
     };
 
@@ -75,6 +78,7 @@ public partial class SpeakingHubViewModel : ObservableObject
         IWhisperTranscriber whisper,
         IContentStore content,
         ContentImportLauncher importLauncher,
+        IClaudeCliClient claudeCli,
         IServiceProvider services,
         ILogger<SpeakingHubViewModel> log)
     {
@@ -83,6 +87,7 @@ public partial class SpeakingHubViewModel : ObservableObject
         _whisper = whisper;
         _content = content;
         _importLauncher = importLauncher;
+        _claudeCli = claudeCli;
         _services = services;
         _log = log;
 
@@ -108,6 +113,7 @@ public partial class SpeakingHubViewModel : ObservableObject
         StatusText = string.Empty;
         try
         {
+            IsAiUnavailable = !_claudeCli.IsAvailable;
             IsContentMissing = !_content.IsImported(ContentSection.Speaking);
             if (IsContentMissing)
             {
@@ -136,13 +142,13 @@ public partial class SpeakingHubViewModel : ObservableObject
 
             if (Part1Topics.Count == 0 && Part2Topics.Count == 0)
             {
-                StatusText = "Контент Speaking ещё не загружен. Перезапустите приложение после доставки seed-данных.";
+                StatusText = Loc.Tr("Speaking_ContentNotLoadedYet");
             }
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load Speaking hub data");
-            StatusText = "Не удалось загрузить список топиков.";
+            StatusText = Loc.Tr("Speaking_FailedToLoadTopics");
         }
         finally
         {
@@ -188,11 +194,11 @@ public partial class SpeakingHubViewModel : ObservableObject
             {
                 if (!string.IsNullOrEmpty(s)) StatusText = s;
             });
-            StatusText = "Проверка модели Whisper…";
+            StatusText = Loc.Tr("Speaking_CheckingWhisperModel");
             var ready = await _whisper.EnsureModelDownloadedAsync(WhisperModelSize.Medium, progress);
             if (!ready)
             {
-                StatusText = "Не удалось загрузить модель Whisper medium. Speaking-сессия недоступна.";
+                StatusText = Loc.Tr("Speaking_WhisperModelFailed");
                 return;
             }
             StatusText = string.Empty;
@@ -205,23 +211,25 @@ public partial class SpeakingHubViewModel : ObservableObject
                 part1BankId: SelectedPart1Topic?.BankId,
                 part2BankId: SelectedPart2Topic?.BankId);
 
-            _sessionWindow = new SpeakingSessionWindow
+            var window = new SpeakingSessionWindow
             {
                 DataContext = sessionVm,
                 Owner = Application.Current.MainWindow
             };
-            _sessionWindow.Closed += (_, _) =>
+            window.Closed += (_, _) =>
             {
+                sessionVm.Cleanup();
                 sessionVm.Submitted -= OnSessionSubmitted;
                 sessionVm.Cancelled -= OnSessionCancelled;
-                _sessionWindow = null;
+                if (ReferenceEquals(_sessionWindow, window)) _sessionWindow = null;
             };
-            _sessionWindow.Show();
+            _sessionWindow = window;
+            window.Show();
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to start speaking session");
-            StatusText = "Не удалось запустить сессию: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_FailedToStartSession") + ex.Message;
         }
         finally
         {
@@ -267,21 +275,21 @@ public partial class SpeakingHubViewModel : ObservableObject
     {
         var confirm = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Очистить историю",
-            "Удалить все записи о пройденных Speaking-тестах? Это действие необратимо.",
-            confirmText: "Очистить");
+            Loc.Tr("Speaking_ClearHistoryTitle"),
+            Loc.Tr("Speaking_ClearHistoryConfirm"),
+            confirmText: Loc.Tr("Speaking_ClearHistoryButton"));
         if (!confirm) return;
         try
         {
             var removed = await _svc.ClearHistoryAsync();
             StatusText = removed == 0
-                ? "История уже была пуста."
-                : $"Удалено записей: {removed}.";
+                ? Loc.Tr("Speaking_HistoryAlreadyEmpty")
+                : Loc.Format("Speaking_HistoryCleared", removed);
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to clear speaking history");
-            StatusText = "Не удалось очистить историю: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_FailedToClearHistory") + ex.Message;
         }
         await LoadAsync();
     }

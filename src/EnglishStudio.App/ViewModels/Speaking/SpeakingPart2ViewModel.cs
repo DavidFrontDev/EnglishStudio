@@ -3,6 +3,7 @@ using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Audio;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Data;
 using EnglishStudio.Modules.Ielts.Speaking;
 using Microsoft.Extensions.Logging;
@@ -136,7 +137,7 @@ public partial class SpeakingPart2ViewModel : ObservableObject
             _recorder.StartRecording();
             if (!_recorder.IsRecording)
             {
-                StatusText = "Не удалось получить доступ к микрофону.";
+                StatusText = Loc.Tr("Speaking_MicAccessDenied");
                 return;
             }
             IsRecording = true;
@@ -156,7 +157,7 @@ public partial class SpeakingPart2ViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to start Part 2 recording");
-            StatusText = "Ошибка записи: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_RecordingError") + ex.Message;
         }
         await Task.CompletedTask;
     }
@@ -172,7 +173,7 @@ public partial class SpeakingPart2ViewModel : ObservableObject
         if (duration <= 0) duration = 1;
         if (path is null)
         {
-            StatusText = "Запись не удалась.";
+            StatusText = Loc.Tr("Speaking_RecordingFailed");
             RaiseAll();
             return;
         }
@@ -194,7 +195,7 @@ public partial class SpeakingPart2ViewModel : ObservableObject
 
         IsTranscribing = true;
         TranscribeProgress = 0;
-        StatusText = "Транскрибирую ответ…";
+        StatusText = Loc.Tr("Speaking_Transcribing");
         RaiseAll();
         IReadOnlyList<SpokenWord>? words = null;
         var progress = new Progress<double>(p => TranscribeProgress = p);
@@ -208,7 +209,7 @@ public partial class SpeakingPart2ViewModel : ObservableObject
         {
             _log.LogWarning(ex, "Transcription failed");
             Transcript = string.Empty;
-            StatusText = "Не удалось получить транскрипт.";
+            StatusText = Loc.Tr("Speaking_TranscriptFailed");
         }
         finally
         {

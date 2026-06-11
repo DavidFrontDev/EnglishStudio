@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:views="clr-namespace:EnglishStudio.App.Views.Speaking"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:SpeakingSessionViewModel}"
              d:DesignHeight="720" d:DesignWidth="1100">
@@ -35,7 +36,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
-                    Content="‹ Отмена"
+                    Content="{loc:Tr Speaking_Cancel}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding CancelCommand}" />
             <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">

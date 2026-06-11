@@ -40,12 +40,17 @@
                     </Grid>
                     <ComboBox Style="{StaticResource FlatComboBox}"
                               ItemsSource="{Binding AvailableTags}"
-                              DisplayMemberPath="Display"
                               SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
                               HorizontalAlignment="Left"
                               MinWidth="120"
                               MaxWidth="{Binding ViewportWidth, RelativeSource={RelativeSource AncestorType=ScrollViewer}, Converter={StaticResource LSubtract}, ConverterParameter=70}"
-                              Margin="20,2,0,0" />
+                              Margin="20,2,0,0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" />
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
                 </StackPanel>
             </Border>
         </Grid>

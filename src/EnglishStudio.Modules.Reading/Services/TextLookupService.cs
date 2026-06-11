@@ -69,7 +69,7 @@ public sealed class TextLookupService : ITextLookupService
             var db = scope.ServiceProvider.GetRequiredService<DictionaryDbContext>();
 
             var col = await db.Collocations
-                .Where(c => c.LinkedText.ToLower() == norm && c.TranslationRu != null)
+                .Where(c => c.LinkedText.ToLower() == norm && !string.IsNullOrWhiteSpace(c.TranslationRu))
                 .Select(c => new { c.LinkedText, c.TranslationRu })
                 .FirstOrDefaultAsync(ct);
             if (col is not null)

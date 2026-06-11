@@ -1,5 +1,6 @@
 using System.Globalization;
 using System.Text;
+using EnglishStudio.App.Localization;
 
 namespace EnglishStudio.App.Audio;
 
@@ -28,7 +29,7 @@ public sealed class PronunciationAssessor
         if (string.IsNullOrWhiteSpace(r))
         {
             return new PronunciationResult(target, recognized ?? "", 0, PronunciationCategory.Unrecognized,
-                "Не удалось распознать речь. Попробуйте ещё раз.");
+                Loc.Tr("Whisper_PronUnrecognized"));
         }
 
         var distance = Levenshtein(t, r);
@@ -38,9 +39,9 @@ public sealed class PronunciationAssessor
 
         var (category, feedback) = score switch
         {
-            >= 90 => (PronunciationCategory.Excellent, "Отлично! Произношение близко к эталону."),
-            >= 70 => (PronunciationCategory.Good, "Хорошо, но есть отличия. Послушайте эталон и попробуйте ещё."),
-            _     => (PronunciationCategory.Poor, "Произношение сильно отличается. Послушайте эталон, повторите."),
+            >= 90 => (PronunciationCategory.Excellent, Loc.Tr("Whisper_PronExcellent")),
+            >= 70 => (PronunciationCategory.Good,      Loc.Tr("Whisper_PronGood")),
+            _     => (PronunciationCategory.Poor,      Loc.Tr("Whisper_PronPoor")),
         };
 
         return new PronunciationResult(target, recognized ?? "", score, category, feedback);

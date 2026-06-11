@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Shell;
 
 namespace EnglishStudio.App.ViewModels;
@@ -6,7 +7,7 @@ namespace EnglishStudio.App.ViewModels;
 public partial class MainWindowViewModel : ObservableObject
 {
     [ObservableProperty]
-    private string _title = "EnglishStudio — IELTS-тренажёр";
+    private string _title = Loc.Tr("Main_AppTitle");
 
     public ShellViewModel Shell { get; }
 
@@ -14,11 +15,15 @@ public partial class MainWindowViewModel : ObservableObject
     {
         Shell = shell;
         Shell.PropertyChanged += OnShellPropertyChanged;
+        LocalizationManager.Instance.PropertyChanged += OnLanguageChanged;
     }
+
+    private void OnLanguageChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
+        => Title = Loc.Tr("Main_AppTitle");
 
     private void OnShellPropertyChanged(object? sender, System.ComponentModel.PropertyChangedEventArgs e)
     {
-        if (e.PropertyName == nameof(ShellViewModel.CurrentModule) &&
+        if (e.PropertyName == nameof(ShellViewModel.CurrentView) &&
             Shell.CurrentModule?.Code == "stats")
         {
             // Refresh stats VM when its module is selected — preserves M5 behaviour.

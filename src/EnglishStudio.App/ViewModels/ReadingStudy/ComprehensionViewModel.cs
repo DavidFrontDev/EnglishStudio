@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.Extensions.Logging;
 
@@ -29,7 +30,7 @@ public partial class ComprehensionViewModel : ObservableObject
 
     public bool HasQuestions => Questions.Count > 0;
 
-    public string ScoreText => $"{CorrectCount} / {TotalCount} верно";
+    public string ScoreText => Loc.Format("ReadStudy_ComprehensionScore", CorrectCount, TotalCount);
 
     /// <summary>Raised when the user dismisses the panel.</summary>
     public event Action? CloseRequested;
@@ -62,13 +63,13 @@ public partial class ComprehensionViewModel : ObservableObject
             TotalCount = Questions.Count;
             if (Questions.Count == 0)
                 StatusText = _service.CanUseAi
-                    ? "К этому тексту не удалось составить вопросы."
-                    : "Вопросы недоступны офлайн — подключите Claude CLI в настройках.";
+                    ? Loc.Tr("ReadStudy_ComprehensionNoQuestions")
+                    : Loc.Tr("ReadStudy_ComprehensionOffline");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Comprehension load failed for text {TextId}", textId);
-            StatusText = "Не удалось загрузить вопросы.";
+            StatusText = Loc.Tr("ReadStudy_ComprehensionLoadFailed");
         }
         finally
         {
@@ -183,9 +184,7 @@ public partial class ComprehensionQuestionViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogWarning(ex, "Grading comprehension question {Id} failed", Id);
-            FeedbackRu = "Не удалось проверить ответ.";
-            HasVerdict = true;
-            IsCorrect = false;
+            FeedbackRu = Loc.Tr("ReadStudy_ComprehensionGradeFailed");
             VerdictReady?.Invoke();
         }
         finally

@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ielts.Writing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -36,8 +37,8 @@ public partial class WritingHistoryViewModel : ObservableObject
 
     public string TotalTimeSpentDisplay =>
         TotalTimeSpent.TotalHours >= 1
-            ? string.Format(CultureInfo.InvariantCulture, "{0:0.#} ч", TotalTimeSpent.TotalHours)
-            : string.Format(CultureInfo.InvariantCulture, "{0:0} мин", TotalTimeSpent.TotalMinutes);
+            ? string.Format(CultureInfo.InvariantCulture, Loc.Tr("Writing_TimeFormatHours"), TotalTimeSpent.TotalHours)
+            : string.Format(CultureInfo.InvariantCulture, Loc.Tr("Writing_TimeFormatMinutes"), TotalTimeSpent.TotalMinutes);
 
     /// <summary>Raised when the user clicks "Открыть" on an entry — host shows the result screen.</summary>
     public event Action<int>? OpenAttemptRequested;
@@ -69,7 +70,7 @@ public partial class WritingHistoryViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load writing history");
-            ErrorText = "Не удалось загрузить историю: " + ex.Message;
+            ErrorText = Loc.Tr("Writing_LoadHistoryFailed") + ex.Message;
         }
         finally
         {

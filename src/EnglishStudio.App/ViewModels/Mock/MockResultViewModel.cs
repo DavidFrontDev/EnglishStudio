@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Listening;
 using EnglishStudio.App.ViewModels.Reading;
 using EnglishStudio.App.ViewModels.Speaking;
@@ -62,28 +63,28 @@ public partial class MockResultViewModel : ObservableObject
             var detail = await _mock.GetAsync(mockAttemptId);
             if (detail is null)
             {
-                StatusText = "Результат экзамена не найден.";
+                StatusText = Loc.Tr("Mock_ResultNotFound");
                 return;
             }
 
             var s = detail.Summary;
             ExamTitle = s.Book is int b && s.TestNumber is int t
-                ? $"Cambridge {b} · Test {t}"
-                : "Полный экзамен";
+                ? Loc.Format("Mock_ExamTitle", b, t)
+                : Loc.Tr("Mock_ExamTitleGeneric");
             HasOverall = s.OverallBand.HasValue;
             OverallLabel = s.OverallBand?.ToString("0.0", Inv) ?? "—";
             DateLabel = s.StartedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm", Inv);
             IsPartial = s.IsPartial;
 
             var scored = CountScored(s);
-            CompletionLabel = s.IsPartial ? $"Частичный · {scored}/4 секций" : "Завершён · 4/4 секций";
+            CompletionLabel = s.IsPartial ? Loc.Format("Mock_CompletionPartial", scored) : Loc.Tr("Mock_CompletionFull");
 
             BuildSections(detail);
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load mock result {Id}", mockAttemptId);
-            StatusText = "Не удалось загрузить результат экзамена.";
+            StatusText = Loc.Tr("Mock_LoadResultFailed");
         }
     }
 
@@ -143,7 +144,7 @@ public partial class MockResultViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to open {Section} breakdown (attempt {Id})", row.Section, childId);
-            StatusText = $"Не удалось открыть разбор секции {row.Name}.";
+            StatusText = Loc.Format("Mock_OpenBreakdownFailed", row.Name);
         }
     }
 
@@ -199,11 +200,11 @@ public partial class MockResultViewModel : ObservableObject
 
     private static string StatusLabelOf(MockSectionStatus s) => s switch
     {
-        MockSectionStatus.Completed => "завершена",
-        MockSectionStatus.Skipped => "пропущена",
-        MockSectionStatus.InProgress => "не завершена",
-        MockSectionStatus.Failed => "ошибка",
-        _ => "не пройдена",
+        MockSectionStatus.Completed => Loc.Tr("Mock_SectionCompleted"),
+        MockSectionStatus.Skipped => Loc.Tr("Mock_SectionSkipped"),
+        MockSectionStatus.InProgress => Loc.Tr("Mock_SectionInProgress"),
+        MockSectionStatus.Failed => Loc.Tr("Mock_SectionFailed"),
+        _ => Loc.Tr("Mock_SectionNotDone"),
     };
 }
 

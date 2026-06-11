@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
              xmlns:rdg="clr-namespace:EnglishStudio.App.Views.Reading"
              xmlns:lsn="clr-namespace:EnglishStudio.App.Views.Listening"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingTestViewModel}"
              d:DesignHeight="760" d:DesignWidth="1280">
@@ -86,7 +87,7 @@
 
                 <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource Caption}" Text="{Binding ProgressLabel}" Margin="0,0,12,0" VerticalAlignment="Center" />
-                    <Button Content="✕ Отмена" Style="{StaticResource FlatButton}" Command="{Binding CancelCommand}" />
+                    <Button Content="{loc:Tr ReadIelts_Cancel}" Style="{StaticResource FlatButton}" Command="{Binding CancelCommand}" />
                 </StackPanel>
             </Grid>
         </Border>
@@ -170,12 +171,12 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Content="‹ Назад" Style="{StaticResource FlatButton}" Command="{Binding PrevCardCommand}" />
+            <Button Grid.Column="0" Content="{loc:Tr ReadIelts_Back}" Style="{StaticResource FlatButton}" Command="{Binding PrevCardCommand}" />
             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
                        Style="{StaticResource MutedText}" Text="{Binding CardPositionLabel}" />
             <StackPanel Grid.Column="2" Orientation="Horizontal">
-                <Button Content="Вперёд ›" Style="{StaticResource FlatButton}" Margin="0,0,8,0" Command="{Binding NextCardCommand}" />
-                <Button Content="Завершить" Style="{StaticResource AccentButton}" Command="{Binding FinishCommand}" />
+                <Button Content="{loc:Tr ReadIelts_Forward}" Style="{StaticResource FlatButton}" Margin="0,0,8,0" Command="{Binding NextCardCommand}" />
+                <Button Content="{loc:Tr ReadIelts_Finish}" Style="{StaticResource AccentButton}" Command="{Binding FinishCommand}" />
             </StackPanel>
         </Grid>
     </Grid>

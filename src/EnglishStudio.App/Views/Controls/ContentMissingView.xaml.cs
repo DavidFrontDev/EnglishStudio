@@ -1,6 +1,8 @@
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using EnglishStudio.App.Localization;
 
 namespace EnglishStudio.App.Views.Controls;
 
@@ -11,9 +13,31 @@ namespace EnglishStudio.App.Views.Controls;
 /// </summary>
 public partial class ContentMissingView : UserControl
 {
+    private string _appliedDefault = string.Empty;
+
     public ContentMissingView()
     {
         InitializeComponent();
+        // Apply the localized default only if the caller has not already set a value.
+        if (string.IsNullOrEmpty(MessageText))
+        {
+            _appliedDefault = Loc.Tr("Controls_ContentMissingDefault");
+            MessageText = _appliedDefault;
+        }
+        // Weak subscription: re-resolve the default on a language switch without leaking
+        // repeatedly-created instances.
+        PropertyChangedEventManager.AddHandler(
+            LocalizationManager.Instance, OnLanguageChanged, string.Empty);
+    }
+
+    private void OnLanguageChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        // Only refresh the text if it is still our localized default (the caller hasn't overridden it).
+        if (_appliedDefault.Length > 0 && MessageText == _appliedDefault)
+        {
+            _appliedDefault = Loc.Tr("Controls_ContentMissingDefault");
+            MessageText = _appliedDefault;
+        }
     }
 
     public static readonly DependencyProperty ImportCommandProperty =
@@ -34,8 +58,7 @@ public partial class ContentMissingView : UserControl
             nameof(MessageText),
             typeof(string),
             typeof(ContentMissingView),
-            new PropertyMetadata(
-                "Скачайте или соберите контент-пак и импортируйте его, чтобы открыть этот раздел."));
+            new PropertyMetadata(string.Empty));
 
     public string MessageText
     {

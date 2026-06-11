@@ -184,8 +184,12 @@ public sealed class WritingSeedService
             OrderInSet = orderInSet
         };
 
+        var seenBands = new HashSet<int>();
         foreach (var ma in dto.ModelAnswers)
         {
+            if (ma.BandLevel <= 0) continue;
+            if (!seenBands.Add(ma.BandLevel)) continue;
+
             task.ModelAnswers.Add(new WritingModelAnswer
             {
                 BandLevel = ma.BandLevel,

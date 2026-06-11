@@ -27,6 +27,11 @@ public sealed class ClaudeIeltsEssayEvaluator : IIeltsEssayEvaluator
         CancellationToken ct = default)
     {
         if (!_cli.IsAvailable) return null;
+        if (string.IsNullOrWhiteSpace(RubricLoader.Writing))
+        {
+            _log.LogWarning("Essay evaluator: writing rubric not found (content pack not imported); skipping evaluation.");
+            return null;
+        }
 
         var hasImage = !string.IsNullOrWhiteSpace(taskImagePath) && File.Exists(taskImagePath);
         if (!string.IsNullOrWhiteSpace(taskImagePath) && !hasImage)

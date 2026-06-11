@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ai.Reports;
 using EnglishStudio.Modules.Ielts.Speaking;
 using Microsoft.Extensions.Logging;
@@ -29,6 +30,9 @@ public partial class SpeakingResultViewModel : ObservableObject
     [ObservableProperty] private string _statusText = string.Empty;
     [ObservableProperty] private bool _isBusy;
     [ObservableProperty] private int _attemptId;
+
+    /// <summary>Examiner comment in the current UI language (falls back to the other if empty).</summary>
+    [ObservableProperty] private string _feedbackText = string.Empty;
 
     public ObservableCollection<string> Strengths { get; } = new();
     public ObservableCollection<string> Improvements { get; } = new();
@@ -94,7 +98,7 @@ public partial class SpeakingResultViewModel : ObservableObject
             var attempt = await _svc.GetAttemptAsync(attemptId);
             if (attempt is null)
             {
-                StatusText = "Попытка не найдена.";
+                StatusText = Loc.Tr("Speaking_AttemptNotFound");
                 return;
             }
 
@@ -109,6 +113,7 @@ public partial class SpeakingResultViewModel : ObservableObject
             Improvements.Clear();
             FeedbackRu = string.Empty;
             FeedbackEn = string.Empty;
+            FeedbackText = string.Empty;
 
             if (!string.IsNullOrWhiteSpace(attempt.FeedbackJson))
             {
@@ -120,6 +125,7 @@ public partial class SpeakingResultViewModel : ObservableObject
                     {
                         FeedbackRu = report.FeedbackRu ?? string.Empty;
                         FeedbackEn = report.FeedbackEn ?? string.Empty;
+                        FeedbackText = Loc.Pick(FeedbackEn, FeedbackRu);
                         foreach (var s in report.Strengths) Strengths.Add(s);
                         foreach (var imp in report.Improvements) Improvements.Add(imp);
                     }
@@ -151,7 +157,7 @@ public partial class SpeakingResultViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load Speaking result");
-            StatusText = "Не удалось загрузить результат.";
+            StatusText = Loc.Tr("Speaking_FailedToLoadResult");
         }
         finally
         {
@@ -177,17 +183,17 @@ public partial class SpeakingResultViewModel : ObservableObject
     {
         if (AttemptId == 0) return;
         IsBusy = true;
-        StatusText = "Перезапуск AI-оценки…";
+        StatusText = Loc.Tr("Speaking_ReevaluatingAi");
         try
         {
             await _feedback.EvaluateAndSaveAsync(AttemptId);
             await LoadAsync(AttemptId);
-            StatusText = "Оценка обновлена.";
+            StatusText = Loc.Tr("Speaking_EvaluationUpdated");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Reevaluation failed");
-            StatusText = "Не удалось перезапустить оценку: " + ex.Message;
+            StatusText = Loc.Tr("Speaking_ReevaluationFailed") + ex.Message;
         }
         finally
         {

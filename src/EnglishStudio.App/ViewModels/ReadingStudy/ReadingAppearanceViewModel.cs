@@ -13,9 +13,28 @@ public partial class ReadingAppearanceViewModel : ObservableObject
     public const double MinFontSize = 12;
     public const double MaxFontSize = 40;
 
+    /// <summary>Transcription is rendered at this fraction of the main font size…</summary>
+    public const double TranscriptionFontRatio = 0.6;
+    /// <summary>…but never smaller than this, so it stays legible at the minimum body size.</summary>
+    public const double MinTranscriptionFontSize = 8;
+
     [ObservableProperty] private Brush _backgroundBrush;
     [ObservableProperty] private Brush _textBrush;
     [ObservableProperty] private double _fontSize = 17;
+
+    /// <summary>
+    /// When on, the reader renders the IPA transcription above every word (smaller font).
+    /// Singleton-scoped, so the choice persists across reader opens within a session.
+    /// </summary>
+    [ObservableProperty] private bool _showTranscription;
+
+    /// <summary>
+    /// Font size for the transcription line, derived from <see cref="FontSize"/> so it scales
+    /// automatically when the reader text grows or shrinks. Bound live by the per-word units.
+    /// </summary>
+    public double TranscriptionFontSize => Math.Max(MinTranscriptionFontSize, FontSize * TranscriptionFontRatio);
+
+    partial void OnFontSizeChanged(double value) => OnPropertyChanged(nameof(TranscriptionFontSize));
 
     public IReadOnlyList<Brush> BackgroundSwatches { get; }
     public IReadOnlyList<Brush> TextSwatches { get; }

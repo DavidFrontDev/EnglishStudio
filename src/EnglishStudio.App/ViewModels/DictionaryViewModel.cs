@@ -10,6 +10,7 @@ using EnglishStudio.Modules.Dictionary.Data;
 using EnglishStudio.Modules.Dictionary.Entities;
 using EnglishStudio.Modules.Dictionary.Images;
 using EnglishStudio.Modules.Dictionary.Srs;
+using EnglishStudio.App.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using AppPronCat = EnglishStudio.App.Audio.PronunciationCategory;
@@ -67,9 +68,7 @@ public partial class DictionaryViewModel : ObservableObject
     private bool _isContentMissing;
 
     [ObservableProperty]
-    private string _contentMissingText =
-        "Словарь Oxford 5000 входит в контент-пак. Импортируйте пак, чтобы открыть словарь " +
-        "(каркас AWL/AVL без Oxford малополезен).";
+    private string _contentMissingText = Loc.Tr("Dict_ContentMissingText");
 
     [ObservableProperty]
     private WordListItem? _selectedWord;
@@ -125,10 +124,25 @@ public partial class DictionaryViewModel : ObservableObject
         _searchDebounce.Tick += async (_, _) =>
         {
             _searchDebounce.Stop();
-            await ReloadAsync();
+            try
+            {
+                await ReloadAsync();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Dictionary reload failed: {ex}");
+            }
         };
 
         _ = InitializeAsync();
+
+        // Rebuild the filter options (localized labels: "All sources", POS/category names, …) when the
+        // interface language changes. Singleton VM, so no unsubscribe needed.
+        LocalizationManager.Instance.PropertyChanged += (_, e) =>
+        {
+            if (e.PropertyName == nameof(LocalizationManager.CurrentCode))
+                _ = InitializeAsync();
+        };
     }
 
     partial void OnSearchTextChanged(string value) => QueueReload();
@@ -162,10 +176,45 @@ public partial class DictionaryViewModel : ObservableObject
         _searchDebounce.Start();
     }
 
+    private bool _isInitializing;
+    private bool _initRerunQueued;
+
     private async Task InitializeAsync()
+    {
+        if (_isInitializing)
+        {
+            _initRerunQueued = true;
+            return;
+        }
+        _isInitializing = true;
+        try
+        {
+            await InitializeCoreAsync();
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Dictionary initialization failed: {ex}");
+        }
+        finally
+        {
+            _isInitializing = false;
+            if (_initRerunQueued)
+            {
+                _initRerunQueued = false;
+                _ = InitializeAsync();
+            }
+        }
+    }
+
+    private async Task InitializeCoreAsync()
     {
         // Oxford 5000 blocks the dictionary; PHaVE is partial content and does NOT block (see plan §B3).
         IsContentMissing = !_content.IsImported(ContentSection.DictionaryOxford);
+
+        var prevPos = SelectedPos?.Code;
+        var prevSource = SelectedSource?.Source;
+        var prevCategory = SelectedCategory?.Id;
+        var prevTag = SelectedTag?.Id;
 
         using var scope = _scopeFactory.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<DictionaryDbContext>();
@@ -173,40 +222,40 @@ public partial class DictionaryViewModel : ObservableObject
         TotalWords = await db.Words.CountAsync();
 
         PosOptions.Clear();
-        PosOptions.Add(new PosFilterItem { Code = null, Label = "Все части речи" });
+        PosOptions.Add(new PosFilterItem { Code = null, Label = Loc.Tr("Dict_AllPartsOfSpeech") });
         var partsOfSpeech = await db.PartsOfSpeech
             .OrderBy(p => p.Code)
-            .Select(p => new { p.Code, p.NameRu })
+            .Select(p => new { p.Code, p.NameEn, p.NameRu })
             .ToListAsync();
         foreach (var p in partsOfSpeech)
         {
-            PosOptions.Add(new PosFilterItem { Code = p.Code, Label = p.NameRu });
+            PosOptions.Add(new PosFilterItem { Code = p.Code, Label = Loc.IsEnglish ? p.NameEn : p.NameRu });
         }
-        SelectedPos = PosOptions[0];
+        SelectedPos = PosOptions.FirstOrDefault(p => p.Code == prevPos) ?? PosOptions[0];
 
         SourceOptions.Clear();
-        SourceOptions.Add(new SourceFilterItem { Source = null, Label = "Все источники" });
+        SourceOptions.Add(new SourceFilterItem { Source = null, Label = Loc.Tr("Dict_AllSources") });
         SourceOptions.Add(new SourceFilterItem { Source = WordSource.Seed, Label = "Oxford 5000" });
         SourceOptions.Add(new SourceFilterItem { Source = WordSource.Awl,  Label = "AWL" });
         SourceOptions.Add(new SourceFilterItem { Source = WordSource.Avl,  Label = "AVL" });
-        SourceOptions.Add(new SourceFilterItem { Source = WordSource.Phave, Label = "Фразовые глаголы (PHaVE)" });
-        SourceOptions.Add(new SourceFilterItem { Source = WordSource.User, Label = "Мои слова" });
-        SelectedSource = SourceOptions[0];
+        SourceOptions.Add(new SourceFilterItem { Source = WordSource.Phave, Label = Loc.Tr("Dict_SourcePhave") });
+        SourceOptions.Add(new SourceFilterItem { Source = WordSource.User, Label = Loc.Tr("Dict_SourceMyWords") });
+        SelectedSource = SourceOptions.FirstOrDefault(s => s.Source == prevSource) ?? SourceOptions[0];
 
         CategoryOptions.Clear();
-        CategoryOptions.Add(new CategoryFilterItem { Id = null, Label = "Все категории" });
+        CategoryOptions.Add(new CategoryFilterItem { Id = null, Label = Loc.Tr("Dict_AllCategories") });
         var cats = await db.Categories
             .OrderBy(c => c.OrderIndex)
-            .Select(c => new { c.Id, c.Code, c.NameRu })
+            .Select(c => new { c.Id, c.Code, c.NameEn, c.NameRu })
             .ToListAsync();
         foreach (var c in cats)
         {
-            CategoryOptions.Add(new CategoryFilterItem { Id = c.Id, Code = c.Code, Label = c.NameRu });
+            CategoryOptions.Add(new CategoryFilterItem { Id = c.Id, Code = c.Code, Label = Loc.IsEnglish ? c.NameEn : c.NameRu });
         }
-        SelectedCategory = CategoryOptions[0];
+        SelectedCategory = CategoryOptions.FirstOrDefault(c => c.Id == prevCategory) ?? CategoryOptions[0];
 
         TagOptions.Clear();
-        TagOptions.Add(new TagFilterItem { Id = null, Label = "Все теги" });
+        TagOptions.Add(new TagFilterItem { Id = null, Label = Loc.Tr("Dict_AllTags") });
         var tags = await db.Tags
             .Where(t => t.WordTags.Any())
             .OrderBy(t => t.Code)
@@ -216,7 +265,7 @@ public partial class DictionaryViewModel : ObservableObject
         {
             TagOptions.Add(new TagFilterItem { Id = t.Id, Code = t.Code, Label = t.NameRu });
         }
-        SelectedTag = TagOptions[0];
+        SelectedTag = TagOptions.FirstOrDefault(t => t.Id == prevTag) ?? TagOptions[0];
 
         await ReloadAsync();
     }
@@ -235,9 +284,12 @@ public partial class DictionaryViewModel : ObservableObject
 
             if (!string.IsNullOrWhiteSpace(SearchText))
             {
-                var pattern = SearchText.Trim().ToLowerInvariant();
-                q = q.Where(w => EF.Functions.Like(w.Headword.ToLower(), pattern + "%")
-                              || EF.Functions.Like(w.Lemma, pattern + "%"));
+                var pattern = SearchText.Trim().ToLowerInvariant()
+                    .Replace("\\", "\\\\")
+                    .Replace("%", "\\%")
+                    .Replace("_", "\\_");
+                q = q.Where(w => EF.Functions.Like(w.Headword.ToLower(), pattern + "%", "\\")
+                              || EF.Functions.Like(w.Lemma, pattern + "%", "\\"));
             }
 
             if (levels.Count > 0)
@@ -502,7 +554,7 @@ public partial class DictionaryViewModel : ObservableObject
             if (wav is null || target is null) return;
 
             IsTranscribing = true;
-            PronunciationStatus = "Распознавание…";
+            PronunciationStatus = Loc.Tr("Dict_Recognizing");
             try
             {
                 if (!_whisper.IsModelReady)
@@ -511,7 +563,7 @@ public partial class DictionaryViewModel : ObservableObject
                     var ok = await _whisper.EnsureModelDownloadedAsync(progress);
                     if (!ok)
                     {
-                        PronunciationStatus = "Модель Whisper не загружена.";
+                        PronunciationStatus = Loc.Tr("Dict_WhisperModelNotLoaded");
                         return;
                     }
                 }
@@ -522,7 +574,7 @@ public partial class DictionaryViewModel : ObservableObject
                 // word; otherwise just persist it silently against the correct WordId.
                 if (ReferenceEquals(Detail, target))
                 {
-                    LastRecognizedText = string.IsNullOrWhiteSpace(result.Recognized) ? "(не распознано)" : result.Recognized;
+                    LastRecognizedText = string.IsNullOrWhiteSpace(result.Recognized) ? Loc.Tr("Dict_NotRecognized") : result.Recognized;
                     LastScore = result.Score;
                     LastFeedback = result.FeedbackRu;
                     LastCategory = result.Category;
@@ -551,7 +603,7 @@ public partial class DictionaryViewModel : ObservableObject
             }
             catch (Exception ex)
             {
-                PronunciationStatus = $"Ошибка: {ex.Message}";
+                PronunciationStatus = Loc.Format("Dict_PronError", ex.Message);
             }
             finally
             {
@@ -562,13 +614,13 @@ public partial class DictionaryViewModel : ObservableObject
         {
             if (!_recorder.IsMicrophoneAvailable())
             {
-                PronunciationStatus = "Микрофон не найден.";
+                PronunciationStatus = Loc.Tr("Dict_MicNotFound");
                 return;
             }
             LastRecognizedText = null;
             LastScore = 0;
             LastFeedback = null;
-            PronunciationStatus = "Запись… нажмите ещё раз чтобы остановить.";
+            PronunciationStatus = Loc.Tr("Dict_RecordingHint");
             _recordingTarget = Detail;
             _recorder.StartRecording();
             IsRecording = true;

@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Reading.Questions;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 
@@ -23,8 +24,8 @@ public partial class ReadingPartViewModel : ObservableObject
     public int FirstQuestionNumber { get; }
     public int LastQuestionNumber { get; }
     public string RangeLabel => FirstQuestionNumber == LastQuestionNumber
-        ? $"Вопрос {FirstQuestionNumber}"
-        : $"Вопросы {FirstQuestionNumber}–{LastQuestionNumber}";
+        ? Loc.Format("ReadIelts_QuestionSingle", FirstQuestionNumber)
+        : Loc.Format("ReadIelts_QuestionRange", FirstQuestionNumber, LastQuestionNumber);
 
     public ReadingPartViewModel(TestPart part, int startingQuestionNumber)
     {

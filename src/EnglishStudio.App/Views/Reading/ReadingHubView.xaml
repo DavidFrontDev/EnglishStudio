@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingHubViewModel}"
              d:DesignHeight="700" d:DesignWidth="1000">
@@ -52,7 +53,7 @@
                                                 Margin="8,0,0,0"
                                                 VerticalAlignment="Center"
                                                 Visibility="{Binding IsExamOnly, Converter={StaticResource BoolToVis}}">
-                                            <TextBlock Text="🎯 Экзамен" Foreground="White" FontWeight="SemiBold" FontSize="11" />
+                                            <TextBlock Text="{loc:Tr ReadIelts_ExamBadge}" Foreground="White" FontWeight="SemiBold" FontSize="11" />
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Orientation="Horizontal" Margin="0,2,0,0">
@@ -60,7 +61,7 @@
                                         <TextBlock Style="{StaticResource Caption}" Text="  ·  " />
                                         <TextBlock Style="{StaticResource Caption}">
                                             <Run Text="{Binding QuestionCount, Mode=OneWay}" />
-                                            <Run Text=" вопросов" />
+                                            <Run Text="{loc:Tr ReadIelts_Questions}" />
                                         </TextBlock>
                                     </StackPanel>
                                 </StackPanel>
@@ -87,12 +88,12 @@
                        TextWrapping="Wrap" />
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,14,0,0" HorizontalAlignment="Right">
-                <Button Content="Тренировка"
+                <Button Content="{loc:Tr ReadIelts_Practice}"
                         Style="{StaticResource FlatButton}"
                         Margin="0,0,8,0"
                         Command="{Binding StartTrainingCommand}"
-                        ToolTip="Экзаменационные тесты можно запустить только в строгом экзамен-режиме." />
-                <Button Content="Экзамен (60 мин)"
+                        ToolTip="{loc:Tr ReadIelts_PracticeTooltip}" />
+                <Button Content="{loc:Tr ReadIelts_Exam60Min}"
                         Style="{StaticResource AccentButton}"
                         Command="{Binding StartExamCommand}" />
             </StackPanel>
@@ -110,9 +111,9 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="История" Style="{StaticResource H2}" VerticalAlignment="Center" />
+                <TextBlock Grid.Column="0" Text="{loc:Tr ReadIelts_History}" Style="{StaticResource H2}" VerticalAlignment="Center" />
                 <Button Grid.Column="1"
-                        Content="🗑 Очистить"
+                        Content="{loc:Tr ReadIelts_ClearHistory}"
                         Style="{StaticResource FlatButton}"
                         Command="{Binding ClearHistoryCommand}"
                         VerticalAlignment="Center" />

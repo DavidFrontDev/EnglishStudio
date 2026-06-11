@@ -1,4 +1,5 @@
 using System.Windows;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Shell;
 
 namespace EnglishStudio.App.Views.Dialogs;
@@ -33,11 +34,15 @@ public partial class ConfirmWindow : ChromedWindow
         Window? owner,
         string title,
         string message,
-        string confirmText = "Да",
-        string cancelText = "Отмена",
+        string? confirmText = null,
+        string? cancelText = null,
         string icon = "⚠")
     {
-        var dialog = new ConfirmWindow(title, message, confirmText, cancelText, icon);
+        var dialog = new ConfirmWindow(
+            title, message,
+            confirmText ?? Loc.Tr("Dialog_Yes"),
+            cancelText  ?? Loc.Tr("Dialog_Cancel"),
+            icon);
         if (owner is not null && !ReferenceEquals(owner, dialog))
             dialog.Owner = owner;
         return dialog.ShowDialog() == true;

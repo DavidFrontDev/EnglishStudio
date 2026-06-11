@@ -1,4 +1,5 @@
 using System.Windows;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Shell;
 
 namespace EnglishStudio.App.Views.Dialogs;
@@ -32,10 +33,10 @@ public partial class RenameWindow : ChromedWindow
     /// Shows the dialog modally, prefilled with <paramref name="currentValue"/>.
     /// Returns the trimmed new value, or null if cancelled / unchanged / empty.
     /// </summary>
-    public static string? Show(Window? owner, string currentValue, string title = "Переименовать", string caption = "Новое название")
+    public static string? Show(Window? owner, string currentValue, string? title = null, string? caption = null)
     {
-        var dialog = new RenameWindow { Title = title };
-        dialog.CaptionText.Text = caption;
+        var dialog = new RenameWindow { Title = title ?? Loc.Tr("Dialog_RenameTitle") };
+        dialog.CaptionText.Text = caption ?? Loc.Tr("Dialog_RenameCaption");
         dialog.InputBox.Text = currentValue;
         if (owner is not null && !ReferenceEquals(owner, dialog))
             dialog.Owner = owner;

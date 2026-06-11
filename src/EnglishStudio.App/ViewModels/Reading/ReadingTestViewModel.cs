@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.ViewModels.Listening;
 using EnglishStudio.App.ViewModels.Reading.Questions;
 using EnglishStudio.Modules.Ielts.Core.Entities;
@@ -49,8 +50,8 @@ public partial class ReadingTestViewModel : ObservableObject, IDisposable
 
     [ObservableProperty] private int _answeredCount;
     [ObservableProperty] private int _totalQuestions;
-    public string ProgressLabel => $"Отвечено {AnsweredCount} / {TotalQuestions}";
-    public string CardPositionLabel => Cards.Count == 0 ? string.Empty : $"Карточка {CurrentCardIndex + 1} из {Cards.Count}";
+    public string ProgressLabel => Loc.Format("ReadIelts_ProgressLabel", AnsweredCount, TotalQuestions);
+    public string CardPositionLabel => Cards.Count == 0 ? string.Empty : Loc.Format("ReadIelts_CardPositionLabel", CurrentCardIndex + 1, Cards.Count);
 
     // ── Timer ──
     [ObservableProperty] private bool _timerVisible;
@@ -216,6 +217,10 @@ public partial class ReadingTestViewModel : ObservableObject, IDisposable
             await _runner.FinishAsync(_attempt.Id);
             Finished?.Invoke(_attempt.Id);
             completed = true;
+        }
+        catch (Exception ex)
+        {
+            _log.LogError(ex, "Failed to finish reading attempt {Id}", _attempt.Id);
         }
         finally
         {

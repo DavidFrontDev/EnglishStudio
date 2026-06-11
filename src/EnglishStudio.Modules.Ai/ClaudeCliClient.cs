@@ -11,15 +11,20 @@ public sealed class ClaudeCliClient : IClaudeCliClient
 {
     private readonly ILogger<ClaudeCliClient> _log;
     private readonly IOptionsMonitor<ClaudeCliOptions> _options;
+    private readonly IOptionsMonitorCache<ClaudeCliOptions> _optionsCache;
     private readonly SemaphoreSlim _gate = new(initialCount: 1, maxCount: 1);
 
     private string? _executablePath;
     private string? _version;
 
-    public ClaudeCliClient(ILogger<ClaudeCliClient> log, IOptionsMonitor<ClaudeCliOptions> options)
+    public ClaudeCliClient(
+        ILogger<ClaudeCliClient> log,
+        IOptionsMonitor<ClaudeCliOptions> options,
+        IOptionsMonitorCache<ClaudeCliOptions> optionsCache)
     {
         _log = log;
         _options = options;
+        _optionsCache = optionsCache;
         _executablePath = ClaudeCliLocator.Locate(_options.CurrentValue.ConfiguredPath);
     }
 
@@ -29,6 +34,7 @@ public sealed class ClaudeCliClient : IClaudeCliClient
 
     public async Task<bool> RefreshAsync(CancellationToken ct = default)
     {
+        _optionsCache.TryRemove(Options.DefaultName);
         _executablePath = ClaudeCliLocator.Locate(_options.CurrentValue.ConfiguredPath);
         if (_executablePath is null)
         {
@@ -120,22 +126,35 @@ public sealed class ClaudeCliClient : IClaudeCliClient
         using var process = new Process { StartInfo = startInfo };
         process.Start();
 
-        // Write prompt to stdin so we are not bounded by Windows command-line length.
-        await process.StandardInput.WriteAsync(finalPrompt.AsMemory(), ct);
-        await process.StandardInput.FlushAsync(ct);
-        process.StandardInput.Close();
-
-        var stdoutTask = process.StandardOutput.ReadToEndAsync(ct);
-        var stderrTask = process.StandardError.ReadToEndAsync(ct);
-
         using var timeoutCts = CancellationTokenSource.CreateLinkedTokenSource(ct);
         timeoutCts.CancelAfter(timeout);
 
+        var stdoutTask = process.StandardOutput.ReadToEndAsync(timeoutCts.Token);
+        var stderrTask = process.StandardError.ReadToEndAsync(timeoutCts.Token);
+
+        // Write prompt to stdin so we are not bounded by Windows command-line length.
+        var stdinComplete = false;
+        var stdinTask = Task.Run(async () =>
+        {
+            try
+            {
+                await process.StandardInput.WriteAsync(finalPrompt.AsMemory(), timeoutCts.Token);
+                await process.StandardInput.FlushAsync(timeoutCts.Token);
+                stdinComplete = true;
+            }
+            catch (IOException) { /* process exited before consuming stdin */ }
+            finally
+            {
+                try { process.StandardInput.Close(); } catch (IOException) { /* broken pipe on flush */ }
+            }
+        });
+
         try
         {
+            await stdinTask.WaitAsync(timeoutCts.Token);
             await process.WaitForExitAsync(timeoutCts.Token);
         }
-        catch (OperationCanceledException)
+        catch
         {
             try { process.Kill(entireProcessTree: true); } catch { /* best effort */ }
             throw;
@@ -144,6 +163,17 @@ public sealed class ClaudeCliClient : IClaudeCliClient
         var stdout = await stdoutTask;
         var stderr = await stderrTask;
         sw.Stop();
+
+        if (!stdinComplete && process.ExitCode == 0)
+        {
+            _log.LogWarning("Claude CLI consumed a truncated prompt (stdin pipe broke mid-write) but exited 0; treating as error.");
+            return new ClaudeCliResponse(
+                Text: "stdin pipe broke before the full prompt was delivered",
+                SessionId: null,
+                CostUsd: null,
+                DurationMs: (int)sw.ElapsedMilliseconds,
+                IsError: true);
+        }
 
         if (process.ExitCode != 0)
         {
@@ -198,10 +228,22 @@ public sealed class ClaudeCliClient : IClaudeCliClient
                 .Distinct(StringComparer.OrdinalIgnoreCase);
             foreach (var d in dirs)
             {
-                sb.Append(" --add-dir \"").Append(d).Append('"');
+                sb.Append(" --add-dir ").Append(QuoteDirectory(d));
             }
         }
         return sb.ToString();
+    }
+
+    private static string QuoteDirectory(string dir)
+    {
+        var trimmed = dir.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+        if (trimmed.Length == 0 || trimmed.EndsWith(':'))
+        {
+            // Drive/filesystem root: the separator is significant ("C:" is drive-relative),
+            // so keep it and double it per MSVCRT quoting rules.
+            return "\"" + trimmed + "\\\\\"";
+        }
+        return "\"" + trimmed + "\"";
     }
 
     /// <summary>

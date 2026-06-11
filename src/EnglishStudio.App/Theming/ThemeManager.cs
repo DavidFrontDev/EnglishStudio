@@ -17,12 +17,7 @@ public class ThemeManager : IThemeManager
 
     public void Apply(AppTheme theme)
     {
-        var paletteName = theme switch
-        {
-            AppTheme.DarkBlue => "DarkBlue",
-            AppTheme.Light    => "Light",
-            _                 => "DarkBlue",
-        };
+        var paletteName = AppThemes.PaletteFileFor(theme);
 
         var uri = new Uri(
             $"pack://application:,,,/EnglishStudio.App;component/Themes/Palettes/{paletteName}.xaml",

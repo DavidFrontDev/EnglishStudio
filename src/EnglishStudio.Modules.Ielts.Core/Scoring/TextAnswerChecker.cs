@@ -32,12 +32,6 @@ public sealed class TextAnswerChecker : IAnswerChecker
             return new AnswerCheckResult(false, 0);
         }
 
-        // Enforce No-More-Than-N-Words limit if set.
-        if (question.WordLimitMax is int limit && AnswerNormalization.CountWords(userAnswer) > limit)
-        {
-            return new AnswerCheckResult(false, 0, $"Превышен лимит слов ({limit}).");
-        }
-
         // Build the set of accepted answers: AnswerKeyJson + optional AcceptableAnswersJson.
         var accepted = new List<string> { ExtractText(question.AnswerKeyJson) };
         if (!string.IsNullOrWhiteSpace(question.AcceptableAnswersJson))
@@ -60,6 +54,12 @@ public sealed class TextAnswerChecker : IAnswerChecker
             {
                 return new AnswerCheckResult(true, question.Points);
             }
+        }
+
+        // Enforce No-More-Than-N-Words limit only when no accepted answer matched.
+        if (question.WordLimitMax is int limit && AnswerNormalization.CountWords(userAnswer) > limit)
+        {
+            return new AnswerCheckResult(false, 0, $"Word limit exceeded ({limit}).");
         }
 
         return new AnswerCheckResult(false, 0);

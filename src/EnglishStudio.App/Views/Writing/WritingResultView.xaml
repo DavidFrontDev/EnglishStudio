@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Writing"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:WritingResultScreen}"
              d:DesignHeight="800" d:DesignWidth="1200">
@@ -26,16 +27,16 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0"
-                    Content="‹ К списку тестов"
+                    Content="{loc:Tr Writing_BackToList}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding BackCommand}" />
             <TextBlock Grid.Column="1"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Style="{StaticResource H2}"
-                       Text="Результат теста" />
+                       Text="{loc:Tr Writing_TestResult}" />
             <Button Grid.Column="2"
-                    Content="🔄 Перезапустить AI"
+                    Content="{loc:Tr Writing_RestartAi}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding Result.ReevaluateAllCommand}" />
         </Grid>
@@ -53,10 +54,9 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
-                            <TextBlock Text="Итоговая оценка Writing" Style="{StaticResource H2}" />
-                            <TextBlock Style="{StaticResource MutedText}" Margin="0,4,0,0" TextWrapping="Wrap">
-                                Расчёт по официальной IELTS-формуле: Task 1 имеет вес ⅓, Task 2 — ⅔. Округление до ближайшего 0.5.
-                            </TextBlock>
+                            <TextBlock Text="{loc:Tr Writing_OverallScore}" Style="{StaticResource H2}" />
+                            <TextBlock Style="{StaticResource MutedText}" Margin="0,4,0,0" TextWrapping="Wrap"
+                                       Text="{loc:Tr Writing_OverallScoreFormula}" />
                         </StackPanel>
                         <Border Grid.Column="1"
                                 Background="{DynamicResource AccentMidBrush}"
@@ -93,7 +93,7 @@
                                                 <Run Text="{Binding KindLabel, Mode=OneWay}" /><Run Text=" — " /><Run Text="{Binding TaskCode, Mode=OneWay}" />
                                             </TextBlock>
                                             <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0">
-                                                <Run Text="{Binding WordCount, Mode=OneWay}" /><Run Text=" слов" /><Run Text="    ⏱ Время прохождения: " /><Run Text="{Binding DurationDisplay, Mode=OneWay}" />
+                                                <Run Text="{Binding WordCount, Mode=OneWay}" /><Run Text="{loc:Tr Writing_WordsSuffix}" /><Run Text="{loc:Tr Writing_TimeTaken}" /><Run Text="{Binding DurationDisplay, Mode=OneWay}" />
                                             </TextBlock>
                                         </StackPanel>
                                         <Border Grid.Column="1"
@@ -154,10 +154,8 @@
                                             Margin="0,0,0,12"
                                             Visibility="{Binding HasBands, Converter={StaticResource BoolToVis}}">
                                         <StackPanel>
-                                            <TextBlock Text="Комментарий (RU)" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
-                                            <TextBlock Text="{Binding FeedbackRu}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,8" />
-                                            <TextBlock Text="Комментарий (EN)" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
-                                            <TextBlock Text="{Binding FeedbackEn}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                            <TextBlock Text="{loc:Tr Writing_Feedback}" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
+                                            <TextBlock Text="{Binding Feedback}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,0" />
                                         </StackPanel>
                                     </Border>
 
@@ -186,7 +184,7 @@
                                                                        FontStyle="Italic"
                                                                        TextWrapping="Wrap" />
                                                         </StackPanel>
-                                                        <TextBlock Text="{Binding ExplanationRu}"
+                                                        <TextBlock Text="{Binding Explanation}"
                                                                    Style="{StaticResource MutedText}"
                                                                    TextWrapping="Wrap"
                                                                    Margin="0,4,0,0" />
@@ -201,7 +199,7 @@
                                     </ItemsControl>
 
                                     <!-- User answer -->
-                                    <Expander Header="Ваш ответ"
+                                    <Expander Header="{loc:Tr Writing_YourAnswer}"
                                               Margin="0,0,0,8"
                                               Foreground="{DynamicResource StrongTextBrush}">
                                         <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Padding="10,8" Margin="0,6,0,0">
@@ -215,7 +213,7 @@
                                             Command="{Binding ToggleModelAnswerCommand}"
                                             Visibility="{Binding HasModelAnswer, Converter={StaticResource BoolToVis}}">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="📘 Показать эталон band " />
+                                            <TextBlock Text="{loc:Tr Writing_ShowModelAnswer}" />
                                             <TextBlock Text="{Binding ModelAnswerBand, Mode=OneWay}" />
                                         </StackPanel>
                                     </Button>
@@ -226,7 +224,7 @@
                                             Visibility="{Binding ShowModelAnswer, Converter={StaticResource BoolToVis}}">
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                                <TextBlock Text="Эталонный ответ band "
+                                                <TextBlock Text="{loc:Tr Writing_ModelAnswerBand}"
                                                            FontWeight="SemiBold"
                                                            Foreground="{DynamicResource AccentHotBrush}" />
                                                 <TextBlock Text="{Binding ModelAnswerBand, Mode=OneWay}"
@@ -260,7 +258,7 @@
                                                 <Run Text="{Binding KindLabel, Mode=OneWay}" /><Run Text=" — " /><Run Text="{Binding TaskCode, Mode=OneWay}" />
                                             </TextBlock>
                                             <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0">
-                                                <Run Text="{Binding WordCount, Mode=OneWay}" /><Run Text=" слов" /><Run Text="    ⏱ Время прохождения: " /><Run Text="{Binding DurationDisplay, Mode=OneWay}" />
+                                                <Run Text="{Binding WordCount, Mode=OneWay}" /><Run Text="{loc:Tr Writing_WordsSuffix}" /><Run Text="{loc:Tr Writing_TimeTaken}" /><Run Text="{Binding DurationDisplay, Mode=OneWay}" />
                                             </TextBlock>
                                         </StackPanel>
                                         <Border Grid.Column="1"
@@ -321,10 +319,8 @@
                                             Margin="0,0,0,12"
                                             Visibility="{Binding HasBands, Converter={StaticResource BoolToVis}}">
                                         <StackPanel>
-                                            <TextBlock Text="Комментарий (RU)" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
-                                            <TextBlock Text="{Binding FeedbackRu}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,8" />
-                                            <TextBlock Text="Комментарий (EN)" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
-                                            <TextBlock Text="{Binding FeedbackEn}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                            <TextBlock Text="{loc:Tr Writing_Feedback}" FontWeight="SemiBold" Foreground="{DynamicResource StrongTextBrush}" />
+                                            <TextBlock Text="{Binding Feedback}" Style="{StaticResource BodyText}" TextWrapping="Wrap" Margin="0,4,0,0" />
                                         </StackPanel>
                                     </Border>
 
@@ -353,7 +349,7 @@
                                                                        FontStyle="Italic"
                                                                        TextWrapping="Wrap" />
                                                         </StackPanel>
-                                                        <TextBlock Text="{Binding ExplanationRu}"
+                                                        <TextBlock Text="{Binding Explanation}"
                                                                    Style="{StaticResource MutedText}"
                                                                    TextWrapping="Wrap"
                                                                    Margin="0,4,0,0" />
@@ -367,7 +363,7 @@
                                         </ItemsControl.ItemTemplate>
                                     </ItemsControl>
 
-                                    <Expander Header="Ваш ответ"
+                                    <Expander Header="{loc:Tr Writing_YourAnswer}"
                                               Margin="0,0,0,8"
                                               Foreground="{DynamicResource StrongTextBrush}">
                                         <Border Background="{DynamicResource OverlayLight13Brush}" CornerRadius="6" Padding="10,8" Margin="0,6,0,0">
@@ -380,7 +376,7 @@
                                             Command="{Binding ToggleModelAnswerCommand}"
                                             Visibility="{Binding HasModelAnswer, Converter={StaticResource BoolToVis}}">
                                         <StackPanel Orientation="Horizontal">
-                                            <TextBlock Text="📘 Показать эталон band " />
+                                            <TextBlock Text="{loc:Tr Writing_ShowModelAnswer}" />
                                             <TextBlock Text="{Binding ModelAnswerBand, Mode=OneWay}" />
                                         </StackPanel>
                                     </Button>
@@ -391,7 +387,7 @@
                                             Visibility="{Binding ShowModelAnswer, Converter={StaticResource BoolToVis}}">
                                         <StackPanel>
                                             <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                                                <TextBlock Text="Эталонный ответ band "
+                                                <TextBlock Text="{loc:Tr Writing_ModelAnswerBand}"
                                                            FontWeight="SemiBold"
                                                            Foreground="{DynamicResource AccentHotBrush}" />
                                                 <TextBlock Text="{Binding ModelAnswerBand, Mode=OneWay}"

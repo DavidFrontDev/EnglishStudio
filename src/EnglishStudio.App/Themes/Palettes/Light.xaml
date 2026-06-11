@@ -24,8 +24,8 @@
     <SolidColorBrush x:Key="PrimaryTextBrush" Color="#1F2937" />
     <SolidColorBrush x:Key="TitleTextBrush" Color="#0F172A" />
     <SolidColorBrush x:Key="StrongTextBrush" Color="#000000" />
-    <SolidColorBrush x:Key="MutedTextBrush" Color="#64748B" />
-    <SolidColorBrush x:Key="CaptionTextBrush" Color="#94A3B8" />
+    <SolidColorBrush x:Key="MutedTextBrush" Color="#4B5563" />
+    <SolidColorBrush x:Key="CaptionTextBrush" Color="#6B7688" />
 
     <SolidColorBrush x:Key="SuccessBrush" Color="#16A34A" />
     <SolidColorBrush x:Key="ErrorBrush" Color="#DC2626" />
@@ -64,5 +64,33 @@
     <SolidColorBrush x:Key="PillC1Brush" Color="#9333EA" />
     <SolidColorBrush x:Key="PillC2Brush" Color="#7E22CE" />
     <SolidColorBrush x:Key="PillUnknownBrush" Color="#64748B" />
+
+    <!--  On-accent text (тёмный текст на AccentHot-пилле «BAND») — читаем на среднем синем  -->
+    <SolidColorBrush x:Key="OnAccentBrush" Color="#073a5a" />
+
+    <!--  Surfaces — светлый непрозрачный фон выпадающих списков (тёмный текст пунктов читаем)  -->
+    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#FFF7F9FC" />
+
+    <!--  Speaking-таймеры: фон держим тёмным даже в светлой теме (поверх белые цифры)  -->
+    <SolidColorBrush x:Key="NotePanelBrush" Color="#26365E" />
+    <SolidColorBrush x:Key="NotePanelTextBrush" Color="#A4C0FF" />
+    <SolidColorBrush x:Key="WarnPanelBrush" Color="#5C2A2A" />
+    <SolidColorBrush x:Key="WarnPanelTextBrush" Color="#FFB7B7" />
+
+    <!--  Record button — семантика записи едина во всех темах  -->
+    <SolidColorBrush x:Key="RecordStartBrush" Color="#3DA66B" />
+    <SolidColorBrush x:Key="RecordStopBrush" Color="#C24545" />
+
+    <!--  Image lightbox — тёмный backdrop во всех темах  -->
+    <SolidColorBrush x:Key="ImageBackdropBrush" Color="#161616" />
+    <SolidColorBrush x:Key="ImageBackdropTextBrush" Color="#E0E0E0" />
+
+    <!--  Selection gradients — БЛЕДНЫЙ акцент: на нём читается тёмный (Primary/Strong) текст  -->
+    <Color x:Key="SelectedItemStartColor">#CFE3F5</Color>
+    <Color x:Key="SelectedItemMidColor">#B8D4EE</Color>
+    <Color x:Key="SelectedItemEndColor">#A6C8E8</Color>
+    <Color x:Key="SidebarSelectStartColor">#DCEAF7</Color>
+    <Color x:Key="SidebarSelectEndColor">#C5DCF0</Color>
+    <Color x:Key="ShimmerColor">#552563EB</Color>
 
 </ResourceDictionary>

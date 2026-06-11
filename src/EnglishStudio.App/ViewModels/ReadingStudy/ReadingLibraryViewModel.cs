@@ -1,7 +1,9 @@
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.App.Views.ReadingStudy;
 using EnglishStudio.Modules.Dictionary.Entities;
@@ -30,12 +32,15 @@ public partial class ReadingLibraryViewModel : ObservableObject
     [ObservableProperty] private bool _isLoading;
     [ObservableProperty] private string _statusText = string.Empty;
 
-    // ── F7 filters ─────────────────────────────────────────────────────────
-    public IReadOnlyList<string> SourceOptions { get; } = new[] { "Все тексты", "Мои", "Встроенные" };
-    public IReadOnlyList<string> CefrOptions { get; } = new[] { "Все уровни", "A1", "A2", "B1", "B2", "C1", "C2" };
+    // ── F7 filters: stable language-neutral tokens + localized labels, rebuilt live on switch ──
+    /// <summary>A filter ComboBox item: stable <see cref="Token"/> for comparison + localized <see cref="Label"/>.</summary>
+    public sealed record FilterOption(string Token, string Label);
 
-    [ObservableProperty] private string _selectedSource = "Все тексты";
-    [ObservableProperty] private string _selectedCefr = "Все уровни";
+    public ObservableCollection<FilterOption> SourceOptions { get; } = new();
+    public ObservableCollection<FilterOption> CefrOptions { get; } = new();
+
+    [ObservableProperty] private string _selectedSource = "all";
+    [ObservableProperty] private string _selectedCefr = "all";
 
     /// <summary>When off (default), soft-hidden texts are filtered out of the library.</summary>
     [ObservableProperty] private bool _showHidden;
@@ -57,7 +62,31 @@ public partial class ReadingLibraryViewModel : ObservableObject
         _services = services;
         _log = log;
 
+        RebuildFilterLabels();
+        LocalizationManager.Instance.PropertyChanged += OnLanguageChanged;
+
         _ = LoadAsync();
+    }
+
+    private void OnLanguageChanged(object? sender, PropertyChangedEventArgs e) => RebuildFilterLabels();
+
+    /// <summary>(Re)builds the filter options with localized labels, preserving the selected tokens.</summary>
+    private void RebuildFilterLabels()
+    {
+        var src = SelectedSource;
+        var cefr = SelectedCefr;
+        SourceOptions.Clear();
+        SourceOptions.Add(new FilterOption("all", Loc.Tr("ReadStudy_SourceAll")));
+        SourceOptions.Add(new FilterOption("mine", Loc.Tr("ReadStudy_SourceMine")));
+        SourceOptions.Add(new FilterOption("builtin", Loc.Tr("ReadStudy_SourceBuiltin")));
+        CefrOptions.Clear();
+        CefrOptions.Add(new FilterOption("all", Loc.Tr("ReadStudy_CefrAll")));
+        foreach (var lvl in new[] { "A1", "A2", "B1", "B2", "C1", "C2" })
+            CefrOptions.Add(new FilterOption(lvl, lvl));
+        SelectedSource = src;
+        SelectedCefr = cefr;
+        OnPropertyChanged(nameof(SelectedSource));
+        OnPropertyChanged(nameof(SelectedCefr));
     }
 
     public async Task LoadAsync()
@@ -72,12 +101,12 @@ public partial class ReadingLibraryViewModel : ObservableObject
             ApplyFilter();
 
             if (_all.Count == 0)
-                StatusText = "Пока нет текстов. Нажмите «Добавить текст», чтобы вставить свой.";
+                StatusText = Loc.Tr("ReadStudy_NoTextsYet");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load reading library");
-            StatusText = "Не удалось загрузить список текстов.";
+            StatusText = Loc.Tr("ReadStudy_LoadTextsFailed");
         }
         finally
         {
@@ -92,22 +121,22 @@ public partial class ReadingLibraryViewModel : ObservableObject
 
         q = SelectedSource switch
         {
-            "Мои" => q.Where(t => t.Source != ReadingSource.Builtin),
-            "Встроенные" => q.Where(t => t.Source == ReadingSource.Builtin),
+            "mine" => q.Where(t => t.Source != ReadingSource.Builtin),
+            "builtin" => q.Where(t => t.Source == ReadingSource.Builtin),
             _ => q,
         };
 
         if (!ShowHidden)
             q = q.Where(t => !t.IsHidden);
 
-        if (SelectedCefr != "Все уровни" && Enum.TryParse<CefrLevel>(SelectedCefr, out var level))
+        if (SelectedCefr != "all" && Enum.TryParse<CefrLevel>(SelectedCefr, out var level))
             q = q.Where(t => t.EstimatedCefr == level);
 
         Texts.Clear();
         foreach (var it in q) Texts.Add(it);
 
         if (_all.Count > 0 && Texts.Count == 0)
-            StatusText = "Нет текстов под выбранный фильтр.";
+            StatusText = Loc.Tr("ReadStudy_NoTextsFilter");
         else if (_all.Count > 0)
             StatusText = string.Empty;
     }
@@ -138,12 +167,10 @@ public partial class ReadingLibraryViewModel : ObservableObject
         {
             var proceed = ConfirmWindow.Show(
                 Application.Current.MainWindow,
-                "Очень большой текст",
-                $"В тексте ~{words:N0} слов. Раздел «Чтение» рассчитан на рассказы и главы — " +
-                $"тексты больше {ReadingTokenizer.LargeTextWordThreshold:N0} слов (например, целые книги) " +
-                "могут открываться очень медленно или подвесить окно чтения. Всё равно добавить?",
-                confirmText: "Добавить",
-                cancelText: "Отмена",
+                Loc.Tr("ReadStudy_LargeTextTitle"),
+                Loc.Format("ReadStudy_LargeTextBody", words, ReadingTokenizer.LargeTextWordThreshold),
+                confirmText: Loc.Tr("ReadStudy_Add"),
+                cancelText: Loc.Tr("ReadStudy_Cancel"),
                 icon: "⚠");
             if (!proceed) return;
         }
@@ -156,7 +183,7 @@ public partial class ReadingLibraryViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to add reading text");
-            StatusText = "Не удалось сохранить текст.";
+            StatusText = Loc.Tr("ReadStudy_SaveTextFailed");
         }
     }
 
@@ -195,8 +222,8 @@ public partial class ReadingLibraryViewModel : ObservableObject
         var newTitle = RenameWindow.Show(
             Application.Current.MainWindow,
             item.Title,
-            title: "Переименовать текст",
-            caption: "Название текста");
+            title: Loc.Tr("ReadStudy_RenameTextTitle"),
+            caption: Loc.Tr("ReadStudy_RenameTextCaption"));
         if (newTitle is null) return;
 
         try
@@ -207,7 +234,7 @@ public partial class ReadingLibraryViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to rename reading text {Id}", item.Id);
-            StatusText = "Не удалось переименовать текст.";
+            StatusText = Loc.Tr("ReadStudy_RenameTextFailed");
         }
     }
 
@@ -218,9 +245,9 @@ public partial class ReadingLibraryViewModel : ObservableObject
 
         var ok = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Удалить текст",
-            $"Удалить «{item.Title}»? Это действие необратимо.",
-            confirmText: "Удалить",
+            Loc.Tr("ReadStudy_DeleteTextTitle"),
+            Loc.Format("ReadStudy_DeleteTextBody", item.Title),
+            confirmText: Loc.Tr("ReadStudy_Delete"),
             icon: "🗑");
         if (!ok) return;
 
@@ -232,7 +259,7 @@ public partial class ReadingLibraryViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to delete reading text {Id}", item.Id);
-            StatusText = "Не удалось удалить текст.";
+            StatusText = Loc.Tr("ReadStudy_DeleteTextFailed");
         }
     }
 
@@ -255,7 +282,7 @@ public partial class ReadingLibraryViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to set hidden={Hidden} for reading text {Id}", hidden, item.Id);
-            StatusText = "Не удалось изменить видимость текста.";
+            StatusText = Loc.Tr("ReadStudy_SetHiddenFailed");
         }
     }
 }

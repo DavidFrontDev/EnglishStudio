@@ -1,5 +1,6 @@
 using EnglishStudio.Modules.Dictionary.Data;
 using EnglishStudio.Modules.Dictionary.Entities;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Dictionary.Srs;
 using EnglishStudio.Modules.Reading.Seed;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ public sealed class PreTeachService : IPreTeachService
     private readonly ITextLibraryService _library;
     private readonly ISrsService _srs;
     private readonly IDictionaryEnrichmentService _enrichment;
+    private readonly IMessageLocalizer _messages;
     private readonly ILogger<PreTeachService> _log;
 
     public PreTeachService(
@@ -29,12 +31,14 @@ public sealed class PreTeachService : IPreTeachService
         ITextLibraryService library,
         ISrsService srs,
         IDictionaryEnrichmentService enrichment,
+        IMessageLocalizer messages,
         ILogger<PreTeachService> log)
     {
         _scopeFactory = scopeFactory;
         _library = library;
         _srs = srs;
         _enrichment = enrichment;
+        _messages = messages;
         _log = log;
     }
 
@@ -129,11 +133,11 @@ public sealed class PreTeachService : IPreTeachService
             {
                 if (!_enrichment.IsAvailable)
                 {
-                    progress?.Report($"Пропускаю «{candidate.Headword}» — нет перевода офлайн");
+                    progress?.Report(_messages.Format("ReadStudy_PreTeachSkipNoTranslation", candidate.Headword));
                     continue;
                 }
 
-                progress?.Report($"Подбираю перевод: {candidate.Headword}…");
+                progress?.Report(_messages.Format("ReadStudy_PreTeachTranslating", candidate.Headword));
                 var lemma = string.IsNullOrWhiteSpace(candidate.Lemma) ? candidate.Headword : candidate.Lemma;
                 wordId = await _enrichment.FetchAndPersistWordAsync(lemma, contextSentence: null, ct);
                 if (wordId is null)
@@ -143,12 +147,12 @@ public sealed class PreTeachService : IPreTeachService
                 }
             }
 
-            progress?.Report($"Добавляю в тренажёр: {candidate.Headword}…");
+            progress?.Report(_messages.Format("ReadStudy_PreTeachAdding", candidate.Headword));
             var prog = await _srs.AddWordAsync(wordId.Value, ct);
             if (prog is not null) added++;
         }
 
-        progress?.Report($"Готово: добавлено {added}.");
+        progress?.Report(_messages.Format("ReadStudy_PreTeachDone", added));
         return added;
     }
 

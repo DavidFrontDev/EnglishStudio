@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DesignHeight="80" d:DesignWidth="220">
 
@@ -13,12 +14,12 @@
     <Grid>
         <!-- IDLE -->
         <Button x:Name="IdleButton"
-                Content="🎤 Начать запись"
+                Content="{loc:Tr Speaking_StartRecording}"
                 Padding="22,10"
                 FontSize="15"
                 FontWeight="SemiBold"
                 Foreground="{DynamicResource StrongTextBrush}"
-                Background="#3DA66B"
+                Background="{DynamicResource RecordStartBrush}"
                 BorderThickness="0"
                 Cursor="Hand"
                 Click="OnIdleClick"
@@ -38,7 +39,7 @@
                 FontSize="15"
                 FontWeight="SemiBold"
                 Foreground="{DynamicResource StrongTextBrush}"
-                Background="#C24545"
+                Background="{DynamicResource RecordStopBrush}"
                 BorderThickness="0"
                 Cursor="Hand"
                 Click="OnStopClick"
@@ -65,7 +66,7 @@
                         </EventTrigger>
                     </Ellipse.Triggers>
                 </Ellipse>
-                <TextBlock Text="⏹  Остановить · " />
+                <TextBlock Text="{loc:Tr Speaking_StopDot}" />
                 <TextBlock x:Name="RemainingLabel" Text="00:30" />
             </StackPanel>
         </Button>

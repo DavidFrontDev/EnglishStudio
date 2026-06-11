@@ -1,8 +1,25 @@
 namespace EnglishStudio.Modules.Dictionary.Images;
 
+/// <summary>Interface (UI) language. Neutral resources are Russian, so <see cref="Ru"/> is the default/fallback.</summary>
+public enum AppLanguage
+{
+    Ru = 0,
+    En = 1,
+}
+
 public interface IAppSettings
 {
     string? PexelsApiKey { get; }
+
+    /// <summary>Selected interface language; defaults to Russian.</summary>
+    AppLanguage Language { get; }
+
+    /// <summary>
+    /// Selected colour theme, stored as the <c>AppTheme</c> enum name (e.g. "DarkBlue").
+    /// Kept as a string so this module need not reference the App project's theme enum;
+    /// null = use the application default.
+    /// </summary>
+    string? Theme { get; }
 
     int DailyNewLimit { get; }
     int DailyReviewLimit { get; }
@@ -28,6 +45,8 @@ public interface IAppSettings
 /// </summary>
 public sealed record SettingsUpdate
 {
+    public AppLanguage? Language { get; init; }
+    public Optional<string?> Theme { get; init; }
     public Optional<string?> PexelsApiKey { get; init; }
     public int? DailyNewLimit { get; init; }
     public int? DailyReviewLimit { get; init; }

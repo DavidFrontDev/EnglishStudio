@@ -5,9 +5,10 @@
                         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                         xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Writing"
                         xmlns:appshell="clr-namespace:EnglishStudio.App.Shell"
+                        xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
                         mc:Ignorable="d"
                         d:DataContext="{d:DesignInstance Type=vm:AiProcessingViewModel}"
-                        Title="AI-оценка"
+                        Title="{loc:Tr Writing_AiWindowTitle}"
                         Style="{StaticResource ChromedWindowStyle}"
                         Width="460" Height="260"
                         ResizeMode="NoResize"
@@ -71,7 +72,7 @@
                 </Grid>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Text="AI оценивает ваше задание"
+                    <TextBlock Text="{loc:Tr Writing_AiEvaluating}"
                                FontSize="16" FontWeight="SemiBold"
                                Foreground="{DynamicResource StrongTextBrush}"
                                TextWrapping="Wrap" />
@@ -91,7 +92,7 @@
                                    FontSize="18" FontWeight="Bold"
                                    Foreground="{DynamicResource StrongTextBrush}"
                                    VerticalAlignment="Center" />
-                        <TextBlock Text="  прошло с момента отправки"
+                        <TextBlock Text="{loc:Tr Writing_ElapsedSinceSubmit}"
                                    Foreground="{DynamicResource CaptionTextBrush}"
                                    VerticalAlignment="Center" />
                     </StackPanel>

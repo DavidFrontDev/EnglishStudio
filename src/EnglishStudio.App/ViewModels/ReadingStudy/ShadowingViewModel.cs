@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Reading.Audio;
 using EnglishStudio.Modules.Reading;
 using EnglishStudio.Modules.Reading.Services;
@@ -90,9 +91,9 @@ public partial class ShadowingViewModel : ObservableObject
         catch { MicAvailable = false; }
 
         if (!HasSentences)
-            StatusText = "Не удалось разбить текст на предложения.";
+            StatusText = Loc.Tr("ReadStudy_ShadowNoSentences");
         else if (!TtsAvailable)
-            StatusText = "Голоса TTS не найдены — прослушивание недоступно (можно записать повтор).";
+            StatusText = Loc.Tr("ReadStudy_ShadowNoTts");
         else
             StatusText = null;
 
@@ -111,7 +112,7 @@ public partial class ShadowingViewModel : ObservableObject
 
         CurrentIndex = Math.Clamp(index, 0, _sentences.Count - 1);
         CurrentText = _sentences[CurrentIndex].Text;
-        PositionText = $"Предложение {CurrentIndex + 1} из {_sentences.Count}";
+        PositionText = Loc.Format("ReadStudy_ShadowSentenceOf", CurrentIndex + 1, _sentences.Count);
 
         HasScore = false;
         WordResults.Clear();
@@ -155,7 +156,7 @@ public partial class ShadowingViewModel : ObservableObject
 
         if (!MicAvailable)
         {
-            StatusText = "Микрофон недоступен — повтор записать не получится.";
+            StatusText = Loc.Tr("ReadStudy_ShadowNoMic");
             return;
         }
 
@@ -169,21 +170,23 @@ public partial class ShadowingViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Capture start failed");
-            StatusText = "Не удалось начать запись.";
+            StatusText = Loc.Tr("ReadStudy_ShadowRecordFailed");
         }
     }
 
     private async Task ScoreAsync(string? wavPath)
     {
-        if (CurrentIndex < 0 || CurrentIndex >= _sentences.Count) return;
+        var index = CurrentIndex;
+        if (index < 0 || index >= _sentences.Count) return;
 
         IsScoring = true;
         try
         {
-            var score = await _shadowing.ScoreRepeatAsync(wavPath ?? string.Empty, _sentences[CurrentIndex], _tokens);
+            var score = await _shadowing.ScoreRepeatAsync(wavPath ?? string.Empty, _sentences[index], _tokens);
+            if (CurrentIndex != index) return;
             if (score is null)
             {
-                StatusText = "Не удалось оценить повтор.";
+                StatusText = Loc.Tr("ReadStudy_ShadowScoreFailed");
                 return;
             }
 
@@ -203,7 +206,7 @@ public partial class ShadowingViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogWarning(ex, "Shadowing scoring failed");
-            StatusText = "Не удалось оценить повтор.";
+            if (CurrentIndex == index) StatusText = Loc.Tr("ReadStudy_ShadowScoreFailed");
         }
         finally
         {
@@ -215,6 +218,7 @@ public partial class ShadowingViewModel : ObservableObject
     private async Task Next()
     {
         await StopSpeak();
+        DiscardRecording();
         SetCurrent(CurrentIndex + 1);
     }
 
@@ -222,7 +226,15 @@ public partial class ShadowingViewModel : ObservableObject
     private async Task Prev()
     {
         await StopSpeak();
+        DiscardRecording();
         SetCurrent(CurrentIndex - 1);
+    }
+
+    private void DiscardRecording()
+    {
+        if (!IsRecording) return;
+        try { _capture.Stop(); } catch { }
+        IsRecording = false;
     }
 
     [RelayCommand]

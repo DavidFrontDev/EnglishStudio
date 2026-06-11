@@ -1,5 +1,6 @@
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Core.Scoring;
 
@@ -22,7 +23,7 @@ public partial class TextInputQuestionViewModel : ObservableObject, IReadingQues
     public bool ExceedsLimit => WordLimitMax.HasValue && WordCount > WordLimitMax.Value;
 
     public string WordLimitLabel => WordLimitMax.HasValue
-        ? $"Не более {WordLimitMax} {WordWord(WordLimitMax.Value)}"
+        ? Loc.Format("ReadIelts_WordLimit", WordLimitMax.Value)
         : string.Empty;
 
     public TextInputQuestionViewModel(TestQuestion source, int displayNumber)
@@ -43,10 +44,4 @@ public partial class TextInputQuestionViewModel : ObservableObject, IReadingQues
 
     public string GetAnswerJson() => JsonSerializer.Serialize(Text);
 
-    private static string WordWord(int n) => n switch
-    {
-        1 => "слова",
-        2 or 3 or 4 => "слов",
-        _ => "слов"
-    };
 }

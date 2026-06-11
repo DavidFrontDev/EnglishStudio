@@ -65,6 +65,145 @@ public sealed class PronunciationLexicon : IPronunciationLexicon
         return sb.ToString();
     }
 
+    public string? GetDisplayIpa(string word)
+    {
+        if (string.IsNullOrWhiteSpace(word)) return null;
+        var key = word.Trim().ToLowerInvariant();
+
+        // 1) Direct CMUdict hit.
+        if (TryGetArpabet(key, out var p)) return ToIpa(p);
+
+        // 2) British→American spelling variant (scepticism→skepticism, colour→color, …).
+        var amer = Americanize(key);
+        var hasAmer = !string.Equals(amer, key, StringComparison.Ordinal);
+        if (hasAmer && TryGetArpabet(amer, out p)) return ToIpa(p);
+
+        // 3) Morphological guess (approximate): strip a known affix and look up the stem.
+        if (TryMorphArpabet(key, out var morph)) return ToIpa(morph);
+        if (hasAmer && TryMorphArpabet(amer, out morph)) return ToIpa(morph);
+
+        return null;
+    }
+
+    // ── British→American spelling normalization (fallback only) ─────────────
+
+    private static readonly Dictionary<string, string> IrregularBritish = new(StringComparer.Ordinal)
+    {
+        ["sceptic"] = "skeptic", ["sceptics"] = "skeptics", ["sceptical"] = "skeptical",
+        ["sceptically"] = "skeptically", ["scepticism"] = "skepticism",
+        ["cheque"] = "check", ["cheques"] = "checks", ["grey"] = "gray",
+        ["plough"] = "plow", ["mould"] = "mold", ["aluminium"] = "aluminum",
+        ["draught"] = "draft", ["kerb"] = "curb", ["pyjamas"] = "pajamas",
+        ["tyre"] = "tire", ["storey"] = "story", ["sceptre"] = "scepter",
+    };
+
+    private static string Americanize(string w)
+    {
+        if (IrregularBritish.TryGetValue(w, out var direct)) return direct;
+
+        var s = w;
+        // -ise / -isation / -yse families → -ize / -ization / -yze
+        s = ReplaceSuffix(s, "isation", "ization");
+        s = ReplaceSuffix(s, "isations", "izations");
+        s = ReplaceSuffix(s, "ising", "izing");
+        s = ReplaceSuffix(s, "ised", "ized");
+        s = ReplaceSuffix(s, "ises", "izes");
+        s = ReplaceSuffix(s, "ise", "ize");
+        s = ReplaceSuffix(s, "ysing", "yzing");
+        s = ReplaceSuffix(s, "ysed", "yzed");
+        s = ReplaceSuffix(s, "yses", "yzes");
+        s = ReplaceSuffix(s, "yse", "yze");
+        // -our → -or (colour→color, favourite→favorite)
+        s = ReplaceSuffix(s, "ours", "ors");
+        s = ReplaceSuffix(s, "oured", "ored");
+        s = ReplaceSuffix(s, "ouring", "oring");
+        s = ReplaceSuffix(s, "our", "or");
+        // æ/œ digraphs → e (anaemia→anemia, oesophagus→esophagus)
+        s = s.Replace("ae", "e").Replace("oe", "e");
+        return s;
+    }
+
+    private static string ReplaceSuffix(string s, string from, string to) =>
+        s.EndsWith(from, StringComparison.Ordinal) && s.Length > from.Length
+            ? string.Concat(s.AsSpan(0, s.Length - from.Length), to)
+            : s;
+
+    // ── Morphological fallback (approximate) ────────────────────────────────
+
+    private static readonly (string Suffix, string[] Add)[] DerivationSuffixes =
+    {
+        ("ly",   new[] { "L", "IY" }),
+        ("ness", new[] { "N", "AH", "S" }),
+        ("less", new[] { "L", "AH", "S" }),
+        ("ful",  new[] { "F", "AH", "L" }),
+        ("ment", new[] { "M", "AH", "N", "T" }),
+        ("ing",  new[] { "IH", "NG" }),
+        ("ed",   new[] { "D" }),
+        ("es",   new[] { "IH", "Z" }),
+        ("s",    new[] { "Z" }),
+    };
+
+    private static readonly (string Prefix, string[] Add)[] DerivationPrefixes =
+    {
+        ("under", new[] { "AH", "N", "D", "ER" }),
+        ("over",  new[] { "OW", "V", "ER" }),
+        ("dis",   new[] { "D", "IH", "S" }),
+        ("mis",   new[] { "M", "IH", "S" }),
+        ("non",   new[] { "N", "AA", "N" }),
+        ("pre",   new[] { "P", "R", "IY" }),
+        ("re",    new[] { "R", "IY" }),
+        ("un",    new[] { "AH", "N" }),
+        ("ir",    new[] { "IH", "R" }),
+        ("im",    new[] { "IH", "M" }),
+        ("il",    new[] { "IH", "L" }),
+        ("in",    new[] { "IH", "N" }),
+    };
+
+    /// <summary>Approximate ARPAbet for an out-of-dictionary word by stripping one known affix and
+    /// looking up the stem. Returns the stem's phonemes glued to the affix's (best-effort, no stress).</summary>
+    private bool TryMorphArpabet(string word, out IReadOnlyList<string> phonemes)
+    {
+        phonemes = Array.Empty<string>();
+        var table = _table.Value;
+
+        foreach (var (suffix, add) in DerivationSuffixes)
+        {
+            if (word.Length <= suffix.Length + 2 || !word.EndsWith(suffix, StringComparison.Ordinal)) continue;
+            var stem = word[..^suffix.Length];
+            if (table.TryGetValue(stem, out var sp))           // happy+ly, walk+ing
+            {
+                phonemes = Combine(sp, add);
+                return true;
+            }
+            if (table.TryGetValue(stem + "e", out var spe))    // make+ing (drop-e), use+ed
+            {
+                phonemes = Combine(spe, add);
+                return true;
+            }
+        }
+
+        foreach (var (prefix, add) in DerivationPrefixes)
+        {
+            if (word.Length <= prefix.Length + 2 || !word.StartsWith(prefix, StringComparison.Ordinal)) continue;
+            var stem = word[prefix.Length..];
+            if (table.TryGetValue(stem, out var sp))           // ir+reducible, over+simplified
+            {
+                phonemes = Combine(add, sp);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private static string[] Combine(IReadOnlyList<string> a, IReadOnlyList<string> b)
+    {
+        var arr = new string[a.Count + b.Count];
+        for (var i = 0; i < a.Count; i++) arr[i] = a[i];
+        for (var i = 0; i < b.Count; i++) arr[a.Count + i] = b[i];
+        return arr;
+    }
+
     /// <summary>IPA glyph for a single ARPAbet code (stress digits ignored); falls back to lowercase.</summary>
     public static string ToIpaPhoneme(string arpabet)
     {

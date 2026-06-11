@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:local="clr-namespace:EnglishStudio.App.Views.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:ReadingSummaryViewModel}"
              d:DesignWidth="520" d:DesignHeight="640">
@@ -36,7 +37,7 @@
 
             <!-- Header -->
             <StackPanel Grid.Row="0" Margin="0,0,0,16">
-                <TextBlock Text="🏁  Итоги чтения" Style="{StaticResource H2}" />
+                <TextBlock Text="{loc:Tr ReadStudy_SummaryTitle}" Style="{StaticResource H2}" />
                 <TextBlock Text="{Binding Title}"
                            Style="{StaticResource MutedText}"
                            TextTrimming="CharacterEllipsis"
@@ -47,24 +48,24 @@
             <WrapPanel Grid.Row="1" Orientation="Horizontal">
                 <Border Style="{StaticResource StatTile}">
                     <StackPanel>
-                        <TextBlock Text="Скорость" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr ReadStudy_Speed}" Style="{StaticResource Caption}" />
                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                             <TextBlock Text="{Binding Wpm, StringFormat={}{0:0}}"
                                        FontSize="26" FontWeight="Bold"
                                        Foreground="{DynamicResource StrongTextBrush}" />
-                            <TextBlock Text=" сл/мин" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="3,0,0,4" />
+                            <TextBlock Text="{loc:Tr ReadStudy_WpmUnit}" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="3,0,0,4" />
                         </StackPanel>
                         <TextBlock Style="{StaticResource Caption}"
                                    Margin="0,2,0,0"
                                    Visibility="{Binding HasAverage, Converter={StaticResource BoolToVis}}">
-                            <Run Text="среднее " /><Run Text="{Binding AverageWpm, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text=" сл/мин" />
+                            <Run Text="{loc:Tr ReadStudy_Average}" /><Run Text="{Binding AverageWpm, Mode=OneWay, StringFormat={}{0:0}}" /><Run Text="{loc:Tr ReadStudy_WpmUnit}" />
                         </TextBlock>
                     </StackPanel>
                 </Border>
 
                 <Border Style="{StaticResource StatTile}">
                     <StackPanel>
-                        <TextBlock Text="Время" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr ReadStudy_Time}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding DurationText}"
                                    FontSize="26" FontWeight="Bold"
                                    Foreground="{DynamicResource StrongTextBrush}"
@@ -74,7 +75,7 @@
 
                 <Border Style="{StaticResource StatTile}">
                     <StackPanel>
-                        <TextBlock Text="Слов прочитано" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr ReadStudy_WordsRead}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding WordsRead}"
                                    FontSize="26" FontWeight="Bold"
                                    Foreground="{DynamicResource StrongTextBrush}"
@@ -85,7 +86,7 @@
                 <Border Style="{StaticResource StatTile}"
                         Visibility="{Binding AccuracyAvailable, Converter={StaticResource BoolToVis}}">
                     <StackPanel>
-                        <TextBlock Text="Точность" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr ReadStudy_Accuracy}" Style="{StaticResource Caption}" />
                         <StackPanel Orientation="Horizontal" Margin="0,4,0,0">
                             <TextBlock Text="{Binding AccuracyPct, StringFormat={}{0:0}}"
                                        FontSize="26" FontWeight="Bold"
@@ -93,7 +94,7 @@
                             <TextBlock Text="%" Style="{StaticResource Caption}" VerticalAlignment="Bottom" Margin="2,0,0,4" />
                         </StackPanel>
                         <TextBlock Style="{StaticResource Caption}" Margin="0,2,0,0">
-                            <Run Text="пропущено " /><Run Text="{Binding WordsSkipped, Mode=OneWay}" />
+                            <Run Text="{loc:Tr ReadStudy_Missed}" /><Run Text="{Binding WordsSkipped, Mode=OneWay}" />
                         </TextBlock>
                     </StackPanel>
                 </Border>
@@ -103,14 +104,14 @@
             <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,8,0,0">
                 <StackPanel>
                     <!-- Analysis-unavailable note -->
-                    <TextBlock Text="🎧 Анализ произношения недоступен (распознаватель не готов). Показаны скорость и охват."
+                    <TextBlock Text="{loc:Tr ReadStudy_PronUnavailable}"
                                Style="{StaticResource MutedText}"
                                Margin="0,0,0,10"
                                Visibility="{Binding AccuracyAvailable, Converter={StaticResource InvBoolToVis}}" />
 
                     <!-- Difficult words (tap ɪₚₐ to see the phoneme breakdown) -->
                     <StackPanel Visibility="{Binding HasDifficultWords, Converter={StaticResource BoolToVis}}">
-                        <TextBlock Text="Трудные слова" Style="{StaticResource H3}" Margin="0,0,0,8" />
+                        <TextBlock Text="{loc:Tr ReadStudy_DifficultWords}" Style="{StaticResource H3}" Margin="0,0,0,8" />
                         <ItemsControl ItemsSource="{Binding DifficultWords}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
@@ -127,22 +128,22 @@
                                                            FontWeight="SemiBold"
                                                            FontSize="14"
                                                            VerticalAlignment="Center" />
-                                                <Button Content="ɪ/ə фонетика"
+                                                <Button Content="{loc:Tr ReadStudy_Phonetics}"
                                                         Margin="10,0,0,0"
                                                         Padding="8,2"
                                                         FontSize="11"
                                                         Style="{StaticResource FlatButton}"
-                                                        ToolTip="Показать разбор по звукам"
+                                                        ToolTip="{loc:Tr ReadStudy_ShowPhonemeBreakdown}"
                                                         Command="{Binding ToggleGuideCommand}" />
-                                                <Button Content="📚 в изучение"
+                                                <Button Content="{loc:Tr ReadStudy_AddToStudy}"
                                                         Margin="6,0,0,0"
                                                         Padding="8,2"
                                                         FontSize="11"
                                                         Style="{StaticResource FlatButton}"
-                                                        ToolTip="В изучение"
+                                                        ToolTip="{loc:Tr ReadStudy_AddToStudyTip}"
                                                         Command="{Binding AddToTrainingCommand}"
                                                         Visibility="{Binding CanAdd, Converter={StaticResource BoolToVis}}" />
-                                                <TextBlock Text="✓ в изучении"
+                                                <TextBlock Text="{loc:Tr ReadStudy_InStudy}"
                                                            Foreground="{DynamicResource SuccessBrush}"
                                                            FontWeight="SemiBold"
                                                            FontSize="11"
@@ -165,13 +166,13 @@
                     <!-- History / WPM trend -->
                     <StackPanel Visibility="{Binding HasHistory, Converter={StaticResource BoolToVis}}" Margin="0,8,0,0">
                         <Grid Margin="0,0,0,8">
-                            <TextBlock Text="История чтений" Style="{StaticResource H3}" VerticalAlignment="Center" />
-                            <Button Content="🗑  Очистить"
+                            <TextBlock Text="{loc:Tr ReadStudy_ReadingHistory}" Style="{StaticResource H3}" VerticalAlignment="Center" />
+                            <Button Content="{loc:Tr ReadStudy_Clear}"
                                     HorizontalAlignment="Right"
                                     Padding="8,3"
                                     FontSize="11"
                                     Style="{StaticResource FlatButton}"
-                                    ToolTip="Удалить всю историю чтений этого текста"
+                                    ToolTip="{loc:Tr ReadStudy_ClearHistoryTip}"
                                     Command="{Binding ClearHistoryCommand}" />
                         </Grid>
                         <ItemsControl ItemsSource="{Binding History}">
@@ -200,12 +201,12 @@
 
             <!-- Footer -->
             <Grid Grid.Row="3" Margin="0,16,0,0">
-                <Button Content="❓  Вопросы по тексту"
+                <Button Content="{loc:Tr ReadStudy_QuestionsButton}"
                         HorizontalAlignment="Left"
                         Padding="14,8"
                         Style="{StaticResource FlatButton}"
                         Command="{Binding QuestionsCommand}" />
-                <Button Content="Закрыть итоги"
+                <Button Content="{loc:Tr ReadStudy_CloseSummary}"
                         HorizontalAlignment="Right"
                         Padding="16,8"
                         Style="{StaticResource AccentButton}"

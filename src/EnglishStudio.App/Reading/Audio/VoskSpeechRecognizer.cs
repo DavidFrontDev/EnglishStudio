@@ -2,6 +2,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Net.Http;
 using System.Text.Json;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Data;
 using Microsoft.Extensions.Logging;
 using Vosk;
@@ -69,7 +70,7 @@ public sealed class VoskSpeechRecognizer : IDisposable
                 return false;
             }
 
-            progress?.Report("Загрузка распознавателя речи…");
+            progress?.Report(Loc.Tr("Vosk_LoadingModel"));
             _model = await Task.Run(() => new Model(ModelDir), ct);
             progress?.Report(string.Empty);
             return true;
@@ -81,7 +82,7 @@ public sealed class VoskSpeechRecognizer : IDisposable
         catch (Exception ex)
         {
             _logger.LogError(ex, "Failed to ensure Vosk model.");
-            progress?.Report($"Ошибка распознавателя: {ex.Message}");
+            progress?.Report(Loc.Format("Vosk_Error", ex.Message));
             return false;
         }
         finally
@@ -105,7 +106,7 @@ public sealed class VoskSpeechRecognizer : IDisposable
         var zipPath = Path.Combine(modelsRoot, "vosk-en.zip.tmp");
         var extractTmp = Path.Combine(modelsRoot, ".vosk-extract-tmp");
 
-        progress?.Report("Скачивание модели распознавания (~40 МБ, одноразово)…");
+        progress?.Report(Loc.Tr("Vosk_DownloadingModel"));
         var http = _httpFactory.CreateClient("Reading.VoskDownload");
         http.Timeout = TimeSpan.FromMinutes(30);
 
@@ -130,8 +131,8 @@ public sealed class VoskSpeechRecognizer : IDisposable
                     {
                         var mb = received / 1024.0 / 1024.0;
                         var msg = total > 0
-                            ? $"Скачивание модели: {mb:0.0} / {total / 1024.0 / 1024.0:0.0} МБ"
-                            : $"Скачивание модели: {mb:0.0} МБ";
+                            ? Loc.Format("Vosk_DownloadProgressKnown", mb, total / 1024.0 / 1024.0)
+                            : Loc.Format("Vosk_DownloadProgressUnknown", mb);
                         progress?.Report(msg);
                         lastReport = sw.Elapsed;
                     }
@@ -139,7 +140,7 @@ public sealed class VoskSpeechRecognizer : IDisposable
             }
         }
 
-        progress?.Report("Распаковка модели…");
+        progress?.Report(Loc.Tr("Vosk_ExtractingModel"));
         if (Directory.Exists(extractTmp)) Directory.Delete(extractTmp, recursive: true);
         await Task.Run(() => ZipFile.ExtractToDirectory(zipPath, extractTmp), ct);
 

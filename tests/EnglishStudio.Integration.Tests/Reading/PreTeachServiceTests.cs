@@ -1,4 +1,5 @@
 using EnglishStudio.Modules.Dictionary.Entities;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,7 +15,7 @@ public class PreTeachServiceTests
     private static PreTeachService Make(
         InMemoryDictionaryDb dict, string body, FakeSrsService srs, FakeEnrichmentService enrich) =>
         new(dict.ScopeFactory, new FakeTextLibraryService(TextId, body), srs, enrich,
-            NullLogger<PreTeachService>.Instance);
+            new KeyEchoMessageLocalizer(), NullLogger<PreTeachService>.Instance);
 
     [Fact]
     public async Task Drops_stop_words_and_counts_occurrences()

@@ -26,6 +26,11 @@ public sealed class ClaudeIeltsSpeakingEvaluator : IIeltsSpeakingEvaluator
     {
         if (!_cli.IsAvailable) return null;
         if (turns.Count == 0) return null;
+        if (string.IsNullOrWhiteSpace(RubricLoader.Speaking))
+        {
+            _log.LogWarning("Speaking evaluator: speaking rubric not found (content pack not imported); skipping evaluation.");
+            return null;
+        }
 
         var prompt = BuildPrompt(partType, topic, turns, metrics);
         var response = await _cli.RunAsync(

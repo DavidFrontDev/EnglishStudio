@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.Modules.Dictionary.Srs;
 using EnglishStudio.Modules.Reading;
@@ -158,9 +159,9 @@ public partial class ReadingSummaryViewModel : ObservableObject
     {
         var ok = ConfirmWindow.Show(
             Application.Current.MainWindow,
-            "Очистить историю",
-            "Удалить всю историю чтений этого текста? Это действие необратимо.",
-            confirmText: "Очистить",
+            Loc.Tr("ReadStudy_ClearHistoryTitle"),
+            Loc.Tr("ReadStudy_ClearHistoryBody"),
+            confirmText: Loc.Tr("ReadStudy_ClearHistoryConfirm"),
             icon: "🗑");
         if (!ok) return;
 
@@ -190,7 +191,7 @@ public partial class ReadingSummaryViewModel : ObservableObject
 public sealed record ReadingHistoryItem(DateTime StartedAt, double Wpm, double AccuracyPct, bool Completed)
 {
     public string WhenText => StartedAt.ToString("dd.MM HH:mm");
-    public string WpmText => $"{Wpm:0} сл/мин";
+    public string WpmText => Loc.Format("ReadStudy_WpmText", (int)Wpm);
 }
 
 /// <summary>A difficult word in the summary with a one-tap "add to study" (SRS) action and an

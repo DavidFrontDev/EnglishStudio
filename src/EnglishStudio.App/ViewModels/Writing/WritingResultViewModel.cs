@@ -3,6 +3,7 @@ using System.IO;
 using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Ai.Reports;
 using EnglishStudio.Modules.Ielts.Core.Entities;
 using EnglishStudio.Modules.Ielts.Writing;
@@ -76,7 +77,7 @@ public partial class WritingResultViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load writing result");
-            StatusText = "Не удалось загрузить результат.";
+            StatusText = Loc.Tr("Writing_LoadResultFailed");
         }
         finally { IsBusy = false; }
     }
@@ -85,7 +86,7 @@ public partial class WritingResultViewModel : ObservableObject
     private async Task ReevaluateAllAsync()
     {
         IsBusy = true;
-        StatusText = "Перезапуск AI-оценки обеих задач...";
+        StatusText = Loc.Tr("Writing_ReevaluatingBothTasks");
         try
         {
             var ids = new List<int>();
@@ -97,12 +98,12 @@ public partial class WritingResultViewModel : ObservableObject
                 await _feedback.EvaluateAndSaveAsync(id);
             }
             await LoadAsync(ids);
-            StatusText = "Оценка обновлена.";
+            StatusText = Loc.Tr("Writing_EvalUpdated");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to reevaluate writing attempts");
-            StatusText = "Не удалось перезапустить оценку.";
+            StatusText = Loc.Tr("Writing_ReevalFailed");
         }
         finally { IsBusy = false; }
     }
@@ -128,7 +129,9 @@ public partial class WritingResultViewModel : ObservableObject
             attempt.BandOverall,
             report?.FeedbackEn ?? string.Empty,
             report?.FeedbackRu ?? string.Empty,
-            new ObservableCollection<EssayIssue>(report?.Issues ?? new List<EssayIssue>()),
+            new ObservableCollection<EssayIssueRow>(
+                (report?.Issues ?? new List<EssayIssue>())
+                    .Select(i => new EssayIssueRow(i.Category, i.Quote, Loc.Pick(i.ExplanationEn, i.ExplanationRu), i.Suggestion))),
             modelAnswer?.AnswerText,
             modelAnswer?.BandLevel ?? 0);
     }
@@ -170,7 +173,11 @@ public partial class WritingAttemptResult : ObservableObject
     public bool HasNoBands => !HasBands;
     public string FeedbackEn { get; }
     public string FeedbackRu { get; }
-    public ObservableCollection<EssayIssue> Issues { get; }
+
+    /// <summary>The examiner comment in the current UI language (falls back to the other if empty).</summary>
+    public string Feedback => Loc.Pick(FeedbackEn, FeedbackRu);
+
+    public ObservableCollection<EssayIssueRow> Issues { get; }
     public string? ModelAnswerText { get; }
     public int ModelAnswerBand { get; }
     public bool HasModelAnswer => !string.IsNullOrWhiteSpace(ModelAnswerText);
@@ -199,7 +206,7 @@ public partial class WritingAttemptResult : ObservableObject
         string userText, int wordCount, int durationSeconds,
         double? bandTA, double? bandCC, double? bandLR, double? bandGRA, double? bandOverall,
         string feedbackEn, string feedbackRu,
-        ObservableCollection<EssayIssue> issues,
+        ObservableCollection<EssayIssueRow> issues,
         string? modelAnswerText, int modelAnswerBand)
     {
         AttemptId = attemptId;
@@ -225,3 +232,6 @@ public partial class WritingAttemptResult : ObservableObject
     [RelayCommand]
     private void ToggleModelAnswer() => ShowModelAnswer = !ShowModelAnswer;
 }
+
+/// <summary>One AI-flagged essay issue, with its explanation already resolved to the UI language.</summary>
+public sealed record EssayIssueRow(string Category, string Quote, string Explanation, string Suggestion);

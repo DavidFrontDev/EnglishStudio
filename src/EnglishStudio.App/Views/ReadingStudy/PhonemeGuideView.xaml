@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.ReadingStudy"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:PhonemeGuideViewModel}"
              d:DesignWidth="320">
@@ -32,7 +33,7 @@
 
     <StackPanel>
         <!-- No phoneme data -->
-        <TextBlock Text="нет данных о произношении"
+        <TextBlock Text="{loc:Tr ReadStudy_NoPronData}"
                    Style="{StaticResource Caption}"
                    Visibility="{Binding Found, Converter={StaticResource InvBoolToVis}}" />
 

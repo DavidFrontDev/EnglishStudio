@@ -9,6 +9,7 @@
              xmlns:lvm="clr-namespace:EnglishStudio.App.ViewModels.Listening"
              xmlns:lv="clr-namespace:EnglishStudio.App.Views.Listening"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:MockSessionViewModel}"
              d:DesignHeight="700" d:DesignWidth="1100">
@@ -47,7 +48,7 @@
             <Border Style="{StaticResource Card}" Margin="40" Padding="40">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="600">
                     <TextBlock Style="{StaticResource Caption}" HorizontalAlignment="Center">
-                        <Run Text="Секция " /><Run Text="{Binding Index, Mode=OneWay}" /><Run Text=" из 4" />
+                        <Run Text="{loc:Tr Mock_SectionOf4_Pre}" /><Run Text="{Binding Index, Mode=OneWay}" /><Run Text="{loc:Tr Mock_SectionOf4_Post}" />
                     </TextBlock>
                     <TextBlock Text="{Binding SectionName}"
                                Style="{StaticResource H1}"
@@ -60,15 +61,15 @@
                                Margin="0,14,0,0" />
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,28,0,0">
-                        <Button Content="▶ Начать секцию"
+                        <Button Content="{loc:Tr Mock_StartSection}"
                                 Style="{StaticResource AccentButton}"
                                 Margin="0,0,10,0"
                                 Command="{Binding StartCommand}" />
-                        <Button Content="Пропустить секцию"
+                        <Button Content="{loc:Tr Mock_SkipSection}"
                                 Style="{StaticResource FlatButton}"
                                 Margin="0,0,10,0"
                                 Command="{Binding SkipCommand}" />
-                        <Button Content="Выйти в меню"
+                        <Button Content="{loc:Tr Mock_ExitToMenu}"
                                 Style="{StaticResource FlatButton}"
                                 Command="{Binding ExitCommand}" />
                     </StackPanel>
@@ -106,7 +107,7 @@
                         CornerRadius="6"
                         Padding="10,4">
                     <TextBlock Foreground="{DynamicResource StrongTextBrush}" FontWeight="SemiBold">
-                        <Run Text="Секция " /><Run Text="{Binding SectionIndex, Mode=OneWay}" /><Run Text="/4 · " />
+                        <Run Text="{loc:Tr Mock_SectionOf4_Pre}" /><Run Text="{Binding SectionIndex, Mode=OneWay}" /><Run Text="{loc:Tr Mock_ProgressOf4_Sep}" />
                         <Run Text="{Binding SectionLabel, Mode=OneWay}" />
                     </TextBlock>
                 </Border>

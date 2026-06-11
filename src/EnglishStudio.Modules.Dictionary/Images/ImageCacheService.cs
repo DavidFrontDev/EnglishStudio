@@ -1,6 +1,7 @@
 using System.Collections.Concurrent;
 using EnglishStudio.Modules.Dictionary.Data;
 using EnglishStudio.Modules.Dictionary.Entities;
+using EnglishStudio.Modules.Dictionary.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -14,34 +15,44 @@ public sealed class ImageCacheService : IImageCacheService
     private readonly IServiceScopeFactory _scopeFactory;
     private readonly IHttpClientFactory _httpFactory;
     private readonly IEnumerable<IImageProvider> _providers;
+    private readonly IMessageLocalizer _messages;
     private readonly ILogger<ImageCacheService> _logger;
 
-    private readonly ConcurrentDictionary<int, Task<IReadOnlyList<string>>> _inFlight = new();
+    // Serializes fetches per word: concurrent callers (possibly with different maxImages) run one
+    // at a time; the second finds the first's rows cached in step 1 instead of re-downloading or
+    // racing the dead-row pruning.
+    private readonly ConcurrentDictionary<int, SemaphoreSlim> _wordLocks = new();
 
     public ImageCacheService(
         IServiceScopeFactory scopeFactory,
         IHttpClientFactory httpFactory,
         IEnumerable<IImageProvider> providers,
+        IMessageLocalizer messages,
         ILogger<ImageCacheService> logger)
     {
         _scopeFactory = scopeFactory;
         _httpFactory = httpFactory;
         _providers = providers;
+        _messages = messages;
         _logger = logger;
     }
 
-    public Task<IReadOnlyList<string>> GetOrFetchAsync(
+    public async Task<IReadOnlyList<string>> GetOrFetchAsync(
         int wordId,
         int maxImages = 1,
         IProgress<string>? progress = null,
         CancellationToken ct = default)
     {
-        return _inFlight.GetOrAdd(wordId, _ => FetchAsync(wordId, maxImages, progress, ct))
-            .ContinueWith(t =>
-            {
-                _inFlight.TryRemove(wordId, out _);
-                return t.GetAwaiter().GetResult();
-            }, TaskContinuationOptions.ExecuteSynchronously);
+        var gate = _wordLocks.GetOrAdd(wordId, _ => new SemaphoreSlim(1, 1));
+        await gate.WaitAsync(ct);
+        try
+        {
+            return await FetchAsync(wordId, maxImages, progress, ct);
+        }
+        finally
+        {
+            gate.Release();
+        }
     }
 
     private async Task<IReadOnlyList<string>> FetchAsync(
@@ -63,17 +74,28 @@ public sealed class ImageCacheService : IImageCacheService
             var cached = await db.MediaAssets
                 .Where(m => m.WordId == wordId && m.Kind == MediaKind.Image)
                 .OrderBy(m => m.Id)
-                .Select(m => m.LocalPath)
-                .Take(maxImages)
                 .ToListAsync(ct);
-            foreach (var p in cached)
+            var dead = new List<MediaAsset>();
+            foreach (var m in cached)
             {
-                if (File.Exists(p)) existing.Add(p);
+                if (!File.Exists(m.LocalPath))
+                {
+                    dead.Add(m);
+                }
+                else if (existing.Count < maxImages)
+                {
+                    existing.Add(m.LocalPath);
+                }
+            }
+            if (dead.Count > 0)
+            {
+                db.MediaAssets.RemoveRange(dead);
+                await db.SaveChangesAsync(ct);
             }
             if (existing.Count >= maxImages) return existing;
         }
 
-        progress?.Report($"Поиск изображений для «{headword}»…");
+        progress?.Report(_messages.Format("Dict_ImagesSearching", headword));
 
         // 2) ask providers in order of preference (Pexels first if available, then Wikimedia)
         var ordered = _providers
@@ -105,7 +127,7 @@ public sealed class ImageCacheService : IImageCacheService
             foreach (var r in results)
             {
                 if (localPaths.Count >= maxImages) break;
-                progress?.Report($"Скачивание ({provider.Name})…");
+                progress?.Report(_messages.Format("Dict_ImagesDownloading", provider.Name));
                 try
                 {
                     using var resp = await http.GetAsync(r.Url, HttpCompletionOption.ResponseHeadersRead, ct);

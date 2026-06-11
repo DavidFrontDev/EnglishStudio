@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Reading.Services;
 using Microsoft.Extensions.Logging;
 
@@ -64,12 +65,12 @@ public partial class ReadingProgressViewModel : ObservableObject
             HasCoverage = Coverage.Count > 0;
 
             if (!HasData)
-                StatusText = "Пока нет завершённых чтений вслух — статистика появится после первого.";
+                StatusText = Loc.Tr("ReadStudy_ProgressNoData");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load reading progress");
-            StatusText = "Не удалось загрузить статистику чтения.";
+            StatusText = Loc.Tr("ReadStudy_ProgressLoadFailed");
         }
         finally
         {

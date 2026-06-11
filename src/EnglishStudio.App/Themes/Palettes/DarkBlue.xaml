@@ -74,4 +74,34 @@
     <SolidColorBrush x:Key="PillC2Brush" Color="#7A1FA2" />
     <SolidColorBrush x:Key="PillUnknownBrush" Color="#6A7682" />
 
+    <!--  ════════ On-accent text (тёмный текст на ярком AccentHot-пилле, напр. «BAND») ════════  -->
+    <SolidColorBrush x:Key="OnAccentBrush" Color="#073a5a" />
+
+    <!--  ════════ Surfaces (всплывающие списки ComboBox и т.п.) ════════  -->
+    <SolidColorBrush x:Key="PopupBackgroundBrush" Color="#FF0E2D44" />
+
+    <!--  ════════ Speaking-таймеры: «чип» подготовки (note) и записи (warn).
+          Фон держим тёмным во всех темах — поверх идут белые цифры таймера. ════════  -->
+    <SolidColorBrush x:Key="NotePanelBrush" Color="#26365E" />
+    <SolidColorBrush x:Key="NotePanelTextBrush" Color="#A4C0FF" />
+    <SolidColorBrush x:Key="WarnPanelBrush" Color="#5C2A2A" />
+    <SolidColorBrush x:Key="WarnPanelTextBrush" Color="#FFB7B7" />
+
+    <!--  ════════ Record button (семантика записи — едина во всех темах) ════════  -->
+    <SolidColorBrush x:Key="RecordStartBrush" Color="#3DA66B" />
+    <SolidColorBrush x:Key="RecordStopBrush" Color="#C24545" />
+
+    <!--  ════════ Image lightbox (тёмный backdrop во всех темах) ════════  -->
+    <SolidColorBrush x:Key="ImageBackdropBrush" Color="#161616" />
+    <SolidColorBrush x:Key="ImageBackdropTextBrush" Color="#E0E0E0" />
+
+    <!--  ════════ Selection gradients (заливка выбранной карточки списка и пункта сайдбара).
+          В тёмных темах — глубокий акцент (поверх светлый текст); в светлых — бледный (тёмный текст). ════════  -->
+    <Color x:Key="SelectedItemStartColor">#125c8e</Color>
+    <Color x:Key="SelectedItemMidColor">#0a3f6b</Color>
+    <Color x:Key="SelectedItemEndColor">#04263f</Color>
+    <Color x:Key="SidebarSelectStartColor">#0A6285</Color>
+    <Color x:Key="SidebarSelectEndColor">#03506D</Color>
+    <Color x:Key="ShimmerColor">#553FBFEC</Color>
+
 </ResourceDictionary>

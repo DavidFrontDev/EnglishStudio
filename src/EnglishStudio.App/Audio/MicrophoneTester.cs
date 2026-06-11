@@ -1,5 +1,6 @@
 using System.IO;
 using System.Threading;
+using EnglishStudio.App.Localization;
 using EnglishStudio.Modules.Dictionary.Data;
 using Microsoft.Extensions.Logging;
 using NAudio.Wave;
@@ -15,6 +16,7 @@ public sealed class MicrophoneTester : IMicrophoneTester
     private WaveFileWriter? _writer;
     private string? _path;
     private SynchronizationContext? _syncContext;
+    private ManualResetEventSlim? _stoppedSignal;
 
     public MicrophoneTester(ILogger<MicrophoneTester> logger) => _logger = logger;
 
@@ -26,7 +28,7 @@ public sealed class MicrophoneTester : IMicrophoneTester
     {
         var list = new List<MicrophoneDeviceInfo>
         {
-            new(-1, "Системное устройство по умолчанию")
+            new(-1, Loc.Tr("Mic_DefaultDevice"))
         };
 
         try
@@ -35,7 +37,7 @@ public sealed class MicrophoneTester : IMicrophoneTester
             {
                 string name;
                 try { name = WaveInEvent.GetCapabilities(i).ProductName; }
-                catch { name = $"Микрофон {i}"; }
+                catch { name = Loc.Format("Mic_DeviceFallback", i); }
                 list.Add(new MicrophoneDeviceInfo(i, name));
             }
         }
@@ -59,12 +61,7 @@ public sealed class MicrophoneTester : IMicrophoneTester
             var fmt = new WaveFormat(16000, 16, 1);
             try
             {
-                _waveIn = new WaveInEvent
-                {
-                    WaveFormat = fmt,
-                    DeviceNumber = deviceNumber,
-                    BufferMilliseconds = 50 // snappy VU meter (~20 updates/sec)
-                };
+                _waveIn = CreateWaveIn(fmt, deviceNumber);
 
                 if (record)
                 {
@@ -76,6 +73,8 @@ public sealed class MicrophoneTester : IMicrophoneTester
 
                 _waveIn.DataAvailable += OnDataAvailable;
                 _waveIn.RecordingStopped += OnRecordingStopped;
+                _stoppedSignal?.Dispose();
+                _stoppedSignal = new ManualResetEventSlim(false);
                 _waveIn.StartRecording();
                 IsActive = true;
             }
@@ -96,6 +95,9 @@ public sealed class MicrophoneTester : IMicrophoneTester
             try { _waveIn?.StopRecording(); }
             catch (Exception ex) { _logger.LogDebug(ex, "Error stopping microphone test"); }
 
+            try { _stoppedSignal?.Wait(TimeSpan.FromSeconds(2)); }
+            catch (Exception ex) { _logger.LogDebug(ex, "waiting for microphone test stop"); }
+
             try { _writer?.Flush(); }
             catch (Exception ex) { _logger.LogDebug(ex, "writer flush"); }
 
@@ -105,6 +107,27 @@ public sealed class MicrophoneTester : IMicrophoneTester
             RaiseLevel(0);
             return path;
         }
+    }
+
+    /// <summary>
+    /// WaveInEvent posts RecordingStopped to the SynchronizationContext captured at construction;
+    /// construct without one so the stop signal fires on the capture thread rather than the
+    /// dispatcher that Stop is blocking. (LevelChanged marshalling uses _syncContext separately.)
+    /// </summary>
+    private static WaveInEvent CreateWaveIn(WaveFormat fmt, int deviceNumber)
+    {
+        var prev = SynchronizationContext.Current;
+        SynchronizationContext.SetSynchronizationContext(null);
+        try
+        {
+            return new WaveInEvent
+            {
+                WaveFormat = fmt,
+                DeviceNumber = deviceNumber,
+                BufferMilliseconds = 50 // snappy VU meter (~20 updates/sec)
+            };
+        }
+        finally { SynchronizationContext.SetSynchronizationContext(prev); }
     }
 
     private void OnDataAvailable(object? sender, WaveInEventArgs e)
@@ -142,6 +165,7 @@ public sealed class MicrophoneTester : IMicrophoneTester
 
     private void OnRecordingStopped(object? sender, StoppedEventArgs e)
     {
+        _stoppedSignal?.Set();
         if (e.Exception is not null)
             _logger.LogWarning(e.Exception, "Microphone test stopped with exception");
     }

@@ -1,0 +1,2300 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Neutral (Russian) UI strings. English overrides live in Strings.en.resx.
+    Key convention: Section_Meaning (e.g. Settings_Save, Trainer_StartSession).
+    Keep keys sorted alphabetically within a section.
+  -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <!-- Mock -->
+  <data name="Mock_BackToMenu" xml:space="preserve">
+    <value>‹ В меню</value>
+  </data>
+  <data name="Mock_Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Mock_ClearHistoryTooltip" xml:space="preserve">
+    <value>Удалить все записи о mock-экзаменах</value>
+  </data>
+  <data name="Mock_Discard" xml:space="preserve">
+    <value>Прервать</value>
+  </data>
+  <data name="Mock_ExamResult" xml:space="preserve">
+    <value>Результат экзамена</value>
+  </data>
+  <data name="Mock_ExitToMenu" xml:space="preserve">
+    <value>Выйти в меню</value>
+  </data>
+  <data name="Mock_FullExamDesc" xml:space="preserve">
+    <value>Четыре секции подряд: Listening → Reading → Writing → Speaking (~2,5 часа). Итоговый overall band — по официальной IELTS-формуле округления.</value>
+  </data>
+  <data name="Mock_FullExamTitle" xml:space="preserve">
+    <value>🏁 Полный IELTS-экзамен</value>
+  </data>
+  <data name="Mock_Mode" xml:space="preserve">
+    <value>Режим:</value>
+  </data>
+  <data name="Mock_Partial" xml:space="preserve">
+    <value>частичный</value>
+  </data>
+  <data name="Mock_ProgressOf4_Sep" xml:space="preserve">
+    <value>/4 · </value>
+  </data>
+  <data name="Mock_RandomSet" xml:space="preserve">
+    <value>🎲 Случайный набор</value>
+  </data>
+  <data name="Mock_Resume" xml:space="preserve">
+    <value>Продолжить</value>
+  </data>
+  <data name="Mock_ResumeSection" xml:space="preserve">
+    <value>  ·  секция: </value>
+  </data>
+  <data name="Mock_Review" xml:space="preserve">
+    <value>Разобрать</value>
+  </data>
+  <data name="Mock_Sections" xml:space="preserve">
+    <value>Секции</value>
+  </data>
+  <data name="Mock_SectionOf4_Post" xml:space="preserve">
+    <value> из 4</value>
+  </data>
+  <data name="Mock_SectionOf4_Pre" xml:space="preserve">
+    <value>Секция </value>
+  </data>
+  <data name="Mock_SelectedTest" xml:space="preserve">
+    <value>Выбранный тест</value>
+  </data>
+  <data name="Mock_SkipSection" xml:space="preserve">
+    <value>Пропустить секцию</value>
+  </data>
+  <data name="Mock_StartExam" xml:space="preserve">
+    <value>Начать экзамен</value>
+  </data>
+  <data name="Mock_StartSection" xml:space="preserve">
+    <value>▶ Начать секцию</value>
+  </data>
+  <data name="Mock_UnfinishedExam" xml:space="preserve">
+    <value>⏸ Незаконченный экзамен</value>
+  </data>
+  <!-- ReadIelts -->
+  <data name="ReadIelts_Back" xml:space="preserve">
+    <value>‹ Назад</value>
+  </data>
+  <data name="ReadIelts_BackToList" xml:space="preserve">
+    <value>‹ К списку тестов</value>
+  </data>
+  <data name="ReadIelts_ByQuestionType" xml:space="preserve">
+    <value>По типам вопросов</value>
+  </data>
+  <data name="ReadIelts_Cancel" xml:space="preserve">
+    <value>✕ Отмена</value>
+  </data>
+  <data name="ReadIelts_ClearHistory" xml:space="preserve">
+    <value>🗑 Очистить</value>
+  </data>
+  <data name="ReadIelts_Correct" xml:space="preserve">
+    <value>Правильно</value>
+  </data>
+  <data name="ReadIelts_CorrectAnswer" xml:space="preserve">
+    <value>Правильный: </value>
+  </data>
+  <data name="ReadIelts_Exam60Min" xml:space="preserve">
+    <value>Экзамен (60 мин)</value>
+  </data>
+  <data name="ReadIelts_ExamBadge" xml:space="preserve">
+    <value>🎯 Экзамен</value>
+  </data>
+  <data name="ReadIelts_Finish" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="ReadIelts_Forward" xml:space="preserve">
+    <value>Вперёд ›</value>
+  </data>
+  <data name="ReadIelts_History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="ReadIelts_Practice" xml:space="preserve">
+    <value>Тренировка</value>
+  </data>
+  <data name="ReadIelts_PracticeTooltip" xml:space="preserve">
+    <value>Экзаменационные тесты можно запустить только в строгом экзамен-режиме.</value>
+  </data>
+  <data name="ReadIelts_Questions" xml:space="preserve">
+    <value> вопросов</value>
+  </data>
+  <data name="ReadIelts_WrongAnswers" xml:space="preserve">
+    <value>Неверные ответы</value>
+  </data>
+  <data name="ReadIelts_Words" xml:space="preserve">
+    <value> слов</value>
+  </data>
+  <data name="ReadIelts_YourAnswer" xml:space="preserve">
+    <value>Ваш ответ: </value>
+  </data>
+  <!-- Speaking -->
+  <data name="Speaking_BackToHub" xml:space="preserve">
+    <value>‹ К Hub</value>
+  </data>
+  <data name="Speaking_Cancel" xml:space="preserve">
+    <value>‹ Отмена</value>
+  </data>
+  <data name="Speaking_Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Speaking_ClearHistoryTooltip" xml:space="preserve">
+    <value>Удалить все записи о пройденных Speaking-тестах</value>
+  </data>
+  <data name="Speaking_Comment" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <data name="Speaking_FillerWords" xml:space="preserve">
+    <value>Filler-слова</value>
+  </data>
+  <data name="Speaking_FinishPart2" xml:space="preserve">
+    <value>Завершить Part 2 →</value>
+  </data>
+  <data name="Speaking_History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Speaking_NextQuestion" xml:space="preserve">
+    <value>Следующий вопрос →</value>
+  </data>
+  <data name="Speaking_PauseRatio" xml:space="preserve">
+    <value>Паузы (доля)</value>
+  </data>
+  <data name="Speaking_PlayPause" xml:space="preserve">
+    <value>Воспроизведение / пауза</value>
+  </data>
+  <data name="Speaking_PrepLabel" xml:space="preserve">
+    <value>ПОДГОТОВКА</value>
+  </data>
+  <data name="Speaking_Preparing" xml:space="preserve">
+    <value>⏳ Подготовка · </value>
+  </data>
+  <data name="Speaking_Questions" xml:space="preserve">
+    <value> вопросов</value>
+  </data>
+  <data name="Speaking_RandomTopicHint" xml:space="preserve">
+    <value>🎲  Топик выберется случайно в начале сессии.</value>
+  </data>
+  <data name="Speaking_RecordLabel" xml:space="preserve">
+    <value>ЗАПИСЬ</value>
+  </data>
+  <data name="Speaking_Responses" xml:space="preserve">
+    <value>Ответы</value>
+  </data>
+  <data name="Speaking_RestartAI" xml:space="preserve">
+    <value>🔄 Перезапустить AI</value>
+  </data>
+  <data name="Speaking_ResultTitle" xml:space="preserve">
+    <value>Результат Speaking</value>
+  </data>
+  <data name="Speaking_Sec" xml:space="preserve">
+    <value> сек</value>
+  </data>
+  <data name="Speaking_ShowTranscript" xml:space="preserve">
+    <value>Показать транскрипт</value>
+  </data>
+  <data name="Speaking_Skip" xml:space="preserve">
+    <value>Пропустить →</value>
+  </data>
+  <data name="Speaking_SkipAndStart" xml:space="preserve">
+    <value>Пропустить и начать</value>
+  </data>
+  <data name="Speaking_SpeechMetrics" xml:space="preserve">
+    <value>Метрики речи</value>
+  </data>
+  <data name="Speaking_SpeedWpm" xml:space="preserve">
+    <value>Темп (WPM)</value>
+  </data>
+  <data name="Speaking_Start" xml:space="preserve">
+    <value>Начать</value>
+  </data>
+  <data name="Speaking_StartPrepMinute" xml:space="preserve">
+    <value>🕐 Начать минуту подготовки</value>
+  </data>
+  <data name="Speaking_StartRecording" xml:space="preserve">
+    <value>🎤 Начать запись</value>
+  </data>
+  <data name="Speaking_Stop" xml:space="preserve">
+    <value>Стоп</value>
+  </data>
+  <data name="Speaking_StopDot" xml:space="preserve">
+    <value>⏹  Остановить · </value>
+  </data>
+  <data name="Speaking_TenSecPrep" xml:space="preserve">
+    <value>🕓 10 сек на подготовку</value>
+  </data>
+  <data name="Speaking_Transcript" xml:space="preserve">
+    <value>Транскрипт</value>
+  </data>
+  <!-- Settings -->
+  <data name="Settings_Header" xml:space="preserve">
+    <value>Настройки EnglishStudio</value>
+  </data>
+  <data name="Settings_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Settings_Saved" xml:space="preserve">
+    <value>Сохранено.</value>
+  </data>
+  <data name="Settings_WindowTitle" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <!-- Reader (study reading) -->
+  <data name="Reader_Transcription" xml:space="preserve">
+    <value>🔤 Транскрипция</value>
+  </data>
+  <data name="Reader_TranscriptionTooltip" xml:space="preserve">
+    <value>Показывать транскрипцию [IPA] над каждым словом</value>
+  </data>
+  <!-- Trainer -->
+  <data name="Trainer_Today" xml:space="preserve">
+    <value>Сегодня: </value>
+  </data>
+  <data name="Trainer_Of" xml:space="preserve">
+    <value> из </value>
+  </data>
+  <data name="Trainer_StartSession" xml:space="preserve">
+    <value>Начать сессию</value>
+  </data>
+  <data name="Trainer_EndSession" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="Trainer_ReadyTitle" xml:space="preserve">
+    <value>Тренажёр готов</value>
+  </data>
+  <data name="Trainer_TextPools" xml:space="preserve">
+    <value>🎯 Пулы текстов</value>
+  </data>
+  <data name="Trainer_RefreshList" xml:space="preserve">
+    <value>Обновить список</value>
+  </data>
+  <data name="Trainer_ReviewPool" xml:space="preserve">
+    <value>▶  Повторить</value>
+  </data>
+  <data name="Trainer_ShowTranslation" xml:space="preserve">
+    <value>Показать перевод</value>
+  </data>
+  <data name="Trainer_RateAgain" xml:space="preserve">
+    <value>Снова</value>
+  </data>
+  <data name="Trainer_RateHard" xml:space="preserve">
+    <value>Сложно</value>
+  </data>
+  <data name="Trainer_RateGood" xml:space="preserve">
+    <value>Хорошо</value>
+  </data>
+  <data name="Trainer_RateEasy" xml:space="preserve">
+    <value>Легко</value>
+  </data>
+  <!-- Stats -->
+  <data name="Stats_Header" xml:space="preserve">
+    <value>Статистика обучения</value>
+  </data>
+  <data name="Stats_Refresh" xml:space="preserve">
+    <value>Обновить</value>
+  </data>
+  <data name="Stats_Total" xml:space="preserve">
+    <value>Всего</value>
+  </data>
+  <data name="Stats_DueToday" xml:space="preserve">
+    <value>К повторению сегодня</value>
+  </data>
+  <data name="Stats_ReviewedToday" xml:space="preserve">
+    <value>Просмотрено сегодня</value>
+  </data>
+  <data name="Stats_Retention30" xml:space="preserve">
+    <value>Retention 30 дней</value>
+  </data>
+  <data name="Stats_ByState" xml:space="preserve">
+    <value>По состоянию</value>
+  </data>
+  <data name="Stats_StateNew" xml:space="preserve">
+    <value>Новые</value>
+  </data>
+  <data name="Stats_StateLearning" xml:space="preserve">
+    <value>Изучаются</value>
+  </data>
+  <data name="Stats_StateReview" xml:space="preserve">
+    <value>Повторяются</value>
+  </data>
+  <data name="Stats_StateForgotten" xml:space="preserve">
+    <value>Забыты</value>
+  </data>
+  <!-- Dict -->
+  <data name="Dict_SearchTooltip" xml:space="preserve">
+    <value>Поиск по слову или лемме (префикс)</value>
+  </data>
+  <data name="Dict_FilterBySourceTooltip" xml:space="preserve">
+    <value>Фильтр по источнику слов</value>
+  </data>
+  <data name="Dict_HideStubs" xml:space="preserve">
+    <value>Скрыть без определений</value>
+  </data>
+  <data name="Dict_HideStubsTooltip" xml:space="preserve">
+    <value>Прячет слова без английских/русских значений (только что добавленные)</value>
+  </data>
+  <data name="Dict_Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="Dict_FilterByCategoryTooltip" xml:space="preserve">
+    <value>Фильтр по IELTS Speaking-категории</value>
+  </data>
+  <data name="Dict_FilterByTagTooltip" xml:space="preserve">
+    <value>Фильтр по тегу (AWL sublist, AVL band, IELTS Writing категории, …)</value>
+  </data>
+  <data name="Dict_SelectWord" xml:space="preserve">
+    <value>Выберите слово из списка слева</value>
+  </data>
+  <data name="Dict_SelectWordHint" xml:space="preserve">
+    <value>Подсказка: используйте поиск или фильтры по CEFR-уровню</value>
+  </data>
+  <data name="Dict_AddToTraining" xml:space="preserve">
+    <value>📚 В изучение</value>
+  </data>
+  <data name="Dict_InTraining" xml:space="preserve">
+    <value>✓ В изучении</value>
+  </data>
+  <data name="Dict_Pronounce" xml:space="preserve">
+    <value>🎤 Произнести</value>
+  </data>
+  <data name="Dict_PronunciationTooltip" xml:space="preserve">
+    <value>Тренировка произношения через Whisper (модель ~142 МБ, скачивается один раз)</value>
+  </data>
+  <data name="Dict_PronunciationTraining" xml:space="preserve">
+    <value>🎤 Тренировка произношения</value>
+  </data>
+  <data name="Dict_PronunciationHint" xml:space="preserve">
+    <value>Послушайте эталон, затем запишите свою попытку. Whisper.net распознает аудио, оценка по схожести 0–100.</value>
+  </data>
+  <data name="Dict_ReferenceUk" xml:space="preserve">
+    <value>🔊 Эталон UK</value>
+  </data>
+  <data name="Dict_ReferenceUs" xml:space="preserve">
+    <value>🔊 Эталон US</value>
+  </data>
+  <data name="Dict_StartRecording" xml:space="preserve">
+    <value>🎤 Начать запись</value>
+  </data>
+  <data name="Dict_StopRecording" xml:space="preserve">
+    <value>⏹ Остановить запись</value>
+  </data>
+  <data name="Dict_Score" xml:space="preserve">
+    <value>Балл:</value>
+  </data>
+  <data name="Dict_Recognized" xml:space="preserve">
+    <value>Распознано: </value>
+  </data>
+  <data name="Dict_PlayUkTooltip" xml:space="preserve">
+    <value>Прослушать британское произношение</value>
+  </data>
+  <data name="Dict_PlayUsTooltip" xml:space="preserve">
+    <value>Прослушать американское произношение</value>
+  </data>
+  <data name="Dict_Senses" xml:space="preserve">
+    <value>Значения</value>
+  </data>
+  <data name="Dict_Examples" xml:space="preserve">
+    <value>Примеры</value>
+  </data>
+  <data name="Dict_Illustration" xml:space="preserve">
+    <value>Иллюстрация</value>
+  </data>
+  <data name="Dict_Loading" xml:space="preserve">
+    <value>Загрузка...</value>
+  </data>
+  <data name="Dict_Total" xml:space="preserve">
+    <value>Всего: </value>
+  </data>
+  <data name="Dict_Filtered" xml:space="preserve">
+    <value>Отфильтровано: </value>
+  </data>
+  <data name="Dict_ShownUpTo200" xml:space="preserve">
+    <value> (показано до 200)</value>
+  </data>
+  <!-- Listening -->
+  <data name="Listening_Questions" xml:space="preserve">
+    <value> вопросов</value>
+  </data>
+  <data name="Listening_History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Listening_ClearHistory" xml:space="preserve">
+    <value>🗑 Очистить</value>
+  </data>
+  <data name="Listening_Training" xml:space="preserve">
+    <value>Тренировка</value>
+  </data>
+  <data name="Listening_Exam40" xml:space="preserve">
+    <value>Экзамен (40 мин)</value>
+  </data>
+  <data name="Listening_Cancel" xml:space="preserve">
+    <value>✕ Отмена</value>
+  </data>
+  <data name="Listening_ReplayTooltip" xml:space="preserve">
+    <value>Воспроизвести заново</value>
+  </data>
+  <data name="Listening_VolumeTooltip" xml:space="preserve">
+    <value>Громкость</value>
+  </data>
+  <data name="Listening_ShowTranscriptTooltip" xml:space="preserve">
+    <value>Показать транскрипт записи (только в тренировке)</value>
+  </data>
+  <data name="Listening_Transcript" xml:space="preserve">
+    <value>📄 Транскрипт</value>
+  </data>
+  <data name="Listening_HideTranscript" xml:space="preserve">
+    <value>📄 Скрыть текст</value>
+  </data>
+  <data name="Listening_TranscriptHeading" xml:space="preserve">
+    <value>📄 Транскрипт записи</value>
+  </data>
+  <data name="Listening_Back" xml:space="preserve">
+    <value>‹ Назад</value>
+  </data>
+  <data name="Listening_Forward" xml:space="preserve">
+    <value>Вперёд ›</value>
+  </data>
+  <data name="Listening_Finish" xml:space="preserve">
+    <value>Завершить</value>
+  </data>
+  <data name="Listening_BackToTests" xml:space="preserve">
+    <value>‹ К списку тестов</value>
+  </data>
+  <data name="Listening_Correct" xml:space="preserve">
+    <value>Правильно</value>
+  </data>
+  <data name="Listening_BreakdownHeading" xml:space="preserve">
+    <value>Разбор по частям и типам вопросов</value>
+  </data>
+  <data name="Listening_ByParts" xml:space="preserve">
+    <value>По частям (P1–P4)</value>
+  </data>
+  <data name="Listening_ByTypes" xml:space="preserve">
+    <value>По типам вопросов</value>
+  </data>
+  <data name="Listening_AiAnalysis" xml:space="preserve">
+    <value>🤖 Разбор от AI (Claude)</value>
+  </data>
+  <data name="Listening_GetAiAnalysis" xml:space="preserve">
+    <value>Получить разбор от AI</value>
+  </data>
+  <data name="Listening_AiAnalysing" xml:space="preserve">
+    <value>⏳ Анализирую…</value>
+  </data>
+  <data name="Listening_RerunAnalysis" xml:space="preserve">
+    <value>Перезапустить разбор</value>
+  </data>
+  <data name="Listening_Summary" xml:space="preserve">
+    <value>Кратко</value>
+  </data>
+  <data name="Listening_ByPartsCaption" xml:space="preserve">
+    <value>По частям</value>
+  </data>
+  <data name="Listening_ErrorExplanations" xml:space="preserve">
+    <value>Объяснения по ошибкам</value>
+  </data>
+  <data name="Listening_TrainingTips" xml:space="preserve">
+    <value>Советы для тренировки</value>
+  </data>
+  <data name="Listening_Answers" xml:space="preserve">
+    <value>Ответы</value>
+  </data>
+  <data name="Listening_YourAnswer" xml:space="preserve">
+    <value>Ваш ответ</value>
+  </data>
+  <data name="Listening_CorrectAnswer" xml:space="preserve">
+    <value>Правильный</value>
+  </data>
+  <!-- Writing -->
+  <data name="Writing_HubTitle" xml:space="preserve">
+    <value>✍ IELTS Academic Writing</value>
+  </data>
+  <data name="Writing_HubDescription" xml:space="preserve">
+    <value>Полный тест = Task 1 (≥150 слов / 20 мин) + Task 2 (≥250 слов / 40 мин), общий таймер 60 минут. После завершения AI оценивает каждое задание по 4 критериям band 0–9.</value>
+  </data>
+  <data name="Writing_Filters" xml:space="preserve">
+    <value>Фильтры:</value>
+  </data>
+  <data name="Writing_FilterBook" xml:space="preserve">
+    <value>Книга</value>
+  </data>
+  <data name="Writing_FilterTaskType" xml:space="preserve">
+    <value>Тип задания</value>
+  </data>
+  <data name="Writing_FilterProgress" xml:space="preserve">
+    <value>Прогресс</value>
+  </data>
+  <data name="Writing_Of" xml:space="preserve">
+    <value> из </value>
+  </data>
+  <data name="Writing_Reset" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="Writing_AttemptsPrefixColon" xml:space="preserve">
+    <value>Попыток: </value>
+  </data>
+  <data name="Writing_History" xml:space="preserve">
+    <value>История</value>
+  </data>
+  <data name="Writing_Details" xml:space="preserve">
+    <value>📊 Подробнее</value>
+  </data>
+  <data name="Writing_DetailsTooltip" xml:space="preserve">
+    <value>График прогресса band'а + детальный список всех попыток</value>
+  </data>
+  <data name="Writing_Clear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Writing_ClearTooltip" xml:space="preserve">
+    <value>Удалить все записи о пройденных тестах</value>
+  </data>
+  <data name="Writing_WordsMiddleDot" xml:space="preserve">
+    <value> слов  ·  </value>
+  </data>
+  <data name="Writing_StartTest" xml:space="preserve">
+    <value>Начать тест</value>
+  </data>
+  <data name="Writing_Cancel" xml:space="preserve">
+    <value>‹ Отмена</value>
+  </data>
+  <data name="Writing_FinishTest" xml:space="preserve">
+    <value>Завершить тест</value>
+  </data>
+  <data name="Writing_WordsMinPrefix" xml:space="preserve">
+    <value> слов  ·  ~</value>
+  </data>
+  <data name="Writing_MinSuffix" xml:space="preserve">
+    <value> мин</value>
+  </data>
+  <data name="Writing_YourAnswer" xml:space="preserve">
+    <value>Ваш ответ</value>
+  </data>
+  <data name="Writing_WordsSuffix" xml:space="preserve">
+    <value> слов</value>
+  </data>
+  <data name="Writing_Recommendation" xml:space="preserve">
+    <value>Рекомендация: </value>
+  </data>
+  <data name="Writing_Task" xml:space="preserve">
+    <value>Задание</value>
+  </data>
+  <data name="Writing_SaveDraft" xml:space="preserve">
+    <value>Сохранить черновик</value>
+  </data>
+  <data name="Writing_Submit" xml:space="preserve">
+    <value>Отправить на проверку</value>
+  </data>
+  <data name="Writing_BackToList" xml:space="preserve">
+    <value>‹ К списку тестов</value>
+  </data>
+  <data name="Writing_TestResult" xml:space="preserve">
+    <value>Результат теста</value>
+  </data>
+  <data name="Writing_RestartAi" xml:space="preserve">
+    <value>🔄 Перезапустить AI</value>
+  </data>
+  <data name="Writing_OverallScore" xml:space="preserve">
+    <value>Итоговая оценка Writing</value>
+  </data>
+  <data name="Writing_OverallScoreFormula" xml:space="preserve">
+    <value>Расчёт по официальной IELTS-формуле: Task 1 имеет вес ⅓, Task 2 — ⅔. Округление до ближайшего 0.5.</value>
+  </data>
+  <data name="Writing_TimeTaken" xml:space="preserve">
+    <value>    ⏱ Время прохождения: </value>
+  </data>
+  <data name="Writing_ShowModelAnswer" xml:space="preserve">
+    <value>📘 Показать эталон band </value>
+  </data>
+  <data name="Writing_ModelAnswerBand" xml:space="preserve">
+    <value>Эталонный ответ band </value>
+  </data>
+  <data name="Writing_Back" xml:space="preserve">
+    <value>‹ Назад</value>
+  </data>
+  <data name="Writing_HistoryTitle" xml:space="preserve">
+    <value>📊 История Writing</value>
+  </data>
+  <data name="Writing_HistorySubtitle" xml:space="preserve">
+    <value>Прогресс band'а по неделям + детальный разбор попыток</value>
+  </data>
+  <data name="Writing_LastAttemptPrefix" xml:space="preserve">
+    <value>Последняя попытка: </value>
+  </data>
+  <data name="Writing_Attempts" xml:space="preserve">
+    <value>Попыток</value>
+  </data>
+  <data name="Writing_Completed" xml:space="preserve">
+    <value>из них завершено: </value>
+  </data>
+  <data name="Writing_AverageBand" xml:space="preserve">
+    <value>Средний band</value>
+  </data>
+  <data name="Writing_CompletedTests" xml:space="preserve">
+    <value>по завершённым тестам</value>
+  </data>
+  <data name="Writing_BestBand" xml:space="preserve">
+    <value>Лучший band</value>
+  </data>
+  <data name="Writing_AllAttempts" xml:space="preserve">
+    <value>из всех попыток</value>
+  </data>
+  <data name="Writing_WordsWritten" xml:space="preserve">
+    <value>Слов написано</value>
+  </data>
+  <data name="Writing_TimeAtDesk" xml:space="preserve">
+    <value>Время за столом</value>
+  </data>
+  <data name="Writing_Total" xml:space="preserve">
+    <value>суммарно</value>
+  </data>
+  <data name="Writing_BandProgressByWeek" xml:space="preserve">
+    <value>Прогресс band'а по неделям</value>
+  </data>
+  <data name="Writing_AllAttemptsHeader" xml:space="preserve">
+    <value>Все попытки</value>
+  </data>
+  <data name="Writing_ColDate" xml:space="preserve">
+    <value>Дата</value>
+  </data>
+  <data name="Writing_ColTest" xml:space="preserve">
+    <value>Тест</value>
+  </data>
+  <data name="Writing_ColTask" xml:space="preserve">
+    <value>Задание</value>
+  </data>
+  <data name="Writing_ColWords" xml:space="preserve">
+    <value>Слов</value>
+  </data>
+  <data name="Writing_ColTime" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="Writing_LoadingHistory" xml:space="preserve">
+    <value>Загрузка истории…</value>
+  </data>
+  <data name="Writing_AiWindowTitle" xml:space="preserve">
+    <value>AI-оценка</value>
+  </data>
+  <data name="Writing_AiEvaluating" xml:space="preserve">
+    <value>AI оценивает ваше задание</value>
+  </data>
+  <data name="Writing_ElapsedSinceSubmit" xml:space="preserve">
+    <value>  прошло с момента отправки</value>
+  </data>
+  <data name="Writing_NoChartData" xml:space="preserve">
+    <value>Нет данных для графика — сначала завершите хотя бы один тест.</value>
+  </data>
+  <!-- Reader (study reading) — continued -->
+  <data name="Reader_Background" xml:space="preserve">
+    <value>Фон</value>
+  </data>
+  <data name="Reader_Text" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="Reader_Size" xml:space="preserve">
+    <value>Размер</value>
+  </data>
+  <data name="Reader_ReadAloud" xml:space="preserve">
+    <value>▶  Читать вслух</value>
+  </data>
+  <data name="Reader_Stop" xml:space="preserve">
+    <value>⏹  Стоп</value>
+  </data>
+  <data name="Reader_Prepare" xml:space="preserve">
+    <value>🎓  Подготовка</value>
+  </data>
+  <data name="Reader_PrepareTooltip" xml:space="preserve">
+    <value>Разобрать незнакомые слова перед чтением</value>
+  </data>
+  <data name="Reader_Questions" xml:space="preserve">
+    <value>❓  Вопросы</value>
+  </data>
+  <data name="Reader_QuestionsTooltip" xml:space="preserve">
+    <value>Вопросы на понимание текста</value>
+  </data>
+  <data name="Reader_Practice" xml:space="preserve">
+    <value>🗣  Тренировка</value>
+  </data>
+  <data name="Reader_PracticeTooltip" xml:space="preserve">
+    <value>Тренировка произношения: слушать и повторять по предложениям</value>
+  </data>
+  <data name="Reader_NotesTooltip" xml:space="preserve">
+    <value>Заметки к тексту</value>
+  </data>
+  <data name="Reader_BookmarkTooltip" xml:space="preserve">
+    <value>Заложить текущее место</value>
+  </data>
+  <data name="Reader_ContinueTooltip" xml:space="preserve">
+    <value>Продолжить с закладки</value>
+  </data>
+  <data name="Reader_AnalyzingRecording" xml:space="preserve">
+    <value>🎧 Анализирую запись…</value>
+  </data>
+  <data name="Reader_PrevPageTooltip" xml:space="preserve">
+    <value>Предыдущая страница</value>
+  </data>
+  <data name="Reader_NextPageTooltip" xml:space="preserve">
+    <value>Следующая страница</value>
+  </data>
+  <data name="Reader_WordsPerMin" xml:space="preserve">
+    <value> сл/мин</value>
+  </data>
+  <data name="Reader_AiGeneratedTooltip" xml:space="preserve">
+    <value>Сгенерировано Claude — не проверено</value>
+  </data>
+  <data name="Reader_AddNote" xml:space="preserve">
+    <value>✎  Заметка</value>
+  </data>
+  <data name="Reader_AddNoteTooltip" xml:space="preserve">
+    <value>Сохранить выделение как заметку</value>
+  </data>
+  <data name="Reader_Highlight" xml:space="preserve">
+    <value>🖍  Выделить</value>
+  </data>
+  <data name="Reader_RemoveHighlight" xml:space="preserve">
+    <value>🖍  Убрать выделение</value>
+  </data>
+  <data name="Reader_HighlightTooltip" xml:space="preserve">
+    <value>Подсветить выделенное (фиолетовым). Держится, пока не уберёте.</value>
+  </data>
+  <data name="Reader_LookingUp" xml:space="preserve">
+    <value>⏳ ищу перевод…</value>
+  </data>
+  <data name="Reader_AddToTraining" xml:space="preserve">
+    <value>📚  В изучение</value>
+  </data>
+  <data name="Reader_AddedToTraining" xml:space="preserve">
+    <value>✓ в изучении</value>
+  </data>
+  <data name="Reader_AddToTextPool" xml:space="preserve">
+    <value>🎯  В тренировку по тексту</value>
+  </data>
+  <data name="Reader_AddToTextPoolTooltip" xml:space="preserve">
+    <value>Добавить слово в пул тренировки этого текста</value>
+  </data>
+  <data name="Reader_AddedToPool" xml:space="preserve">
+    <value>✓ в пуле текста</value>
+  </data>
+  <data name="Reader_LibraryTitle" xml:space="preserve">
+    <value>📕 Чтение</value>
+  </data>
+  <data name="Reader_Progress" xml:space="preserve">
+    <value>📈  Прогресс</value>
+  </data>
+  <data name="Reader_ProgressTooltip" xml:space="preserve">
+    <value>Скорость чтения и словарный охват</value>
+  </data>
+  <data name="Reader_AddText" xml:space="preserve">
+    <value>➕  Добавить текст</value>
+  </data>
+  <data name="Reader_Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="Reader_Level" xml:space="preserve">
+    <value>Уровень</value>
+  </data>
+  <data name="Reader_ShowHidden" xml:space="preserve">
+    <value>Показывать скрытые</value>
+  </data>
+  <data name="Reader_Words" xml:space="preserve">
+    <value> слов</value>
+  </data>
+  <data name="Reader_LastWpmTooltip" xml:space="preserve">
+    <value>Скорость последнего чтения вслух</value>
+  </data>
+  <data name="Reader_BuiltinTooltip" xml:space="preserve">
+    <value>Встроенный текст — только чтение</value>
+  </data>
+  <data name="Reader_BuiltinBadge" xml:space="preserve">
+    <value>📦 встроенный</value>
+  </data>
+  <data name="Reader_Read" xml:space="preserve">
+    <value>▶  Читать</value>
+  </data>
+  <data name="Reader_PrepareTooltipLib" xml:space="preserve">
+    <value>Подготовка: разобрать незнакомые слова</value>
+  </data>
+  <data name="Reader_RenameTooltip" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="Reader_DeleteTooltip" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Reader_HideTooltip" xml:space="preserve">
+    <value>Скрыть из библиотеки</value>
+  </data>
+  <data name="Reader_RestoreTooltip" xml:space="preserve">
+    <value>Вернуть в библиотеку</value>
+  </data>
+  <data name="Reader_ProgressTitle" xml:space="preserve">
+    <value>📈  Прогресс чтения</value>
+  </data>
+  <data name="Reader_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Reader_Sessions" xml:space="preserve">
+    <value>Сессий</value>
+  </data>
+  <data name="Reader_WordsRead" xml:space="preserve">
+    <value>Слов прочитано</value>
+  </data>
+  <data name="Reader_AvgBest" xml:space="preserve">
+    <value>Среднее / лучшее</value>
+  </data>
+  <data name="Reader_ReadingMinutes" xml:space="preserve">
+    <value>Минут чтения</value>
+  </data>
+  <data name="Reader_SpeedOverTime" xml:space="preserve">
+    <value>Скорость чтения во времени</value>
+  </data>
+  <data name="Reader_VocabCoverage" xml:space="preserve">
+    <value>Словарный охват текстов</value>
+  </data>
+  <data name="Reader_NoData" xml:space="preserve">
+    <value>Нет данных — прочитайте вслух хотя бы один текст.</value>
+  </data>
+  <!-- ReadStudy -->
+  <data name="ReadStudy_ShadowingTitle" xml:space="preserve">
+    <value>🗣  Тренировка произношения</value>
+  </data>
+  <data name="ReadStudy_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="ReadStudy_Listen" xml:space="preserve">
+    <value>▶  Прослушать</value>
+  </data>
+  <data name="ReadStudy_Stop" xml:space="preserve">
+    <value>⏹  Стоп</value>
+  </data>
+  <data name="ReadStudy_Rate" xml:space="preserve">
+    <value>Темп</value>
+  </data>
+  <data name="ReadStudy_Repeat" xml:space="preserve">
+    <value>🎤  Повторить</value>
+  </data>
+  <data name="ReadStudy_StopAndScore" xml:space="preserve">
+    <value>⏹  Закончить и оценить</value>
+  </data>
+  <data name="ReadStudy_Scoring" xml:space="preserve">
+    <value>🎧 оцениваю…</value>
+  </data>
+  <data name="ReadStudy_Said" xml:space="preserve">
+    <value>сказано</value>
+  </data>
+  <data name="ReadStudy_Of" xml:space="preserve">
+    <value> из </value>
+  </data>
+  <data name="ReadStudy_PhonemeBreakdown" xml:space="preserve">
+    <value>ɪ/ə разбор</value>
+  </data>
+  <data name="ReadStudy_Back" xml:space="preserve">
+    <value>◀  Назад</value>
+  </data>
+  <data name="ReadStudy_Forward" xml:space="preserve">
+    <value>Вперёд  ▶</value>
+  </data>
+  <data name="ReadStudy_SummaryTitle" xml:space="preserve">
+    <value>🏁  Итоги чтения</value>
+  </data>
+  <data name="ReadStudy_Speed" xml:space="preserve">
+    <value>Скорость</value>
+  </data>
+  <data name="ReadStudy_WpmUnit" xml:space="preserve">
+    <value> сл/мин</value>
+  </data>
+  <data name="ReadStudy_Average" xml:space="preserve">
+    <value>среднее </value>
+  </data>
+  <data name="ReadStudy_Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="ReadStudy_WordsRead" xml:space="preserve">
+    <value>Слов прочитано</value>
+  </data>
+  <data name="ReadStudy_Accuracy" xml:space="preserve">
+    <value>Точность</value>
+  </data>
+  <data name="ReadStudy_Missed" xml:space="preserve">
+    <value>пропущено </value>
+  </data>
+  <data name="ReadStudy_PronUnavailable" xml:space="preserve">
+    <value>🎧 Анализ произношения недоступен (распознаватель не готов). Показаны скорость и охват.</value>
+  </data>
+  <data name="ReadStudy_DifficultWords" xml:space="preserve">
+    <value>Трудные слова</value>
+  </data>
+  <data name="ReadStudy_Phonetics" xml:space="preserve">
+    <value>ɪ/ə фонетика</value>
+  </data>
+  <data name="ReadStudy_ShowPhonemeBreakdown" xml:space="preserve">
+    <value>Показать разбор по звукам</value>
+  </data>
+  <data name="ReadStudy_AddToStudy" xml:space="preserve">
+    <value>📚 в изучение</value>
+  </data>
+  <data name="ReadStudy_AddToStudyTip" xml:space="preserve">
+    <value>В изучение</value>
+  </data>
+  <data name="ReadStudy_InStudy" xml:space="preserve">
+    <value>✓ в изучении</value>
+  </data>
+  <data name="ReadStudy_ReadingHistory" xml:space="preserve">
+    <value>История чтений</value>
+  </data>
+  <data name="ReadStudy_Clear" xml:space="preserve">
+    <value>🗑  Очистить</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryTip" xml:space="preserve">
+    <value>Удалить всю историю чтений этого текста</value>
+  </data>
+  <data name="ReadStudy_QuestionsButton" xml:space="preserve">
+    <value>❓  Вопросы по тексту</value>
+  </data>
+  <data name="ReadStudy_CloseSummary" xml:space="preserve">
+    <value>Закрыть итоги</value>
+  </data>
+  <data name="ReadStudy_NotesTitle" xml:space="preserve">
+    <value>✎  Заметки</value>
+  </data>
+  <data name="ReadStudy_NewNote" xml:space="preserve">
+    <value>Новая заметка</value>
+  </data>
+  <data name="ReadStudy_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="ReadStudy_Save" xml:space="preserve">
+    <value>💾 Сохранить</value>
+  </data>
+  <data name="ReadStudy_NoNotes" xml:space="preserve">
+    <value>Пока нет заметок. Выделите фрагмент в тексте и нажмите «✎ Заметка».</value>
+  </data>
+  <data name="ReadStudy_GoToPlace" xml:space="preserve">
+    <value>Перейти к месту</value>
+  </data>
+  <data name="ReadStudy_DeleteNote" xml:space="preserve">
+    <value>Удалить заметку</value>
+  </data>
+  <data name="ReadStudy_ComprehensionTitle" xml:space="preserve">
+    <value>❓  Вопросы на понимание</value>
+  </data>
+  <data name="ReadStudy_GeneratingQuestions" xml:space="preserve">
+    <value>⏳ Генерирую вопросы…</value>
+  </data>
+  <data name="ReadStudy_Check" xml:space="preserve">
+    <value>Проверить</value>
+  </data>
+  <data name="ReadStudy_Checking" xml:space="preserve">
+    <value>⏳ проверяю…</value>
+  </data>
+  <data name="ReadStudy_Correct" xml:space="preserve">
+    <value>✓ Верно</value>
+  </data>
+  <data name="ReadStudy_Incorrect" xml:space="preserve">
+    <value>✗ Неверно</value>
+  </data>
+  <data name="ReadStudy_Points" xml:space="preserve">
+    <value> баллов</value>
+  </data>
+  <data name="ReadStudy_CheckAll" xml:space="preserve">
+    <value>Проверить все</value>
+  </data>
+  <data name="ReadStudy_PreTeachTitle" xml:space="preserve">
+    <value>🎓  Подготовка к чтению</value>
+  </data>
+  <data name="ReadStudy_Known" xml:space="preserve">
+    <value>Знакомо</value>
+  </data>
+  <data name="ReadStudy_WordsMarkUnknown" xml:space="preserve">
+    <value> слов · отметьте незнакомые, чтобы изучить их перед чтением</value>
+  </data>
+  <data name="ReadStudy_ClaudeUnavailable" xml:space="preserve">
+    <value>⚠ Claude недоступен — слова без перевода добавить не получится.</value>
+  </data>
+  <data name="ReadStudy_SelectAll" xml:space="preserve">
+    <value>Выбрать все</value>
+  </data>
+  <data name="ReadStudy_SelectNone" xml:space="preserve">
+    <value>Снять все</value>
+  </data>
+  <data name="ReadStudy_AnalyzingText" xml:space="preserve">
+    <value>⏳ Анализирую текст…</value>
+  </data>
+  <data name="ReadStudy_AiWordTip" xml:space="preserve">
+    <value>Нет в словаре — карточку подберёт Claude при добавлении</value>
+  </data>
+  <data name="ReadStudy_AlreadyInStudyTip" xml:space="preserve">
+    <value>Уже в изучении</value>
+  </data>
+  <data name="ReadStudy_Studying" xml:space="preserve">
+    <value>✓ изучается</value>
+  </data>
+  <data name="ReadStudy_OccurrencesTip" xml:space="preserve">
+    <value>Встречается в тексте</value>
+  </data>
+  <data name="ReadStudy_StudySelected" xml:space="preserve">
+    <value>🎓  Изучить выбранные</value>
+  </data>
+  <data name="ReadStudy_StartReading" xml:space="preserve">
+    <value>▶  Начать чтение</value>
+  </data>
+  <data name="ReadStudy_NoPronData" xml:space="preserve">
+    <value>нет данных о произношении</value>
+  </data>
+  <!-- Controls / Dialog / Content / Shell -->
+  <data name="Controls_ZoomTooltip" xml:space="preserve">
+    <value>Нажмите, чтобы увеличить (200%)</value>
+  </data>
+  <data name="Controls_ContentNotImported" xml:space="preserve">
+    <value>Контент раздела не импортирован</value>
+  </data>
+  <data name="Controls_ImportContent" xml:space="preserve">
+    <value>📦 Импортировать контент</value>
+  </data>
+  <data name="Dialog_AddTextTitle" xml:space="preserve">
+    <value>Добавить текст</value>
+  </data>
+  <data name="Dialog_FieldName" xml:space="preserve">
+    <value>Название</value>
+  </data>
+  <data name="Dialog_FieldText" xml:space="preserve">
+    <value>Текст</value>
+  </data>
+  <data name="Dialog_ImportTxt" xml:space="preserve">
+    <value>📥  Импорт .txt</value>
+  </data>
+  <data name="Dialog_Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="Dialog_Save" xml:space="preserve">
+    <value>Сохранить</value>
+  </data>
+  <data name="Dialog_ImageZoomTitle" xml:space="preserve">
+    <value>Просмотр изображения</value>
+  </data>
+  <data name="Dialog_ZoomScale" xml:space="preserve">
+    <value>🔍 Масштаб</value>
+  </data>
+  <data name="Dialog_ConfirmTitle" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="Dialog_Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Dialog_RenameTitle" xml:space="preserve">
+    <value>Переименовать</value>
+  </data>
+  <data name="Dialog_NewName" xml:space="preserve">
+    <value>Новое название</value>
+  </data>
+  <data name="Content_ImportTitle" xml:space="preserve">
+    <value>Импорт контента</value>
+  </data>
+  <data name="Content_ImportHeader" xml:space="preserve">
+    <value>📦 Импорт контент-пака</value>
+  </data>
+  <data name="Content_ImportHint" xml:space="preserve">
+    <value>Выберите папку или ZIP-архив с контент-паком (IELTS-тесты, аудио, словарь). Внутри должен лежать manifest.json.</value>
+  </data>
+  <data name="Content_ChooseFolder" xml:space="preserve">
+    <value>📁 Выбрать папку…</value>
+  </data>
+  <data name="Content_ChooseZip" xml:space="preserve">
+    <value>🗜 Выбрать ZIP…</value>
+  </data>
+  <data name="Content_SelectedPak" xml:space="preserve">
+    <value>Выбран пак:</value>
+  </data>
+  <data name="Content_Sections" xml:space="preserve">
+    <value>Секции в паке</value>
+  </data>
+  <data name="Content_ImportSummary" xml:space="preserve">
+    <value>Итог импорта</value>
+  </data>
+  <data name="Content_Errors" xml:space="preserve">
+    <value>Ошибки</value>
+  </data>
+  <data name="Content_ImportButton" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="Content_Done" xml:space="preserve">
+    <value>Готово</value>
+  </data>
+  <data name="Shell_AreaStudy" xml:space="preserve">
+    <value>🎓 Учёба</value>
+  </data>
+  <data name="Shell_Settings" xml:space="preserve">
+    <value>⚙  Настройки</value>
+  </data>
+  <!-- Settings (extended cards) -->
+  <data name="Settings_AiTitle" xml:space="preserve">
+    <value>🤖 AI-оценка (Writing / Speaking)</value>
+  </data>
+  <data name="Settings_AiHint" xml:space="preserve">
+    <value>Оценка эссе и speaking-ответов идёт через Claude CLI, используя вашу Claude Max подписку. Установка: 'claude code' через npm или официальный installer.</value>
+  </data>
+  <data name="Settings_ClaudePathLabel" xml:space="preserve">
+    <value>Путь к claude.exe (пусто = авто-определение)</value>
+  </data>
+  <data name="Settings_RecheckButton" xml:space="preserve">
+    <value>Проверить заново</value>
+  </data>
+  <data name="Settings_MicTitle" xml:space="preserve">
+    <value>🎙 Микрофон</value>
+  </data>
+  <data name="Settings_MicHint" xml:space="preserve">
+    <value>Устройство записи для тренировки произношения и IELTS Speaking. Запустите проверку, говорите в микрофон и следите за уровнем сигнала, затем прослушайте тестовую запись.</value>
+  </data>
+  <data name="Settings_MicLevel" xml:space="preserve">
+    <value>Уровень сигнала</value>
+  </data>
+  <data name="Settings_MicStartTest" xml:space="preserve">
+    <value>🎤 Начать проверку</value>
+  </data>
+  <data name="Settings_MicStopTest" xml:space="preserve">
+    <value>⏹ Остановить проверку</value>
+  </data>
+  <data name="Settings_MicPlayRecording" xml:space="preserve">
+    <value>▶ Прослушать запись</value>
+  </data>
+  <data name="Settings_MicRefreshDevices" xml:space="preserve">
+    <value>Обновить список устройств</value>
+  </data>
+  <data name="Settings_WhisperTitle" xml:space="preserve">
+    <value>🎤 Распознавание речи (Whisper)</value>
+  </data>
+  <data name="Settings_WhisperHint" xml:space="preserve">
+    <value>Модель скачивается при первом использовании. Для пробного произношения слов хватает Base; для IELTS Speaking рекомендуется Medium.</value>
+  </data>
+  <data name="Settings_VoicesTitle" xml:space="preserve">
+    <value>🎧 Голоса IELTS Listening</value>
+  </data>
+  <data name="Settings_VoicesHint" xml:space="preserve">
+    <value>Имя установленного голоса Windows (например, 'Microsoft Sonia Online (Natural) - English (United Kingdom)'). Пусто = использовать первый доступный голос соответствующего региона/пола.</value>
+  </data>
+  <data name="Settings_SrsTitle" xml:space="preserve">
+    <value>🎯 Тренажёр (SRS)</value>
+  </data>
+  <data name="Settings_SrsNewPerDay" xml:space="preserve">
+    <value>Новых слов в день</value>
+  </data>
+  <data name="Settings_SrsReviewsPerDay" xml:space="preserve">
+    <value>Повторений в день</value>
+  </data>
+  <data name="Settings_SrsTargetRetention" xml:space="preserve">
+    <value>Целевая retention (0.70 – 0.99)</value>
+  </data>
+  <data name="Settings_PexelsTitle" xml:space="preserve">
+    <value>🖼 Pexels API ключ (опционально)</value>
+  </data>
+  <data name="Settings_PexelsHint" xml:space="preserve">
+    <value>С ключом картинки в карточке слова берутся с Pexels (красивее). Без ключа — Wikipedia/Commons. Регистрация: pexels.com/api</value>
+  </data>
+  <data name="Settings_PexelsClear" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Settings_ContentTitle" xml:space="preserve">
+    <value>📦 Контент</value>
+  </data>
+  <data name="Settings_ContentHint" xml:space="preserve">
+    <value>IELTS-тесты, аудио и словарь Oxford 5000 поставляются отдельным контент-паком. Импортируйте папку или ZIP, чтобы наполнить разделы приложения.</value>
+  </data>
+  <data name="Settings_ContentImportButton" xml:space="preserve">
+    <value>📦 Импортировать контент…</value>
+  </data>
+  <data name="Settings_ThemeTitle" xml:space="preserve">
+    <value>🎨 Цветовая тема</value>
+  </data>
+  <data name="Settings_ThemeHint" xml:space="preserve">
+    <value>Меняет оформление всего приложения сразу, без перезапуска.</value>
+  </data>
+  <!-- Theme display names (colour-theme switcher) -->
+  <data name="Theme_DarkBlue" xml:space="preserve">
+    <value>Тёмно-синяя</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
+  <data name="Theme_Solarized" xml:space="preserve">
+    <value>Solarized</value>
+  </data>
+  <data name="Theme_Forest" xml:space="preserve">
+    <value>Лесная</value>
+  </data>
+  <data name="Theme_Violet" xml:space="preserve">
+    <value>Фиолетовая</value>
+  </data>
+  <data name="Theme_Sepia" xml:space="preserve">
+    <value>Сепия</value>
+  </data>
+  <data name="Theme_Nord" xml:space="preserve">
+    <value>Нордик</value>
+  </data>
+  <data name="Theme_RosePine" xml:space="preserve">
+    <value>Розовый бор</value>
+  </data>
+  <data name="Theme_Sage" xml:space="preserve">
+    <value>Шалфей</value>
+  </data>
+  <data name="Theme_Mocha" xml:space="preserve">
+    <value>Мокко</value>
+  </data>
+  <data name="Theme_Blush" xml:space="preserve">
+    <value>Пудра</value>
+  </data>
+  <!-- Window chrome (title bar) -->
+  <data name="Chrome_Minimize" xml:space="preserve">
+    <value>Свернуть</value>
+  </data>
+  <data name="Chrome_Maximize" xml:space="preserve">
+    <value>Развернуть</value>
+  </data>
+  <data name="Chrome_Restore" xml:space="preserve">
+    <value>Восстановить</value>
+  </data>
+  <data name="Chrome_Close" xml:space="preserve">
+    <value>Закрыть</value>
+  </data>
+  <data name="Chrome_LanguageToggle" xml:space="preserve">
+    <value>Сменить язык интерфейса (Ru / En)</value>
+  </data>
+  <!-- Stage 2 (C# view-model / code strings) -->
+  <data name="Mock_ExamTitle" xml:space="preserve">
+    <value>Cambridge {0} · Test {1}</value>
+  </data>
+  <data name="Mock_OpenExamFailed" xml:space="preserve">
+    <value>Не удалось открыть экзамен: </value>
+  </data>
+  <data name="Mock_HintWindowed" xml:space="preserve">
+    <value>Секция откроется в отдельном окне. Завершите его, чтобы вернуться к экзамену.</value>
+  </data>
+  <data name="Mock_HintInline" xml:space="preserve">
+    <value>Таймер секции запустится после «Начать секцию».</value>
+  </data>
+  <data name="Mock_OpenSectionFailed" xml:space="preserve">
+    <value>Не удалось открыть секцию: </value>
+  </data>
+  <data name="Mock_WritingRunning" xml:space="preserve">
+    <value>Writing идёт в отдельном окне. Завершите оба задания, чтобы продолжить.</value>
+  </data>
+  <data name="Mock_EvaluatingTask" xml:space="preserve">
+    <value>Оценка Task {0} из {1}…</value>
+  </data>
+  <data name="Mock_SpeakingRunning" xml:space="preserve">
+    <value>Speaking идёт в отдельном окне. Завершите все части, чтобы продолжить.</value>
+  </data>
+  <data name="Mock_SectionCompleteError" xml:space="preserve">
+    <value>Ошибка завершения секции: </value>
+  </data>
+  <data name="Mock_SkipSectionError" xml:space="preserve">
+    <value>Ошибка пропуска секции: </value>
+  </data>
+  <data name="Mock_ContentMissingDefault" xml:space="preserve">
+    <value>Полный экзамен собирается из секций Reading, Listening, Writing и Speaking.</value>
+  </data>
+  <data name="Mock_ContentMissingDetail" xml:space="preserve">
+    <value>Полный экзамен собирается из секций Reading, Listening, Writing и Speaking. Не хватает: {0}. Импортируйте контент-пак.</value>
+  </data>
+  <data name="Mock_NoBundles" xml:space="preserve">
+    <value>Бандлы не найдены. Нужны импортированные Cambridge Speaking/Listening/Reading.</value>
+  </data>
+  <data name="Mock_LoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить данные экзамена.</value>
+  </data>
+  <data name="Mock_NoBundleForStart" xml:space="preserve">
+    <value>Нет доступного набора для старта.</value>
+  </data>
+  <data name="Mock_StartExamFailed" xml:space="preserve">
+    <value>Не удалось начать экзамен: </value>
+  </data>
+  <data name="Mock_DiscardTitle" xml:space="preserve">
+    <value>Прервать экзамен</value>
+  </data>
+  <data name="Mock_DiscardMessage" xml:space="preserve">
+    <value>Прервать и удалить незаконченный экзамен? Пройденные секции не удаляются из своих модулей.</value>
+  </data>
+  <data name="Mock_DiscardConfirm" xml:space="preserve">
+    <value>Прервать</value>
+  </data>
+  <data name="Mock_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="Mock_ClearHistoryMessage" xml:space="preserve">
+    <value>Удалить все записи о mock-экзаменах? Это действие необратимо.</value>
+  </data>
+  <data name="Mock_ClearHistoryConfirm" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Mock_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>История уже была пуста.</value>
+  </data>
+  <data name="Mock_HistoryCleared" xml:space="preserve">
+    <value>Удалено записей: {0}.</value>
+  </data>
+  <data name="Mock_ClearHistoryFailed" xml:space="preserve">
+    <value>Не удалось очистить историю: </value>
+  </data>
+  <data name="Mock_ResultNotFound" xml:space="preserve">
+    <value>Результат экзамена не найден.</value>
+  </data>
+  <data name="Mock_ExamTitleGeneric" xml:space="preserve">
+    <value>Полный экзамен</value>
+  </data>
+  <data name="Mock_CompletionPartial" xml:space="preserve">
+    <value>Частичный · {0}/4 секций</value>
+  </data>
+  <data name="Mock_CompletionFull" xml:space="preserve">
+    <value>Завершён · 4/4 секций</value>
+  </data>
+  <data name="Mock_LoadResultFailed" xml:space="preserve">
+    <value>Не удалось загрузить результат экзамена.</value>
+  </data>
+  <data name="Mock_OpenBreakdownFailed" xml:space="preserve">
+    <value>Не удалось открыть разбор секции {0}.</value>
+  </data>
+  <data name="Mock_SectionCompleted" xml:space="preserve">
+    <value>завершена</value>
+  </data>
+  <data name="Mock_SectionSkipped" xml:space="preserve">
+    <value>пропущена</value>
+  </data>
+  <data name="Mock_SectionInProgress" xml:space="preserve">
+    <value>не завершена</value>
+  </data>
+  <data name="Mock_SectionFailed" xml:space="preserve">
+    <value>ошибка</value>
+  </data>
+  <data name="Mock_SectionNotDone" xml:space="preserve">
+    <value>не пройдена</value>
+  </data>
+  <data name="Speaking_AttemptNotFound" xml:space="preserve">
+    <value>Попытка не найдена.</value>
+  </data>
+  <data name="Speaking_FailedToLoadResult" xml:space="preserve">
+    <value>Не удалось загрузить результат.</value>
+  </data>
+  <data name="Speaking_ReevaluatingAi" xml:space="preserve">
+    <value>Перезапуск AI-оценки…</value>
+  </data>
+  <data name="Speaking_EvaluationUpdated" xml:space="preserve">
+    <value>Оценка обновлена.</value>
+  </data>
+  <data name="Speaking_ReevaluationFailed" xml:space="preserve">
+    <value>Не удалось перезапустить оценку: </value>
+  </data>
+  <data name="Speaking_ContentMissingText" xml:space="preserve">
+    <value>Банк тем IELTS Speaking входит в контент-пак. Импортируйте пак, чтобы открыть раздел.</value>
+  </data>
+  <data name="Speaking_ModeDescFullMock" xml:space="preserve">
+    <value>Полный mock-экзамен: Part 1 (4–5 мин) + Part 2 (1 мин подготовки + 2 мин ответ) + Part 3 (4–5 мин). Топик выбирается случайно.</value>
+  </data>
+  <data name="Speaking_ModeDescPart1Only" xml:space="preserve">
+    <value>Только Part 1: 5 коротких вопросов по выбранному топику, 30 секунд на каждый ответ.</value>
+  </data>
+  <data name="Speaking_ModeDescPart2Only" xml:space="preserve">
+    <value>Только Part 2: cue card с 1 минутой подготовки и 2 минутами ответа.</value>
+  </data>
+  <data name="Speaking_ModeDescPart3Only" xml:space="preserve">
+    <value>Только Part 3: 4–5 углублённых вопросов по выбранной теме, 60 секунд на каждый.</value>
+  </data>
+  <data name="Speaking_ContentNotLoadedYet" xml:space="preserve">
+    <value>Контент Speaking ещё не загружен. Перезапустите приложение после доставки seed-данных.</value>
+  </data>
+  <data name="Speaking_FailedToLoadTopics" xml:space="preserve">
+    <value>Не удалось загрузить список топиков.</value>
+  </data>
+  <data name="Speaking_CheckingWhisperModel" xml:space="preserve">
+    <value>Проверка модели Whisper…</value>
+  </data>
+  <data name="Speaking_WhisperModelFailed" xml:space="preserve">
+    <value>Не удалось загрузить модель Whisper medium. Speaking-сессия недоступна.</value>
+  </data>
+  <data name="Speaking_FailedToStartSession" xml:space="preserve">
+    <value>Не удалось запустить сессию: </value>
+  </data>
+  <data name="Speaking_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="Speaking_ClearHistoryConfirm" xml:space="preserve">
+    <value>Удалить все записи о пройденных Speaking-тестах? Это действие необратимо.</value>
+  </data>
+  <data name="Speaking_ClearHistoryButton" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Speaking_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>История уже была пуста.</value>
+  </data>
+  <data name="Speaking_HistoryCleared" xml:space="preserve">
+    <value>Удалено записей: {0}.</value>
+  </data>
+  <data name="Speaking_FailedToClearHistory" xml:space="preserve">
+    <value>Не удалось очистить историю: </value>
+  </data>
+  <data name="Speaking_PreparingTopic" xml:space="preserve">
+    <value>Подготовка топика…</value>
+  </data>
+  <data name="Speaking_Step1of3Part1" xml:space="preserve">
+    <value>Шаг 1 из 3 · Part 1</value>
+  </data>
+  <data name="Speaking_Step2of3Part2" xml:space="preserve">
+    <value>Шаг 2 из 3 · Part 2</value>
+  </data>
+  <data name="Speaking_Step3of3Part3" xml:space="preserve">
+    <value>Шаг 3 из 3 · Part 3</value>
+  </data>
+  <data name="Speaking_SavingResponses" xml:space="preserve">
+    <value>Сохранение ответов…</value>
+  </data>
+  <data name="Speaking_FailedToSaveResponses" xml:space="preserve">
+    <value>Не удалось сохранить ответы: </value>
+  </data>
+  <data name="Speaking_AiEvaluating" xml:space="preserve">
+    <value>AI оценивает запись…</value>
+  </data>
+  <data name="Speaking_AiDoneOpeningResult" xml:space="preserve">
+    <value>Готово. Открываем результат…</value>
+  </data>
+  <data name="Speaking_AiEvaluationFailed" xml:space="preserve">
+    <value>AI-оценка не сработала: </value>
+  </data>
+  <data name="Speaking_MicAccessDenied" xml:space="preserve">
+    <value>Не удалось получить доступ к микрофону.</value>
+  </data>
+  <data name="Speaking_RecordingError" xml:space="preserve">
+    <value>Ошибка записи: </value>
+  </data>
+  <data name="Speaking_RecordingFailed" xml:space="preserve">
+    <value>Запись не удалась.</value>
+  </data>
+  <data name="Speaking_Transcribing" xml:space="preserve">
+    <value>Транскрибирую ответ…</value>
+  </data>
+  <data name="Speaking_TranscriptFailed" xml:space="preserve">
+    <value>Не удалось получить транскрипт.</value>
+  </data>
+  <data name="Writing_ContentMissing" xml:space="preserve">
+    <value>Задания IELTS Writing входят в контент-пак. Импортируйте пак, чтобы открыть раздел.</value>
+  </data>
+  <data name="Writing_NoTestsLoaded" xml:space="preserve">
+    <value>Тесты ещё не загружены. Перезапустите приложение для импорта seed.</value>
+  </data>
+  <data name="Writing_LoadTestsFailed" xml:space="preserve">
+    <value>Не удалось загрузить список тестов.</value>
+  </data>
+  <data name="Writing_EvalTaskProgress" xml:space="preserve">
+    <value>Оценка Task {0} из {1}…</value>
+  </data>
+  <data name="Writing_EvalDoneOpeningResult" xml:space="preserve">
+    <value>Готово. Открываем результат…</value>
+  </data>
+  <data name="Writing_EvalPartialFail" xml:space="preserve">
+    <value>AI-оценка частично не сработала: </value>
+  </data>
+  <data name="Writing_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="Writing_ClearHistoryBody" xml:space="preserve">
+    <value>Удалить все записи о пройденных Writing-тестах? Это действие необратимо.</value>
+  </data>
+  <data name="Writing_ClearHistoryConfirm" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Writing_HistoryAlreadyEmpty" xml:space="preserve">
+    <value>История уже была пуста.</value>
+  </data>
+  <data name="Writing_HistoryCleared" xml:space="preserve">
+    <value>Удалено записей: {0}.</value>
+  </data>
+  <data name="Writing_ClearHistoryFailed" xml:space="preserve">
+    <value>Не удалось очистить историю: </value>
+  </data>
+  <data name="Writing_TaskNotFound" xml:space="preserve">
+    <value>Задание не найдено.</value>
+  </data>
+  <data name="Writing_Saving" xml:space="preserve">
+    <value>Сохранение...</value>
+  </data>
+  <data name="Writing_DraftSaved" xml:space="preserve">
+    <value>Черновик сохранён.</value>
+  </data>
+  <data name="Writing_SaveDraftFailed" xml:space="preserve">
+    <value>Не удалось сохранить черновик.</value>
+  </data>
+  <data name="Writing_SubmittingAndEvaluating" xml:space="preserve">
+    <value>Отправка и оценка...</value>
+  </data>
+  <data name="Writing_AnswerSavedNoAi" xml:space="preserve">
+    <value>Ответ сохранён. AI-оценка недоступна (Claude CLI не настроен или не ответил).</value>
+  </data>
+  <data name="Writing_AnswerSavedAiFailed" xml:space="preserve">
+    <value>Ответ сохранён, но AI-оценка не сработала: </value>
+  </data>
+  <data name="Writing_SubmitAnswerFailed" xml:space="preserve">
+    <value>Не удалось отправить ответ.</value>
+  </data>
+  <data name="Writing_TimeFormatHours" xml:space="preserve">
+    <value>{0:0.#} ч</value>
+  </data>
+  <data name="Writing_TimeFormatMinutes" xml:space="preserve">
+    <value>{0:0} мин</value>
+  </data>
+  <data name="Writing_LoadHistoryFailed" xml:space="preserve">
+    <value>Не удалось загрузить историю: </value>
+  </data>
+  <data name="Writing_LoadResultFailed" xml:space="preserve">
+    <value>Не удалось загрузить результат.</value>
+  </data>
+  <data name="Writing_ReevaluatingBothTasks" xml:space="preserve">
+    <value>Перезапуск AI-оценки обеих задач...</value>
+  </data>
+  <data name="Writing_EvalUpdated" xml:space="preserve">
+    <value>Оценка обновлена.</value>
+  </data>
+  <data name="Writing_ReevalFailed" xml:space="preserve">
+    <value>Не удалось перезапустить оценку.</value>
+  </data>
+  <data name="Writing_TestNotFound" xml:space="preserve">
+    <value>Тест не найден.</value>
+  </data>
+  <data name="Writing_SubmittingAnswers" xml:space="preserve">
+    <value>Отправка ответов...</value>
+  </data>
+  <data name="Writing_SubmitAnswersFailed" xml:space="preserve">
+    <value>Не удалось отправить ответы: </value>
+  </data>
+  <data name="Writing_SendingTaskToAi" xml:space="preserve">
+    <value>Отправка задания в AI…</value>
+  </data>
+  <data name="Listening_Duration" xml:space="preserve">
+    <value>⏱ Время прохождения: {0} мин {1} с</value>
+  </data>
+  <data name="Listening_AiStatusPrompt" xml:space="preserve">
+    <value>Нажмите «Разбор от AI», чтобы получить объяснение ошибок и советы.</value>
+  </data>
+  <data name="Listening_AiStatusUnavailable" xml:space="preserve">
+    <value>Claude CLI не настроен — раздел доступен после установки.</value>
+  </data>
+  <data name="Listening_AiStatusProcessing" xml:space="preserve">
+    <value>Claude обрабатывает результат — это занимает 1–3 минуты…</value>
+  </data>
+  <data name="Listening_AiStatusEmptyResponse" xml:space="preserve">
+    <value>Claude CLI вернул пустой / некорректный ответ. Попробуйте ещё раз.</value>
+  </data>
+  <data name="Listening_AiStatusError" xml:space="preserve">
+    <value>Ошибка при вызове Claude CLI. Подробности — в логах.</value>
+  </data>
+  <data name="Listening_AiStatusReady" xml:space="preserve">
+    <value>Разбор готов. Источник: Claude CLI.</value>
+  </data>
+  <data name="Listening_TypeNoteCompletion" xml:space="preserve">
+    <value>Заметки (note completion)</value>
+  </data>
+  <data name="Listening_TypeSummaryCompletion" xml:space="preserve">
+    <value>Summary completion</value>
+  </data>
+  <data name="Listening_TypeSentenceCompletion" xml:space="preserve">
+    <value>Sentence completion</value>
+  </data>
+  <data name="Listening_TypeTableCompletion" xml:space="preserve">
+    <value>Таблица (table)</value>
+  </data>
+  <data name="Listening_TypeFlowChartCompletion" xml:space="preserve">
+    <value>Каскад (flow chart)</value>
+  </data>
+  <data name="Listening_TypeMcqSingle" xml:space="preserve">
+    <value>MCQ (один ответ)</value>
+  </data>
+  <data name="Listening_TypeMcqMulti" xml:space="preserve">
+    <value>MCQ (несколько ответов)</value>
+  </data>
+  <data name="Listening_TypeMatchingFeatures" xml:space="preserve">
+    <value>Сопоставление (matching)</value>
+  </data>
+  <data name="Listening_TypeMatchingHeadings" xml:space="preserve">
+    <value>Подбор заголовков</value>
+  </data>
+  <data name="Listening_TypeMatchingInformation" xml:space="preserve">
+    <value>Сопоставление информации</value>
+  </data>
+  <data name="Listening_TypeMatchingSentenceEndings" xml:space="preserve">
+    <value>Окончания предложений</value>
+  </data>
+  <data name="Listening_TypeShortAnswer" xml:space="preserve">
+    <value>Короткий ответ</value>
+  </data>
+  <data name="Listening_TypeTrueFalseNotGiven" xml:space="preserve">
+    <value>True / False / Not Given</value>
+  </data>
+  <data name="Listening_TypeYesNoNotGiven" xml:space="preserve">
+    <value>Yes / No / Not Given</value>
+  </data>
+  <data name="Listening_AiQuestionHeading" xml:space="preserve">
+    <value>Q{0}: ваш «{1}» → правильный «{2}»</value>
+  </data>
+  <data name="Listening_KindNotes" xml:space="preserve">
+    <value>Заметки</value>
+  </data>
+  <data name="Listening_KindSummaryFlow" xml:space="preserve">
+    <value>Краткое изложение</value>
+  </data>
+  <data name="Listening_KindTable" xml:space="preserve">
+    <value>Таблица</value>
+  </data>
+  <data name="Listening_KindMapLabeling" xml:space="preserve">
+    <value>Сопоставление</value>
+  </data>
+  <data name="Listening_KindCascade" xml:space="preserve">
+    <value>Схема</value>
+  </data>
+  <data name="Listening_KindCascadeImage" xml:space="preserve">
+    <value>Схема + буквы</value>
+  </data>
+  <data name="Listening_KindSelector" xml:space="preserve">
+    <value>Выбор из списка</value>
+  </data>
+  <data name="Listening_KindAnketaImage" xml:space="preserve">
+    <value>Изложение + буквы</value>
+  </data>
+  <data name="Listening_KindDefault" xml:space="preserve">
+    <value>Выбор ответа</value>
+  </data>
+  <data name="Listening_ContentMissing" xml:space="preserve">
+    <value>Тесты IELTS Listening (с аудио) входят в контент-пак. Импортируйте пак, чтобы открыть раздел.</value>
+  </data>
+  <data name="Listening_NoTestsInSeed" xml:space="preserve">
+    <value>Тесты Listening ещё не добавлены в seed.</value>
+  </data>
+  <data name="Listening_LoadTestsFailed" xml:space="preserve">
+    <value>Не удалось загрузить список тестов.</value>
+  </data>
+  <data name="Listening_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="Listening_ClearHistoryConfirm" xml:space="preserve">
+    <value>Удалить всю историю попыток Listening ({0} запис(ей))? Это действие необратимо.</value>
+  </data>
+  <data name="Listening_ClearHistoryConfirmBtn" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="Listening_ClearHistoryFailed" xml:space="preserve">
+    <value>Не удалось очистить историю.</value>
+  </data>
+  <data name="Listening_ProgressLabel" xml:space="preserve">
+    <value>Отвечено {0} / {1}</value>
+  </data>
+  <data name="Listening_CardPositionLabel" xml:space="preserve">
+    <value>Карточка {0} из {1}</value>
+  </data>
+  <data name="ReadStudy_SourceAll" xml:space="preserve">
+    <value>Все тексты</value>
+  </data>
+  <data name="ReadStudy_SourceMine" xml:space="preserve">
+    <value>Мои</value>
+  </data>
+  <data name="ReadStudy_SourceBuiltin" xml:space="preserve">
+    <value>Встроенные</value>
+  </data>
+  <data name="ReadStudy_CefrAll" xml:space="preserve">
+    <value>Все уровни</value>
+  </data>
+  <data name="ReadStudy_NoTextsYet" xml:space="preserve">
+    <value>Пока нет текстов. Нажмите «Добавить текст», чтобы вставить свой.</value>
+  </data>
+  <data name="ReadStudy_LoadTextsFailed" xml:space="preserve">
+    <value>Не удалось загрузить список текстов.</value>
+  </data>
+  <data name="ReadStudy_NoTextsFilter" xml:space="preserve">
+    <value>Нет текстов под выбранный фильтр.</value>
+  </data>
+  <data name="ReadStudy_LargeTextTitle" xml:space="preserve">
+    <value>Очень большой текст</value>
+  </data>
+  <data name="ReadStudy_LargeTextBody" xml:space="preserve">
+    <value>В тексте ~{0:N0} слов. Раздел «Чтение» рассчитан на рассказы и главы — тексты больше {1:N0} слов (например, целые книги) могут открываться очень медленно или подвесить окно чтения. Всё равно добавить?</value>
+  </data>
+  <data name="ReadStudy_Add" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="ReadStudy_SaveTextFailed" xml:space="preserve">
+    <value>Не удалось сохранить текст.</value>
+  </data>
+  <data name="ReadStudy_RenameTextTitle" xml:space="preserve">
+    <value>Переименовать текст</value>
+  </data>
+  <data name="ReadStudy_RenameTextCaption" xml:space="preserve">
+    <value>Название текста</value>
+  </data>
+  <data name="ReadStudy_RenameTextFailed" xml:space="preserve">
+    <value>Не удалось переименовать текст.</value>
+  </data>
+  <data name="ReadStudy_DeleteTextTitle" xml:space="preserve">
+    <value>Удалить текст</value>
+  </data>
+  <data name="ReadStudy_DeleteTextBody" xml:space="preserve">
+    <value>Удалить «{0}»? Это действие необратимо.</value>
+  </data>
+  <data name="ReadStudy_Delete" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="ReadStudy_DeleteTextFailed" xml:space="preserve">
+    <value>Не удалось удалить текст.</value>
+  </data>
+  <data name="ReadStudy_SetHiddenFailed" xml:space="preserve">
+    <value>Не удалось изменить видимость текста.</value>
+  </data>
+  <data name="ReadStudy_ShadowNoSentences" xml:space="preserve">
+    <value>Не удалось разбить текст на предложения.</value>
+  </data>
+  <data name="ReadStudy_ShadowNoTts" xml:space="preserve">
+    <value>Голоса TTS не найдены — прослушивание недоступно (можно записать повтор).</value>
+  </data>
+  <data name="ReadStudy_ShadowSentenceOf" xml:space="preserve">
+    <value>Предложение {0} из {1}</value>
+  </data>
+  <data name="ReadStudy_ShadowNoMic" xml:space="preserve">
+    <value>Микрофон недоступен — повтор записать не получится.</value>
+  </data>
+  <data name="ReadStudy_ShadowRecordFailed" xml:space="preserve">
+    <value>Не удалось начать запись.</value>
+  </data>
+  <data name="ReadStudy_ShadowScoreFailed" xml:space="preserve">
+    <value>Не удалось оценить повтор.</value>
+  </data>
+  <data name="ReadStudy_PageOf" xml:space="preserve">
+    <value>Стр. {0} из {1}</value>
+  </data>
+  <data name="ReadStudy_PreparingSpeechModel" xml:space="preserve">
+    <value>Готовлю распознаватель речи…</value>
+  </data>
+  <data name="ReadStudy_LoadModelFailed" xml:space="preserve">
+    <value>Не удалось загрузить распознаватель.</value>
+  </data>
+  <data name="ReadStudy_PreTeachNoUnknown" xml:space="preserve">
+    <value>Незнакомых слов не нашлось — можно сразу читать.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAnalyzeFailed" xml:space="preserve">
+    <value>Не удалось проанализировать текст.</value>
+  </data>
+  <data name="ReadStudy_PreTeachSelectAtLeastOne" xml:space="preserve">
+    <value>Отметьте хотя бы одно слово.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAddedCount" xml:space="preserve">
+    <value>Добавлено в изучение: {0}. Можно начинать читать.</value>
+  </data>
+  <data name="ReadStudy_PreTeachAddFailed" xml:space="preserve">
+    <value>Не удалось добавить слова в изучение.</value>
+  </data>
+  <data name="ReadStudy_PreTeachNoTranslation" xml:space="preserve">
+    <value>— нет перевода</value>
+  </data>
+  <data name="ReadStudy_PreTeachAiWillAdd" xml:space="preserve">
+    <value>🤖 подберётся при добавлении</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryBody" xml:space="preserve">
+    <value>Удалить всю историю чтений этого текста? Это действие необратимо.</value>
+  </data>
+  <data name="ReadStudy_ClearHistoryConfirm" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="ReadStudy_WpmText" xml:space="preserve">
+    <value>{0} сл/мин</value>
+  </data>
+  <data name="ReadStudy_ComprehensionScore" xml:space="preserve">
+    <value>{0} / {1} верно</value>
+  </data>
+  <data name="ReadStudy_ComprehensionNoQuestions" xml:space="preserve">
+    <value>К этому тексту не удалось составить вопросы.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionOffline" xml:space="preserve">
+    <value>Вопросы недоступны офлайн — подключите Claude CLI в настройках.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionLoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить вопросы.</value>
+  </data>
+  <data name="ReadStudy_ComprehensionGradeFailed" xml:space="preserve">
+    <value>Не удалось проверить ответ.</value>
+  </data>
+  <data name="ReadStudy_ProgressNoData" xml:space="preserve">
+    <value>Пока нет завершённых чтений вслух — статистика появится после первого.</value>
+  </data>
+  <data name="ReadStudy_ProgressLoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить статистику чтения.</value>
+  </data>
+  <data name="ReadStudy_LookupNotFound" xml:space="preserve">
+    <value>Перевод не найден.</value>
+  </data>
+  <data name="ReadStudy_LookupNoCliOffline" xml:space="preserve">
+    <value>Нет в словаре. Claude CLI недоступен — подключите его в настройках для автоперевода.</value>
+  </data>
+  <data name="ReadStudy_PhonemeTooltipTricky" xml:space="preserve">
+    <value>/{0}/ ({1}) — трудный для русскоговорящих звук</value>
+  </data>
+  <data name="ReadStudy_PhonemeTooltip" xml:space="preserve">
+    <value>/{0}/ ({1})</value>
+  </data>
+  <data name="Dict_ContentMissingText" xml:space="preserve">
+    <value>Словарь Oxford 5000 входит в контент-пак. Импортируйте пак, чтобы открыть словарь (каркас AWL/AVL без Oxford малополезен).</value>
+  </data>
+  <data name="Dict_AllPartsOfSpeech" xml:space="preserve">
+    <value>Все части речи</value>
+  </data>
+  <data name="Dict_AllSources" xml:space="preserve">
+    <value>Все источники</value>
+  </data>
+  <data name="Dict_SourcePhave" xml:space="preserve">
+    <value>Фразовые глаголы (PHaVE)</value>
+  </data>
+  <data name="Dict_SourceMyWords" xml:space="preserve">
+    <value>Мои слова</value>
+  </data>
+  <data name="Dict_AllCategories" xml:space="preserve">
+    <value>Все категории</value>
+  </data>
+  <data name="Dict_AllTags" xml:space="preserve">
+    <value>Все теги</value>
+  </data>
+  <data name="Dict_Recognizing" xml:space="preserve">
+    <value>Распознавание…</value>
+  </data>
+  <data name="Dict_WhisperModelNotLoaded" xml:space="preserve">
+    <value>Модель Whisper не загружена.</value>
+  </data>
+  <data name="Dict_NotRecognized" xml:space="preserve">
+    <value>(не распознано)</value>
+  </data>
+  <data name="Dict_PronError" xml:space="preserve">
+    <value>Ошибка: {0}</value>
+  </data>
+  <data name="Dict_MicNotFound" xml:space="preserve">
+    <value>Микрофон не найден.</value>
+  </data>
+  <data name="Dict_RecordingHint" xml:space="preserve">
+    <value>Запись… нажмите ещё раз чтобы остановить.</value>
+  </data>
+  <data name="Settings_Checking" xml:space="preserve">
+    <value>Проверка…</value>
+  </data>
+  <data name="Settings_WhisperBase" xml:space="preserve">
+    <value>Base — быстро (142 МБ), для тренировки произношения</value>
+  </data>
+  <data name="Settings_WhisperMedium" xml:space="preserve">
+    <value>Medium — точно (1.5 ГБ), для Speaking long-form</value>
+  </data>
+  <data name="Settings_NoMicsFound" xml:space="preserve">
+    <value>Микрофоны не обнаружены. Подключите устройство и нажмите ⟳.</value>
+  </data>
+  <data name="Settings_MicTesting" xml:space="preserve">
+    <value>Идёт проверка — говорите в микрофон…</value>
+  </data>
+  <data name="Settings_MicOpenFailed" xml:space="preserve">
+    <value>Не удалось открыть микрофон. Выберите другое устройство.</value>
+  </data>
+  <data name="Settings_RecordingReady" xml:space="preserve">
+    <value>Запись готова — нажмите «▶ Прослушать запись».</value>
+  </data>
+  <data name="Settings_TestStopped" xml:space="preserve">
+    <value>Проверка остановлена.</value>
+  </data>
+  <data name="Settings_VersionUnknown" xml:space="preserve">
+    <value>(версия не определена)</value>
+  </data>
+  <data name="Settings_ClaudeFound" xml:space="preserve">
+    <value>✓ Найден: {0}  ({1})</value>
+  </data>
+  <data name="Settings_ClaudeNotFound" xml:space="preserve">
+    <value>✗ Не найден. Установите Claude CLI или укажите путь вручную.</value>
+  </data>
+  <data name="Settings_PexelsCleared" xml:space="preserve">
+    <value>Pexels ключ очищен.</value>
+  </data>
+  <data name="Content_StatusInitial" xml:space="preserve">
+    <value>Выберите папку или ZIP с контент-паком.</value>
+  </data>
+  <data name="Content_ChooseFolderTitle" xml:space="preserve">
+    <value>Выберите папку с контент-паком (содержит manifest.json)</value>
+  </data>
+  <data name="Content_ChooseZipTitle" xml:space="preserve">
+    <value>Выберите ZIP с контент-паком</value>
+  </data>
+  <data name="Content_ZipFilter" xml:space="preserve">
+    <value>Контент-пак (*.zip)|*.zip|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="Content_ManifestNotFound" xml:space="preserve">
+    <value>В выбранном паке не найден manifest.json.</value>
+  </data>
+  <data name="Content_ReadyToImport" xml:space="preserve">
+    <value>Готов к импорту: найдено секций — {0}.</value>
+  </data>
+  <data name="Content_ManifestNoSections" xml:space="preserve">
+    <value>Манифест найден, но в нём не отмечено ни одной секции.</value>
+  </data>
+  <data name="Content_ManifestReadFailed" xml:space="preserve">
+    <value>Не удалось прочитать манифест пака: </value>
+  </data>
+  <data name="Content_Updated" xml:space="preserve">
+    <value>обновлено</value>
+  </data>
+  <data name="Content_Skipped" xml:space="preserve">
+    <value>пропущено</value>
+  </data>
+  <data name="Content_ImportDone" xml:space="preserve">
+    <value>Импорт завершён успешно.</value>
+  </data>
+  <data name="Content_ImportDoneWithErrors" xml:space="preserve">
+    <value>Импорт завершён с ошибками — см. список ниже.</value>
+  </data>
+  <data name="Content_ImportFailed" xml:space="preserve">
+    <value>Импорт не выполнен: </value>
+  </data>
+  <data name="Content_SectionDictOxford" xml:space="preserve">
+    <value>Словарь — Oxford 5000</value>
+  </data>
+  <data name="Content_SectionDictPhave" xml:space="preserve">
+    <value>Словарь — фразовые глаголы (PHaVE)</value>
+  </data>
+  <data name="ReadIelts_ContentMissingText" xml:space="preserve">
+    <value>Тесты IELTS Reading входят в контент-пак. Импортируйте пак, чтобы открыть раздел.</value>
+  </data>
+  <data name="ReadIelts_NoTestsGenerated" xml:space="preserve">
+    <value>Тесты ещё не сгенерированы. Запустите tools/IeltsReadingGen для bulk-генерации.</value>
+  </data>
+  <data name="ReadIelts_LoadTestsFailed" xml:space="preserve">
+    <value>Не удалось загрузить список тестов.</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryTitle" xml:space="preserve">
+    <value>Очистить историю</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryBody" xml:space="preserve">
+    <value>Удалить всю историю попыток Reading ({0} запис(ей))? Это действие необратимо.</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryConfirm" xml:space="preserve">
+    <value>Очистить</value>
+  </data>
+  <data name="ReadIelts_ClearHistoryFailed" xml:space="preserve">
+    <value>Не удалось очистить историю.</value>
+  </data>
+  <data name="ReadIelts_ProgressLabel" xml:space="preserve">
+    <value>Отвечено {0} / {1}</value>
+  </data>
+  <data name="ReadIelts_CardPositionLabel" xml:space="preserve">
+    <value>Карточка {0} из {1}</value>
+  </data>
+  <data name="ReadIelts_DurationLabel" xml:space="preserve">
+    <value>⏱ Время прохождения: {0} мин {1} с</value>
+  </data>
+  <data name="ReadIelts_NoAnswer" xml:space="preserve">
+    <value>(нет ответа)</value>
+  </data>
+  <data name="ReadIelts_QuestionSingle" xml:space="preserve">
+    <value>Вопрос {0}</value>
+  </data>
+  <data name="ReadIelts_QuestionRange" xml:space="preserve">
+    <value>Вопросы {0}–{1}</value>
+  </data>
+  <data name="ReadIelts_WordLimit" xml:space="preserve">
+    <value>Не более {0} слов</value>
+  </data>
+  <data name="Trainer_PoolNoCards" xml:space="preserve">
+    <value>В пуле этого текста пока нет карточек для повтора.</value>
+  </data>
+  <data name="Trainer_NoCards" xml:space="preserve">
+    <value>Нет карточек к повторению. Добавьте слова в словаре через кнопку «📚 В изучение».</value>
+  </data>
+  <data name="Trainer_SessionEnded" xml:space="preserve">
+    <value>Сессия завершена.</value>
+  </data>
+  <data name="Trainer_SessionDone" xml:space="preserve">
+    <value>Сессия завершена. Готово: {0}.</value>
+  </data>
+  <data name="Trainer_PhrasalVerb" xml:space="preserve">
+    <value>Фразовый глагол</value>
+  </data>
+  <data name="Trainer_Collocation" xml:space="preserve">
+    <value>Коллокация</value>
+  </data>
+  <data name="Main_AppTitle" xml:space="preserve">
+    <value>EnglishStudio — IELTS-тренажёр</value>
+  </data>
+  <data name="Shell_PlaceholderTitle" xml:space="preserve">
+    <value>Скоро доступно</value>
+  </data>
+  <data name="Shell_PlaceholderDescription" xml:space="preserve">
+    <value>Этот раздел появится в следующих обновлениях.</value>
+  </data>
+  <data name="Dialog_ImportTextTitle" xml:space="preserve">
+    <value>Импорт текста</value>
+  </data>
+  <data name="Dialog_ImportTextFilter" xml:space="preserve">
+    <value>Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*</value>
+  </data>
+  <data name="Dialog_ReadFileFailed" xml:space="preserve">
+    <value>Не удалось прочитать файл: {0}</value>
+  </data>
+  <data name="Dialog_PasteOrImportText" xml:space="preserve">
+    <value>Вставьте или импортируйте текст.</value>
+  </data>
+  <data name="Dialog_RenameCaption" xml:space="preserve">
+    <value>Новое название</value>
+  </data>
+  <data name="Controls_ContentMissingDefault" xml:space="preserve">
+    <value>Скачайте или соберите контент-пак и импортируйте его, чтобы открыть этот раздел.</value>
+  </data>
+  <data name="Controls_Transcribing" xml:space="preserve">
+    <value>Транскрибирую… {0:0}%</value>
+  </data>
+  <data name="Controls_PreparingModel" xml:space="preserve">
+    <value>Готовлю модель…</value>
+  </data>
+  <data name="Reader_WpmTooltip" xml:space="preserve">
+    <value>{0}: {1:F0} сл/мин · точность {2:F0}%</value>
+  </data>
+  <data name="Writing_BandTooltip" xml:space="preserve">
+    <value>{0}: band {1:F1} · {2} попыток</value>
+  </data>
+  <data name="Whisper_DownloadingBase" xml:space="preserve">
+    <value>Скачивание модели Whisper base.en (~142 МБ, одноразово)…</value>
+  </data>
+  <data name="Whisper_DownloadingMedium" xml:space="preserve">
+    <value>Скачивание модели Whisper medium.en (~1.5 ГБ, одноразово)…</value>
+  </data>
+  <data name="Whisper_DownloadProgress" xml:space="preserve">
+    <value>Скачивание Whisper {0}: {1:0.0} / {2:0.0} МБ</value>
+  </data>
+  <data name="Whisper_ModelDownloaded" xml:space="preserve">
+    <value>Модель загружена. Инициализация…</value>
+  </data>
+  <data name="Whisper_LoadingBase" xml:space="preserve">
+    <value>Загрузка движка Whisper base…</value>
+  </data>
+  <data name="Whisper_LoadingMedium" xml:space="preserve">
+    <value>Загрузка движка Whisper medium…</value>
+  </data>
+  <data name="Whisper_Error" xml:space="preserve">
+    <value>Ошибка: {0}</value>
+  </data>
+  <data name="Whisper_PronUnrecognized" xml:space="preserve">
+    <value>Не удалось распознать речь. Попробуйте ещё раз.</value>
+  </data>
+  <data name="Whisper_PronExcellent" xml:space="preserve">
+    <value>Отлично! Произношение близко к эталону.</value>
+  </data>
+  <data name="Whisper_PronGood" xml:space="preserve">
+    <value>Хорошо, но есть отличия. Послушайте эталон и попробуйте ещё.</value>
+  </data>
+  <data name="Whisper_PronPoor" xml:space="preserve">
+    <value>Произношение сильно отличается. Послушайте эталон, повторите.</value>
+  </data>
+  <data name="Mic_DefaultDevice" xml:space="preserve">
+    <value>Системное устройство по умолчанию</value>
+  </data>
+  <data name="Mic_DeviceFallback" xml:space="preserve">
+    <value>Микрофон {0}</value>
+  </data>
+  <data name="Vosk_LoadingModel" xml:space="preserve">
+    <value>Загрузка распознавателя речи…</value>
+  </data>
+  <data name="Vosk_Error" xml:space="preserve">
+    <value>Ошибка распознавателя: {0}</value>
+  </data>
+  <data name="Vosk_DownloadingModel" xml:space="preserve">
+    <value>Скачивание модели распознавания (~40 МБ, одноразово)…</value>
+  </data>
+  <data name="Vosk_DownloadProgressKnown" xml:space="preserve">
+    <value>Скачивание модели: {0:0.0} / {1:0.0} МБ</value>
+  </data>
+  <data name="Vosk_DownloadProgressUnknown" xml:space="preserve">
+    <value>Скачивание модели: {0:0.0} МБ</value>
+  </data>
+  <data name="Vosk_ExtractingModel" xml:space="preserve">
+    <value>Распаковка модели…</value>
+  </data>
+  <data name="Vosk_MicNotFound" xml:space="preserve">
+    <value>Микрофон не найден.</value>
+  </data>
+  <!-- Stage 3 (Writing filter labels) -->
+  <data name="Writing_FilterAll" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Writing_FilterNotDone" xml:space="preserve">
+    <value>Не пройденные</value>
+  </data>
+  <data name="Writing_FilterDone" xml:space="preserve">
+    <value>Пройденные</value>
+  </data>
+  <!-- Stage 4 (AI feedback label) -->
+  <data name="Writing_Feedback" xml:space="preserve">
+    <value>Комментарий</value>
+  </data>
+  <!-- Global exception handling -->
+  <data name="App_UnexpectedErrorTitle" xml:space="preserve">
+    <value>Непредвиденная ошибка</value>
+  </data>
+  <data name="App_UnexpectedErrorBody" xml:space="preserve">
+    <value>Произошла непредвиденная ошибка. Приложение продолжит работу, но если проблемы повторяются — перезапустите его.
+
+{0}</value>
+  </data>
+  <data name="App_CrashPromptTitle" xml:space="preserve">
+    <value>Отчёт об ошибке</value>
+  </data>
+  <data name="App_CrashPromptBody" xml:space="preserve">
+    <value>При предыдущем запуске приложение завершилось с ошибкой. Открыть папку с отчётами об ошибках?</value>
+  </data>
+  <data name="Settings_BackupTitle" xml:space="preserve">
+    <value>Резервная копия данных</value>
+  </data>
+  <data name="Settings_BackupHint" xml:space="preserve">
+    <value>Прогресс тренировок, попытки экзаменов и заметки хранятся в локальной базе данных. Создайте копию, чтобы не потерять их при сбое диска или переустановке.</value>
+  </data>
+  <data name="Settings_BackupCreateButton" xml:space="preserve">
+    <value>Создать копию</value>
+  </data>
+  <data name="Settings_BackupOpenFolderButton" xml:space="preserve">
+    <value>Открыть папку копий</value>
+  </data>
+  <data name="Settings_BackupDone" xml:space="preserve">
+    <value>Копия сохранена: {0}</value>
+  </data>
+  <data name="Settings_BackupNoDb" xml:space="preserve">
+    <value>База данных ещё не создана — копировать нечего.</value>
+  </data>
+  <data name="Settings_BackupFailed" xml:space="preserve">
+    <value>Не удалось создать копию: {0}</value>
+  </data>
+  <!-- Module messages: Dictionary (audio/images progress) -->
+  <data name="Dict_AudioDownloading" xml:space="preserve">
+    <value>Скачиваем {0} аудио (~95 МБ)…</value>
+  </data>
+  <data name="Dict_AudioDownloadingPart" xml:space="preserve">
+    <value>Скачиваем часть {0} из {1} ({2})…</value>
+  </data>
+  <data name="Dict_AudioExtracting" xml:space="preserve">
+    <value>Распаковка {0} аудио…</value>
+  </data>
+  <data name="Dict_AudioDownloadError" xml:space="preserve">
+    <value>Ошибка загрузки: {0}</value>
+  </data>
+  <data name="Dict_ImagesSearching" xml:space="preserve">
+    <value>Поиск изображений для «{0}»…</value>
+  </data>
+  <data name="Dict_ImagesDownloading" xml:space="preserve">
+    <value>Скачивание ({0})…</value>
+  </data>
+  <!-- Module messages: Reading study (pre-teach progress) -->
+  <data name="ReadStudy_PreTeachSkipNoTranslation" xml:space="preserve">
+    <value>Пропускаю «{0}» — нет перевода офлайн</value>
+  </data>
+  <data name="ReadStudy_PreTeachTranslating" xml:space="preserve">
+    <value>Подбираю перевод: {0}…</value>
+  </data>
+  <data name="ReadStudy_PreTeachAdding" xml:space="preserve">
+    <value>Добавляю в тренажёр: {0}…</value>
+  </data>
+  <data name="ReadStudy_PreTeachDone" xml:space="preserve">
+    <value>Готово: добавлено {0}.</value>
+  </data>
+  <!-- Module messages: Reading study (comprehension verdicts) -->
+  <data name="ReadStudy_VerdictQuestionNotFound" xml:space="preserve">
+    <value>Вопрос не найден.</value>
+  </data>
+  <data name="ReadStudy_VerdictCorrect" xml:space="preserve">
+    <value>Верно!</value>
+  </data>
+  <data name="ReadStudy_VerdictWrongWithAnswer" xml:space="preserve">
+    <value>Неверно. Правильный ответ: «{0}».</value>
+  </data>
+  <data name="ReadStudy_VerdictWrong" xml:space="preserve">
+    <value>Неверно.</value>
+  </data>
+  <data name="ReadStudy_VerdictEmptyAnswer" xml:space="preserve">
+    <value>Ответ пуст.</value>
+  </data>
+  <data name="ReadStudy_VerdictOpenOffline" xml:space="preserve">
+    <value>Оценка открытого ответа недоступна офлайн.</value>
+  </data>
+  <data name="ReadStudy_VerdictEvaluateFailed" xml:space="preserve">
+    <value>Не удалось оценить ответ.</value>
+  </data>
+  <data name="ReadStudy_VerdictParseFailed" xml:space="preserve">
+    <value>Не удалось разобрать оценку.</value>
+  </data>
+  <data name="ReadStudy_VerdictCorrectShort" xml:space="preserve">
+    <value>Верно.</value>
+  </data>
+  <!-- Module messages: Content import errors -->
+  <data name="Content_ErrManifestMissing" xml:space="preserve">
+    <value>manifest.json не найден в content-pack.</value>
+  </data>
+  <data name="Content_ErrUnsupportedVersion" xml:space="preserve">
+    <value>Неподдерживаемая версия content-pack: packVersion={0}, приложение поддерживает до {1}. Обновите приложение.</value>
+  </data>
+  <data name="Content_ErrSectionFileMissing" xml:space="preserve">
+    <value>Секция '{0}' помечена в манифесте, но её ключевой файл отсутствует в content-pack.</value>
+  </data>
+  <data name="Content_ErrReseedFailed" xml:space="preserve">
+    <value>Ре-сидинг секции '{0}' завершился ошибкой: {1}</value>
+  </data>
+  <data name="Hub_AiUnavailable" xml:space="preserve">
+    <value>Claude CLI не найден — ИИ-оценка эссе и речи недоступна. Укажите путь к Claude CLI в настройках.</value>
+  </data>
+</root>

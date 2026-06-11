@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using EnglishStudio.App.Content;
+using EnglishStudio.App.Localization;
 using EnglishStudio.App.Views.Dialogs;
 using EnglishStudio.Modules.Dictionary.Content;
 using EnglishStudio.Modules.Ielts.Listening;
@@ -30,7 +31,7 @@ public partial class ListeningHubViewModel : ObservableObject
     [ObservableProperty] private bool _isContentMissing;
 
     [ObservableProperty] private string _contentMissingText =
-        "Тесты IELTS Listening (с аудио) входят в контент-пак. Импортируйте пак, чтобы открыть раздел.";
+        Loc.Tr("Listening_ContentMissing");
 
     public bool IsHubVisible => CurrentScreen is null;
 
@@ -82,12 +83,12 @@ public partial class ListeningHubViewModel : ObservableObject
             ClearHistoryCommand.NotifyCanExecuteChanged();
 
             if (Tests.Count == 0)
-                StatusText = "Тесты Listening ещё не добавлены в seed.";
+                StatusText = Loc.Tr("Listening_NoTestsInSeed");
         }
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to load listening hub data");
-            StatusText = "Не удалось загрузить список тестов.";
+            StatusText = Loc.Tr("Listening_LoadTestsFailed");
         }
         finally
         {
@@ -118,12 +119,14 @@ public partial class ListeningHubViewModel : ObservableObject
         sessionVm.Finished += async (attemptId) => await ShowResultAsync(attemptId);
         sessionVm.Cancelled += async () =>
         {
+            (CurrentScreen as IDisposable)?.Dispose();
             CurrentScreen = null;
             await LoadAsync();
             OnPropertyChanged(nameof(IsHubVisible));
         };
 
         await sessionVm.StartAsync(SelectedTest.Id, trainingMode);
+        (CurrentScreen as IDisposable)?.Dispose();
         CurrentScreen = sessionVm;
         OnPropertyChanged(nameof(IsHubVisible));
     }
@@ -141,9 +144,9 @@ public partial class ListeningHubViewModel : ObservableObject
         var total = await _testSvc.CountAttemptsAsync();
         var confirm = ConfirmWindow.Show(
             System.Windows.Application.Current.MainWindow,
-            "Очистить историю",
-            $"Удалить всю историю попыток Listening ({total} запис(ей))? Это действие необратимо.",
-            confirmText: "Очистить");
+            Loc.Tr("Listening_ClearHistoryTitle"),
+            Loc.Format("Listening_ClearHistoryConfirm", total),
+            confirmText: Loc.Tr("Listening_ClearHistoryConfirmBtn"));
         if (!confirm) return;
 
         try
@@ -154,7 +157,7 @@ public partial class ListeningHubViewModel : ObservableObject
         catch (Exception ex)
         {
             _log.LogError(ex, "Failed to clear listening attempts");
-            StatusText = "Не удалось очистить историю.";
+            StatusText = Loc.Tr("Listening_ClearHistoryFailed");
         }
         await LoadAsync();
     }
@@ -171,6 +174,7 @@ public partial class ListeningHubViewModel : ObservableObject
             await LoadAsync();
             OnPropertyChanged(nameof(IsHubVisible));
         });
+        (CurrentScreen as IDisposable)?.Dispose();
         CurrentScreen = holder;
         OnPropertyChanged(nameof(IsHubVisible));
     }

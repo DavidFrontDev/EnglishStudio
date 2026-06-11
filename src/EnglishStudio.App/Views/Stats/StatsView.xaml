@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:StatsViewModel}"
              d:DesignHeight="600" d:DesignWidth="900"
@@ -23,9 +24,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Column="0" Text="Статистика обучения" Style="{StaticResource H1}" />
+            <TextBlock Grid.Column="0" Text="{loc:Tr Stats_Header}" Style="{StaticResource H1}" />
             <Button Grid.Column="1"
-                    Content="Обновить"
+                    Content="{loc:Tr Stats_Refresh}"
                     Style="{StaticResource FlatButton}"
                     Command="{Binding RefreshCommand}" />
         </Grid>
@@ -34,25 +35,25 @@
         <UniformGrid Grid.Row="1" Columns="4" Margin="0,0,0,16">
             <Border Style="{StaticResource Card}" Margin="0,0,6,0" Padding="16">
                 <StackPanel>
-                    <TextBlock Text="Всего" Style="{StaticResource Caption}" />
+                    <TextBlock Text="{loc:Tr Stats_Total}" Style="{StaticResource Caption}" />
                     <TextBlock Text="{Binding Stats.Total, FallbackValue=0}" FontSize="28" FontWeight="SemiBold" Margin="0,4,0,0" />
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource Card}" Margin="6,0,6,0" Padding="16">
                 <StackPanel>
-                    <TextBlock Text="К повторению сегодня" Style="{StaticResource Caption}" />
+                    <TextBlock Text="{loc:Tr Stats_DueToday}" Style="{StaticResource Caption}" />
                     <TextBlock Text="{Binding Stats.DueToday, FallbackValue=0}" FontSize="28" FontWeight="SemiBold" Margin="0,4,0,0" />
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource Card}" Margin="6,0,6,0" Padding="16">
                 <StackPanel>
-                    <TextBlock Text="Просмотрено сегодня" Style="{StaticResource Caption}" />
+                    <TextBlock Text="{loc:Tr Stats_ReviewedToday}" Style="{StaticResource Caption}" />
                     <TextBlock Text="{Binding Stats.ReviewedToday, FallbackValue=0}" FontSize="28" FontWeight="SemiBold" Margin="0,4,0,0" />
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource Card}" Margin="6,0,0,0" Padding="16">
                 <StackPanel>
-                    <TextBlock Text="Retention 30 дней" Style="{StaticResource Caption}" />
+                    <TextBlock Text="{loc:Tr Stats_Retention30}" Style="{StaticResource Caption}" />
                     <TextBlock Text="{Binding RetentionLabel}" FontSize="28" FontWeight="SemiBold" Margin="0,4,0,0" />
                 </StackPanel>
             </Border>
@@ -65,22 +66,22 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <TextBlock Grid.Row="0" Text="По состоянию" Style="{StaticResource H3}" Margin="0,0,0,12" />
+                <TextBlock Grid.Row="0" Text="{loc:Tr Stats_ByState}" Style="{StaticResource H3}" Margin="0,0,0,12" />
                 <UniformGrid Grid.Row="1" Columns="4">
                     <StackPanel>
-                        <TextBlock Text="Новые" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Stats_StateNew}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding Stats.New, FallbackValue=0}" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" />
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock Text="Изучаются" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Stats_StateLearning}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding Stats.Learning, FallbackValue=0}" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" />
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock Text="Повторяются" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Stats_StateReview}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding Stats.Review, FallbackValue=0}" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" />
                     </StackPanel>
                     <StackPanel>
-                        <TextBlock Text="Забыты" Style="{StaticResource Caption}" />
+                        <TextBlock Text="{loc:Tr Stats_StateForgotten}" Style="{StaticResource Caption}" />
                         <TextBlock Text="{Binding Stats.Relearning, FallbackValue=0}" FontSize="22" FontWeight="SemiBold" Margin="0,4,0,0" />
                     </StackPanel>
                 </UniformGrid>

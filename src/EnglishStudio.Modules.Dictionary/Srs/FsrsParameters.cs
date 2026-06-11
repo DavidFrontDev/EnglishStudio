@@ -15,7 +15,7 @@ public sealed class FsrsParameters
     };
 
     public double[] W { get; init; } = DefaultWeights;
-    public double TargetRetention { get; init; } = 0.9;
+    public double TargetRetention { get; set; } = 0.9;
     public double MinimumIntervalDays { get; init; } = 1.0;
     public double MaximumIntervalDays { get; init; } = 36500.0;
 }

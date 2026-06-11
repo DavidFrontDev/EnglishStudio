@@ -4,7 +4,8 @@
                     xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Reading"
                     xmlns:rdg="clr-namespace:EnglishStudio.App.Views.Reading"
                     xmlns:ctrls="clr-namespace:EnglishStudio.App.Views.Controls"
-                    xmlns:conv="clr-namespace:EnglishStudio.App.Converters">
+                    xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+                    xmlns:loc="clr-namespace:EnglishStudio.App.Localization">
 
     <BooleanToVisibilityConverter x:Key="GtBoolToVis" />
     <conv:NullToVisibilityConverter x:Key="NullToVis" />
@@ -90,7 +91,7 @@
                          Margin="20,2,0,4" />
                 <TextBlock Style="{StaticResource Caption}" Margin="20,2,0,0">
                     <Run Text="{Binding WordCount, Mode=OneWay}" />
-                    <Run Text=" слов" />
+                    <Run Text="{loc:Tr ReadIelts_Words}" />
                     <Run Text="  ·  " />
                     <Run Text="{Binding WordLimitLabel, Mode=OneWay}" />
                 </TextBlock>
@@ -185,10 +186,15 @@
                 </Grid>
                 <ComboBox Style="{StaticResource FlatComboBox}"
                           ItemsSource="{Binding AvailableTags}"
-                          DisplayMemberPath="Display"
                           SelectedItem="{Binding SelectedTag, Mode=TwoWay}"
                           HorizontalAlignment="Stretch"
-                          Margin="20,2,0,0" />
+                          Margin="20,2,0,0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Display}" TextTrimming="CharacterEllipsis" />
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
         </Border>
     </DataTemplate>

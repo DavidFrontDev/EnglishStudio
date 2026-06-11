@@ -6,6 +6,7 @@
              xmlns:vm="clr-namespace:EnglishStudio.App.ViewModels.Speaking"
              xmlns:ctrl="clr-namespace:EnglishStudio.App.Views.Speaking.Controls"
              xmlns:conv="clr-namespace:EnglishStudio.App.Converters"
+             xmlns:loc="clr-namespace:EnglishStudio.App.Localization"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:SpeakingPart3ViewModel}"
              d:DesignHeight="600" d:DesignWidth="900">
@@ -64,7 +65,7 @@
                     Style="{StaticResource Card}"
                     Visibility="{Binding CurrentTranscript, Converter={StaticResource NullToVis}}">
                 <StackPanel>
-                    <TextBlock Text="Транскрипт"
+                    <TextBlock Text="{loc:Tr Speaking_Transcript}"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource StrongTextBrush}"
                                Margin="0,0,0,6" />
@@ -83,7 +84,7 @@
                        Style="{StaticResource MutedText}"
                        VerticalAlignment="Center"
                        Margin="0,0,12,0" />
-            <Button Content="Следующий вопрос →"
+            <Button Content="{loc:Tr Speaking_NextQuestion}"
                     Style="{StaticResource AccentButton}"
                     Command="{Binding GoNextCommand}"
                     IsEnabled="{Binding CanGoNext}" />

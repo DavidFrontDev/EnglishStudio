@@ -2,6 +2,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text.Json;
 using EnglishStudio.Modules.Dictionary.Content;
+using EnglishStudio.Modules.Dictionary.Localization;
 using EnglishStudio.Modules.Dictionary.Seed;
 using EnglishStudio.Modules.Ielts.Listening.Seed;
 using EnglishStudio.Modules.Ielts.Reading.Seed;
@@ -27,15 +28,18 @@ public sealed class ContentImportService : IContentImportService
 
     private readonly IContentStore _content;
     private readonly IServiceScopeFactory _scopeFactory;
+    private readonly IMessageLocalizer _messages;
     private readonly ILogger<ContentImportService> _log;
 
     public ContentImportService(
         IContentStore content,
         IServiceScopeFactory scopeFactory,
+        IMessageLocalizer messages,
         ILogger<ContentImportService> log)
     {
         _content = content;
         _scopeFactory = scopeFactory;
+        _messages = messages;
         _log = log;
     }
 
@@ -79,7 +83,7 @@ public sealed class ContentImportService : IContentImportService
                 return new ImportResult(
                     false,
                     Array.Empty<ImportedSection>(),
-                    new[] { "manifest.json не найден в content-pack." });
+                    new[] { _messages.Format("Content_ErrManifestMissing") });
             }
 
             var errors = new List<string>();
@@ -87,8 +91,7 @@ public sealed class ContentImportService : IContentImportService
             // 2a. Reject packs newer than this build supports — before touching anything.
             if (manifest.PackVersion > SupportedPackVersion)
             {
-                errors.Add($"Неподдерживаемая версия content-pack: packVersion={manifest.PackVersion}, " +
-                           $"приложение поддерживает до {SupportedPackVersion}. Обновите приложение.");
+                errors.Add(_messages.Format("Content_ErrUnsupportedVersion", manifest.PackVersion, SupportedPackVersion));
             }
 
             // 2b. Validate: every section flagged true must carry its key file.
@@ -97,8 +100,7 @@ public sealed class ContentImportService : IContentImportService
                 if (!manifest.Has(section)) continue;
                 if (!SectionKeyFileExists(packFolder, section))
                 {
-                    errors.Add($"Секция '{ContentManifest.KeyOf(section)}' помечена в манифесте, " +
-                               "но её ключевой файл отсутствует в content-pack.");
+                    errors.Add(_messages.Format("Content_ErrSectionFileMissing", ContentManifest.KeyOf(section)));
                 }
             }
 
@@ -152,8 +154,7 @@ public sealed class ContentImportService : IContentImportService
                     catch (Exception ex)
                     {
                         _log.LogError(ex, "Content import: re-seed failed for {Section}.", section);
-                        errors.Add($"Ре-сидинг секции '{ContentManifest.KeyOf(section)}' " +
-                                   $"завершился ошибкой: {ex.Message}");
+                        errors.Add(_messages.Format("Content_ErrReseedFailed", ContentManifest.KeyOf(section), ex.Message));
                     }
                 }
 
